@@ -56,6 +56,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
     senha: string;
   } | null>(null);
   const [editando, setEditando] = useState<Usuario | null>(null);
+  const [alternandoId, setAlternandoId] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -92,6 +93,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
   }
 
   async function handleToggleAtivo(usuario: Usuario) {
+    setAlternandoId(usuario.id);
     const res = await fetch(`/api/usuarios/${usuario.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -103,6 +105,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
         ativo: !usuario.ativo,
       }),
     });
+    setAlternandoId(null);
 
     if (!res.ok) {
       toast.error("Não foi possível atualizar o usuário.");
@@ -230,9 +233,14 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
                   <Button
                     variant="outline"
                     size="sm"
+                    disabled={alternandoId === u.id}
                     onClick={() => handleToggleAtivo(u)}
                   >
-                    {u.ativo ? "Desativar" : "Reativar"}
+                    {alternandoId === u.id
+                      ? "Aguarde..."
+                      : u.ativo
+                        ? "Desativar"
+                        : "Reativar"}
                   </Button>
                 </TableCell>
               </TableRow>

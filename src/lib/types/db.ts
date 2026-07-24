@@ -124,6 +124,16 @@ export interface Comanda {
   criado_em: string;
 }
 
+export interface ComandaItem {
+  id: string;
+  clinica_id: string;
+  comanda_id: string;
+  procedimento_id: string | null;
+  descricao: string;
+  quantidade: number;
+  valor_unitario: number;
+}
+
 export interface Pagamento {
   id: string;
   clinica_id: string;
@@ -132,4 +142,13 @@ export interface Pagamento {
   valor: number;
   status: StatusPagamento;
   criado_em: string;
+}
+
+export interface Parcela {
+  id: string;
+  clinica_id: string;
+  pagamento_id: string;
+  vencimento: string;
+  valor: number;
+  status: StatusPagamento;
 }

@@ -37,22 +37,69 @@ export function RegistrarPagamentoDialog({
   const [loading, setLoading] = useState(false);
   const [forma, setForma] = useState(FORMAS_PAGAMENTO[0]);
   const [valor, setValor] = useState(String(valorSugerido));
+  const [parcelas, setParcelas] = useState("1");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     const supabase = createClient();
+    const numParcelas = Number(parcelas) || 1;
+    const valorTotal = Number(valor);
 
-    const { error: pagamentoError } = await supabase.from("pagamentos").insert({
-      comanda_id: comandaId,
-      forma_pagamento: forma,
-      valor: Number(valor),
-      status: "pago",
-    });
+    const { data: pagamento, error: pagamentoError } = await supabase
+      .from("pagamentos")
+      .insert({
+        comanda_id: comandaId,
+        forma_pagamento: forma,
+        valor: valorTotal,
+        status: numParcelas === 1 ? "pago" : "pendente",
+      })
+      .select("id")
+      .single();
 
-    if (pagamentoError) {
+    if (pagamentoError || !pagamento) {
       toast.error("Não foi possível registrar o pagamento.");
       setLoading(false);
+      return;
+    }
+
+    if (numParcelas > 1) {
+      const valorParcela = Math.floor((valorTotal / numParcelas) * 100) / 100;
+      const ultimaParcela =
+        valorTotal - valorParcela * (numParcelas - 1);
+
+      const hoje = new Date();
+      const parcelasRows = Array.from({ length: numParcelas }, (_, i) => {
+        const vencimento = new Date(hoje);
+        vencimento.setMonth(vencimento.getMonth() + i + 1);
+        return {
+          pagamento_id: pagamento.id,
+          vencimento: vencimento.toISOString().slice(0, 10),
+          valor: i === numParcelas - 1 ? ultimaParcela : valorParcela,
+          status: "pendente" as const,
+        };
+      });
+
+      const { error: parcelasError } = await supabase
+        .from("parcelas")
+        .insert(parcelasRows);
+
+      if (parcelasError) {
+        toast.error("Pagamento registrado, mas não foi possível gerar as parcelas.");
+        setLoading(false);
+        return;
+      }
+    }
+
+    const cobreTotal = valorTotal >= valorSugerido - 0.01;
+
+    if (!cobreTotal) {
+      setLoading(false);
+      toast.success(
+        "Pagamento parcial registrado. A comanda permanece em aberto até quitar o valor total.",
+      );
+      setOpen(false);
+      router.refresh();
       return;
     }
 
@@ -68,7 +115,11 @@ export function RegistrarPagamentoDialog({
       return;
     }
 
-    toast.success("Pagamento registrado e comanda fechada.");
+    toast.success(
+      numParcelas === 1
+        ? "Pagamento registrado e comanda fechada."
+        : `Pagamento parcelado em ${numParcelas}x registrado e comanda fechada.`,
+    );
     setOpen(false);
     router.refresh();
   }
@@ -109,6 +160,21 @@ export function RegistrarPagamentoDialog({
               value={valor}
               onChange={(e) => setValor(e.target.value)}
             />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label>Parcelas</Label>
+            <Select value={parcelas} onValueChange={(value) => setParcelas(value ?? "1")}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
+                  <SelectItem key={n} value={String(n)}>
+                    {n === 1 ? "À vista" : `${n}x`}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <DialogFooter>
             <Button type="submit" disabled={loading}>

@@ -20,6 +20,7 @@ import {
 export function PacientesTable({ pacientes }: { pacientes: Paciente[] }) {
   const router = useRouter();
   const [busca, setBusca] = useState("");
+  const [excluindoId, setExcluindoId] = useState<string | null>(null);
 
   const filtrados = pacientes.filter((p) =>
     p.nome.toLowerCase().includes(busca.trim().toLowerCase()),
@@ -32,8 +33,10 @@ export function PacientesTable({ pacientes }: { pacientes: Paciente[] }) {
       )
     )
       return;
+    setExcluindoId(id);
     const supabase = createClient();
     const { error } = await supabase.from("pacientes").delete().eq("id", id);
+    setExcluindoId(null);
     if (error) {
       toast.error("Não foi possível excluir o paciente.");
       return;
@@ -82,9 +85,10 @@ export function PacientesTable({ pacientes }: { pacientes: Paciente[] }) {
                   <Button
                     variant="outline"
                     size="sm"
+                    disabled={excluindoId === paciente.id}
                     onClick={() => excluirPaciente(paciente.id)}
                   >
-                    Excluir
+                    {excluindoId === paciente.id ? "Excluindo..." : "Excluir"}
                   </Button>
                 </TableCell>
               </TableRow>
