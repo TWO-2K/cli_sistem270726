@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { requireUsuarioClinica } from "@/lib/current-clinica";
 import type { Comanda, ComandaItem, Paciente, Parcela } from "@/lib/types/db";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -18,6 +19,7 @@ function formatBRL(value: number) {
 }
 
 export default async function FinanceiroPage() {
+  await requireUsuarioClinica(["admin", "financeiro"]);
   const supabase = await createClient();
 
   const [

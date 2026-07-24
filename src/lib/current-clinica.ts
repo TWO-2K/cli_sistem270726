@@ -1,9 +1,11 @@
 import "server-only";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import type { Usuario, Clinica } from "@/lib/types/db";
+import type { Usuario, Clinica, Perfil } from "@/lib/types/db";
 
-export async function requireUsuarioClinica(): Promise<{
+export async function requireUsuarioClinica(
+  perfisPermitidos?: Perfil[],
+): Promise<{
   usuario: Usuario;
   clinica: Clinica;
 }> {
@@ -32,6 +34,10 @@ export async function requireUsuarioClinica(): Promise<{
 
   if (usuario.must_change_password) {
     redirect("/mudar-senha");
+  }
+
+  if (perfisPermitidos && !perfisPermitidos.includes(usuario.perfil)) {
+    redirect("/dashboard");
   }
 
   const { data: clinica } = await supabase

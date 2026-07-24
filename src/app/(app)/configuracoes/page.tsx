@@ -13,7 +13,7 @@ import { ProcedimentosTab } from "./procedimentos-tab";
 import { UsuariosTab } from "./usuarios-tab";
 
 export default async function ConfiguracoesPage() {
-  const { clinica } = await requireUsuarioClinica();
+  const { clinica } = await requireUsuarioClinica(["admin"]);
   const supabase = await createClient();
   const [{ data: salas }, { data: procedimentos }, { data: usuarios }] =
     await Promise.all([
