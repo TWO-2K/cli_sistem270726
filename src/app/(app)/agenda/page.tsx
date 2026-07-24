@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { requireUsuarioClinica } from "@/lib/current-clinica";
-import type { Agendamento, Paciente, Procedimento, Profissional, Sala } from "@/lib/types/db";
+import type { Agendamento, Paciente, Procedimento, Sala, Usuario } from "@/lib/types/db";
 import { cn } from "@/lib/utils";
 import { NovoAgendamentoDialog } from "./novo-agendamento-dialog";
 import { AgendaGrid } from "./agenda-grid";
@@ -58,11 +58,12 @@ export default async function AgendaPage({
       .returns<Agendamento[]>(),
     supabase.from("pacientes").select("*").order("nome").returns<Paciente[]>(),
     supabase
-      .from("profissionais")
+      .from("usuarios")
       .select("*")
+      .eq("atende", true)
       .eq("ativo", true)
       .order("nome")
-      .returns<Profissional[]>(),
+      .returns<Usuario[]>(),
     supabase.from("salas").select("*").order("nome").returns<Sala[]>(),
     supabase
       .from("procedimentos")

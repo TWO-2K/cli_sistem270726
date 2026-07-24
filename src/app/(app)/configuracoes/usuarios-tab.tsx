@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import type { Perfil, Usuario } from "@/lib/types/db";
 import {
   Select,
@@ -20,6 +22,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
 
 const PERFIS: { value: Perfil; label: string }[] = [
   { value: "admin", label: "Admin" },
@@ -37,12 +47,15 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [perfil, setPerfil] = useState<Perfil>("recepcao");
+  const [especialidade, setEspecialidade] = useState("");
+  const [atende, setAtende] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [credencial, setCredencial] = useState<{
     email: string;
     senha: string;
   } | null>(null);
+  const [editando, setEditando] = useState<Usuario | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -53,7 +66,13 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
     const res = await fetch("/api/usuarios", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nome, email, perfil }),
+      body: JSON.stringify({
+        nome,
+        email,
+        perfil,
+        especialidade: especialidade || null,
+        atende,
+      }),
     });
     const data = await res.json();
     setLoading(false);
@@ -67,6 +86,30 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
     setNome("");
     setEmail("");
     setPerfil("recepcao");
+    setEspecialidade("");
+    setAtende(false);
+    router.refresh();
+  }
+
+  async function handleToggleAtivo(usuario: Usuario) {
+    const res = await fetch(`/api/usuarios/${usuario.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nome: usuario.nome,
+        perfil: usuario.perfil,
+        especialidade: usuario.especialidade,
+        atende: usuario.atende,
+        ativo: !usuario.ativo,
+      }),
+    });
+
+    if (!res.ok) {
+      toast.error("Não foi possível atualizar o usuário.");
+      return;
+    }
+
+    toast.success(usuario.ativo ? "Usuário desativado." : "Usuário reativado.");
     router.refresh();
   }
 
@@ -110,6 +153,24 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
             </SelectContent>
           </Select>
         </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-sm font-medium">Especialidade</label>
+          <Input
+            value={especialidade}
+            onChange={(e) => setEspecialidade(e.target.value)}
+            placeholder="Opcional"
+            className="w-48"
+          />
+        </div>
+        <label className="mb-2 flex items-center gap-2 text-sm font-medium">
+          <input
+            type="checkbox"
+            checked={atende}
+            onChange={(e) => setAtende(e.target.checked)}
+            className="size-4 rounded border-input"
+          />
+          Atende (aparece na Agenda)
+        </label>
         <Button type="submit" disabled={loading}>
           {loading ? "Salvando..." : "Adicionar"}
         </Button>
@@ -139,6 +200,10 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
               <TableHead>Nome</TableHead>
               <TableHead>E-mail</TableHead>
               <TableHead>Perfil</TableHead>
+              <TableHead>Especialidade</TableHead>
+              <TableHead>Atende</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="text-right">Ação</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -147,12 +212,35 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
                 <TableCell className="font-medium">{u.nome}</TableCell>
                 <TableCell>{u.email}</TableCell>
                 <TableCell>{perfilLabel(u.perfil)}</TableCell>
+                <TableCell>{u.especialidade ?? "—"}</TableCell>
+                <TableCell>{u.atende ? "Sim" : "Não"}</TableCell>
+                <TableCell>
+                  <Badge variant={u.ativo ? "default" : "outline"}>
+                    {u.ativo ? "Ativo" : "Inativo"}
+                  </Badge>
+                </TableCell>
+                <TableCell className="flex justify-end gap-2 text-right">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setEditando(u)}
+                  >
+                    Editar
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleToggleAtivo(u)}
+                  >
+                    {u.ativo ? "Desativar" : "Reativar"}
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
             {usuarios.length === 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={3}
+                  colSpan={7}
                   className="py-6 text-center text-muted-foreground"
                 >
                   Nenhum usuário cadastrado.
@@ -162,6 +250,135 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
           </TableBody>
         </Table>
       </div>
+
+      <EditarUsuarioDialog
+        usuario={editando}
+        onClose={() => setEditando(null)}
+        onSaved={() => {
+          setEditando(null);
+          router.refresh();
+        }}
+      />
     </div>
+  );
+}
+
+function EditarUsuarioDialog({
+  usuario,
+  onClose,
+  onSaved,
+}: {
+  usuario: Usuario | null;
+  onClose: () => void;
+  onSaved: () => void;
+}) {
+  return (
+    <Dialog
+      open={usuario !== null}
+      onOpenChange={(open) => {
+        if (!open) onClose();
+      }}
+    >
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Editar usuário</DialogTitle>
+        </DialogHeader>
+        {usuario && (
+          <EditarUsuarioForm key={usuario.id} usuario={usuario} onSaved={onSaved} />
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function EditarUsuarioForm({
+  usuario,
+  onSaved,
+}: {
+  usuario: Usuario;
+  onSaved: () => void;
+}) {
+  const [nome, setNome] = useState(usuario.nome);
+  const [perfil, setPerfil] = useState<Perfil>(usuario.perfil);
+  const [especialidade, setEspecialidade] = useState(
+    usuario.especialidade ?? "",
+  );
+  const [atende, setAtende] = useState(usuario.atende);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+
+    const res = await fetch(`/api/usuarios/${usuario.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nome,
+        perfil,
+        especialidade: especialidade || null,
+        atende,
+        ativo: usuario.ativo,
+      }),
+    });
+
+    setLoading(false);
+
+    if (!res.ok) {
+      toast.error("Não foi possível atualizar o usuário.");
+      return;
+    }
+
+    toast.success("Usuário atualizado.");
+    onSaved();
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
+        <Label>Nome</Label>
+        <Input required value={nome} onChange={(e) => setNome(e.target.value)} />
+      </div>
+      <div className="flex flex-col gap-2">
+        <Label>Perfil</Label>
+        <Select
+          value={perfil}
+          onValueChange={(value) => setPerfil((value as Perfil) ?? "recepcao")}
+        >
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {PERFIS.map((p) => (
+              <SelectItem key={p.value} value={p.value}>
+                {p.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="flex flex-col gap-2">
+        <Label>Especialidade</Label>
+        <Input
+          value={especialidade}
+          onChange={(e) => setEspecialidade(e.target.value)}
+          placeholder="Opcional"
+        />
+      </div>
+      <label className="flex items-center gap-2 text-sm font-medium">
+        <input
+          type="checkbox"
+          checked={atende}
+          onChange={(e) => setAtende(e.target.checked)}
+          className="size-4 rounded border-input"
+        />
+        Atende (aparece na Agenda)
+      </label>
+      <DialogFooter>
+        <Button type="submit" disabled={loading}>
+          {loading ? "Salvando..." : "Salvar"}
+        </Button>
+      </DialogFooter>
+    </form>
   );
 }

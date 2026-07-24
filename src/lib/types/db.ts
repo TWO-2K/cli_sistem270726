@@ -41,6 +41,9 @@ export interface Usuario {
   email: string;
   perfil: Perfil;
   must_change_password: boolean;
+  especialidade: string | null;
+  atende: boolean;
+  ativo: boolean;
 }
 
 export interface Paciente {
@@ -52,14 +55,6 @@ export interface Paciente {
   data_nascimento: string | null;
   endereco: string | null;
   criado_em: string;
-}
-
-export interface Profissional {
-  id: string;
-  clinica_id: string;
-  nome: string;
-  especialidade: string | null;
-  ativo: boolean;
 }
 
 export interface Sala {
@@ -80,7 +75,7 @@ export interface Agendamento {
   id: string;
   clinica_id: string;
   paciente_id: string;
-  profissional_id: string;
+  usuario_id: string;
   sala_id: string | null;
   procedimento_id: string | null;
   data_hora: string;
@@ -94,7 +89,7 @@ export interface Atendimento {
   clinica_id: string;
   agendamento_id: string | null;
   paciente_id: string;
-  profissional_id: string;
+  usuario_id: string;
   procedimento_id: string | null;
   status: "em_andamento" | "concluido";
   criado_em: string;
@@ -106,6 +101,16 @@ export interface Evolucao {
   atendimento_id: string;
   paciente_id: string;
   texto: string;
+  criado_em: string;
+}
+
+export interface FotoAtendimento {
+  id: string;
+  clinica_id: string;
+  atendimento_id: string;
+  paciente_id: string;
+  url: string;
+  tipo: "antes" | "depois";
   criado_em: string;
 }
 

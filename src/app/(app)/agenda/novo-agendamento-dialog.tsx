@@ -8,8 +8,8 @@ import type {
   HorarioDia,
   Paciente,
   Procedimento,
-  Profissional,
   Sala,
+  Usuario,
 } from "@/lib/types/db";
 
 export function NovoAgendamentoDialog({
@@ -20,7 +20,7 @@ export function NovoAgendamentoDialog({
   horarioFuncionamento,
 }: {
   pacientes: Paciente[];
-  profissionais: Profissional[];
+  profissionais: Usuario[];
   salas: Sala[];
   procedimentos: Procedimento[];
   horarioFuncionamento: HorarioDia[];

@@ -20,6 +20,12 @@ function formatBRL(value: number) {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
+interface EdicaoProcedimento {
+  nome: string;
+  duracao: string;
+  preco: string;
+}
+
 export function ProcedimentosTab({
   procedimentos,
 }: {
@@ -30,6 +36,12 @@ export function ProcedimentosTab({
   const [duracao, setDuracao] = useState("30");
   const [preco, setPreco] = useState("0");
   const [loading, setLoading] = useState(false);
+  const [editandoId, setEditandoId] = useState<string | null>(null);
+  const [edicao, setEdicao] = useState<EdicaoProcedimento>({
+    nome: "",
+    duracao: "30",
+    preco: "0",
+  });
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -48,6 +60,48 @@ export function ProcedimentosTab({
     setNome("");
     setDuracao("30");
     setPreco("0");
+    router.refresh();
+  }
+
+  function iniciarEdicao(procedimento: Procedimento) {
+    setEditandoId(procedimento.id);
+    setEdicao({
+      nome: procedimento.nome,
+      duracao: String(procedimento.duracao_minutos),
+      preco: String(procedimento.preco),
+    });
+  }
+
+  async function salvarEdicao(id: string) {
+    const supabase = createClient();
+    const { error } = await supabase
+      .from("procedimentos")
+      .update({
+        nome: edicao.nome,
+        duracao_minutos: Number(edicao.duracao),
+        preco: Number(edicao.preco),
+      })
+      .eq("id", id);
+    if (error) {
+      toast.error("Não foi possível atualizar o procedimento.");
+      return;
+    }
+    setEditandoId(null);
+    router.refresh();
+  }
+
+  async function excluirProcedimento(id: string) {
+    if (!window.confirm("Excluir este procedimento?")) return;
+    const supabase = createClient();
+    const { error } = await supabase
+      .from("procedimentos")
+      .delete()
+      .eq("id", id);
+    if (error) {
+      toast.error("Não foi possível excluir o procedimento.");
+      return;
+    }
+    toast.success("Procedimento excluído.");
     router.refresh();
   }
 
@@ -97,20 +151,92 @@ export function ProcedimentosTab({
               <TableHead>Nome</TableHead>
               <TableHead>Duração</TableHead>
               <TableHead>Preço</TableHead>
+              <TableHead className="text-right">Ação</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {procedimentos.map((p) => (
               <TableRow key={p.id}>
-                <TableCell className="font-medium">{p.nome}</TableCell>
-                <TableCell>{p.duracao_minutos} min</TableCell>
-                <TableCell>{formatBRL(Number(p.preco))}</TableCell>
+                {editandoId === p.id ? (
+                  <>
+                    <TableCell>
+                      <Input
+                        value={edicao.nome}
+                        onChange={(e) =>
+                          setEdicao((prev) => ({ ...prev, nome: e.target.value }))
+                        }
+                        className="w-40"
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <Input
+                        type="number"
+                        min={5}
+                        step={5}
+                        value={edicao.duracao}
+                        onChange={(e) =>
+                          setEdicao((prev) => ({
+                            ...prev,
+                            duracao: e.target.value,
+                          }))
+                        }
+                        className="w-24"
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <Input
+                        type="number"
+                        min={0}
+                        step={0.01}
+                        value={edicao.preco}
+                        onChange={(e) =>
+                          setEdicao((prev) => ({ ...prev, preco: e.target.value }))
+                        }
+                        className="w-28"
+                      />
+                    </TableCell>
+                    <TableCell className="flex justify-end gap-2 text-right">
+                      <Button size="sm" onClick={() => salvarEdicao(p.id)}>
+                        Salvar
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setEditandoId(null)}
+                      >
+                        Cancelar
+                      </Button>
+                    </TableCell>
+                  </>
+                ) : (
+                  <>
+                    <TableCell className="font-medium">{p.nome}</TableCell>
+                    <TableCell>{p.duracao_minutos} min</TableCell>
+                    <TableCell>{formatBRL(Number(p.preco))}</TableCell>
+                    <TableCell className="flex justify-end gap-2 text-right">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => iniciarEdicao(p)}
+                      >
+                        Editar
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => excluirProcedimento(p.id)}
+                      >
+                        Excluir
+                      </Button>
+                    </TableCell>
+                  </>
+                )}
               </TableRow>
             ))}
             {procedimentos.length === 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={3}
+                  colSpan={4}
                   className="py-6 text-center text-muted-foreground"
                 >
                   Nenhum procedimento cadastrado.

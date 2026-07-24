@@ -26,8 +26,8 @@ import type {
   HorarioDia,
   Paciente,
   Procedimento,
-  Profissional,
   Sala,
+  Usuario,
 } from "@/lib/types/db";
 import { horaDentroDoExpediente, horarioDoDia } from "./agenda-utils";
 
@@ -48,7 +48,7 @@ function AgendamentoForm({
 }: {
   initialDataHora?: Date;
   pacientes: Paciente[];
-  profissionais: Profissional[];
+  profissionais: Usuario[];
   salas: Sala[];
   procedimentos: Procedimento[];
   horarioFuncionamento: HorarioDia[];
@@ -92,13 +92,13 @@ function AgendamentoForm({
 
     const { data: possiveisConflitos } = await supabase
       .from("agendamentos")
-      .select("paciente_id, profissional_id, data_hora, duracao_minutos, status")
-      .or(`paciente_id.eq.${pacienteId},profissional_id.eq.${profissionalId}`)
+      .select("paciente_id, usuario_id, data_hora, duracao_minutos, status")
+      .or(`paciente_id.eq.${pacienteId},usuario_id.eq.${profissionalId}`)
       .not("status", "in", "(cancelado,faltou)")
       .returns<
         Pick<
           Agendamento,
-          "paciente_id" | "profissional_id" | "data_hora" | "duracao_minutos" | "status"
+          "paciente_id" | "usuario_id" | "data_hora" | "duracao_minutos" | "status"
         >[]
       >();
 
@@ -107,13 +107,13 @@ function AgendamentoForm({
       const cFim = new Date(cInicio.getTime() + c.duracao_minutos * 60_000);
       const sobrepoe = inicio < cFim && fim > cInicio;
       if (!sobrepoe) return false;
-      return c.profissional_id === profissionalId || c.paciente_id === pacienteId;
+      return c.usuario_id === profissionalId || c.paciente_id === pacienteId;
     });
 
     if (conflito) {
       setLoading(false);
       toast.error(
-        conflito.profissional_id === profissionalId
+        conflito.usuario_id === profissionalId
           ? "Este profissional já tem um agendamento nesse horário."
           : "Este paciente já tem um agendamento nesse horário.",
       );
@@ -122,7 +122,7 @@ function AgendamentoForm({
 
     const { error } = await supabase.from("agendamentos").insert({
       paciente_id: pacienteId,
-      profissional_id: profissionalId,
+      usuario_id: profissionalId,
       sala_id: salaId || null,
       procedimento_id: procedimentoId || null,
       data_hora: inicio.toISOString(),
@@ -242,7 +242,7 @@ export function AgendamentoFormDialog({
   onOpenChange: (open: boolean) => void;
   initialDataHora?: Date;
   pacientes: Paciente[];
-  profissionais: Profissional[];
+  profissionais: Usuario[];
   salas: Sala[];
   procedimentos: Procedimento[];
   horarioFuncionamento: HorarioDia[];

@@ -6,8 +6,8 @@ import type {
   HorarioDia,
   Paciente,
   Procedimento,
-  Profissional,
   Sala,
+  Usuario,
 } from "@/lib/types/db";
 import { cn } from "@/lib/utils";
 import { AgendamentoCard } from "./agendamento-card";
@@ -42,11 +42,11 @@ export function AgendaGrid({
   dias: Date[];
   agendamentosPorDia: Map<number, Agendamento[]>;
   pacientesMap: Map<string, Paciente>;
-  profissionaisMap: Map<string, Profissional>;
+  profissionaisMap: Map<string, Usuario>;
   hoje: Date;
   agora: Date;
   pacientes: Paciente[];
-  profissionais: Profissional[];
+  profissionais: Usuario[];
   salas: Sala[];
   procedimentos: Procedimento[];
   horarioFuncionamento: HorarioDia[];
@@ -191,7 +191,7 @@ export function AgendaGrid({
                   const largura = 100 / cols;
                   const paciente = pacientesMap.get(agendamento.paciente_id);
                   const profissional = profissionaisMap.get(
-                    agendamento.profissional_id,
+                    agendamento.usuario_id,
                   );
 
                   return (

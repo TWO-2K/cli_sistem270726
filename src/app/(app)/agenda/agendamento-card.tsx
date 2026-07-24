@@ -13,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { Agendamento, Paciente, Profissional } from "@/lib/types/db";
+import type { Agendamento, Paciente, Usuario } from "@/lib/types/db";
 
 const STATUS_ESTILO: Record<
   Agendamento["status"],
@@ -52,7 +52,7 @@ export function AgendamentoCard({
 }: {
   agendamento: Agendamento;
   paciente: Paciente | undefined;
-  profissional: Profissional | undefined;
+  profissional: Usuario | undefined;
   style: React.CSSProperties;
 }) {
   const router = useRouter();

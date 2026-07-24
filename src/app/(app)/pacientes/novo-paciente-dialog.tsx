@@ -24,6 +24,8 @@ export function NovoPacienteDialog() {
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [email, setEmail] = useState("");
+  const [dataNascimento, setDataNascimento] = useState("");
+  const [endereco, setEndereco] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,6 +36,8 @@ export function NovoPacienteDialog() {
       nome,
       telefone: telefone || null,
       email: email || null,
+      data_nascimento: dataNascimento || null,
+      endereco: endereco || null,
     });
 
     setLoading(false);
@@ -47,6 +51,8 @@ export function NovoPacienteDialog() {
     setNome("");
     setTelefone("");
     setEmail("");
+    setDataNascimento("");
+    setEndereco("");
     setOpen(false);
     router.refresh();
   }
@@ -87,6 +93,24 @@ export function NovoPacienteDialog() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="data_nascimento">Data de nascimento</Label>
+            <Input
+              id="data_nascimento"
+              type="date"
+              value={dataNascimento}
+              onChange={(e) => setDataNascimento(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="endereco">Endereço</Label>
+            <Input
+              id="endereco"
+              value={endereco}
+              onChange={(e) => setEndereco(e.target.value)}
+              placeholder="Opcional"
             />
           </div>
           <DialogFooter>

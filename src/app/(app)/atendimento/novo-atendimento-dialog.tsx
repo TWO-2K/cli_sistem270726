@@ -22,7 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import type { Paciente, Procedimento, Profissional } from "@/lib/types/db";
+import type { Paciente, Procedimento, Usuario } from "@/lib/types/db";
 
 export function NovoAtendimentoDialog({
   pacientes,
@@ -30,7 +30,7 @@ export function NovoAtendimentoDialog({
   procedimentos,
 }: {
   pacientes: Paciente[];
-  profissionais: Profissional[];
+  profissionais: Usuario[];
   procedimentos: Procedimento[];
 }) {
   const router = useRouter();
@@ -50,7 +50,7 @@ export function NovoAtendimentoDialog({
     const supabase = createClient();
     const { error } = await supabase.from("atendimentos").insert({
       paciente_id: pacienteId,
-      profissional_id: profissionalId,
+      usuario_id: profissionalId,
       procedimento_id: procedimentoId || null,
     });
 

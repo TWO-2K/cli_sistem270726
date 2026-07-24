@@ -1,6 +1,11 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import type { Atendimento, Evolucao, Paciente } from "@/lib/types/db";
+import type {
+  Atendimento,
+  Evolucao,
+  FotoAtendimento,
+  Paciente,
+} from "@/lib/types/db";
 import {
   Card,
   CardContent,
@@ -8,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { EditarPacienteDialog } from "./editar-paciente-dialog";
 
 export default async function PacienteDetailPage({
   params,
@@ -27,31 +33,60 @@ export default async function PacienteDetailPage({
     notFound();
   }
 
-  const [{ data: atendimentos }, { data: evolucoes }] = await Promise.all([
-    supabase
-      .from("atendimentos")
-      .select("*")
-      .eq("paciente_id", id)
-      .order("criado_em", { ascending: false })
-      .returns<Atendimento[]>(),
-    supabase
-      .from("evolucoes")
-      .select("*")
-      .eq("paciente_id", id)
-      .order("criado_em", { ascending: false })
-      .returns<Evolucao[]>(),
-  ]);
+  const [{ data: atendimentos }, { data: evolucoes }, { data: fotos }] =
+    await Promise.all([
+      supabase
+        .from("atendimentos")
+        .select("*")
+        .eq("paciente_id", id)
+        .order("criado_em", { ascending: false })
+        .returns<Atendimento[]>(),
+      supabase
+        .from("evolucoes")
+        .select("*")
+        .eq("paciente_id", id)
+        .order("criado_em", { ascending: false })
+        .returns<Evolucao[]>(),
+      supabase
+        .from("fotos_atendimento")
+        .select("*")
+        .eq("paciente_id", id)
+        .order("criado_em", { ascending: false })
+        .returns<FotoAtendimento[]>(),
+    ]);
+
+  const fotosComUrl = await Promise.all(
+    (fotos ?? []).map(async (foto) => {
+      const { data } = await supabase.storage
+        .from("fotos-atendimento")
+        .createSignedUrl(foto.url, 3600);
+      return { ...foto, signedUrl: data?.signedUrl ?? null };
+    }),
+  );
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">
-          {paciente.nome}
-        </h1>
-        <p className="text-muted-foreground">
-          {paciente.telefone ?? "Sem telefone"} ·{" "}
-          {paciente.email ?? "Sem e-mail"}
-        </p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">
+            {paciente.nome}
+          </h1>
+          <p className="text-muted-foreground">
+            {paciente.telefone ?? "Sem telefone"} ·{" "}
+            {paciente.email ?? "Sem e-mail"}
+          </p>
+          <p className="text-muted-foreground">
+            {paciente.data_nascimento
+              ? `Nascimento: ${paciente.data_nascimento
+                  .split("-")
+                  .reverse()
+                  .join("/")}`
+              : "Data de nascimento não informada"}
+            {" · "}
+            {paciente.endereco ?? "Endereço não informado"}
+          </p>
+        </div>
+        <EditarPacienteDialog paciente={paciente} />
       </div>
 
       <Card>
@@ -98,6 +133,43 @@ export default async function PacienteDetailPage({
               <p>{e.texto}</p>
             </div>
           ))}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Fotos (antes/depois)</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-3">
+          {fotosComUrl.length === 0 && (
+            <p className="text-sm text-muted-foreground">
+              Nenhuma foto registrada ainda.
+            </p>
+          )}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {fotosComUrl.map(
+              (foto) =>
+                foto.signedUrl && (
+                  <a
+                    key={foto.id}
+                    href={foto.signedUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group relative overflow-hidden rounded-md border"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={foto.signedUrl}
+                      alt={`Foto ${foto.tipo} do atendimento`}
+                      className="aspect-square w-full object-cover transition group-hover:opacity-80"
+                    />
+                    <Badge className="absolute bottom-1 left-1" variant="secondary">
+                      {foto.tipo === "antes" ? "Antes" : "Depois"}
+                    </Badge>
+                  </a>
+                ),
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -1,9 +1,10 @@
 import { createClient } from "@/lib/supabase/server";
+import { requireUsuarioClinica } from "@/lib/current-clinica";
 import type {
   Atendimento,
   Paciente,
   Procedimento,
-  Profissional,
+  Usuario,
 } from "@/lib/types/db";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -16,8 +17,10 @@ import {
 } from "@/components/ui/table";
 import { NovoAtendimentoDialog } from "./novo-atendimento-dialog";
 import { ConcluirAtendimentoDialog } from "./concluir-atendimento-dialog";
+import { FotosAtendimentoDialog } from "./fotos-atendimento-dialog";
 
 export default async function AtendimentoPage() {
+  const { clinica } = await requireUsuarioClinica();
   const supabase = await createClient();
 
   const [
@@ -34,11 +37,12 @@ export default async function AtendimentoPage() {
       .returns<Atendimento[]>(),
     supabase.from("pacientes").select("*").order("nome").returns<Paciente[]>(),
     supabase
-      .from("profissionais")
+      .from("usuarios")
       .select("*")
+      .eq("atende", true)
       .eq("ativo", true)
       .order("nome")
-      .returns<Profissional[]>(),
+      .returns<Usuario[]>(),
     supabase
       .from("procedimentos")
       .select("*")
@@ -94,7 +98,7 @@ export default async function AtendimentoPage() {
                   {pacientesMap.get(a.paciente_id)?.nome ?? "—"}
                 </TableCell>
                 <TableCell>
-                  {profissionaisMap.get(a.profissional_id)?.nome ?? "—"}
+                  {profissionaisMap.get(a.usuario_id)?.nome ?? "—"}
                 </TableCell>
                 <TableCell>
                   {a.procedimento_id
@@ -110,17 +114,24 @@ export default async function AtendimentoPage() {
                     {a.status === "concluido" ? "Concluído" : "Em andamento"}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell className="flex justify-end gap-2 text-right">
                   {a.status === "em_andamento" && (
-                    <ConcluirAtendimentoDialog
-                      atendimentoId={a.id}
-                      pacienteId={a.paciente_id}
-                      procedimento={
-                        a.procedimento_id
-                          ? (procedimentosMap.get(a.procedimento_id) ?? null)
-                          : null
-                      }
-                    />
+                    <>
+                      <FotosAtendimentoDialog
+                        clinicaId={clinica.id}
+                        atendimentoId={a.id}
+                        pacienteId={a.paciente_id}
+                      />
+                      <ConcluirAtendimentoDialog
+                        atendimentoId={a.id}
+                        pacienteId={a.paciente_id}
+                        procedimento={
+                          a.procedimento_id
+                            ? (procedimentosMap.get(a.procedimento_id) ?? null)
+                            : null
+                        }
+                      />
+                    </>
                   )}
                 </TableCell>
               </TableRow>
