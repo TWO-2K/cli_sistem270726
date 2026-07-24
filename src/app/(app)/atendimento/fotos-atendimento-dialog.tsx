@@ -37,6 +37,7 @@ export function FotosAtendimentoDialog({
   const [loading, setLoading] = useState(false);
   const [tipo, setTipo] = useState<"antes" | "depois">("antes");
   const [arquivo, setArquivo] = useState<File | null>(null);
+  const [inputKey, setInputKey] = useState(0);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -75,6 +76,7 @@ export function FotosAtendimentoDialog({
 
     toast.success("Foto adicionada.");
     setArquivo(null);
+    setInputKey((k) => k + 1);
     router.refresh();
   }
 
@@ -109,6 +111,7 @@ export function FotosAtendimentoDialog({
           <div className="flex flex-col gap-2">
             <Label htmlFor="arquivo">Imagem</Label>
             <input
+              key={inputKey}
               id="arquivo"
               type="file"
               accept="image/*"
