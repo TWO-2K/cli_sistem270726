@@ -79,12 +79,14 @@ function AgendamentoForm({
     const horarioDia = horarioDoDia(horarioFuncionamento, inicio);
     if (!horarioDia?.ativo) {
       toast.error("A clínica não funciona neste dia.");
+      setLoading(false);
       return;
     }
     if (!horaDentroDoExpediente(horarioDia, inicio.getHours())) {
       toast.error(
         `Horário fora do funcionamento da clínica (${horarioDia.inicio} às ${horarioDia.fim}).`,
       );
+      setLoading(false);
       return;
     }
 
