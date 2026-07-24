@@ -23,7 +23,15 @@ export async function requireUsuarioClinica(): Promise<{
     .maybeSingle();
 
   if (!usuario) {
-    redirect("/onboarding");
+    redirect("/login");
+  }
+
+  if (usuario.perfil === "super_admin") {
+    redirect("/admin");
+  }
+
+  if (usuario.must_change_password) {
+    redirect("/mudar-senha");
   }
 
   const { data: clinica } = await supabase
@@ -33,7 +41,7 @@ export async function requireUsuarioClinica(): Promise<{
     .single();
 
   if (!clinica) {
-    redirect("/onboarding");
+    redirect("/login");
   }
 
   return { usuario, clinica };

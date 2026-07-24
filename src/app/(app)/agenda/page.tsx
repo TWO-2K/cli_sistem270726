@@ -1,50 +1,46 @@
+import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
-import type {
-  Agendamento,
-  Paciente,
-  Procedimento,
-  Profissional,
-  Sala,
-} from "@/lib/types/db";
-import { Badge } from "@/components/ui/badge";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { requireUsuarioClinica } from "@/lib/current-clinica";
+import type { Agendamento, Paciente, Procedimento, Profissional, Sala } from "@/lib/types/db";
+import { cn } from "@/lib/utils";
 import { NovoAgendamentoDialog } from "./novo-agendamento-dialog";
+import { AgendaGrid } from "./agenda-grid";
+import {
+  addDias,
+  ehMesmoDia,
+  fimDoDia,
+  formatDataParam,
+  formatRangeLabel,
+  inicioDaSemana,
+  inicioDoDia,
+  parseDataParam,
+} from "./agenda-utils";
 
-const STATUS_LABEL: Record<Agendamento["status"], string> = {
-  agendado: "Agendado",
-  confirmado: "Confirmado",
-  em_atendimento: "Em atendimento",
-  concluido: "Concluído",
-  cancelado: "Cancelado",
-  faltou: "Faltou",
-};
+export default async function AgendaPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ view?: string; data?: string }>;
+}) {
+  const { clinica } = await requireUsuarioClinica();
+  const params = await searchParams;
+  const view: "semana" | "dia" = params.view === "dia" ? "dia" : "semana";
+  const ref = parseDataParam(params.data);
+  const hoje = new Date();
 
-const STATUS_VARIANT: Record<
-  Agendamento["status"],
-  "default" | "secondary" | "destructive" | "outline"
-> = {
-  agendado: "secondary",
-  confirmado: "default",
-  em_atendimento: "default",
-  concluido: "outline",
-  cancelado: "destructive",
-  faltou: "destructive",
-};
+  const dias =
+    view === "dia"
+      ? [ref]
+      : Array.from({ length: 7 }, (_, i) => addDias(inicioDaSemana(ref), i));
 
-export default async function AgendaPage() {
+  const rangeInicio = inicioDoDia(dias[0]);
+  const rangeFim = fimDoDia(dias[dias.length - 1]);
+
+  const anteriorRef = formatDataParam(addDias(ref, view === "dia" ? -1 : -7));
+  const proximoRef = formatDataParam(addDias(ref, view === "dia" ? 1 : 7));
+  const hojeRef = formatDataParam(hoje);
+
   const supabase = await createClient();
-
-  const startOfDay = new Date();
-  startOfDay.setHours(0, 0, 0, 0);
-  const endOfDay = new Date();
-  endOfDay.setHours(23, 59, 59, 999);
 
   const [
     { data: agendamentos },
@@ -56,8 +52,8 @@ export default async function AgendaPage() {
     supabase
       .from("agendamentos")
       .select("*")
-      .gte("data_hora", startOfDay.toISOString())
-      .lte("data_hora", endOfDay.toISOString())
+      .gte("data_hora", rangeInicio.toISOString())
+      .lte("data_hora", rangeFim.toISOString())
       .order("data_hora")
       .returns<Agendamento[]>(),
     supabase.from("pacientes").select("*").order("nome").returns<Paciente[]>(),
@@ -79,21 +75,23 @@ export default async function AgendaPage() {
   const profissionaisMap = new Map(
     (profissionais ?? []).map((p) => [p.id, p]),
   );
-  const salasMap = new Map((salas ?? []).map((s) => [s.id, s]));
+
+  const agendamentosPorDia = new Map<number, Agendamento[]>();
+  for (const ag of agendamentos ?? []) {
+    const data = new Date(ag.data_hora);
+    const idx = dias.findIndex((d) => ehMesmoDia(d, data));
+    if (idx === -1) continue;
+    if (!agendamentosPorDia.has(idx)) agendamentosPorDia.set(idx, []);
+    agendamentosPorDia.get(idx)!.push(ag);
+  }
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
+    <div className="flex h-full min-h-0 flex-col gap-6">
+      <div className="flex shrink-0 items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Agenda</h1>
           <p className="text-muted-foreground">
-            Agendamentos de hoje,{" "}
-            {new Date().toLocaleDateString("pt-BR", {
-              weekday: "long",
-              day: "2-digit",
-              month: "long",
-            })}
-            .
+            Visão semanal ou diária dos atendimentos.
           </p>
         </div>
         <NovoAgendamentoDialog
@@ -101,57 +99,67 @@ export default async function AgendaPage() {
           profissionais={profissionais ?? []}
           salas={salas ?? []}
           procedimentos={procedimentos ?? []}
+          horarioFuncionamento={clinica.horario_funcionamento}
         />
       </div>
 
-      <div className="rounded-lg border bg-background">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Horário</TableHead>
-              <TableHead>Paciente</TableHead>
-              <TableHead>Profissional</TableHead>
-              <TableHead>Sala</TableHead>
-              <TableHead>Status</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {(agendamentos ?? []).map((a) => (
-              <TableRow key={a.id}>
-                <TableCell className="font-medium">
-                  {new Date(a.data_hora).toLocaleTimeString("pt-BR", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </TableCell>
-                <TableCell>
-                  {pacientesMap.get(a.paciente_id)?.nome ?? "—"}
-                </TableCell>
-                <TableCell>
-                  {profissionaisMap.get(a.profissional_id)?.nome ?? "—"}
-                </TableCell>
-                <TableCell>
-                  {a.sala_id ? (salasMap.get(a.sala_id)?.nome ?? "—") : "—"}
-                </TableCell>
-                <TableCell>
-                  <Badge variant={STATUS_VARIANT[a.status]}>
-                    {STATUS_LABEL[a.status]}
-                  </Badge>
-                </TableCell>
-              </TableRow>
-            ))}
-            {(agendamentos ?? []).length === 0 && (
-              <TableRow>
-                <TableCell
-                  colSpan={5}
-                  className="py-8 text-center text-muted-foreground"
-                >
-                  Nenhum agendamento para hoje.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+      <div className="flex shrink-0 flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <Link
+            href={`/agenda?view=${view}&data=${anteriorRef}`}
+            className="flex size-8 items-center justify-center rounded-lg border text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+          >
+            <ChevronLeft className="size-4" />
+          </Link>
+          <Link
+            href={`/agenda?view=${view}&data=${hojeRef}`}
+            className="flex h-8 items-center rounded-lg border px-3 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+          >
+            Hoje
+          </Link>
+          <Link
+            href={`/agenda?view=${view}&data=${proximoRef}`}
+            className="flex size-8 items-center justify-center rounded-lg border text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+          >
+            <ChevronRight className="size-4" />
+          </Link>
+          <span className="ml-2 text-sm font-semibold capitalize">
+            {formatRangeLabel(view, ref)}
+          </span>
+        </div>
+
+        <div className="flex items-center gap-1 rounded-lg bg-muted p-1">
+          {(["semana", "dia"] as const).map((v) => (
+            <Link
+              key={v}
+              href={`/agenda?view=${v}&data=${formatDataParam(ref)}`}
+              className={cn(
+                "rounded-md px-3 py-1 text-sm font-medium capitalize transition-colors",
+                view === v
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {v}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="min-h-0 flex-1">
+        <AgendaGrid
+          dias={dias}
+          agendamentosPorDia={agendamentosPorDia}
+          pacientesMap={pacientesMap}
+          profissionaisMap={profissionaisMap}
+          hoje={hoje}
+          agora={hoje}
+          pacientes={pacientes ?? []}
+          profissionais={profissionais ?? []}
+          salas={salas ?? []}
+          procedimentos={procedimentos ?? []}
+          horarioFuncionamento={clinica.horario_funcionamento}
+        />
       </div>
     </div>
   );

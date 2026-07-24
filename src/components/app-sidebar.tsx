@@ -2,8 +2,17 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import type { Perfil } from "@/lib/types/db";
 import {
@@ -15,6 +24,7 @@ import {
   Settings,
   LayoutDashboard,
   LogOut,
+  Menu,
 } from "lucide-react";
 
 const NAV_ITEMS: {
@@ -42,6 +52,96 @@ const NAV_ITEMS: {
   },
 ];
 
+const PERFIL_LABELS: Record<Perfil, string> = {
+  super_admin: "Super admin",
+  admin: "Administrador",
+  recepcao: "Recepção",
+  profissional: "Profissional",
+  financeiro: "Financeiro",
+};
+
+function iniciais(nome: string) {
+  const partes = nome.trim().split(/\s+/);
+  const primeira = partes[0]?.[0] ?? "";
+  const ultima = partes.length > 1 ? partes[partes.length - 1][0] : "";
+  return (primeira + ultima).toUpperCase();
+}
+
+function SidebarBrand({ clinicaNome }: { clinicaNome: string }) {
+  return (
+    <div className="flex h-16 items-center gap-3 border-b border-sidebar-border px-4">
+      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+        <Stethoscope className="size-4" />
+      </div>
+      <span className="truncate text-base font-semibold">{clinicaNome}</span>
+    </div>
+  );
+}
+
+function SidebarNav({
+  items,
+  pathname,
+  onNavigate,
+}: {
+  items: typeof NAV_ITEMS;
+  pathname: string;
+  onNavigate?: () => void;
+}) {
+  return (
+    <nav className="flex flex-1 flex-col gap-1 p-3">
+      {items.map((item) => {
+        const active =
+          pathname === item.href || pathname.startsWith(item.href + "/");
+        const Icon = item.icon;
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            onClick={onNavigate}
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+              active
+                ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-sm"
+                : "text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+            )}
+          >
+            <Icon className="size-4" />
+            {item.label}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
+
+function SidebarFooter({
+  usuarioNome,
+  perfil,
+  onLogout,
+}: {
+  usuarioNome: string;
+  perfil: Perfil;
+  onLogout: () => void;
+}) {
+  return (
+    <div className="flex items-center gap-2 border-t border-sidebar-border p-3">
+      <Avatar className="ring-2 ring-sidebar-border">
+        <AvatarFallback>{iniciais(usuarioNome)}</AvatarFallback>
+      </Avatar>
+      <div className="flex min-w-0 flex-1 flex-col">
+        <span className="truncate text-sm font-medium">{usuarioNome}</span>
+        <span className="truncate text-xs text-muted-foreground">
+          {PERFIL_LABELS[perfil]}
+        </span>
+      </div>
+      <Button variant="ghost" size="sm" onClick={onLogout}>
+        <LogOut className="size-4" />
+        Sair
+      </Button>
+    </div>
+  );
+}
+
 export function AppSidebar({
   clinicaNome,
   usuarioNome,
@@ -53,6 +153,7 @@ export function AppSidebar({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   async function handleLogout() {
     const supabase = createClient();
@@ -66,45 +167,50 @@ export function AppSidebar({
   );
 
   return (
-    <aside className="flex h-full w-64 shrink-0 flex-col border-r bg-sidebar text-sidebar-foreground">
-      <div className="flex flex-col gap-0.5 border-b px-4 py-4">
+    <>
+      <aside className="fixed inset-y-0 left-0 hidden h-svh w-64 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground md:flex">
+        <SidebarBrand clinicaNome={clinicaNome} />
+        <SidebarNav items={items} pathname={pathname} />
+        <SidebarFooter
+          usuarioNome={usuarioNome}
+          perfil={perfil}
+          onLogout={handleLogout}
+        />
+      </aside>
+
+      <header className="fixed inset-x-0 top-0 z-40 flex h-14 items-center gap-3 border-b bg-sidebar px-4 text-sidebar-foreground md:hidden">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger
+            render={<Button variant="ghost" size="icon-sm" />}
+          >
+            <Menu className="size-4" />
+            <span className="sr-only">Abrir menu</span>
+          </SheetTrigger>
+          <SheetContent
+            side="left"
+            className="flex w-64 flex-col gap-0 p-0 sm:max-w-64"
+          >
+            <SheetHeader className="sr-only">
+              <SheetTitle>Menu</SheetTitle>
+            </SheetHeader>
+            <SidebarBrand clinicaNome={clinicaNome} />
+            <SidebarNav
+              items={items}
+              pathname={pathname}
+              onNavigate={() => setOpen(false)}
+            />
+            <SidebarFooter
+              usuarioNome={usuarioNome}
+              perfil={perfil}
+              onLogout={handleLogout}
+            />
+          </SheetContent>
+        </Sheet>
+        <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <Stethoscope className="size-3.5" />
+        </div>
         <span className="truncate text-sm font-semibold">{clinicaNome}</span>
-        <span className="truncate text-xs text-muted-foreground">
-          {usuarioNome}
-        </span>
-      </div>
-      <nav className="flex flex-1 flex-col gap-1 p-2">
-        {items.map((item) => {
-          const active =
-            pathname === item.href || pathname.startsWith(item.href + "/");
-          const Icon = item.icon;
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                active
-                  ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                  : "text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-              )}
-            >
-              <Icon className="h-4 w-4" />
-              {item.label}
-            </Link>
-          );
-        })}
-      </nav>
-      <div className="border-t p-2">
-        <Button
-          variant="ghost"
-          className="w-full justify-start gap-3 text-sm"
-          onClick={handleLogout}
-        >
-          <LogOut className="h-4 w-4" />
-          Sair
-        </Button>
-      </div>
-    </aside>
+      </header>
+    </>
   );
 }

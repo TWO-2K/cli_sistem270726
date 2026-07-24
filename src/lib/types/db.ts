@@ -1,4 +1,9 @@
-export type Perfil = "admin" | "recepcao" | "profissional" | "financeiro";
+export type Perfil =
+  | "super_admin"
+  | "admin"
+  | "recepcao"
+  | "profissional"
+  | "financeiro";
 
 export type StatusAgendamento =
   | "agendado"
@@ -12,19 +17,30 @@ export type StatusComanda = "aberta" | "fechada" | "cancelada";
 
 export type StatusPagamento = "pendente" | "pago" | "atrasado" | "cancelado";
 
+export interface HorarioDia {
+  ativo: boolean;
+  inicio: string;
+  fim: string;
+}
+
 export interface Clinica {
   id: string;
   nome: string;
   segmento: string | null;
+  cnpj: string | null;
+  endereco: string | null;
+  email: string | null;
+  horario_funcionamento: HorarioDia[];
   criado_em: string;
 }
 
 export interface Usuario {
   id: string;
-  clinica_id: string;
+  clinica_id: string | null;
   nome: string;
   email: string;
   perfil: Perfil;
+  must_change_password: boolean;
 }
 
 export interface Paciente {

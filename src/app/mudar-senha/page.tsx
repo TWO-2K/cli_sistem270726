@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { OnboardingForm } from "./onboarding-form";
+import { MudarSenhaForm } from "./mudar-senha-form";
 
-export default async function OnboardingPage() {
+export default async function MudarSenhaPage() {
   const supabase = await createClient();
   const {
     data: { user },
@@ -14,20 +14,22 @@ export default async function OnboardingPage() {
 
   const { data: usuario } = await supabase
     .from("usuarios")
-    .select("id")
+    .select("perfil, must_change_password")
     .eq("id", user.id)
     .maybeSingle();
 
-  if (usuario) {
-    redirect("/dashboard");
+  if (!usuario) {
+    redirect("/login");
+  }
+
+  if (!usuario.must_change_password) {
+    redirect(usuario.perfil === "super_admin" ? "/admin" : "/dashboard");
   }
 
   return (
     <div className="flex min-h-full flex-1 items-center justify-center bg-muted/40 p-4">
-      <OnboardingForm
-        userId={user.id}
-        userEmail={user.email ?? ""}
-        userNome={(user.user_metadata?.nome as string | undefined) ?? ""}
+      <MudarSenhaForm
+        destino={usuario.perfil === "super_admin" ? "/admin" : "/dashboard"}
       />
     </div>
   );
