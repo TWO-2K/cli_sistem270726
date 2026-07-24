@@ -37,6 +37,8 @@ export function ProcedimentosTab({
   const [preco, setPreco] = useState("0");
   const [loading, setLoading] = useState(false);
   const [editandoId, setEditandoId] = useState<string | null>(null);
+  const [salvandoId, setSalvandoId] = useState<string | null>(null);
+  const [excluindoId, setExcluindoId] = useState<string | null>(null);
   const [edicao, setEdicao] = useState<EdicaoProcedimento>({
     nome: "",
     duracao: "30",
@@ -73,6 +75,7 @@ export function ProcedimentosTab({
   }
 
   async function salvarEdicao(id: string) {
+    setSalvandoId(id);
     const supabase = createClient();
     const { error } = await supabase
       .from("procedimentos")
@@ -82,6 +85,7 @@ export function ProcedimentosTab({
         preco: Number(edicao.preco),
       })
       .eq("id", id);
+    setSalvandoId(null);
     if (error) {
       toast.error("Não foi possível atualizar o procedimento.");
       return;
@@ -92,11 +96,13 @@ export function ProcedimentosTab({
 
   async function excluirProcedimento(id: string) {
     if (!window.confirm("Excluir este procedimento?")) return;
+    setExcluindoId(id);
     const supabase = createClient();
     const { error } = await supabase
       .from("procedimentos")
       .delete()
       .eq("id", id);
+    setExcluindoId(null);
     if (error) {
       toast.error("Não foi possível excluir o procedimento.");
       return;
@@ -196,12 +202,17 @@ export function ProcedimentosTab({
                       />
                     </TableCell>
                     <TableCell className="flex justify-end gap-2 text-right">
-                      <Button size="sm" onClick={() => salvarEdicao(p.id)}>
-                        Salvar
+                      <Button
+                        size="sm"
+                        disabled={salvandoId === p.id}
+                        onClick={() => salvarEdicao(p.id)}
+                      >
+                        {salvandoId === p.id ? "Salvando..." : "Salvar"}
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
+                        disabled={salvandoId === p.id}
                         onClick={() => setEditandoId(null)}
                       >
                         Cancelar
@@ -217,6 +228,7 @@ export function ProcedimentosTab({
                       <Button
                         variant="outline"
                         size="sm"
+                        disabled={excluindoId === p.id}
                         onClick={() => iniciarEdicao(p)}
                       >
                         Editar
@@ -224,9 +236,10 @@ export function ProcedimentosTab({
                       <Button
                         variant="outline"
                         size="sm"
+                        disabled={excluindoId === p.id}
                         onClick={() => excluirProcedimento(p.id)}
                       >
-                        Excluir
+                        {excluindoId === p.id ? "Excluindo..." : "Excluir"}
                       </Button>
                     </TableCell>
                   </>

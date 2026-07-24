@@ -22,6 +22,8 @@ export function SalasTab({ salas }: { salas: Sala[] }) {
   const [loading, setLoading] = useState(false);
   const [editandoId, setEditandoId] = useState<string | null>(null);
   const [nomeEdicao, setNomeEdicao] = useState("");
+  const [salvandoId, setSalvandoId] = useState<string | null>(null);
+  const [excluindoId, setExcluindoId] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -43,11 +45,13 @@ export function SalasTab({ salas }: { salas: Sala[] }) {
   }
 
   async function salvarEdicao(id: string) {
+    setSalvandoId(id);
     const supabase = createClient();
     const { error } = await supabase
       .from("salas")
       .update({ nome: nomeEdicao })
       .eq("id", id);
+    setSalvandoId(null);
     if (error) {
       toast.error("Não foi possível atualizar a sala.");
       return;
@@ -58,8 +62,10 @@ export function SalasTab({ salas }: { salas: Sala[] }) {
 
   async function excluirSala(id: string) {
     if (!window.confirm("Excluir esta sala?")) return;
+    setExcluindoId(id);
     const supabase = createClient();
     const { error } = await supabase.from("salas").delete().eq("id", id);
+    setExcluindoId(null);
     if (error) {
       toast.error("Não foi possível excluir a sala.");
       return;
@@ -110,12 +116,17 @@ export function SalasTab({ salas }: { salas: Sala[] }) {
                 <TableCell className="flex justify-end gap-2 text-right">
                   {editandoId === s.id ? (
                     <>
-                      <Button size="sm" onClick={() => salvarEdicao(s.id)}>
-                        Salvar
+                      <Button
+                        size="sm"
+                        disabled={salvandoId === s.id}
+                        onClick={() => salvarEdicao(s.id)}
+                      >
+                        {salvandoId === s.id ? "Salvando..." : "Salvar"}
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
+                        disabled={salvandoId === s.id}
                         onClick={() => setEditandoId(null)}
                       >
                         Cancelar
@@ -126,6 +137,7 @@ export function SalasTab({ salas }: { salas: Sala[] }) {
                       <Button
                         variant="outline"
                         size="sm"
+                        disabled={excluindoId === s.id}
                         onClick={() => iniciarEdicao(s)}
                       >
                         Editar
@@ -133,9 +145,10 @@ export function SalasTab({ salas }: { salas: Sala[] }) {
                       <Button
                         variant="outline"
                         size="sm"
+                        disabled={excluindoId === s.id}
                         onClick={() => excluirSala(s.id)}
                       >
-                        Excluir
+                        {excluindoId === s.id ? "Excluindo..." : "Excluir"}
                       </Button>
                     </>
                   )}
