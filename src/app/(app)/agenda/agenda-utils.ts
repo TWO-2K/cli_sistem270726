@@ -109,11 +109,57 @@ export function horaDentroDoExpediente(horario: HorarioDia, hora: number) {
   return minutos >= parseHora(horario.inicio) && minutos < parseHora(horario.fim);
 }
 
-export interface EventoLayout {
-  agendamento: Agendamento;
-  col: number;
-  cols: number;
+export const SNAP_MINUTOS = 15;
+
+export function snapMinutos(minutos: number, incremento: number = SNAP_MINUTOS) {
+  return Math.round(minutos / incremento) * incremento;
 }
+
+export function periodoDentroDoExpediente(
+  horario: HorarioDia | undefined,
+  inicioMinutos: number,
+  duracaoMinutos: number,
+) {
+  if (!horario?.ativo) return false;
+  const fimMinutos = inicioMinutos + duracaoMinutos;
+  return (
+    inicioMinutos >= parseHora(horario.inicio) &&
+    fimMinutos <= parseHora(horario.fim)
+  );
+}
+
+export const PROFISSIONAL_CORES = [
+  "#0ea5e9",
+  "#f97316",
+  "#22c55e",
+  "#a855f7",
+  "#ef4444",
+  "#14b8a6",
+  "#eab308",
+  "#ec4899",
+];
+
+export function corDoProfissional(
+  profissionalId: string,
+  ordemProfissionais: string[],
+): string | undefined {
+  const index = ordemProfissionais.indexOf(profissionalId);
+  if (index === -1) return undefined;
+  return PROFISSIONAL_CORES[index % PROFISSIONAL_CORES.length];
+}
+
+export const MAX_COLS_VISIVEIS = 3;
+
+export type EventoLayout =
+  | { tipo: "evento"; agendamento: Agendamento; col: number; cols: number }
+  | {
+      tipo: "resumo";
+      agendamentos: Agendamento[];
+      col: number;
+      cols: number;
+      inicioMs: number;
+      fimMs: number;
+    };
 
 export function layoutEventosDoDia(agendamentos: Agendamento[]): EventoLayout[] {
   const ordenados = [...agendamentos].sort(
@@ -127,25 +173,54 @@ export function layoutEventosDoDia(agendamentos: Agendamento[]): EventoLayout[] 
   function flush() {
     if (cluster.length === 0) return;
     const colunasFim: number[] = [];
-    const atribuidos: { ag: Agendamento; col: number }[] = [];
+    const atribuidos: { item: (typeof cluster)[number]; col: number }[] = [];
     for (const item of cluster) {
       let colocado = false;
       for (let c = 0; c < colunasFim.length; c++) {
         if (colunasFim[c] <= item.inicio) {
           colunasFim[c] = item.fim;
-          atribuidos.push({ ag: item.ag, col: c });
+          atribuidos.push({ item, col: c });
           colocado = true;
           break;
         }
       }
       if (!colocado) {
         colunasFim.push(item.fim);
-        atribuidos.push({ ag: item.ag, col: colunasFim.length - 1 });
+        atribuidos.push({ item, col: colunasFim.length - 1 });
       }
     }
-    const cols = colunasFim.length;
-    for (const a of atribuidos) {
-      resultado.push({ agendamento: a.ag, col: a.col, cols });
+    const totalCols = colunasFim.length;
+
+    if (totalCols <= MAX_COLS_VISIVEIS) {
+      for (const a of atribuidos) {
+        resultado.push({
+          tipo: "evento",
+          agendamento: a.item.ag,
+          col: a.col,
+          cols: totalCols,
+        });
+      }
+    } else {
+      const visiveis = atribuidos.filter((a) => a.col < MAX_COLS_VISIVEIS - 1);
+      const ocultos = atribuidos.filter((a) => a.col >= MAX_COLS_VISIVEIS - 1);
+      for (const a of visiveis) {
+        resultado.push({
+          tipo: "evento",
+          agendamento: a.item.ag,
+          col: a.col,
+          cols: MAX_COLS_VISIVEIS,
+        });
+      }
+      if (ocultos.length > 0) {
+        resultado.push({
+          tipo: "resumo",
+          agendamentos: ocultos.map((a) => a.item.ag),
+          col: MAX_COLS_VISIVEIS - 1,
+          cols: MAX_COLS_VISIVEIS,
+          inicioMs: Math.min(...ocultos.map((a) => a.item.inicio)),
+          fimMs: Math.max(...ocultos.map((a) => a.item.fim)),
+        });
+      }
     }
     cluster = [];
   }

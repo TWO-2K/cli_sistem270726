@@ -46,79 +46,28 @@ export function RegistrarPagamentoDialog({
     const numParcelas = Number(parcelas) || 1;
     const valorTotal = Number(valor);
 
-    const { data: pagamento, error: pagamentoError } = await supabase
-      .from("pagamentos")
-      .insert({
-        comanda_id: comandaId,
-        forma_pagamento: forma,
-        valor: valorTotal,
-        status: numParcelas === 1 ? "pago" : "pendente",
-      })
-      .select("id")
-      .single();
-
-    if (pagamentoError || !pagamento) {
-      toast.error("Não foi possível registrar o pagamento.");
-      setLoading(false);
-      return;
-    }
-
-    if (numParcelas > 1) {
-      const valorParcela = Math.floor((valorTotal / numParcelas) * 100) / 100;
-      const ultimaParcela =
-        valorTotal - valorParcela * (numParcelas - 1);
-
-      const hoje = new Date();
-      const parcelasRows = Array.from({ length: numParcelas }, (_, i) => {
-        const vencimento = new Date(hoje);
-        vencimento.setMonth(vencimento.getMonth() + i + 1);
-        return {
-          pagamento_id: pagamento.id,
-          vencimento: vencimento.toISOString().slice(0, 10),
-          valor: i === numParcelas - 1 ? ultimaParcela : valorParcela,
-          status: "pendente" as const,
-        };
-      });
-
-      const { error: parcelasError } = await supabase
-        .from("parcelas")
-        .insert(parcelasRows);
-
-      if (parcelasError) {
-        toast.error("Pagamento registrado, mas não foi possível gerar as parcelas.");
-        setLoading(false);
-        return;
-      }
-    }
-
-    const cobreTotal = valorTotal >= valorSugerido - 0.01;
-
-    if (!cobreTotal) {
-      setLoading(false);
-      toast.success(
-        "Pagamento parcial registrado. A comanda permanece em aberto até quitar o valor total.",
-      );
-      setOpen(false);
-      router.refresh();
-      return;
-    }
-
-    const { error: comandaError } = await supabase
-      .from("comandas")
-      .update({ status: "fechada" })
-      .eq("id", comandaId);
+    const { data, error } = await supabase.rpc("registrar_pagamento", {
+      p_comanda_id: comandaId,
+      p_forma_pagamento: forma,
+      p_valor: valorTotal,
+      p_num_parcelas: numParcelas,
+    });
 
     setLoading(false);
 
-    if (comandaError) {
-      toast.error("Pagamento registrado, mas não foi possível fechar a comanda.");
+    if (error || !data) {
+      toast.error("Não foi possível registrar o pagamento.");
       return;
     }
 
+    const cobreTotal = (data as { cobre_total: boolean }).cobre_total;
+
     toast.success(
-      numParcelas === 1
-        ? "Pagamento registrado e comanda fechada."
-        : `Pagamento parcelado em ${numParcelas}x registrado e comanda fechada.`,
+      !cobreTotal
+        ? "Pagamento parcial registrado. A comanda permanece em aberto até quitar o valor total."
+        : numParcelas === 1
+          ? "Pagamento registrado e comanda fechada."
+          : `Pagamento parcelado em ${numParcelas}x registrado e comanda fechada.`,
     );
     setOpen(false);
     router.refresh();

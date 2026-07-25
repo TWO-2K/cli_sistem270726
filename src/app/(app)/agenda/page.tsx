@@ -8,7 +8,6 @@ import { NovoAgendamentoDialog } from "./novo-agendamento-dialog";
 import { AgendaGrid } from "./agenda-grid";
 import {
   addDias,
-  ehMesmoDia,
   fimDoDia,
   formatDataParam,
   formatRangeLabel,
@@ -76,15 +75,9 @@ export default async function AgendaPage({
   const profissionaisMap = new Map(
     (profissionais ?? []).map((p) => [p.id, p]),
   );
-
-  const agendamentosPorDia = new Map<number, Agendamento[]>();
-  for (const ag of agendamentos ?? []) {
-    const data = new Date(ag.data_hora);
-    const idx = dias.findIndex((d) => ehMesmoDia(d, data));
-    if (idx === -1) continue;
-    if (!agendamentosPorDia.has(idx)) agendamentosPorDia.set(idx, []);
-    agendamentosPorDia.get(idx)!.push(ag);
-  }
+  const procedimentosMap = new Map(
+    (procedimentos ?? []).map((p) => [p.id, p]),
+  );
 
   return (
     <div className="flex h-full min-h-0 flex-col gap-6">
@@ -150,9 +143,10 @@ export default async function AgendaPage({
       <div className="min-h-0 flex-1">
         <AgendaGrid
           dias={dias}
-          agendamentosPorDia={agendamentosPorDia}
+          agendamentos={agendamentos ?? []}
           pacientesMap={pacientesMap}
           profissionaisMap={profissionaisMap}
+          procedimentosMap={procedimentosMap}
           hoje={hoje}
           agora={hoje}
           pacientes={pacientes ?? []}
