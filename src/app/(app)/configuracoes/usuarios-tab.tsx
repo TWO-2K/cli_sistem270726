@@ -196,7 +196,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
         </div>
       )}
 
-      <div className="rounded-lg border bg-background">
+      <div className="hidden overflow-x-auto rounded-lg border bg-background md:block">
         <Table>
           <TableHeader>
             <TableRow>
@@ -258,6 +258,53 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
           </TableBody>
         </Table>
       </div>
+
+      {usuarios.length === 0 ? (
+        <div className="rounded-lg border bg-background py-6 text-center text-muted-foreground md:hidden">
+          Nenhum usuário cadastrado.
+        </div>
+      ) : (
+        <div className="flex flex-col gap-3 md:hidden">
+          {usuarios.map((u) => (
+            <div
+              key={u.id}
+              className="flex flex-col gap-2 rounded-lg border bg-background p-4"
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-medium">{u.nome}</span>
+                <Badge variant={u.ativo ? "default" : "outline"}>
+                  {u.ativo ? "Ativo" : "Inativo"}
+                </Badge>
+              </div>
+              <div className="flex flex-col gap-1 text-sm text-muted-foreground">
+                <span>{u.email}</span>
+                <span>
+                  {perfilLabel(u.perfil)}
+                  {u.especialidade ? ` · ${u.especialidade}` : ""}
+                </span>
+                <span>Atende: {u.atende ? "Sim" : "Não"}</span>
+              </div>
+              <div className="flex justify-end gap-2 border-t pt-2">
+                <Button variant="outline" size="sm" onClick={() => setEditando(u)}>
+                  Editar
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={alternandoId === u.id}
+                  onClick={() => handleToggleAtivo(u)}
+                >
+                  {alternandoId === u.id
+                    ? "Aguarde..."
+                    : u.ativo
+                      ? "Desativar"
+                      : "Reativar"}
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       <EditarUsuarioDialog
         usuario={editando}

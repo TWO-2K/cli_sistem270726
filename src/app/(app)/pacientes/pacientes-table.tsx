@@ -19,6 +19,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { iniciaisPaciente } from "@/lib/pacientes-utils";
 import type { Paciente } from "@/lib/types/db";
 import { EditarPacienteDialog } from "./[id]/editar-paciente-dialog";
 import {
@@ -44,11 +45,6 @@ function statusDoPaciente(paciente: PacienteComStatus) {
   if (!paciente.temHistorico) return "novo";
   if (paciente.emTratamento) return "em_tratamento";
   return "sem_atividade";
-}
-
-function iniciais(nome: string) {
-  const partes = nome.trim().split(/\s+/);
-  return (partes[0]?.[0] ?? "").concat(partes[1]?.[0] ?? "").toUpperCase();
 }
 
 export function PacientesTable({
@@ -177,8 +173,10 @@ export function PacientesTable({
             ? "Nenhum paciente cadastrado ainda."
             : "Nenhum paciente encontrado."}
         </div>
-      ) : visualizacao === "lista" ? (
-        <div className="rounded-lg border bg-background">
+      ) : (
+        <>
+        {visualizacao === "lista" && (
+        <div className="hidden overflow-x-auto rounded-lg border bg-background md:block">
           <Table>
             <TableHeader>
               <TableRow>
@@ -200,7 +198,7 @@ export function PacientesTable({
                         className="flex items-center gap-3 font-medium hover:underline"
                       >
                         <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-400">
-                          {iniciais(paciente.nome)}
+                          {iniciaisPaciente(paciente.nome)}
                         </span>
                         {paciente.nome}
                       </Link>
@@ -279,8 +277,13 @@ export function PacientesTable({
             </TableBody>
           </Table>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        )}
+        <div
+          className={cn(
+            "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3",
+            visualizacao === "lista" && "md:hidden",
+          )}
+        >
           {filtrados.map((paciente) => {
             const status = statusDoPaciente(paciente);
             return (
@@ -290,7 +293,7 @@ export function PacientesTable({
               >
                 <div className="flex items-center gap-3">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-400">
-                    {iniciais(paciente.nome)}
+                    {iniciaisPaciente(paciente.nome)}
                   </span>
                   <Link
                     href={`/pacientes/${paciente.id}`}
@@ -368,6 +371,7 @@ export function PacientesTable({
             );
           })}
         </div>
+        </>
       )}
     </div>
   );

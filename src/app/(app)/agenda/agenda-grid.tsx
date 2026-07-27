@@ -270,7 +270,7 @@ export function AgendaGrid({
 
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-lg border bg-background">
-      <div className="min-h-0 flex-1 overflow-auto">
+      <div className="min-h-0 flex-1 overflow-x-auto overflow-y-auto">
         <div
           className="relative grid"
           style={{

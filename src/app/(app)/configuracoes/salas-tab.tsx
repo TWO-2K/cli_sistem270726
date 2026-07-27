@@ -97,7 +97,7 @@ export function SalasTab({ salas }: { salas: Sala[] }) {
         </Button>
       </form>
 
-      <div className="rounded-lg border bg-background">
+      <div className="overflow-x-auto rounded-lg border bg-background">
         <Table>
           <TableHeader>
             <TableRow>

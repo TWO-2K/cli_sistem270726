@@ -152,3 +152,26 @@ export interface Parcela {
   valor: number;
   status: StatusPagamento;
 }
+
+export interface Prontuario {
+  id: string;
+  clinica_id: string;
+  paciente_id: string;
+  criado_em: string;
+}
+
+export interface AnamneseRespostas {
+  queixa_principal: string;
+  historico_saude: string;
+  alergias: string;
+  medicacoes_em_uso: string;
+  procedimentos_anteriores: string;
+}
+
+export interface Anamnese {
+  id: string;
+  clinica_id: string;
+  paciente_id: string;
+  respostas: AnamneseRespostas;
+  criado_em: string;
+}

@@ -22,11 +22,16 @@ export default async function FinanceiroPage() {
   await requireUsuarioClinica(["admin", "financeiro"]);
   const supabase = await createClient();
 
+  const start30d = new Date();
+  start30d.setDate(start30d.getDate() - 30);
+  const start30dISO = start30d.toISOString();
+
   const [
     { data: comandas },
     { data: pacientes },
     { data: comandaItens },
     { data: parcelas },
+    { data: comandasFechadas30d },
   ] = await Promise.all([
     supabase
       .from("comandas")
@@ -41,6 +46,13 @@ export default async function FinanceiroPage() {
       .select("*")
       .order("vencimento", { ascending: true })
       .returns<Parcela[]>(),
+    supabase
+      .from("comandas")
+      .select("*")
+      .eq("status", "fechada")
+      .gte("criado_em", start30dISO)
+      .order("criado_em", { ascending: false })
+      .returns<Comanda[]>(),
   ]);
 
   const pacientesMap = new Map((pacientes ?? []).map((p) => [p.id, p]));
@@ -65,16 +77,19 @@ export default async function FinanceiroPage() {
   const hoje = new Date().toISOString().slice(0, 10);
 
   // Fluxo de caixa: soma de comandas fechadas (recebidas) por dia, últimos 30 dias.
-  const fechadas = (comandas ?? []).filter((c) => c.status === "fechada");
+  const fechadas30d = comandasFechadas30d ?? [];
   const caixaPorDia = new Map<string, number>();
-  for (const c of fechadas) {
+  for (const c of fechadas30d) {
     const dia = c.criado_em.slice(0, 10);
     caixaPorDia.set(dia, (caixaPorDia.get(dia) ?? 0) + Number(c.total));
   }
   const diasCaixa = Array.from(caixaPorDia.entries()).sort((a, b) =>
     b[0].localeCompare(a[0]),
   );
-  const totalRecebido = fechadas.reduce((sum, c) => sum + Number(c.total), 0);
+  const totalRecebido = fechadas30d.reduce(
+    (sum, c) => sum + Number(c.total),
+    0,
+  );
 
   return (
     <div className="flex flex-col gap-6">
@@ -101,7 +116,9 @@ export default async function FinanceiroPage() {
           </p>
         </div>
         <div className="rounded-lg border bg-background p-4">
-          <p className="text-sm text-muted-foreground">Total recebido</p>
+          <p className="text-sm text-muted-foreground">
+            Total recebido (últimos 30 dias)
+          </p>
           <p className="text-2xl font-semibold">{formatBRL(totalRecebido)}</p>
         </div>
       </div>
@@ -114,7 +131,7 @@ export default async function FinanceiroPage() {
         </TabsList>
 
         <TabsContent value="comandas">
-          <div className="rounded-lg border bg-background">
+          <div className="hidden overflow-x-auto rounded-lg border bg-background md:block">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -169,10 +186,54 @@ export default async function FinanceiroPage() {
               </TableBody>
             </Table>
           </div>
+
+          {(comandas ?? []).length === 0 ? (
+            <div className="rounded-lg border bg-background py-8 text-center text-muted-foreground md:hidden">
+              Nenhuma comanda gerada ainda. Comandas são criadas
+              automaticamente ao concluir um atendimento.
+            </div>
+          ) : (
+            <div className="flex flex-col gap-3 md:hidden">
+              {(comandas ?? []).map((c) => (
+                <div
+                  key={c.id}
+                  className="flex flex-col gap-2 rounded-lg border bg-background p-4"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium">
+                      {pacientesMap.get(c.paciente_id)?.nome ?? "—"}
+                    </span>
+                    <Badge variant={c.status === "aberta" ? "default" : "outline"}>
+                      {c.status === "aberta" ? "Em aberto" : "Fechada"}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                    <span>{new Date(c.criado_em).toLocaleDateString("pt-BR")}</span>
+                    <span className="font-medium text-foreground">
+                      {formatBRL(Number(c.total))}
+                    </span>
+                  </div>
+                  <div className="flex justify-end gap-2 border-t pt-2">
+                    <ComandaDetailDialog
+                      comandaId={c.id}
+                      itens={itensPorComanda.get(c.id) ?? []}
+                      editavel={c.status === "aberta"}
+                    />
+                    {c.status === "aberta" && (
+                      <RegistrarPagamentoDialog
+                        comandaId={c.id}
+                        valorSugerido={Number(c.total)}
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </TabsContent>
 
         <TabsContent value="receber">
-          <div className="rounded-lg border bg-background">
+          <div className="overflow-x-auto rounded-lg border bg-background">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -215,7 +276,7 @@ export default async function FinanceiroPage() {
         </TabsContent>
 
         <TabsContent value="caixa">
-          <div className="rounded-lg border bg-background">
+          <div className="overflow-x-auto rounded-lg border bg-background">
             <Table>
               <TableHeader>
                 <TableRow>
