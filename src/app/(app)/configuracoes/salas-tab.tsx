@@ -67,6 +67,12 @@ export function SalasTab({ salas }: { salas: Sala[] }) {
     const { error } = await supabase.from("salas").delete().eq("id", id);
     setExcluindoId(null);
     if (error) {
+      if (error.code === "23503") {
+        toast.error(
+          "Não é possível excluir: esta sala possui agendamentos vinculados.",
+        );
+        return;
+      }
       toast.error("Não foi possível excluir a sala.");
       return;
     }

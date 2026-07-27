@@ -14,7 +14,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export function MudarSenhaForm({ destino }: { destino: string }) {
+export function MudarSenhaForm({
+  destino,
+  titulo = "Defina sua senha",
+  descricao = "Este é seu primeiro acesso. Escolha uma nova senha para continuar.",
+}: {
+  destino: string;
+  titulo?: string;
+  descricao?: string;
+}) {
   const router = useRouter();
   const [senha, setSenha] = useState("");
   const [confirmacao, setConfirmacao] = useState("");
@@ -61,10 +69,8 @@ export function MudarSenhaForm({ destino }: { destino: string }) {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle className="text-xl">Defina sua senha</CardTitle>
-        <CardDescription>
-          Este é seu primeiro acesso. Escolha uma nova senha para continuar.
-        </CardDescription>
+        <CardTitle className="text-xl">{titulo}</CardTitle>
+        <CardDescription>{descricao}</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">

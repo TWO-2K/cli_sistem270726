@@ -104,6 +104,12 @@ export function ProcedimentosTab({
       .eq("id", id);
     setExcluindoId(null);
     if (error) {
+      if (error.code === "23503") {
+        toast.error(
+          "Não é possível excluir: este procedimento possui histórico (agendamentos, atendimentos ou itens de comanda) vinculado.",
+        );
+        return;
+      }
       toast.error("Não foi possível excluir o procedimento.");
       return;
     }

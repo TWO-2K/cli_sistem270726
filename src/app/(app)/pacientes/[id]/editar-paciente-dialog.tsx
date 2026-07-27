@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactElement, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
@@ -17,13 +17,21 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-export function EditarPacienteDialog({ paciente }: { paciente: Paciente }) {
+export function EditarPacienteDialog({
+  paciente,
+  renderTrigger,
+  children = "Editar",
+}: {
+  paciente: Paciente;
+  renderTrigger?: ReactElement;
+  children?: ReactNode;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button variant="outline" size="sm" />}>
-        Editar
+      <DialogTrigger render={renderTrigger ?? <Button variant="outline" size="sm" />}>
+        {children}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

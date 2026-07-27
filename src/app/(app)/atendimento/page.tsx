@@ -60,7 +60,7 @@ export default async function AtendimentoPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">
             Atendimento
@@ -76,7 +76,7 @@ export default async function AtendimentoPage() {
         />
       </div>
 
-      <div className="rounded-lg border bg-background">
+      <div className="hidden overflow-x-auto rounded-lg border bg-background md:block">
         <Table>
           <TableHeader>
             <TableRow>
@@ -148,6 +148,59 @@ export default async function AtendimentoPage() {
             )}
           </TableBody>
         </Table>
+      </div>
+
+      <div className="flex flex-col gap-3 md:hidden">
+        {(atendimentos ?? []).length === 0 && (
+          <div className="rounded-lg border bg-background py-8 text-center text-muted-foreground">
+            Nenhum atendimento registrado ainda.
+          </div>
+        )}
+        {(atendimentos ?? []).map((a) => (
+          <div
+            key={a.id}
+            className="flex flex-col gap-2 rounded-lg border bg-background p-4"
+          >
+            <div className="flex items-start justify-between gap-2">
+              <span className="font-medium">
+                {pacientesMap.get(a.paciente_id)?.nome ?? "—"}
+              </span>
+              <Badge variant={a.status === "concluido" ? "outline" : "default"}>
+                {a.status === "concluido" ? "Concluído" : "Em andamento"}
+              </Badge>
+            </div>
+            <div className="flex flex-col gap-1 text-sm text-muted-foreground">
+              <span>{new Date(a.criado_em).toLocaleString("pt-BR")}</span>
+              <span>
+                Profissional: {profissionaisMap.get(a.usuario_id)?.nome ?? "—"}
+              </span>
+              <span>
+                Procedimento:{" "}
+                {a.procedimento_id
+                  ? (procedimentosMap.get(a.procedimento_id)?.nome ?? "—")
+                  : "—"}
+              </span>
+            </div>
+            {a.status === "em_andamento" && (
+              <div className="flex justify-end gap-2 border-t pt-3">
+                <FotosAtendimentoDialog
+                  clinicaId={clinica.id}
+                  atendimentoId={a.id}
+                  pacienteId={a.paciente_id}
+                />
+                <ConcluirAtendimentoDialog
+                  atendimentoId={a.id}
+                  pacienteId={a.paciente_id}
+                  procedimento={
+                    a.procedimento_id
+                      ? (procedimentosMap.get(a.procedimento_id) ?? null)
+                      : null
+                  }
+                />
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

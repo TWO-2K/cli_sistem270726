@@ -13,6 +13,7 @@ export const DIAS_SEMANA = [
 export const GRID_START_HORA = 7;
 export const GRID_END_HORA = 21;
 export const HORA_ALTURA_PX = 64;
+export const MIN_COL_PX = 120;
 
 export function parseDataParam(data: string | undefined) {
   if (data) {

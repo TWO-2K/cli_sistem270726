@@ -29,6 +29,7 @@ import { AgendamentoFormDialog } from "./agendamento-form-dialog";
 import {
   DIAS_SEMANA,
   HORA_ALTURA_PX,
+  MIN_COL_PX,
   corDoProfissional,
   ehMesmoDia,
   horarioDoDia,
@@ -269,10 +270,12 @@ export function AgendaGrid({
 
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-lg border bg-background">
-      <div className="min-h-0 flex-1 overflow-y-auto">
+      <div className="min-h-0 flex-1 overflow-auto">
         <div
           className="relative grid"
-          style={{ gridTemplateColumns: `64px repeat(${dias.length}, 1fr)` }}
+          style={{
+            gridTemplateColumns: `64px repeat(${dias.length}, minmax(${MIN_COL_PX}px, 1fr))`,
+          }}
         >
           <div className="sticky top-0 z-20 border-r border-b bg-background" />
           {dias.map((dia, i) => {
