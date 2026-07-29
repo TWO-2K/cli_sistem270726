@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, Sora, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const interHeading = Inter({
   variable: "--font-heading",
   weight: ["600", "700"],
   subsets: ["latin"],
 });
 
-const sora = Sora({
+const interDisplay = Inter({
   variable: "--font-display",
-  weight: ["800"],
+  weight: ["700"],
   subsets: ["latin"],
 });
 
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${plusJakartaSans.variable} ${sora.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${interHeading.variable} ${interDisplay.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}

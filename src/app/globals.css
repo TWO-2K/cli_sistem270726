@@ -57,6 +57,21 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --radius-control: 10px;
+  --radius-card: 14px;
+  --radius-modal: 18px;
+
+  --text-titulo-principal: 32px;
+  --text-titulo-pagina: 28px;
+  --text-secao: 24px;
+  --text-card: 20px;
+  --text-subtitulo: 18px;
+  --text-padrao: 16px;
+  --text-botao-menu: 15px;
+  --text-label: 14px;
+  --text-erro: 13px;
+  --text-rodape: 12px;
 }
 
 :root {
@@ -94,7 +109,7 @@
   --chart-3: #D977A8;
   --chart-4: #F59E0B;
   --chart-5: #64748B;
-  --radius: 0.75rem;
+  --radius: 10px;
   --sidebar: #163A4D;
   --sidebar-foreground: #F8FAFC;
   --sidebar-primary: #2F9E8F;
@@ -156,6 +171,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: var(--text-padrao);
+    font-weight: 400;
+    line-height: 1.5;
   }
   html {
     @apply font-sans;
@@ -167,5 +185,27 @@
   h5,
   h6 {
     @apply font-heading;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  h1 {
+    font-size: var(--text-titulo-principal);
+    font-weight: 700;
+  }
+  h2 {
+    font-size: var(--text-titulo-pagina);
+  }
+  h3 {
+    font-size: var(--text-secao);
+  }
+  h4 {
+    font-size: var(--text-card);
+  }
+  button,
+  input,
+  select,
+  textarea {
+    border-radius: var(--radius-control);
   }
 }
