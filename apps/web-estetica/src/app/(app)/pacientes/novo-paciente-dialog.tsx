@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Input } from "@clinica/ui/components/input";
-import { Label } from "@clinica/ui/components/label";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Input } from "@empresa/ui/components/input";
+import { Label } from "@empresa/ui/components/label";
 import { Plus } from "lucide-react";
 import {
   Dialog,
@@ -15,7 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@clinica/ui/components/dialog";
+} from "@empresa/ui/components/dialog";
 
 export function NovoPacienteDialog() {
   const router = useRouter();

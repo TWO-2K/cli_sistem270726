@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { createClient } from "@clinica/supabase/server";
+import { createClient } from "@empresa/supabase/server";
 
 function proximaRotaSegura(next: string | null): string {
   if (next && next.startsWith("/") && !next.startsWith("//") && !next.startsWith("/\\")) {

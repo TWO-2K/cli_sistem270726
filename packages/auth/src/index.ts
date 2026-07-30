@@ -1,4 +1,4 @@
 export {
-  requireUsuarioClinica,
-  type RequireUsuarioClinicaRedirects,
-} from "./require-usuario-clinica";
+  requireUsuarioEmpresa,
+  type RequireUsuarioEmpresaRedirects,
+} from "./require-usuario-empresa";

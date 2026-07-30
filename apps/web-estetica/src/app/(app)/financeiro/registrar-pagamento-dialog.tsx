@@ -3,17 +3,17 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Input } from "@clinica/ui/components/input";
-import { Label } from "@clinica/ui/components/label";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Input } from "@empresa/ui/components/input";
+import { Label } from "@empresa/ui/components/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@clinica/ui/components/select";
+} from "@empresa/ui/components/select";
 import {
   Dialog,
   DialogContent,
@@ -21,7 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@clinica/ui/components/dialog";
+} from "@empresa/ui/components/dialog";
 
 const FORMAS_PAGAMENTO = ["Pix", "Dinheiro", "Cartão de crédito", "Cartão de débito"];
 

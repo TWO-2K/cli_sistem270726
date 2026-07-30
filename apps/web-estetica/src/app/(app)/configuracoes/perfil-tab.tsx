@@ -3,12 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Input } from "@clinica/ui/components/input";
-import { Label } from "@clinica/ui/components/label";
-import { cn } from "@clinica/ui/utils";
-import type { Clinica, HorarioDia } from "@/lib/types/db";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Input } from "@empresa/ui/components/input";
+import { Label } from "@empresa/ui/components/label";
+import { cn } from "@empresa/ui/utils";
+import type { Empresa, HorarioDia } from "@/lib/types/db";
 
 const DIAS_SEMANA = [
   "Domingo",
@@ -20,15 +20,15 @@ const DIAS_SEMANA = [
   "Sábado",
 ];
 
-export function PerfilTab({ clinica }: { clinica: Clinica }) {
+export function PerfilTab({ empresa }: { empresa: Empresa }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [nome, setNome] = useState(clinica.nome);
-  const [cnpj, setCnpj] = useState(clinica.cnpj ?? "");
-  const [endereco, setEndereco] = useState(clinica.endereco ?? "");
-  const [email, setEmail] = useState(clinica.email ?? "");
+  const [nome, setNome] = useState(empresa.nome);
+  const [cnpj, setCnpj] = useState(empresa.cnpj ?? "");
+  const [endereco, setEndereco] = useState(empresa.endereco ?? "");
+  const [email, setEmail] = useState(empresa.email ?? "");
   const [horarios, setHorarios] = useState<HorarioDia[]>(
-    clinica.horario_funcionamento,
+    empresa.horario_funcionamento,
   );
 
   function atualizarDia(index: number, patch: Partial<HorarioDia>) {
@@ -42,7 +42,7 @@ export function PerfilTab({ clinica }: { clinica: Clinica }) {
     setLoading(true);
     const supabase = createClient();
     const { error } = await supabase
-      .from("clinicas")
+      .from("empresas")
       .update({
         nome,
         cnpj: cnpj || null,
@@ -50,7 +50,7 @@ export function PerfilTab({ clinica }: { clinica: Clinica }) {
         email: email || null,
         horario_funcionamento: horarios,
       })
-      .eq("id", clinica.id);
+      .eq("id", empresa.id);
     setLoading(false);
 
     if (error) {
@@ -116,7 +116,7 @@ export function PerfilTab({ clinica }: { clinica: Clinica }) {
             não permitem agendamento.
           </p>
         </div>
-        <div className="rounded-lg border bg-background">
+        <div className="rounded-lg border bg-card">
           {horarios.map((h, i) => (
             <div
               key={i}

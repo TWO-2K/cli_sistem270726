@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@clinica/supabase/server";
-import { createAdminClient } from "@clinica/supabase/admin";
+import { createClient } from "@empresa/supabase/server";
+import { createAdminClient } from "@empresa/supabase/admin";
 import type { Perfil } from "@/lib/types/db";
 
 const PERFIS_PERMITIDOS: Perfil[] = [
@@ -26,11 +26,11 @@ export async function PATCH(
 
   const { data: usuarioAtual } = await supabase
     .from("usuarios")
-    .select("perfil, clinica_id")
+    .select("perfil, empresa_id")
     .eq("id", user.id)
     .maybeSingle();
 
-  if (usuarioAtual?.perfil !== "admin" || !usuarioAtual.clinica_id) {
+  if (usuarioAtual?.perfil !== "admin" || !usuarioAtual.empresa_id) {
     return NextResponse.json({ error: "Sem permissão." }, { status: 403 });
   }
 
@@ -55,7 +55,7 @@ export async function PATCH(
     .from("usuarios")
     .update({ nome, perfil, especialidade, atende, ativo })
     .eq("id", id)
-    .eq("clinica_id", usuarioAtual.clinica_id);
+    .eq("empresa_id", usuarioAtual.empresa_id);
 
   if (error) {
     return NextResponse.json(

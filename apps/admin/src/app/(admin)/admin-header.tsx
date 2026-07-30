@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
 import { LogOut, ShieldCheck } from "lucide-react";
 
 export function AdminHeader({ usuarioNome }: { usuarioNome: string }) {

@@ -3,17 +3,18 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
-import { cn } from "@clinica/ui/utils";
-import { Button } from "@clinica/ui/components/button";
+import { createClient } from "@empresa/supabase/client";
+import { cn } from "@empresa/ui/utils";
+import { Button } from "@empresa/ui/components/button";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@clinica/ui/components/dialog";
+} from "@empresa/ui/components/dialog";
 import type { Agendamento, Paciente, Procedimento, Usuario } from "@/lib/types/db";
+import { NovoAtendimentoDialog } from "../atendimento/novo-atendimento-dialog";
 
 export const STATUS_ESTILO: Record<
   Agendamento["status"],
@@ -109,6 +110,13 @@ export function AgendamentoCard({
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [atendimentoDialogOpen, setAtendimentoDialogOpen] = useState(false);
+
+  const podeIniciarAtendimento =
+    agendamento.status === "agendado" || agendamento.status === "confirmado";
+  const podeConfirmarPresenca = agendamento.status === "agendado";
+  const podeMarcarFalta =
+    agendamento.status === "agendado" || agendamento.status === "confirmado";
 
   const startRef = useRef<{ x: number; y: number } | null>(null);
   const draggingRef = useRef(false);
@@ -117,23 +125,51 @@ export function AgendamentoCard({
   const inicio = new Date(agendamento.data_hora);
   const estilo = STATUS_ESTILO[agendamento.status];
 
-  async function cancelar() {
+  async function atualizarStatus(
+    novoStatus: Agendamento["status"],
+    mensagemErro: string,
+    mensagemSucesso: string,
+  ) {
     setLoading(true);
     const supabase = createClient();
     const { error } = await supabase
       .from("agendamentos")
-      .update({ status: "cancelado" })
+      .update({ status: novoStatus })
       .eq("id", agendamento.id);
     setLoading(false);
 
     if (error) {
-      toast.error("Não foi possível cancelar o agendamento.");
+      toast.error(mensagemErro);
       return;
     }
 
-    toast.success("Agendamento cancelado.");
+    toast.success(mensagemSucesso);
     setOpen(false);
     router.refresh();
+  }
+
+  function cancelar() {
+    return atualizarStatus(
+      "cancelado",
+      "Não foi possível cancelar o agendamento.",
+      "Agendamento cancelado.",
+    );
+  }
+
+  function confirmarPresenca() {
+    return atualizarStatus(
+      "confirmado",
+      "Não foi possível confirmar o agendamento.",
+      "Presença confirmada.",
+    );
+  }
+
+  function marcarFalta() {
+    return atualizarStatus(
+      "faltou",
+      "Não foi possível marcar a falta.",
+      "Falta registrada.",
+    );
   }
 
   function handlePointerDown(e: React.PointerEvent<HTMLButtonElement>) {
@@ -261,6 +297,37 @@ export function AgendamentoCard({
             </p>
           </div>
           <DialogFooter>
+            {podeConfirmarPresenca && (
+              <Button
+                type="button"
+                variant="outline"
+                disabled={loading}
+                onClick={confirmarPresenca}
+              >
+                Confirmar presença
+              </Button>
+            )}
+            {podeMarcarFalta && (
+              <Button
+                type="button"
+                variant="outline"
+                disabled={loading}
+                onClick={marcarFalta}
+              >
+                Marcar falta
+              </Button>
+            )}
+            {podeIniciarAtendimento && (
+              <Button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  setAtendimentoDialogOpen(true);
+                }}
+              >
+                Iniciar atendimento
+              </Button>
+            )}
             {agendamento.status !== "cancelado" && (
               <Button
                 type="button"
@@ -274,6 +341,22 @@ export function AgendamentoCard({
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {podeIniciarAtendimento && (
+        <NovoAtendimentoDialog
+          open={atendimentoDialogOpen}
+          onOpenChange={setAtendimentoDialogOpen}
+          agendamento={{
+            id: agendamento.id,
+            pacienteId: agendamento.paciente_id,
+            profissionalId: agendamento.usuario_id,
+            procedimentoId: agendamento.procedimento_id,
+            pacienteNome: paciente?.nome,
+            profissionalNome: profissional?.nome,
+            procedimentoNome: procedimento?.nome,
+          }}
+        />
+      )}
     </>
   );
 }

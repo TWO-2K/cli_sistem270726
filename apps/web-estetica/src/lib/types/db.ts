@@ -1,4 +1,4 @@
-export type { Perfil, HorarioDia, Clinica, Usuario } from "@clinica/supabase/types";
+export type { Perfil, HorarioDia, Empresa, Usuario } from "@empresa/supabase/types";
 
 export type StatusAgendamento =
   | "agendado"
@@ -14,7 +14,7 @@ export type StatusPagamento = "pendente" | "pago" | "atrasado" | "cancelado";
 
 export interface Paciente {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   nome: string;
   telefone: string | null;
   email: string | null;
@@ -25,13 +25,13 @@ export interface Paciente {
 
 export interface Sala {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   nome: string;
 }
 
 export interface Procedimento {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   nome: string;
   duracao_minutos: number;
   preco: number;
@@ -39,7 +39,7 @@ export interface Procedimento {
 
 export interface Agendamento {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   paciente_id: string;
   usuario_id: string;
   sala_id: string | null;
@@ -52,7 +52,7 @@ export interface Agendamento {
 
 export interface Atendimento {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   agendamento_id: string | null;
   paciente_id: string;
   usuario_id: string;
@@ -63,7 +63,7 @@ export interface Atendimento {
 
 export interface Evolucao {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   atendimento_id: string;
   paciente_id: string;
   texto: string;
@@ -72,7 +72,7 @@ export interface Evolucao {
 
 export interface FotoAtendimento {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   atendimento_id: string;
   paciente_id: string;
   url: string;
@@ -82,7 +82,7 @@ export interface FotoAtendimento {
 
 export interface Comanda {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   atendimento_id: string | null;
   paciente_id: string;
   status: StatusComanda;
@@ -92,7 +92,7 @@ export interface Comanda {
 
 export interface ComandaItem {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   comanda_id: string;
   procedimento_id: string | null;
   descricao: string;
@@ -102,7 +102,7 @@ export interface ComandaItem {
 
 export interface Pagamento {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   comanda_id: string;
   forma_pagamento: string;
   valor: number;
@@ -112,7 +112,7 @@ export interface Pagamento {
 
 export interface Parcela {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   pagamento_id: string;
   vencimento: string;
   valor: number;
@@ -121,7 +121,7 @@ export interface Parcela {
 
 export interface Prontuario {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   paciente_id: string;
   criado_em: string;
 }
@@ -136,7 +136,7 @@ export interface AnamneseRespostas {
 
 export interface Anamnese {
   id: string;
-  clinica_id: string;
+  empresa_id: string;
   paciente_id: string;
   respostas: AnamneseRespostas;
   criado_em: string;

@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Label } from "@clinica/ui/components/label";
-import { Textarea } from "@clinica/ui/components/textarea";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Label } from "@empresa/ui/components/label";
+import { Textarea } from "@empresa/ui/components/textarea";
 import {
   Dialog,
   DialogContent,
@@ -14,17 +14,19 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@clinica/ui/components/dialog";
+} from "@empresa/ui/components/dialog";
 import type { Procedimento } from "@/lib/types/db";
 
 export function ConcluirAtendimentoDialog({
   atendimentoId,
   pacienteId,
   procedimento,
+  agendamentoId,
 }: {
   atendimentoId: string;
   pacienteId: string;
   procedimento: Procedimento | null;
+  agendamentoId?: string | null;
 }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -78,6 +80,13 @@ export function ConcluirAtendimentoDialog({
         quantidade: 1,
         valor_unitario: procedimento.preco,
       });
+    }
+
+    if (agendamentoId) {
+      await supabase
+        .from("agendamentos")
+        .update({ status: "concluido" })
+        .eq("id", agendamentoId);
     }
 
     setLoading(false);

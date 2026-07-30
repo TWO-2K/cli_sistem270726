@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Label } from "@clinica/ui/components/label";
-import { Textarea } from "@clinica/ui/components/textarea";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Label } from "@empresa/ui/components/label";
+import { Textarea } from "@empresa/ui/components/textarea";
 import type { AnamneseRespostas } from "@/lib/types/db";
 import {
   Dialog,
@@ -15,7 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@clinica/ui/components/dialog";
+} from "@empresa/ui/components/dialog";
 
 const CAMPOS: { chave: keyof AnamneseRespostas; label: string; placeholder?: string }[] = [
   { chave: "queixa_principal", label: "Queixa principal" },

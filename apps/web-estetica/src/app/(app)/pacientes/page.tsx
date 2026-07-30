@@ -1,4 +1,4 @@
-import { createClient } from "@clinica/supabase/server";
+import { createClient } from "@empresa/supabase/server";
 import type { Paciente } from "@/lib/types/db";
 import { NovoPacienteDialog } from "./novo-paciente-dialog";
 import { PacientesTable, type PacienteComStatus } from "./pacientes-table";

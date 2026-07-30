@@ -1,5 +1,5 @@
 {
-  "name": "@clinica/auth",
+  "name": "@empresa/auth",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@clinica/supabase": "*"
+    "@empresa/supabase": "*"
   },
   "devDependencies": {
     "@types/node": "^20",

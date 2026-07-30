@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Label } from "@clinica/ui/components/label";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Label } from "@empresa/ui/components/label";
 import { Camera } from "lucide-react";
 import {
   Select,
@@ -13,7 +13,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@clinica/ui/components/select";
+} from "@empresa/ui/components/select";
 import {
   Dialog,
   DialogContent,
@@ -21,14 +21,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@clinica/ui/components/dialog";
+} from "@empresa/ui/components/dialog";
 
 export function FotosAtendimentoDialog({
-  clinicaId,
+  empresaId,
   atendimentoId,
   pacienteId,
 }: {
-  clinicaId: string;
+  empresaId: string;
   atendimentoId: string;
   pacienteId: string;
 }) {
@@ -46,7 +46,7 @@ export function FotosAtendimentoDialog({
 
     const supabase = createClient();
     const extensao = arquivo.name.split(".").pop() ?? "jpg";
-    const path = `${clinicaId}/${atendimentoId}/${tipo}-${Date.now()}.${extensao}`;
+    const path = `${empresaId}/${atendimentoId}/${tipo}-${Date.now()}.${extensao}`;
 
     const { error: uploadError } = await supabase.storage
       .from("fotos-atendimento")

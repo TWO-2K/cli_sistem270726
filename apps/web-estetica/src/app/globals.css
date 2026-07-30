@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@clinica/ui/design-tokens.css";
+@import "@empresa/ui/design-tokens.css";
 /* necessário: packages/ui é consumido via symlink de workspace, Tailwind não varre node_modules por padrão */
 @source "../../../../packages/ui/src";
 

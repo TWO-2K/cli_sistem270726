@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Button } from "@clinica/ui/components/button";
-import { Input } from "@clinica/ui/components/input";
-import { Label } from "@clinica/ui/components/label";
+import { Button } from "@empresa/ui/components/button";
+import { Input } from "@empresa/ui/components/input";
+import { Label } from "@empresa/ui/components/label";
 import type { Perfil, Usuario } from "@/lib/types/db";
 import {
   Select,
@@ -13,7 +13,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@clinica/ui/components/select";
+} from "@empresa/ui/components/select";
 import {
   Table,
   TableBody,
@@ -21,15 +21,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@clinica/ui/components/table";
+} from "@empresa/ui/components/table";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@clinica/ui/components/dialog";
-import { Badge } from "@clinica/ui/components/badge";
+} from "@empresa/ui/components/dialog";
+import { Badge } from "@empresa/ui/components/badge";
 
 const PERFIS: { value: Perfil; label: string }[] = [
   { value: "admin", label: "Admin" },
@@ -196,7 +196,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
         </div>
       )}
 
-      <div className="hidden overflow-x-auto rounded-lg border bg-background md:block">
+      <div className="hidden overflow-x-auto rounded-lg border bg-card md:block">
         <Table>
           <TableHeader>
             <TableRow>
@@ -260,7 +260,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
       </div>
 
       {usuarios.length === 0 ? (
-        <div className="rounded-lg border bg-background py-6 text-center text-muted-foreground md:hidden">
+        <div className="rounded-lg border bg-card py-6 text-center text-muted-foreground md:hidden">
           Nenhum usuário cadastrado.
         </div>
       ) : (
@@ -268,7 +268,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
           {usuarios.map((u) => (
             <div
               key={u.id}
-              className="flex flex-col gap-2 rounded-lg border bg-background p-4"
+              className="flex flex-col gap-2 rounded-lg border bg-card p-4"
             >
               <div className="flex items-center justify-between">
                 <span className="font-medium">{u.nome}</span>

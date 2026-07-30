@@ -1,18 +1,18 @@
-import { createClient } from "@clinica/supabase/server";
-import { requireUsuarioClinica } from "@/lib/current-clinica";
+import { createClient } from "@empresa/supabase/server";
+import { requireUsuarioEmpresa } from "@/lib/current-empresa";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@clinica/ui/components/card";
+} from "@empresa/ui/components/card";
 
 function formatBRL(value: number) {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
 export default async function DashboardPage() {
-  const { clinica } = await requireUsuarioClinica();
+  const { empresa } = await requireUsuarioEmpresa();
   const supabase = await createClient();
 
   const startOfDay = new Date();
@@ -63,7 +63,7 @@ export default async function DashboardPage() {
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">
-          Olá, {clinica.nome}
+          Olá, {empresa.nome}
         </h1>
         <p className="text-muted-foreground">
           Visão geral da sua clínica hoje.

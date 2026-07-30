@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@clinica/supabase/server";
+import { createClient } from "@empresa/supabase/server";
 
 export default async function Home() {
   const supabase = await createClient();

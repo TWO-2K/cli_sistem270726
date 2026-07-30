@@ -1,19 +1,19 @@
-import { createClient } from "@clinica/supabase/server";
-import { requireUsuarioClinica } from "@/lib/current-clinica";
+import { createClient } from "@empresa/supabase/server";
+import { requireUsuarioEmpresa } from "@/lib/current-empresa";
 import type { Procedimento, Sala, Usuario } from "@/lib/types/db";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@clinica/ui/components/tabs";
+} from "@empresa/ui/components/tabs";
 import { PerfilTab } from "./perfil-tab";
 import { SalasTab } from "./salas-tab";
 import { ProcedimentosTab } from "./procedimentos-tab";
 import { UsuariosTab } from "./usuarios-tab";
 
 export default async function ConfiguracoesPage() {
-  const { clinica } = await requireUsuarioClinica(["admin"]);
+  const { empresa } = await requireUsuarioEmpresa(["admin"]);
   const supabase = await createClient();
   const [{ data: salas }, { data: procedimentos }, { data: usuarios }] =
     await Promise.all([
@@ -45,7 +45,7 @@ export default async function ConfiguracoesPage() {
           <TabsTrigger value="procedimentos">Procedimentos</TabsTrigger>
         </TabsList>
         <TabsContent value="perfil">
-          <PerfilTab clinica={clinica} />
+          <PerfilTab empresa={empresa} />
         </TabsContent>
         <TabsContent value="usuarios">
           <UsuariosTab usuarios={usuarios ?? []} />

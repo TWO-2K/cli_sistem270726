@@ -1,5 +1,5 @@
 {
-  "name": "@clinica/admin",
+  "name": "@empresa/admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@clinica/supabase": "*",
-    "@clinica/ui": "*",
+    "@empresa/supabase": "*",
+    "@empresa/ui": "*",
     "@base-ui/react": "^1.6.0",
     "@supabase/ssr": "^0.12.3",
     "@supabase/supabase-js": "^2.110.8",

@@ -15,10 +15,10 @@ import {
   Search,
   Trash2,
 } from "lucide-react";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Input } from "@clinica/ui/components/input";
-import { cn } from "@clinica/ui/utils";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Input } from "@empresa/ui/components/input";
+import { cn } from "@empresa/ui/utils";
 import { iniciaisPaciente } from "@/lib/pacientes-utils";
 import type { Paciente } from "@/lib/types/db";
 import { EditarPacienteDialog } from "./[id]/editar-paciente-dialog";
@@ -29,7 +29,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@clinica/ui/components/table";
+} from "@empresa/ui/components/table";
 
 const VISUALIZACAO_STORAGE_KEY = "pacientes:visualizacao";
 
@@ -168,7 +168,7 @@ export function PacientesTable({
       </div>
 
       {filtrados.length === 0 ? (
-        <div className="rounded-lg border bg-background py-8 text-center text-muted-foreground">
+        <div className="rounded-lg border bg-card py-8 text-center text-muted-foreground">
           {pacientes.length === 0
             ? "Nenhum paciente cadastrado ainda."
             : "Nenhum paciente encontrado."}
@@ -176,7 +176,7 @@ export function PacientesTable({
       ) : (
         <>
         {visualizacao === "lista" && (
-        <div className="hidden overflow-x-auto rounded-lg border bg-background md:block">
+        <div className="hidden overflow-x-auto rounded-lg border bg-card md:block">
           <Table>
             <TableHeader>
               <TableRow>
@@ -289,7 +289,7 @@ export function PacientesTable({
             return (
               <div
                 key={paciente.id}
-                className="flex flex-col gap-3 rounded-lg border bg-background p-4"
+                className="flex flex-col gap-3 rounded-lg border bg-card p-4"
               >
                 <div className="flex items-center gap-3">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-400">

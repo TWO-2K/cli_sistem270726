@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@clinica/supabase/server";
-import { createAdminClient } from "@clinica/supabase/admin";
-import { gerarSenhaTemporaria } from "@clinica/supabase/senha-temporaria";
+import { createClient } from "@empresa/supabase/server";
+import { createAdminClient } from "@empresa/supabase/admin";
+import { gerarSenhaTemporaria } from "@empresa/supabase/senha-temporaria";
+import { SEGMENTOS, type Segmento } from "@empresa/supabase/types";
 
 export async function POST(request: Request) {
   const supabase = await createClient();
@@ -24,16 +25,23 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json();
-  const nomeClinica = String(body.nomeClinica ?? "").trim();
+  const nomeEmpresa = String(body.nomeEmpresa ?? "").trim();
   const segmento = String(body.segmento ?? "").trim();
   const nomeAdmin = String(body.nomeAdmin ?? "").trim();
   const emailAdmin = String(body.emailAdmin ?? "")
     .trim()
     .toLowerCase();
 
-  if (!nomeClinica || !nomeAdmin || !emailAdmin) {
+  if (!nomeEmpresa || !nomeAdmin || !emailAdmin) {
     return NextResponse.json(
-      { error: "Preencha nome da clínica, nome e e-mail do admin." },
+      { error: "Preencha nome da empresa, nome e e-mail do admin." },
+      { status: 400 },
+    );
+  }
+
+  if (!SEGMENTOS.includes(segmento as Segmento)) {
+    return NextResponse.json(
+      { error: "Segmento inválido." },
       { status: 400 },
     );
   }
@@ -56,23 +64,23 @@ export async function POST(request: Request) {
     );
   }
 
-  const { data: clinica, error: clinicaError } = await admin
-    .from("clinicas")
-    .insert({ nome: nomeClinica, segmento: segmento || null })
+  const { data: empresa, error: empresaError } = await admin
+    .from("empresas")
+    .insert({ nome: nomeEmpresa, segmento: segmento as Segmento })
     .select("id")
     .single();
 
-  if (clinicaError || !clinica) {
+  if (empresaError || !empresa) {
     await admin.auth.admin.deleteUser(authUser.user.id);
     return NextResponse.json(
-      { error: "Não foi possível criar a clínica." },
+      { error: "Não foi possível criar a empresa." },
       { status: 400 },
     );
   }
 
   const { error: usuarioError } = await admin.from("usuarios").insert({
     id: authUser.user.id,
-    clinica_id: clinica.id,
+    empresa_id: empresa.id,
     nome: nomeAdmin,
     email: emailAdmin,
     perfil: "admin",
@@ -81,9 +89,9 @@ export async function POST(request: Request) {
 
   if (usuarioError) {
     await admin.auth.admin.deleteUser(authUser.user.id);
-    await admin.from("clinicas").delete().eq("id", clinica.id);
+    await admin.from("empresas").delete().eq("id", empresa.id);
     return NextResponse.json(
-      { error: "Não foi possível vincular o admin à clínica." },
+      { error: "Não foi possível vincular o admin à empresa." },
       { status: 400 },
     );
   }

@@ -3,13 +3,13 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
+import { createClient } from "@empresa/supabase/client";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@clinica/ui/components/dialog";
+} from "@empresa/ui/components/dialog";
 import type {
   Agendamento,
   HorarioDia,
@@ -18,7 +18,7 @@ import type {
   Sala,
   Usuario,
 } from "@/lib/types/db";
-import { cn } from "@clinica/ui/utils";
+import { cn } from "@empresa/ui/utils";
 import {
   AgendamentoCard,
   STATUS_ARRASTAVEIS,
@@ -269,7 +269,7 @@ export function AgendaGrid({
   function noop() {}
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-lg border bg-background">
+    <div className="flex h-full flex-col overflow-hidden rounded-lg border bg-card">
       <div className="min-h-0 flex-1 overflow-x-auto overflow-y-auto">
         <div
           className="relative grid"

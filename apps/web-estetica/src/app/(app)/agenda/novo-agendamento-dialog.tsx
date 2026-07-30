@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@clinica/ui/components/button";
+import { Button } from "@empresa/ui/components/button";
 import { Plus } from "lucide-react";
 import { AgendamentoFormDialog } from "./agendamento-form-dialog";
 import type {

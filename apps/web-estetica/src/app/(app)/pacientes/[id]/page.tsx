@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { CalendarPlus, CircleCheck, ClipboardList } from "lucide-react";
 import Link from "next/link";
-import { createClient } from "@clinica/supabase/server";
+import { createClient } from "@empresa/supabase/server";
 import type {
   Agendamento,
   Anamnese,
@@ -16,12 +16,12 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-} from "@clinica/ui/components/card";
-import { Badge } from "@clinica/ui/components/badge";
-import { Button } from "@clinica/ui/components/button";
-import { Avatar, AvatarFallback } from "@clinica/ui/components/avatar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@clinica/ui/components/tabs";
-import { cn } from "@clinica/ui/utils";
+} from "@empresa/ui/components/card";
+import { Badge } from "@empresa/ui/components/badge";
+import { Button } from "@empresa/ui/components/button";
+import { Avatar, AvatarFallback } from "@empresa/ui/components/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@empresa/ui/components/tabs";
+import { cn } from "@empresa/ui/utils";
 import { iniciaisPaciente, idadeAnos } from "@/lib/pacientes-utils";
 import { EditarPacienteDialog } from "./editar-paciente-dialog";
 import { ProntuarioDialog } from "./prontuario-dialog";
@@ -355,7 +355,7 @@ export default async function PacienteDetailPage({
 
         <TabsContent value="atendimentos" className="flex flex-col gap-4 pt-4">
           {(atendimentos ?? []).length === 0 ? (
-            <div className="flex flex-col items-center gap-2 rounded-lg border bg-background py-10 text-center text-muted-foreground">
+            <div className="flex flex-col items-center gap-2 rounded-lg border bg-card py-10 text-center text-muted-foreground">
               <ClipboardList className="h-6 w-6" />
               Nenhum atendimento registrado ainda para este paciente.
             </div>

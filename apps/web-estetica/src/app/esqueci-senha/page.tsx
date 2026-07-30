@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Input } from "@clinica/ui/components/input";
-import { Label } from "@clinica/ui/components/label";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Input } from "@empresa/ui/components/input";
+import { Label } from "@empresa/ui/components/label";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@clinica/ui/components/card";
+} from "@empresa/ui/components/card";
 
 export default function EsqueciSenhaPage() {
   const [email, setEmail] = useState("");
@@ -58,7 +58,7 @@ export default function EsqueciSenhaPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="voce@clinica.com"
+                  placeholder="voce@empresa.com"
                 />
               </div>
               <Button type="submit" disabled={loading} className="mt-2">

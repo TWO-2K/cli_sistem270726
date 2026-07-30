@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Input } from "@clinica/ui/components/input";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Input } from "@empresa/ui/components/input";
 import type { Sala } from "@/lib/types/db";
 import {
   Table,
@@ -14,7 +14,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@clinica/ui/components/table";
+} from "@empresa/ui/components/table";
 
 export function SalasTab({ salas }: { salas: Sala[] }) {
   const router = useRouter();
@@ -97,7 +97,7 @@ export function SalasTab({ salas }: { salas: Sala[] }) {
         </Button>
       </form>
 
-      <div className="overflow-x-auto rounded-lg border bg-background">
+      <div className="overflow-x-auto rounded-lg border bg-card">
         <Table>
           <TableHeader>
             <TableRow>

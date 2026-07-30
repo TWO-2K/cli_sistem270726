@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { createClient } from "@clinica/supabase/server";
-import { requireUsuarioClinica } from "@/lib/current-clinica";
+import { createClient } from "@empresa/supabase/server";
+import { requireUsuarioEmpresa } from "@/lib/current-empresa";
 import type { Agendamento, Paciente, Procedimento, Sala, Usuario } from "@/lib/types/db";
-import { cn } from "@clinica/ui/utils";
+import { cn } from "@empresa/ui/utils";
 import { NovoAgendamentoDialog } from "./novo-agendamento-dialog";
 import { AgendaGrid } from "./agenda-grid";
 import {
@@ -21,7 +21,7 @@ export default async function AgendaPage({
 }: {
   searchParams: Promise<{ view?: string; data?: string }>;
 }) {
-  const { clinica } = await requireUsuarioClinica();
+  const { empresa } = await requireUsuarioEmpresa();
   const params = await searchParams;
   const view: "semana" | "dia" = params.view === "dia" ? "dia" : "semana";
   const ref = parseDataParam(params.data);
@@ -93,7 +93,7 @@ export default async function AgendaPage({
           profissionais={profissionais ?? []}
           salas={salas ?? []}
           procedimentos={procedimentos ?? []}
-          horarioFuncionamento={clinica.horario_funcionamento}
+          horarioFuncionamento={empresa.horario_funcionamento}
         />
       </div>
 
@@ -153,7 +153,7 @@ export default async function AgendaPage({
           profissionais={profissionais ?? []}
           salas={salas ?? []}
           procedimentos={procedimentos ?? []}
-          horarioFuncionamento={clinica.horario_funcionamento}
+          horarioFuncionamento={empresa.horario_funcionamento}
         />
       </div>
     </div>

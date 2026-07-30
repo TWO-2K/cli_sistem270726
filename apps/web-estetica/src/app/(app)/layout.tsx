@@ -1,4 +1,4 @@
-import { requireUsuarioClinica } from "@/lib/current-clinica";
+import { requireUsuarioEmpresa } from "@/lib/current-empresa";
 import { AppSidebar } from "@/components/app-sidebar";
 
 export default async function AppLayout({
@@ -6,12 +6,12 @@ export default async function AppLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { usuario, clinica } = await requireUsuarioClinica();
+  const { usuario, empresa } = await requireUsuarioEmpresa();
 
   return (
     <div className="h-svh">
       <AppSidebar
-        clinicaNome={clinica.nome}
+        empresaNome={empresa.nome}
         usuarioNome={usuario.nome}
         perfil={usuario.perfil}
       />

@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Input } from "@clinica/ui/components/input";
-import { Label } from "@clinica/ui/components/label";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Input } from "@empresa/ui/components/input";
+import { Label } from "@empresa/ui/components/label";
 import { Receipt, Trash2 } from "lucide-react";
 import {
   Dialog,
@@ -15,20 +15,29 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@clinica/ui/components/dialog";
-import type { ComandaItem } from "@/lib/types/db";
+} from "@empresa/ui/components/dialog";
+import type { ComandaItem, Pagamento } from "@/lib/types/db";
 
 function formatBRL(value: number) {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
+const STATUS_PAGAMENTO_LABEL: Record<Pagamento["status"], string> = {
+  pendente: "Pendente",
+  pago: "Pago",
+  atrasado: "Atrasado",
+  cancelado: "Cancelado",
+};
+
 export function ComandaDetailDialog({
   comandaId,
   itens,
+  pagamentos,
   editavel,
 }: {
   comandaId: string;
   itens: ComandaItem[];
+  pagamentos: Pagamento[];
   editavel: boolean;
 }) {
   const router = useRouter();
@@ -163,6 +172,32 @@ export function ComandaDetailDialog({
             <span>Total</span>
             <span>{formatBRL(total)}</span>
           </div>
+        </div>
+
+        <div className="flex flex-col gap-3 border-t pt-4">
+          <p className="text-sm font-medium">Histórico de pagamentos</p>
+          {pagamentos.length === 0 && (
+            <p className="text-sm text-muted-foreground">
+              Nenhum pagamento registrado para esta comanda.
+            </p>
+          )}
+          {pagamentos.map((pagamento) => (
+            <div
+              key={pagamento.id}
+              className="flex items-center justify-between rounded-md border px-3 py-2 text-sm"
+            >
+              <div>
+                <p>{pagamento.forma_pagamento}</p>
+                <p className="text-xs text-muted-foreground">
+                  {new Date(pagamento.criado_em).toLocaleString("pt-BR")} ·{" "}
+                  {STATUS_PAGAMENTO_LABEL[pagamento.status]}
+                </p>
+              </div>
+              <span className="font-medium">
+                {formatBRL(Number(pagamento.valor))}
+              </span>
+            </div>
+          ))}
         </div>
 
         {editavel && (

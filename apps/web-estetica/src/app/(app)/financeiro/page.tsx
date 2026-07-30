@@ -1,7 +1,7 @@
-import { createClient } from "@clinica/supabase/server";
-import { requireUsuarioClinica } from "@/lib/current-clinica";
-import type { Comanda, ComandaItem, Paciente, Parcela } from "@/lib/types/db";
-import { Badge } from "@clinica/ui/components/badge";
+import { createClient } from "@empresa/supabase/server";
+import { requireUsuarioEmpresa } from "@/lib/current-empresa";
+import type { Comanda, ComandaItem, Pagamento, Paciente, Parcela } from "@/lib/types/db";
+import { Badge } from "@empresa/ui/components/badge";
 import {
   Table,
   TableBody,
@@ -9,17 +9,29 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@clinica/ui/components/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@clinica/ui/components/tabs";
+} from "@empresa/ui/components/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@empresa/ui/components/tabs";
 import { RegistrarPagamentoDialog } from "./registrar-pagamento-dialog";
 import { ComandaDetailDialog } from "./comanda-detail-dialog";
+import { ReciboDialog } from "./recibo-dialog";
+import { MarcarParcelaPagaButton } from "./marcar-parcela-paga-button";
+
+type ParcelaComPaciente = Parcela & {
+  pagamentos: {
+    comanda_id: string;
+    comandas: {
+      paciente_id: string;
+      pacientes: { nome: string } | null;
+    } | null;
+  } | null;
+};
 
 function formatBRL(value: number) {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
 export default async function FinanceiroPage() {
-  await requireUsuarioClinica(["admin", "financeiro"]);
+  const { empresa } = await requireUsuarioEmpresa(["admin", "financeiro"]);
   const supabase = await createClient();
 
   const start30d = new Date();
@@ -30,6 +42,7 @@ export default async function FinanceiroPage() {
     { data: comandas },
     { data: pacientes },
     { data: comandaItens },
+    { data: pagamentos },
     { data: parcelas },
     { data: comandasFechadas30d },
   ] = await Promise.all([
@@ -42,10 +55,15 @@ export default async function FinanceiroPage() {
     supabase.from("pacientes").select("*").returns<Paciente[]>(),
     supabase.from("comanda_itens").select("*").returns<ComandaItem[]>(),
     supabase
-      .from("parcelas")
+      .from("pagamentos")
       .select("*")
+      .order("criado_em", { ascending: false })
+      .returns<Pagamento[]>(),
+    supabase
+      .from("parcelas")
+      .select("*, pagamentos(comanda_id, comandas(paciente_id, pacientes(nome)))")
       .order("vencimento", { ascending: true })
-      .returns<Parcela[]>(),
+      .returns<ParcelaComPaciente[]>(),
     supabase
       .from("comandas")
       .select("*")
@@ -61,6 +79,13 @@ export default async function FinanceiroPage() {
     const lista = itensPorComanda.get(item.comanda_id) ?? [];
     lista.push(item);
     itensPorComanda.set(item.comanda_id, lista);
+  }
+
+  const pagamentosPorComanda = new Map<string, Pagamento[]>();
+  for (const pagamento of pagamentos ?? []) {
+    const lista = pagamentosPorComanda.get(pagamento.comanda_id) ?? [];
+    lista.push(pagamento);
+    pagamentosPorComanda.set(pagamento.comanda_id, lista);
   }
 
   const abertas = (comandas ?? []).filter((c) => c.status === "aberta");
@@ -101,13 +126,13 @@ export default async function FinanceiroPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="rounded-lg border bg-background p-4">
+        <div className="rounded-lg border bg-card p-4">
           <p className="text-sm text-muted-foreground">
             Total a receber (comandas em aberto)
           </p>
           <p className="text-2xl font-semibold">{formatBRL(totalReceber)}</p>
         </div>
-        <div className="rounded-lg border bg-background p-4">
+        <div className="rounded-lg border bg-card p-4">
           <p className="text-sm text-muted-foreground">
             Parcelas pendentes
           </p>
@@ -115,7 +140,7 @@ export default async function FinanceiroPage() {
             {formatBRL(totalParcelasPendentes)}
           </p>
         </div>
-        <div className="rounded-lg border bg-background p-4">
+        <div className="rounded-lg border bg-card p-4">
           <p className="text-sm text-muted-foreground">
             Total recebido (últimos 30 dias)
           </p>
@@ -131,7 +156,7 @@ export default async function FinanceiroPage() {
         </TabsList>
 
         <TabsContent value="comandas">
-          <div className="hidden overflow-x-auto rounded-lg border bg-background md:block">
+          <div className="hidden overflow-x-auto rounded-lg border bg-card md:block">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -161,7 +186,17 @@ export default async function FinanceiroPage() {
                       <ComandaDetailDialog
                         comandaId={c.id}
                         itens={itensPorComanda.get(c.id) ?? []}
+                        pagamentos={pagamentosPorComanda.get(c.id) ?? []}
                         editavel={c.status === "aberta"}
+                      />
+                      <ReciboDialog
+                        empresa={empresa}
+                        paciente={pacientesMap.get(c.paciente_id)}
+                        comandaId={c.id}
+                        criadoEm={c.criado_em}
+                        itens={itensPorComanda.get(c.id) ?? []}
+                        pagamentos={pagamentosPorComanda.get(c.id) ?? []}
+                        total={Number(c.total)}
                       />
                       {c.status === "aberta" && (
                         <RegistrarPagamentoDialog
@@ -188,7 +223,7 @@ export default async function FinanceiroPage() {
           </div>
 
           {(comandas ?? []).length === 0 ? (
-            <div className="rounded-lg border bg-background py-8 text-center text-muted-foreground md:hidden">
+            <div className="rounded-lg border bg-card py-8 text-center text-muted-foreground md:hidden">
               Nenhuma comanda gerada ainda. Comandas são criadas
               automaticamente ao concluir um atendimento.
             </div>
@@ -197,7 +232,7 @@ export default async function FinanceiroPage() {
               {(comandas ?? []).map((c) => (
                 <div
                   key={c.id}
-                  className="flex flex-col gap-2 rounded-lg border bg-background p-4"
+                  className="flex flex-col gap-2 rounded-lg border bg-card p-4"
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-medium">
@@ -217,7 +252,17 @@ export default async function FinanceiroPage() {
                     <ComandaDetailDialog
                       comandaId={c.id}
                       itens={itensPorComanda.get(c.id) ?? []}
+                      pagamentos={pagamentosPorComanda.get(c.id) ?? []}
                       editavel={c.status === "aberta"}
+                    />
+                    <ReciboDialog
+                      empresa={empresa}
+                      paciente={pacientesMap.get(c.paciente_id)}
+                      comandaId={c.id}
+                      criadoEm={c.criado_em}
+                      itens={itensPorComanda.get(c.id) ?? []}
+                      pagamentos={pagamentosPorComanda.get(c.id) ?? []}
+                      total={Number(c.total)}
                     />
                     {c.status === "aberta" && (
                       <RegistrarPagamentoDialog
@@ -233,18 +278,27 @@ export default async function FinanceiroPage() {
         </TabsContent>
 
         <TabsContent value="receber">
-          <div className="overflow-x-auto rounded-lg border bg-background">
+          <div className="overflow-x-auto rounded-lg border bg-card">
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead>Paciente</TableHead>
+                  <TableHead>Comanda</TableHead>
                   <TableHead>Vencimento</TableHead>
                   <TableHead>Valor</TableHead>
                   <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Ação</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {parcelasPendentes.map((p) => (
                   <TableRow key={p.id}>
+                    <TableCell className="font-medium">
+                      {p.pagamentos?.comandas?.pacientes?.nome ?? "—"}
+                    </TableCell>
+                    <TableCell>
+                      {p.pagamentos?.comanda_id.slice(0, 8) ?? "—"}
+                    </TableCell>
                     <TableCell>
                       {p.vencimento.split("-").reverse().join("/")}
                     </TableCell>
@@ -258,12 +312,15 @@ export default async function FinanceiroPage() {
                         {p.vencimento < hoje ? "Atrasada" : "Pendente"}
                       </Badge>
                     </TableCell>
+                    <TableCell className="text-right">
+                      <MarcarParcelaPagaButton parcelaId={p.id} />
+                    </TableCell>
                   </TableRow>
                 ))}
                 {parcelasPendentes.length === 0 && (
                   <TableRow>
                     <TableCell
-                      colSpan={3}
+                      colSpan={6}
                       className="py-8 text-center text-muted-foreground"
                     >
                       Nenhuma parcela pendente.
@@ -276,7 +333,7 @@ export default async function FinanceiroPage() {
         </TabsContent>
 
         <TabsContent value="caixa">
-          <div className="overflow-x-auto rounded-lg border bg-background">
+          <div className="overflow-x-auto rounded-lg border bg-card">
             <Table>
               <TableHeader>
                 <TableRow>

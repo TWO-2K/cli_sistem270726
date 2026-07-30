@@ -1,11 +1,11 @@
-import { createClient } from "@clinica/supabase/server";
-import type { Clinica, Usuario } from "@/lib/types/db";
+import { createClient } from "@empresa/supabase/server";
+import type { Empresa, Usuario } from "@/lib/types/db";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@clinica/ui/components/card";
+} from "@empresa/ui/components/card";
 import {
   Table,
   TableBody,
@@ -13,7 +13,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@clinica/ui/components/table";
+} from "@empresa/ui/components/table";
 
 function formatBRL(value: number) {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -31,14 +31,14 @@ export default async function RelatoriosPage() {
   const start30dISO = start30d.toISOString();
 
   const [
-    { data: clinica },
+    { data: empresa },
     { data: usuarios },
     { data: atendimentos },
     { data: pagamentos },
     { data: agendamentos },
     { count: cancelamentosCount },
   ] = await Promise.all([
-    supabase.from("clinicas").select("*").single<Clinica>(),
+    supabase.from("empresas").select("*").single<Empresa>(),
     supabase
       .from("usuarios")
       .select("*")
@@ -101,7 +101,7 @@ export default async function RelatoriosPage() {
   ).sort((a, b) => b.localeCompare(a));
 
   // Ocupação de agenda: capacidade (horas de funcionamento x dias) vs horas agendadas
-  const horarios = clinica?.horario_funcionamento ?? [];
+  const horarios = empresa?.horario_funcionamento ?? [];
   let capacidadeHoras = 0;
   const cursor = new Date(start30d);
   const hoje = new Date();
@@ -182,7 +182,7 @@ export default async function RelatoriosPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="rounded-lg border bg-background">
+        <div className="rounded-lg border bg-card">
           <div className="border-b px-4 py-3">
             <h2 className="text-sm font-semibold">
               Atendimentos e faturamento por dia
@@ -220,7 +220,7 @@ export default async function RelatoriosPage() {
           </Table>
         </div>
 
-        <div className="rounded-lg border bg-background">
+        <div className="rounded-lg border bg-card">
           <div className="border-b px-4 py-3">
             <h2 className="text-sm font-semibold">
               Ocupação de agenda por profissional

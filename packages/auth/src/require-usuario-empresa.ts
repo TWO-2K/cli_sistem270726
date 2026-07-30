@@ -1,21 +1,22 @@
 import "server-only";
 import { redirect } from "next/navigation";
-import { createServerClient } from "@clinica/supabase";
-import type { Usuario, Clinica, Perfil } from "@clinica/supabase/types";
+import { createServerClient } from "@empresa/supabase";
+import type { Usuario, Empresa, Perfil, Segmento } from "@empresa/supabase/types";
 
-export interface RequireUsuarioClinicaRedirects {
+export interface RequireUsuarioEmpresaRedirects {
   login: string;
   superAdmin: string;
   mustChangePassword: string;
   forbidden: string;
 }
 
-export async function requireUsuarioClinica(
-  redirects: RequireUsuarioClinicaRedirects,
+export async function requireUsuarioEmpresa(
+  redirects: RequireUsuarioEmpresaRedirects,
   perfisPermitidos?: Perfil[],
+  segmentoPermitido?: Segmento,
 ): Promise<{
   usuario: Usuario;
-  clinica: Clinica;
+  empresa: Empresa;
 }> {
   const supabase = await createServerClient();
   const {
@@ -48,15 +49,23 @@ export async function requireUsuarioClinica(
     redirect(redirects.forbidden);
   }
 
-  const { data: clinica } = await supabase
-    .from("clinicas")
+  const { data: empresa } = await supabase
+    .from("empresas")
     .select("*")
-    .eq("id", usuario.clinica_id)
+    .eq("id", usuario.empresa_id)
     .single();
 
-  if (!clinica) {
+  if (!empresa) {
     redirect(redirects.login);
   }
 
-  return { usuario, clinica };
+  if (empresa.status === "suspensa") {
+    redirect(redirects.login);
+  }
+
+  if (segmentoPermitido && empresa.segmento !== segmentoPermitido) {
+    redirect(redirects.login);
+  }
+
+  return { usuario, empresa };
 }

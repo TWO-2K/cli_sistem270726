@@ -1,12 +1,12 @@
-import { createClient } from "@clinica/supabase/server";
-import { requireUsuarioClinica } from "@/lib/current-clinica";
+import { createClient } from "@empresa/supabase/server";
+import { requireUsuarioEmpresa } from "@/lib/current-empresa";
 import type {
   Atendimento,
   Paciente,
   Procedimento,
   Usuario,
 } from "@/lib/types/db";
-import { Badge } from "@clinica/ui/components/badge";
+import { Badge } from "@empresa/ui/components/badge";
 import {
   Table,
   TableBody,
@@ -14,13 +14,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@clinica/ui/components/table";
+} from "@empresa/ui/components/table";
 import { NovoAtendimentoDialog } from "./novo-atendimento-dialog";
 import { ConcluirAtendimentoDialog } from "./concluir-atendimento-dialog";
 import { FotosAtendimentoDialog } from "./fotos-atendimento-dialog";
 
 export default async function AtendimentoPage() {
-  const { clinica } = await requireUsuarioClinica();
+  const { empresa } = await requireUsuarioEmpresa();
   const supabase = await createClient();
 
   const [
@@ -76,7 +76,7 @@ export default async function AtendimentoPage() {
         />
       </div>
 
-      <div className="hidden overflow-x-auto rounded-lg border bg-background md:block">
+      <div className="hidden overflow-x-auto rounded-lg border bg-card md:block">
         <Table>
           <TableHeader>
             <TableRow>
@@ -106,25 +106,31 @@ export default async function AtendimentoPage() {
                     : "—"}
                 </TableCell>
                 <TableCell>
-                  <Badge
-                    variant={
-                      a.status === "concluido" ? "outline" : "default"
-                    }
-                  >
-                    {a.status === "concluido" ? "Concluído" : "Em andamento"}
-                  </Badge>
+                  <div className="flex flex-wrap gap-1">
+                    <Badge
+                      variant={
+                        a.status === "concluido" ? "outline" : "default"
+                      }
+                    >
+                      {a.status === "concluido" ? "Concluído" : "Em andamento"}
+                    </Badge>
+                    {a.agendamento_id && (
+                      <Badge variant="outline">Via agenda</Badge>
+                    )}
+                  </div>
                 </TableCell>
                 <TableCell className="flex justify-end gap-2 text-right">
                   {a.status === "em_andamento" && (
                     <>
                       <FotosAtendimentoDialog
-                        clinicaId={clinica.id}
+                        empresaId={empresa.id}
                         atendimentoId={a.id}
                         pacienteId={a.paciente_id}
                       />
                       <ConcluirAtendimentoDialog
                         atendimentoId={a.id}
                         pacienteId={a.paciente_id}
+                        agendamentoId={a.agendamento_id}
                         procedimento={
                           a.procedimento_id
                             ? (procedimentosMap.get(a.procedimento_id) ?? null)
@@ -152,22 +158,25 @@ export default async function AtendimentoPage() {
 
       <div className="flex flex-col gap-3 md:hidden">
         {(atendimentos ?? []).length === 0 && (
-          <div className="rounded-lg border bg-background py-8 text-center text-muted-foreground">
+          <div className="rounded-lg border bg-card py-8 text-center text-muted-foreground">
             Nenhum atendimento registrado ainda.
           </div>
         )}
         {(atendimentos ?? []).map((a) => (
           <div
             key={a.id}
-            className="flex flex-col gap-2 rounded-lg border bg-background p-4"
+            className="flex flex-col gap-2 rounded-lg border bg-card p-4"
           >
             <div className="flex items-start justify-between gap-2">
               <span className="font-medium">
                 {pacientesMap.get(a.paciente_id)?.nome ?? "—"}
               </span>
-              <Badge variant={a.status === "concluido" ? "outline" : "default"}>
-                {a.status === "concluido" ? "Concluído" : "Em andamento"}
-              </Badge>
+              <div className="flex flex-wrap gap-1">
+                <Badge variant={a.status === "concluido" ? "outline" : "default"}>
+                  {a.status === "concluido" ? "Concluído" : "Em andamento"}
+                </Badge>
+                {a.agendamento_id && <Badge variant="outline">Via agenda</Badge>}
+              </div>
             </div>
             <div className="flex flex-col gap-1 text-sm text-muted-foreground">
               <span>{new Date(a.criado_em).toLocaleString("pt-BR")}</span>
@@ -184,7 +193,7 @@ export default async function AtendimentoPage() {
             {a.status === "em_andamento" && (
               <div className="flex justify-end gap-2 border-t pt-3">
                 <FotosAtendimentoDialog
-                  clinicaId={clinica.id}
+                  empresaId={empresa.id}
                   atendimentoId={a.id}
                   pacienteId={a.paciente_id}
                 />

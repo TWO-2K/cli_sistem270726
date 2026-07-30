@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@clinica/supabase/server";
-import { createAdminClient } from "@clinica/supabase/admin";
-import { gerarSenhaTemporaria } from "@clinica/supabase/senha-temporaria";
+import { createClient } from "@empresa/supabase/server";
+import { createAdminClient } from "@empresa/supabase/admin";
+import { gerarSenhaTemporaria } from "@empresa/supabase/senha-temporaria";
 import type { Perfil } from "@/lib/types/db";
 
 const PERFIS_PERMITIDOS: Perfil[] = [
@@ -23,11 +23,11 @@ export async function POST(request: Request) {
 
   const { data: usuarioAtual } = await supabase
     .from("usuarios")
-    .select("perfil, clinica_id")
+    .select("perfil, empresa_id")
     .eq("id", user.id)
     .maybeSingle();
 
-  if (usuarioAtual?.perfil !== "admin" || !usuarioAtual.clinica_id) {
+  if (usuarioAtual?.perfil !== "admin" || !usuarioAtual.empresa_id) {
     return NextResponse.json({ error: "Sem permissão." }, { status: 403 });
   }
 
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
 
   const { error: usuarioError } = await admin.from("usuarios").insert({
     id: authUser.user.id,
-    clinica_id: usuarioAtual.clinica_id,
+    empresa_id: usuarioAtual.empresa_id,
     nome,
     email,
     perfil,

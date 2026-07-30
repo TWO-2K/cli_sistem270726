@@ -1,6 +1,6 @@
 // Cria o primeiro super_admin do sistema (dono do SaaS). Só precisa ser
 // rodado uma vez por ambiente — depois disso, o próprio super_admin cria
-// clínicas e admins pelo painel /admin.
+// empresas e admins pelo painel /admin.
 //
 // Uso:
 //   node --env-file=.env.local scripts/create-super-admin.mjs <email> <senha> "<Nome>"
@@ -43,7 +43,7 @@ if (authError || !authUser.user) {
 
 const { error: usuarioError } = await admin.from("usuarios").insert({
   id: authUser.user.id,
-  clinica_id: null,
+  empresa_id: null,
   nome,
   email,
   perfil: "super_admin",

@@ -2,9 +2,16 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@clinica/ui/components/button";
-import { Input } from "@clinica/ui/components/input";
-import { Label } from "@clinica/ui/components/label";
+import { Button } from "@empresa/ui/components/button";
+import { Input } from "@empresa/ui/components/input";
+import { Label } from "@empresa/ui/components/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@empresa/ui/components/select";
 import { Plus } from "lucide-react";
 import {
   Dialog,
@@ -13,23 +20,24 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@clinica/ui/components/dialog";
+} from "@empresa/ui/components/dialog";
+import { SEGMENTOS, SEGMENTO_LABELS, type Segmento } from "@empresa/supabase/types";
 
-export function NovaClinicaDialog() {
+export function NovaEmpresaDialog() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [senhaTemporaria, setSenhaTemporaria] = useState<string | null>(null);
 
-  const [nomeClinica, setNomeClinica] = useState("");
-  const [segmento, setSegmento] = useState("");
+  const [nomeEmpresa, setNomeEmpresa] = useState("");
+  const [segmento, setSegmento] = useState<Segmento>("estetica");
   const [nomeAdmin, setNomeAdmin] = useState("");
   const [emailAdmin, setEmailAdmin] = useState("");
 
   function reset() {
-    setNomeClinica("");
-    setSegmento("");
+    setNomeEmpresa("");
+    setSegmento("estetica");
     setNomeAdmin("");
     setEmailAdmin("");
     setSenhaTemporaria(null);
@@ -41,16 +49,16 @@ export function NovaClinicaDialog() {
     setLoading(true);
     setError(null);
 
-    const res = await fetch("/api/admin/clinicas", {
+    const res = await fetch("/api/admin/empresas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nomeClinica, segmento, nomeAdmin, emailAdmin }),
+      body: JSON.stringify({ nomeEmpresa, segmento, nomeAdmin, emailAdmin }),
     });
     const data = await res.json();
     setLoading(false);
 
     if (!res.ok) {
-      setError(data.error ?? "Não foi possível criar a clínica.");
+      setError(data.error ?? "Não foi possível criar a empresa.");
       return;
     }
 
@@ -68,16 +76,16 @@ export function NovaClinicaDialog() {
     >
       <DialogTrigger render={<Button />}>
         <Plus className="h-4 w-4" />
-        Nova clínica
+        Nova empresa
       </DialogTrigger>
       <DialogContent>
         {senhaTemporaria ? (
           <>
             <DialogHeader>
-              <DialogTitle>Clínica criada</DialogTitle>
+              <DialogTitle>Empresa criada</DialogTitle>
             </DialogHeader>
             <p className="text-sm text-muted-foreground">
-              Repasse estas credenciais ao admin da clínica. A senha só é
+              Repasse estas credenciais ao admin da empresa. A senha só é
               exibida uma vez.
             </p>
             <div className="flex flex-col gap-2 rounded-md border bg-muted/40 p-3 text-sm">
@@ -105,29 +113,41 @@ export function NovaClinicaDialog() {
         ) : (
           <>
             <DialogHeader>
-              <DialogTitle>Nova clínica</DialogTitle>
+              <DialogTitle>Nova empresa</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                <Label htmlFor="nomeClinica">Nome da clínica</Label>
+                <Label htmlFor="nomeEmpresa">Nome da empresa</Label>
                 <Input
-                  id="nomeClinica"
+                  id="nomeEmpresa"
                   required
-                  value={nomeClinica}
-                  onChange={(e) => setNomeClinica(e.target.value)}
+                  value={nomeEmpresa}
+                  onChange={(e) => setNomeEmpresa(e.target.value)}
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <Label htmlFor="segmento">Segmento</Label>
-                <Input
-                  id="segmento"
-                  placeholder="Ex: Estética"
+                <Select
                   value={segmento}
-                  onChange={(e) => setSegmento(e.target.value)}
-                />
+                  onValueChange={(value) => setSegmento(value as Segmento)}
+                >
+                  <SelectTrigger id="segmento" className="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {SEGMENTOS.map((slug) => (
+                      <SelectItem key={slug} value={slug}>
+                        {SEGMENTO_LABELS[slug]}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-muted-foreground">
+                  Define qual sistema a empresa vai acessar.
+                </p>
               </div>
               <div className="flex flex-col gap-2">
-                <Label htmlFor="nomeAdmin">Nome do admin da clínica</Label>
+                <Label htmlFor="nomeAdmin">Nome do admin da empresa</Label>
                 <Input
                   id="nomeAdmin"
                   required
@@ -148,7 +168,7 @@ export function NovaClinicaDialog() {
               {error && <p className="text-sm text-destructive">{error}</p>}
               <DialogFooter>
                 <Button type="submit" disabled={loading}>
-                  {loading ? "Criando..." : "Criar clínica"}
+                  {loading ? "Criando..." : "Criar empresa"}
                 </Button>
               </DialogFooter>
             </form>

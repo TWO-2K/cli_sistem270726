@@ -46,7 +46,7 @@ Não existe cadastro público. Todo usuário é criado por um administrador:
 
 - `src/app/(app)` — módulos autenticados (dashboard, agenda, pacientes,
   atendimento, financeiro, relatórios, configurações), protegidos por
-  `src/lib/current-clinica.ts`.
+  `src/lib/current-empresa.ts`.
 - `src/app/login`, `src/app/mudar-senha` — autenticação e troca de senha
   obrigatória no primeiro acesso.
 - `src/app/admin` — painel do super_admin (cria clínicas + admin de cada
@@ -55,7 +55,7 @@ Não existe cadastro público. Todo usuário é criado por um administrador:
 - `proxy.ts` — renova a sessão Supabase em cada request (equivalente ao
   antigo `middleware.ts` no Next.js 16).
 - `supabase/migrations` — schema SQL com isolamento multi-tenant via
-  `clinica_id` + RLS.
+  `empresa_id` + RLS.
 
 ## Fluxo principal do MVP
 

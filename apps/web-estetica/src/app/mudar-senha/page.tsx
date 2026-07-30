@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@clinica/supabase/server";
+import { createClient } from "@empresa/supabase/server";
 import { MudarSenhaForm } from "./mudar-senha-form";
 
 export default async function MudarSenhaPage() {

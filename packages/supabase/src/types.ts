@@ -5,16 +5,32 @@ export type Perfil =
   | "profissional"
   | "financeiro";
 
+export const SEGMENTOS = ["estetica", "odonto", "fisio"] as const;
+export type Segmento = (typeof SEGMENTOS)[number];
+export const SEGMENTO_LABELS: Record<Segmento, string> = {
+  estetica: "Estética",
+  odonto: "Odontologia",
+  fisio: "Fisioterapia",
+};
+
 export interface HorarioDia {
   ativo: boolean;
   inicio: string;
   fim: string;
 }
 
-export interface Clinica {
+export const EMPRESA_STATUS = ["ativa", "suspensa"] as const;
+export type EmpresaStatus = (typeof EMPRESA_STATUS)[number];
+export const EMPRESA_STATUS_LABELS: Record<EmpresaStatus, string> = {
+  ativa: "Ativa",
+  suspensa: "Suspensa",
+};
+
+export interface Empresa {
   id: string;
   nome: string;
-  segmento: string | null;
+  segmento: Segmento;
+  status: EmpresaStatus;
   cnpj: string | null;
   endereco: string | null;
   email: string | null;
@@ -24,7 +40,7 @@ export interface Clinica {
 
 export interface Usuario {
   id: string;
-  clinica_id: string | null;
+  empresa_id: string | null;
   nome: string;
   email: string;
   perfil: Perfil;

@@ -3,17 +3,17 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { createClient } from "@clinica/supabase/client";
-import { Button } from "@clinica/ui/components/button";
-import { Avatar, AvatarFallback } from "@clinica/ui/components/avatar";
+import { createClient } from "@empresa/supabase/client";
+import { Button } from "@empresa/ui/components/button";
+import { Avatar, AvatarFallback } from "@empresa/ui/components/avatar";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@clinica/ui/components/sheet";
-import { cn } from "@clinica/ui/utils";
+} from "@empresa/ui/components/sheet";
+import { cn } from "@empresa/ui/utils";
 import type { Perfil } from "@/lib/types/db";
 import {
   CalendarDays,
@@ -67,13 +67,13 @@ function iniciais(nome: string) {
   return (primeira + ultima).toUpperCase();
 }
 
-function SidebarBrand({ clinicaNome }: { clinicaNome: string }) {
+function SidebarBrand({ empresaNome }: { empresaNome: string }) {
   return (
     <div className="flex h-16 items-center gap-3 border-b border-sidebar-border px-4">
       <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
         <Stethoscope className="size-4" />
       </div>
-      <span className="truncate text-base font-semibold">{clinicaNome}</span>
+      <span className="truncate text-base font-semibold">{empresaNome}</span>
     </div>
   );
 }
@@ -143,11 +143,11 @@ function SidebarFooter({
 }
 
 export function AppSidebar({
-  clinicaNome,
+  empresaNome,
   usuarioNome,
   perfil,
 }: {
-  clinicaNome: string;
+  empresaNome: string;
   usuarioNome: string;
   perfil: Perfil;
 }) {
@@ -169,7 +169,7 @@ export function AppSidebar({
   return (
     <>
       <aside className="fixed inset-y-0 left-0 hidden h-svh w-64 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground md:flex">
-        <SidebarBrand clinicaNome={clinicaNome} />
+        <SidebarBrand empresaNome={empresaNome} />
         <SidebarNav items={items} pathname={pathname} />
         <SidebarFooter
           usuarioNome={usuarioNome}
@@ -193,7 +193,7 @@ export function AppSidebar({
             <SheetHeader className="sr-only">
               <SheetTitle>Menu</SheetTitle>
             </SheetHeader>
-            <SidebarBrand clinicaNome={clinicaNome} />
+            <SidebarBrand empresaNome={empresaNome} />
             <SidebarNav
               items={items}
               pathname={pathname}
@@ -209,7 +209,7 @@ export function AppSidebar({
         <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
           <Stethoscope className="size-3.5" />
         </div>
-        <span className="truncate text-sm font-semibold">{clinicaNome}</span>
+        <span className="truncate text-sm font-semibold">{empresaNome}</span>
       </header>
     </>
   );
