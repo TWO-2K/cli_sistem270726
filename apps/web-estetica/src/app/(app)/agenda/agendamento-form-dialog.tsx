@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { TriangleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient } from "@empresa/supabase/client";
@@ -63,6 +64,41 @@ function AgendamentoForm({
   const [dataHora, setDataHora] = useState(() =>
     toDatetimeLocal(initialDataHora ?? new Date()),
   );
+  const [contraindicados, setContraindicados] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    let cancelado = false;
+    (async () => {
+      if (!pacienteId) {
+        setContraindicados(new Set());
+        return;
+      }
+      const supabase = createClient();
+      const { data: anamnese } = await supabase
+        .from("anamneses")
+        .select("id")
+        .eq("paciente_id", pacienteId)
+        .order("criado_em", { ascending: false })
+        .limit(1)
+        .maybeSingle<{ id: string }>();
+      if (!anamnese) {
+        if (!cancelado) setContraindicados(new Set());
+        return;
+      }
+      const { data } = await supabase
+        .schema("estetica")
+        .from("anamnese_estetica_contraindicacao")
+        .select("procedimento_id")
+        .eq("anamnese_id", anamnese.id)
+        .returns<{ procedimento_id: string }[]>();
+      if (!cancelado) {
+        setContraindicados(new Set((data ?? []).map((d) => d.procedimento_id)));
+      }
+    })();
+    return () => {
+      cancelado = true;
+    };
+  }, [pacienteId]);
 
   const podeSubmeter = pacienteId && profissionalId && dataHora;
 
@@ -195,6 +231,13 @@ function AgendamentoForm({
             ))}
           </SelectContent>
         </Select>
+        {procedimentoId && contraindicados.has(procedimentoId) && (
+          <p className="flex items-center gap-1.5 text-sm text-destructive">
+            <TriangleAlert className="h-4 w-4 shrink-0" />
+            Este procedimento está marcado como contraindicado na anamnese do
+            paciente.
+          </p>
+        )}
       </div>
       <div className="flex flex-col gap-2">
         <Label>Sala</Label>

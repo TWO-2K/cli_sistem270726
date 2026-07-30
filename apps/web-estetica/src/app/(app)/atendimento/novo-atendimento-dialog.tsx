@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient } from "@empresa/supabase/client";
 import { Button } from "@empresa/ui/components/button";
 import { Label } from "@empresa/ui/components/label";
-import { Plus } from "lucide-react";
+import { Plus, TriangleAlert } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -60,6 +60,41 @@ export function NovoAtendimentoDialog({
 
   const vinculado = Boolean(agendamento);
   const podeSubmeter = pacienteId && profissionalId;
+  const [contraindicados, setContraindicados] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    let cancelado = false;
+    (async () => {
+      if (!pacienteId) {
+        setContraindicados(new Set());
+        return;
+      }
+      const supabase = createClient();
+      const { data: anamnese } = await supabase
+        .from("anamneses")
+        .select("id")
+        .eq("paciente_id", pacienteId)
+        .order("criado_em", { ascending: false })
+        .limit(1)
+        .maybeSingle<{ id: string }>();
+      if (!anamnese) {
+        if (!cancelado) setContraindicados(new Set());
+        return;
+      }
+      const { data } = await supabase
+        .schema("estetica")
+        .from("anamnese_estetica_contraindicacao")
+        .select("procedimento_id")
+        .eq("anamnese_id", anamnese.id)
+        .returns<{ procedimento_id: string }[]>();
+      if (!cancelado) {
+        setContraindicados(new Set((data ?? []).map((d) => d.procedimento_id)));
+      }
+    })();
+    return () => {
+      cancelado = true;
+    };
+  }, [pacienteId]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -166,6 +201,21 @@ export function NovoAtendimentoDialog({
                 </SelectContent>
               </Select>
             )}
+            {(() => {
+              const procedimentoAtivo = vinculado
+                ? agendamento?.procedimentoId
+                : procedimentoId;
+              return (
+                procedimentoAtivo &&
+                contraindicados.has(procedimentoAtivo) && (
+                  <p className="flex items-center gap-1.5 text-sm text-destructive">
+                    <TriangleAlert className="h-4 w-4 shrink-0" />
+                    Este procedimento está marcado como contraindicado na
+                    anamnese do paciente.
+                  </p>
+                )
+              );
+            })()}
           </div>
           <DialogFooter>
             <Button type="submit" disabled={loading || !podeSubmeter}>

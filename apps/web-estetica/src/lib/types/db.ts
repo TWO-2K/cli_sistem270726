@@ -141,3 +141,28 @@ export interface Anamnese {
   respostas: AnamneseRespostas;
   criado_em: string;
 }
+
+/** Classificação Fitzpatrick (I a VI) de fototipo de pele. */
+export type TipoPele = 1 | 2 | 3 | 4 | 5 | 6;
+
+export const TIPO_PELE_LABELS: Record<TipoPele, string> = {
+  1: "I — Pele muito clara, sempre queima, nunca bronzeia",
+  2: "II — Pele clara, queima com facilidade, bronzeia pouco",
+  3: "III — Pele morena clara, queima moderadamente, bronzeia gradualmente",
+  4: "IV — Pele morena moderada, queima pouco, bronzeia bem",
+  5: "V — Pele morena escura, raramente queima, bronzeia intensamente",
+  6: "VI — Pele negra, nunca queima",
+};
+
+export interface AnamneseEstetica {
+  anamnese_id: string;
+  empresa_id: string;
+  tipo_pele: TipoPele | null;
+  criado_em: string;
+}
+
+export interface AnamneseEsteticaContraindicacao {
+  anamnese_id: string;
+  procedimento_id: string;
+  empresa_id: string;
+}

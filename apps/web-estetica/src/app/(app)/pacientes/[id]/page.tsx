@@ -5,12 +5,16 @@ import { createClient } from "@empresa/supabase/server";
 import type {
   Agendamento,
   Anamnese,
+  AnamneseEstetica,
+  AnamneseEsteticaContraindicacao,
   Atendimento,
   Evolucao,
   FotoAtendimento,
   Paciente,
+  Procedimento,
   Prontuario,
 } from "@/lib/types/db";
+import { TIPO_PELE_LABELS } from "@/lib/types/db";
 import {
   Card,
   CardHeader,
@@ -26,6 +30,7 @@ import { iniciaisPaciente, idadeAnos } from "@/lib/pacientes-utils";
 import { EditarPacienteDialog } from "./editar-paciente-dialog";
 import { ProntuarioDialog } from "./prontuario-dialog";
 import { NovaAnamneseDialog } from "./anamnese-dialog";
+import { FotosComparador } from "./fotos-comparador";
 
 const CAMPOS_ANAMNESE: { chave: keyof Anamnese["respostas"]; label: string }[] = [
   { chave: "queixa_principal", label: "Queixa principal" },
@@ -60,6 +65,7 @@ export default async function PacienteDetailPage({
     { data: fotos },
     { data: prontuario },
     { data: anamneses },
+    { data: procedimentos },
   ] = await Promise.all([
     supabase
       .from("agendamentos")
@@ -95,7 +101,44 @@ export default async function PacienteDetailPage({
       .eq("paciente_id", id)
       .order("criado_em", { ascending: false })
       .returns<Anamnese[]>(),
+    supabase.from("procedimentos").select("*").returns<Procedimento[]>(),
   ]);
+
+  const anamneseIds = (anamneses ?? []).map((a) => a.id);
+  const [{ data: anamnesesEstetica }, { data: contraindicacoes }] =
+    anamneseIds.length > 0
+      ? await Promise.all([
+          supabase
+            .schema("estetica")
+            .from("anamnese_estetica")
+            .select("*")
+            .in("anamnese_id", anamneseIds)
+            .returns<AnamneseEstetica[]>(),
+          supabase
+            .schema("estetica")
+            .from("anamnese_estetica_contraindicacao")
+            .select("*")
+            .in("anamnese_id", anamneseIds)
+            .returns<AnamneseEsteticaContraindicacao[]>(),
+        ])
+      : [{ data: [] as AnamneseEstetica[] }, { data: [] as AnamneseEsteticaContraindicacao[] }];
+
+  const procedimentoNomePorId = new Map(
+    (procedimentos ?? []).map((p) => [p.id, p.nome]),
+  );
+  const tipoPelePorAnamneseId = new Map(
+    (anamnesesEstetica ?? [])
+      .filter((ae) => ae.tipo_pele != null)
+      .map((ae) => [ae.anamnese_id, ae.tipo_pele!]),
+  );
+  const contraindicacoesPorAnamneseId = new Map<string, string[]>();
+  (contraindicacoes ?? []).forEach((c) => {
+    const nome = procedimentoNomePorId.get(c.procedimento_id);
+    if (!nome) return;
+    const lista = contraindicacoesPorAnamneseId.get(c.anamnese_id) ?? [];
+    lista.push(nome);
+    contraindicacoesPorAnamneseId.set(c.anamnese_id, lista);
+  });
 
   const fotosComUrl = await Promise.all(
     (fotos ?? []).map(async (foto) => {
@@ -255,13 +298,19 @@ export default async function PacienteDetailPage({
                       <span className="font-medium">Alergias:</span>{" "}
                       {anamneseRecente.respostas.alergias || "—"}
                     </p>
+                    {tipoPelePorAnamneseId.has(anamneseRecente.id) && (
+                      <p>
+                        <span className="font-medium">Tipo de pele:</span>{" "}
+                        {TIPO_PELE_LABELS[tipoPelePorAnamneseId.get(anamneseRecente.id)!]}
+                      </p>
+                    )}
                   </>
                 ) : (
                   <>
                     <p className="text-muted-foreground">
                       Nenhuma anamnese registrada.
                     </p>
-                    <NovaAnamneseDialog pacienteId={id} />
+                    <NovaAnamneseDialog pacienteId={id} procedimentos={procedimentos ?? []} />
                   </>
                 )}
               </CardContent>
@@ -312,7 +361,7 @@ export default async function PacienteDetailPage({
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-base">Anamnese</CardTitle>
-              <NovaAnamneseDialog pacienteId={id} />
+              <NovaAnamneseDialog pacienteId={id} procedimentos={procedimentos ?? []} />
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
               {(anamneses ?? []).length === 0 && (
@@ -346,6 +395,20 @@ export default async function PacienteDetailPage({
                           {a.respostas[campo.chave]}
                         </p>
                       ),
+                  )}
+                  {tipoPelePorAnamneseId.has(a.id) && (
+                    <p>
+                      <span className="font-medium">Tipo de pele:</span>{" "}
+                      {TIPO_PELE_LABELS[tipoPelePorAnamneseId.get(a.id)!]}
+                    </p>
+                  )}
+                  {(contraindicacoesPorAnamneseId.get(a.id) ?? []).length > 0 && (
+                    <p>
+                      <span className="font-medium">
+                        Contraindicado para:
+                      </span>{" "}
+                      {contraindicacoesPorAnamneseId.get(a.id)!.join(", ")}
+                    </p>
                   )}
                 </div>
               ))}
@@ -389,33 +452,12 @@ export default async function PacienteDetailPage({
                       </div>
                     ))}
                     {fotosDoAtendimento.length > 0 && (
-                      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                        {fotosDoAtendimento.map(
-                          (foto) =>
-                            foto.signedUrl && (
-                              <a
-                                key={foto.id}
-                                href={foto.signedUrl}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="group relative overflow-hidden rounded-md border"
-                              >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                  src={foto.signedUrl}
-                                  alt={`Foto ${foto.tipo} do atendimento`}
-                                  className="aspect-square w-full object-cover transition group-hover:opacity-80"
-                                />
-                                <Badge
-                                  className="absolute bottom-1 left-1"
-                                  variant="secondary"
-                                >
-                                  {foto.tipo === "antes" ? "Antes" : "Depois"}
-                                </Badge>
-                              </a>
-                            ),
+                      <FotosComparador
+                        fotos={fotosDoAtendimento.filter(
+                          (f): f is typeof f & { signedUrl: string } =>
+                            !!f.signedUrl,
                         )}
-                      </div>
+                      />
                     )}
                   </CardContent>
                 </Card>
