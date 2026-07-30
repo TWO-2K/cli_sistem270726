@@ -19,10 +19,11 @@ Supabase (Postgres, Auth, Storage), multi-tenant via Row Level Security.
 
 ```bash
 npm install
-npm run dev
+npm run dev:estetica
 ```
 
-5. Acesse `http://localhost:3020`.
+5. Acesse `http://localhost:1010` (app de clínica). Para o painel de administração,
+   rode `npm run dev:admin` e acesse `http://localhost:1000`.
 
 ## Provisionamento de usuários
 

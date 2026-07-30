@@ -1,0 +1,21 @@
+{
+  "name": "@clinica/auth",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@clinica/supabase": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "next": "16.2.11"
+  }
+}

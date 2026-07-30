@@ -1,0 +1,28 @@
+{
+  "name": "@clinica/supabase",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./server": "./src/server.ts",
+    "./admin": "./src/admin.ts",
+    "./proxy": "./src/proxy.ts",
+    "./senha-temporaria": "./src/senha-temporaria.ts",
+    "./types": "./src/types.ts"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "next": "16.2.11"
+  }
+}
