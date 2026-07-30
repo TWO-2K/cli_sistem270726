@@ -177,3 +177,28 @@ export interface PacoteSessao {
   sessoes_utilizadas: number;
   criado_em: string;
 }
+
+export type StatusPlanoTratamento = "ativo" | "concluido" | "cancelado";
+
+export interface PlanoTratamento {
+  id: string;
+  empresa_id: string;
+  paciente_id: string;
+  titulo: string;
+  status: StatusPlanoTratamento;
+  criado_em: string;
+}
+
+export type StatusEtapaPlanoTratamento = "pendente" | "concluida";
+
+export interface PlanoTratamentoEtapa {
+  id: string;
+  empresa_id: string;
+  plano_id: string;
+  ordem: number;
+  procedimento_id: string | null;
+  descricao: string;
+  status: StatusEtapaPlanoTratamento;
+  atendimento_id: string | null;
+  criado_em: string;
+}

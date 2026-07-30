@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@empresa/ui/components/dialog";
-import type { PacoteSessao, Procedimento } from "@/lib/types/db";
+import type { PacoteSessao, PlanoTratamentoEtapa, Procedimento } from "@/lib/types/db";
 
 export function ConcluirAtendimentoDialog({
   atendimentoId,
@@ -34,26 +34,42 @@ export function ConcluirAtendimentoDialog({
   const [texto, setTexto] = useState("");
   const [pacoteAtivo, setPacoteAtivo] = useState<PacoteSessao | null>(null);
   const [abaterSessao, setAbaterSessao] = useState(true);
+  const [etapaPlano, setEtapaPlano] = useState<PlanoTratamentoEtapa | null>(null);
+  const [concluirEtapaPlano, setConcluirEtapaPlano] = useState(true);
 
   useEffect(() => {
     let cancelado = false;
     (async () => {
       if (!procedimento) {
         setPacoteAtivo(null);
+        setEtapaPlano(null);
         return;
       }
       const supabase = createClient();
-      const { data } = await supabase
-        .from("pacotes_sessao")
-        .select("*")
-        .eq("paciente_id", pacienteId)
-        .eq("procedimento_id", procedimento.id)
-        .order("criado_em", { ascending: true })
-        .returns<PacoteSessao[]>();
+      const [{ data: pacotes }, { data: etapas }] = await Promise.all([
+        supabase
+          .from("pacotes_sessao")
+          .select("*")
+          .eq("paciente_id", pacienteId)
+          .eq("procedimento_id", procedimento.id)
+          .order("criado_em", { ascending: true })
+          .returns<PacoteSessao[]>(),
+        supabase
+          .from("plano_tratamento_etapas")
+          .select("*, planos_tratamento!inner(paciente_id, status)")
+          .eq("procedimento_id", procedimento.id)
+          .eq("status", "pendente")
+          .eq("planos_tratamento.paciente_id", pacienteId)
+          .eq("planos_tratamento.status", "ativo")
+          .order("ordem", { ascending: true })
+          .returns<PlanoTratamentoEtapa[]>(),
+      ]);
       if (cancelado) return;
-      const ativo = (data ?? []).find((p) => p.sessoes_utilizadas < p.sessoes_total);
+      const ativo = (pacotes ?? []).find((p) => p.sessoes_utilizadas < p.sessoes_total);
       setPacoteAtivo(ativo ?? null);
       setAbaterSessao(true);
+      setEtapaPlano((etapas ?? [])[0] ?? null);
+      setConcluirEtapaPlano(true);
     })();
     return () => {
       cancelado = true;
@@ -132,6 +148,13 @@ export function ConcluirAtendimentoDialog({
         .eq("id", agendamentoId);
     }
 
+    if (etapaPlano && concluirEtapaPlano) {
+      await supabase
+        .from("plano_tratamento_etapas")
+        .update({ status: "concluida", atendimento_id: atendimentoId })
+        .eq("id", etapaPlano.id);
+    }
+
     setLoading(false);
     toast.success(
       usaPacote
@@ -162,6 +185,20 @@ export function ConcluirAtendimentoDialog({
               placeholder="Observações sobre o atendimento..."
             />
           </div>
+          {etapaPlano && (
+            <label className="flex items-start gap-2 rounded-md border px-3 py-2 text-sm">
+              <input
+                type="checkbox"
+                checked={concluirEtapaPlano}
+                onChange={(e) => setConcluirEtapaPlano(e.target.checked)}
+                className="mt-0.5 size-4 rounded border-input"
+              />
+              <span>
+                Marcar etapa do plano de tratamento como concluída (
+                {etapaPlano.descricao}).
+              </span>
+            </label>
+          )}
           {pacoteAtivo ? (
             <label className="flex items-start gap-2 rounded-md border px-3 py-2 text-sm">
               <input

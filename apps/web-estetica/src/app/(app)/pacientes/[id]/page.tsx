@@ -12,6 +12,8 @@ import type {
   FotoAtendimento,
   PacoteSessao,
   Paciente,
+  PlanoTratamento,
+  PlanoTratamentoEtapa,
   Procedimento,
   Prontuario,
 } from "@/lib/types/db";
@@ -33,6 +35,8 @@ import { ProntuarioDialog } from "./prontuario-dialog";
 import { NovaAnamneseDialog } from "./anamnese-dialog";
 import { FotosComparador } from "./fotos-comparador";
 import { VenderPacoteDialog } from "./vender-pacote-dialog";
+import { PlanoTratamentoDialog } from "./plano-tratamento-dialog";
+import { PlanosTratamentoLista } from "./planos-tratamento-lista";
 
 const CAMPOS_ANAMNESE: { chave: keyof Anamnese["respostas"]; label: string }[] = [
   { chave: "queixa_principal", label: "Queixa principal" },
@@ -69,6 +73,7 @@ export default async function PacienteDetailPage({
     { data: anamneses },
     { data: procedimentos },
     { data: pacotesSessao },
+    { data: planosTratamento },
   ] = await Promise.all([
     supabase
       .from("agendamentos")
@@ -111,7 +116,23 @@ export default async function PacienteDetailPage({
       .eq("paciente_id", id)
       .order("criado_em", { ascending: false })
       .returns<PacoteSessao[]>(),
+    supabase
+      .from("planos_tratamento")
+      .select("*")
+      .eq("paciente_id", id)
+      .order("criado_em", { ascending: false })
+      .returns<PlanoTratamento[]>(),
   ]);
+
+  const planoIds = (planosTratamento ?? []).map((p) => p.id);
+  const { data: etapasPlanoTratamento } =
+    planoIds.length > 0
+      ? await supabase
+          .from("plano_tratamento_etapas")
+          .select("*")
+          .in("plano_id", planoIds)
+          .returns<PlanoTratamentoEtapa[]>()
+      : { data: [] as PlanoTratamentoEtapa[] };
 
   const anamneseIds = (anamneses ?? []).map((a) => a.id);
   const [{ data: anamnesesEstetica }, { data: contraindicacoes }] =
@@ -271,6 +292,10 @@ export default async function PacienteDetailPage({
           <TabsTrigger value="pacotes">
             Pacotes
             {(pacotesSessao?.length ?? 0) > 0 ? ` (${pacotesSessao!.length})` : ""}
+          </TabsTrigger>
+          <TabsTrigger value="planos-tratamento">
+            Plano de tratamento
+            {(planosTratamento?.length ?? 0) > 0 ? ` (${planosTratamento!.length})` : ""}
           </TabsTrigger>
         </TabsList>
 
@@ -518,6 +543,17 @@ export default async function PacienteDetailPage({
               })}
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="planos-tratamento" className="flex flex-col gap-4 pt-4">
+          <div className="flex justify-end">
+            <PlanoTratamentoDialog pacienteId={id} procedimentos={procedimentos ?? []} />
+          </div>
+          <PlanosTratamentoLista
+            planos={planosTratamento ?? []}
+            etapas={etapasPlanoTratamento ?? []}
+            procedimentos={procedimentos ?? []}
+          />
         </TabsContent>
       </Tabs>
     </div>
