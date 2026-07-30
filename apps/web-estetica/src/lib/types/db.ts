@@ -166,3 +166,14 @@ export interface AnamneseEsteticaContraindicacao {
   procedimento_id: string;
   empresa_id: string;
 }
+
+export interface PacoteSessao {
+  id: string;
+  empresa_id: string;
+  paciente_id: string;
+  procedimento_id: string;
+  comanda_item_id: string | null;
+  sessoes_total: number;
+  sessoes_utilizadas: number;
+  criado_em: string;
+}

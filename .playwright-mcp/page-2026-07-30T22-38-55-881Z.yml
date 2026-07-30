@@ -1,0 +1,118 @@
+- generic [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - complementary [ref=f3e3]:
+      - generic [ref=f3e4]: Estetica - Tua Cara
+      - navigation [ref=f3e11]:
+        - link [ref=f3e126] [cursor=pointer]:
+          - /url: /dashboard
+          - text: Dashboard
+        - link [ref=f3e127] [cursor=pointer]:
+          - /url: /agenda
+          - text: Agenda
+        - link [ref=f3e128] [cursor=pointer]:
+          - /url: /pacientes
+          - text: Pacientes
+        - link [ref=f3e129] [cursor=pointer]:
+          - /url: /atendimento
+          - text: Atendimento
+        - link [ref=f3e130] [cursor=pointer]:
+          - /url: /financeiro
+          - text: Financeiro
+        - link [ref=f3e131] [cursor=pointer]:
+          - /url: /relatorios
+          - text: Relatórios
+        - link [ref=f3e132] [cursor=pointer]:
+          - /url: /configuracoes
+          - text: Configurações
+      - generic [ref=f3e43]:
+        - generic [ref=f3e44]: TC
+        - generic [ref=f3e46]:
+          - generic [ref=f3e47]: Tua cara
+          - generic [ref=f3e48]: Administrador
+        - button [ref=f3e133]: Sair
+    - main [ref=f3e50]:
+      - generic [ref=f3e52]:
+        - generic [ref=f3e53]:
+          - generic [ref=f3e54]:
+            - heading [level=1] [ref=f3e134]: Atendimento
+            - paragraph [ref=f3e56]: Prontuário, procedimentos e evolução dos atendimentos.
+          - button [expanded] [ref=f3e135]: Iniciar atendimento
+        - table [ref=f3e60]:
+          - rowgroup [ref=f3e61]:
+            - row [ref=f3e136]:
+              - columnheader [ref=f3e137]: Data
+              - columnheader [ref=f3e138]: Paciente
+              - columnheader [ref=f3e139]: Profissional
+              - columnheader [ref=f3e140]: Procedimento
+              - columnheader [ref=f3e141]: Status
+              - columnheader [ref=f3e142]: Ação
+          - rowgroup [ref=f3e69]:
+            - row [ref=f3e143]:
+              - cell [ref=f3e144]: 30/07/2026, 19:31:29
+              - cell [ref=f3e145]: kevin
+              - cell [ref=f3e146]: keize
+              - cell [ref=f3e147]: Cabelo
+              - cell [ref=f3e148]:
+                - generic [ref=f3e76]: Concluído
+              - cell [ref=f3e78]
+            - row [ref=f3e149]:
+              - cell [ref=f3e150]: 30/07/2026, 17:31:54
+              - cell [ref=f3e151]: kevin
+              - cell [ref=f3e152]: keize
+              - cell [ref=f3e153]: Cabelo
+              - cell [ref=f3e154]:
+                - generic [ref=f3e85]: Concluído
+              - cell [ref=f3e87]
+            - row [ref=f3e155]:
+              - cell [ref=f3e156]: 30/07/2026, 01:29:57
+              - cell [ref=f3e157]: kevin
+              - cell [ref=f3e158]: keize
+              - cell [ref=f3e159]: Cabelo
+              - cell [ref=f3e160]:
+                - generic [ref=f3e94]: Concluído
+              - cell [ref=f3e96]
+            - row [ref=f3e161]:
+              - cell [ref=f3e162]: 30/07/2026, 01:25:59
+              - cell [ref=f3e163]: kevin
+              - cell [ref=f3e164]: keize
+              - cell [ref=f3e165]: Cabelo
+              - cell [ref=f3e166]:
+                - generic [ref=f3e103]:
+                  - generic [ref=f3e104]: Concluído
+                  - generic [ref=f3e105]: Via agenda
+              - cell [ref=f3e106]
+            - row [ref=f3e167]:
+              - cell [ref=f3e168]: 29/07/2026, 23:19:44
+              - cell [ref=f3e169]: kevin
+              - cell [ref=f3e170]: keize
+              - cell [ref=f3e171]: Cabelo
+              - cell [ref=f3e172]:
+                - generic [ref=f3e113]: Concluído
+              - cell [ref=f3e115]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f3e121] [cursor=pointer]
+  - alert [ref=f3e125]
+  - dialog [ref=f3e176]:
+    - heading "Iniciar atendimento" [level=2] [ref=f3e178]
+    - generic [ref=f3e179]:
+      - generic [ref=f3e180]:
+        - generic [ref=f3e181]: Paciente
+        - combobox [active] [ref=f3e182]:
+          - generic [ref=f3e183]: Selecione o paciente
+          - img: ▼
+        - textbox [ref=f3e184]
+      - generic [ref=f3e185]:
+        - generic [ref=f3e186]: Profissional
+        - combobox [ref=f3e187]:
+          - generic [ref=f3e188]: Selecione o profissional
+          - img: ▼
+        - textbox [ref=f3e189]
+      - generic [ref=f3e190]:
+        - generic [ref=f3e191]: Procedimento
+        - combobox [ref=f3e192]:
+          - generic [ref=f3e193]: Opcional
+          - img: ▼
+        - textbox [ref=f3e194]
+      - generic [ref=f3e195]:
+        - button "Iniciar" [disabled]
+    - button "Close" [ref=f3e196]

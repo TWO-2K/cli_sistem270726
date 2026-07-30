@@ -10,6 +10,7 @@ import type {
   Atendimento,
   Evolucao,
   FotoAtendimento,
+  PacoteSessao,
   Paciente,
   Procedimento,
   Prontuario,
@@ -31,6 +32,7 @@ import { EditarPacienteDialog } from "./editar-paciente-dialog";
 import { ProntuarioDialog } from "./prontuario-dialog";
 import { NovaAnamneseDialog } from "./anamnese-dialog";
 import { FotosComparador } from "./fotos-comparador";
+import { VenderPacoteDialog } from "./vender-pacote-dialog";
 
 const CAMPOS_ANAMNESE: { chave: keyof Anamnese["respostas"]; label: string }[] = [
   { chave: "queixa_principal", label: "Queixa principal" },
@@ -66,6 +68,7 @@ export default async function PacienteDetailPage({
     { data: prontuario },
     { data: anamneses },
     { data: procedimentos },
+    { data: pacotesSessao },
   ] = await Promise.all([
     supabase
       .from("agendamentos")
@@ -102,6 +105,12 @@ export default async function PacienteDetailPage({
       .order("criado_em", { ascending: false })
       .returns<Anamnese[]>(),
     supabase.from("procedimentos").select("*").returns<Procedimento[]>(),
+    supabase
+      .from("pacotes_sessao")
+      .select("*")
+      .eq("paciente_id", id)
+      .order("criado_em", { ascending: false })
+      .returns<PacoteSessao[]>(),
   ]);
 
   const anamneseIds = (anamneses ?? []).map((a) => a.id);
@@ -258,6 +267,10 @@ export default async function PacienteDetailPage({
           <TabsTrigger value="atendimentos">
             Atendimentos
             {(atendimentos?.length ?? 0) > 0 ? ` (${atendimentos!.length})` : ""}
+          </TabsTrigger>
+          <TabsTrigger value="pacotes">
+            Pacotes
+            {(pacotesSessao?.length ?? 0) > 0 ? ` (${pacotesSessao!.length})` : ""}
           </TabsTrigger>
         </TabsList>
 
@@ -464,6 +477,47 @@ export default async function PacienteDetailPage({
               );
             })
           )}
+        </TabsContent>
+
+        <TabsContent value="pacotes" className="pt-4">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle className="text-base">Pacotes de sessões</CardTitle>
+              <VenderPacoteDialog pacienteId={id} procedimentos={procedimentos ?? []} />
+            </CardHeader>
+            <CardContent className="flex flex-col gap-3">
+              {(pacotesSessao ?? []).length === 0 && (
+                <p className="text-sm text-muted-foreground">
+                  Nenhum pacote vendido para este paciente ainda.
+                </p>
+              )}
+              {(pacotesSessao ?? []).map((pacote) => {
+                const restantes = pacote.sessoes_total - pacote.sessoes_utilizadas;
+                const concluido = restantes === 0;
+                return (
+                  <div
+                    key={pacote.id}
+                    className="flex items-center justify-between rounded-md border px-3 py-2 text-sm"
+                  >
+                    <div>
+                      <p className="font-medium">
+                        {procedimentoNomePorId.get(pacote.procedimento_id) ??
+                          "Procedimento removido"}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Vendido em{" "}
+                        {new Date(pacote.criado_em).toLocaleDateString("pt-BR")}
+                      </p>
+                    </div>
+                    <Badge variant={concluido ? "secondary" : "default"}>
+                      {pacote.sessoes_utilizadas}/{pacote.sessoes_total} sessões
+                      {concluido ? " · concluído" : ` · ${restantes} restantes`}
+                    </Badge>
+                  </div>
+                );
+              })}
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
     </div>

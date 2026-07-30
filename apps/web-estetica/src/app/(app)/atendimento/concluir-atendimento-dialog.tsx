@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient } from "@empresa/supabase/client";
@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@empresa/ui/components/dialog";
-import type { Procedimento } from "@/lib/types/db";
+import type { PacoteSessao, Procedimento } from "@/lib/types/db";
 
 export function ConcluirAtendimentoDialog({
   atendimentoId,
@@ -32,6 +32,33 @@ export function ConcluirAtendimentoDialog({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [texto, setTexto] = useState("");
+  const [pacoteAtivo, setPacoteAtivo] = useState<PacoteSessao | null>(null);
+  const [abaterSessao, setAbaterSessao] = useState(true);
+
+  useEffect(() => {
+    let cancelado = false;
+    (async () => {
+      if (!procedimento) {
+        setPacoteAtivo(null);
+        return;
+      }
+      const supabase = createClient();
+      const { data } = await supabase
+        .from("pacotes_sessao")
+        .select("*")
+        .eq("paciente_id", pacienteId)
+        .eq("procedimento_id", procedimento.id)
+        .order("criado_em", { ascending: true })
+        .returns<PacoteSessao[]>();
+      if (cancelado) return;
+      const ativo = (data ?? []).find((p) => p.sessoes_utilizadas < p.sessoes_total);
+      setPacoteAtivo(ativo ?? null);
+      setAbaterSessao(true);
+    })();
+    return () => {
+      cancelado = true;
+    };
+  }, [pacienteId, procedimento]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -62,12 +89,26 @@ export function ConcluirAtendimentoDialog({
       return;
     }
 
+    const usaPacote = !!pacoteAtivo && abaterSessao;
+
+    if (usaPacote) {
+      const { error: abateError } = await supabase.rpc("abater_sessao_pacote", {
+        p_pacote_id: pacoteAtivo!.id,
+        p_atendimento_id: atendimentoId,
+      });
+      if (abateError) {
+        toast.error("Não foi possível abater a sessão do pacote.");
+        setLoading(false);
+        return;
+      }
+    }
+
     const { data: comanda, error: comandaError } = await supabase
       .from("comandas")
       .insert({
         atendimento_id: atendimentoId,
         paciente_id: pacienteId,
-        total: procedimento?.preco ?? 0,
+        total: usaPacote ? 0 : (procedimento?.preco ?? 0),
       })
       .select("id")
       .single();
@@ -76,9 +117,11 @@ export function ConcluirAtendimentoDialog({
       await supabase.from("comanda_itens").insert({
         comanda_id: comanda.id,
         procedimento_id: procedimento.id,
-        descricao: procedimento.nome,
+        descricao: usaPacote
+          ? `Sessão de pacote — ${procedimento.nome}`
+          : procedimento.nome,
         quantidade: 1,
-        valor_unitario: procedimento.preco,
+        valor_unitario: usaPacote ? 0 : procedimento.preco,
       });
     }
 
@@ -90,7 +133,11 @@ export function ConcluirAtendimentoDialog({
     }
 
     setLoading(false);
-    toast.success("Atendimento concluído e comanda gerada.");
+    toast.success(
+      usaPacote
+        ? "Atendimento concluído e sessão abatida do pacote."
+        : "Atendimento concluído e comanda gerada.",
+    );
     setOpen(false);
     router.refresh();
   }
@@ -115,10 +162,27 @@ export function ConcluirAtendimentoDialog({
               placeholder="Observações sobre o atendimento..."
             />
           </div>
-          <p className="text-xs text-muted-foreground">
-            Ao concluir, uma comanda será gerada automaticamente para
-            fechamento no Financeiro.
-          </p>
+          {pacoteAtivo ? (
+            <label className="flex items-start gap-2 rounded-md border px-3 py-2 text-sm">
+              <input
+                type="checkbox"
+                checked={abaterSessao}
+                onChange={(e) => setAbaterSessao(e.target.checked)}
+                className="mt-0.5 size-4 rounded border-input"
+              />
+              <span>
+                Abater sessão do pacote (
+                {pacoteAtivo.sessoes_total - pacoteAtivo.sessoes_utilizadas}{" "}
+                restantes). A comanda será gerada sem cobrança, já paga na
+                venda do pacote.
+              </span>
+            </label>
+          ) : (
+            <p className="text-xs text-muted-foreground">
+              Ao concluir, uma comanda será gerada automaticamente para
+              fechamento no Financeiro.
+            </p>
+          )}
           <DialogFooter>
             <Button type="submit" disabled={loading}>
               {loading ? "Salvando..." : "Concluir e gerar comanda"}
