@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@empresa/supabase/server";
-import { AdminHeader } from "./admin-header";
+import { AdminSidebar } from "./admin-sidebar";
 
 export default async function AdminLayout({
   children,
@@ -31,9 +31,13 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex min-h-full flex-1 flex-col">
-      <AdminHeader usuarioNome={usuario.nome} />
-      <main className="flex-1 p-6">{children}</main>
+    <div className="h-svh">
+      <AdminSidebar usuarioNome={usuario.nome} />
+      <main className="flex h-svh flex-col overflow-hidden bg-muted/20 p-4 pt-18 md:py-6 md:pr-6 md:pl-[calc(var(--spacing)*64+1.5rem)]">
+        <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col overflow-y-auto">
+          {children}
+        </div>
+      </main>
     </div>
   );
 }

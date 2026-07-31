@@ -35,6 +35,7 @@ export interface Empresa {
   endereco: string | null;
   email: string | null;
   horario_funcionamento: HorarioDia[];
+  is_teste: boolean;
   criado_em: string;
 }
 

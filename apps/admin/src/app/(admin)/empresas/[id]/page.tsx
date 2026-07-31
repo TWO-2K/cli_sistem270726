@@ -1,8 +1,12 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@empresa/supabase/server";
 import { SEGMENTO_LABELS, type Empresa, type Usuario } from "@empresa/supabase/types";
+import { Badge } from "@empresa/ui/components/badge";
+import { cn } from "@empresa/ui/utils";
 import { EditarEmpresaForm } from "./editar-empresa-form";
 import { UsuariosDaEmpresa } from "./usuarios-da-empresa";
+import { PageHeader } from "../../page-header";
+import { SEGMENTO_BADGE } from "../../segmento-styles";
 
 export default async function EmpresaDetalhePage({
   params,
@@ -30,13 +34,19 @@ export default async function EmpresaDetalhePage({
     .returns<Usuario[]>();
 
   return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">{empresa.nome}</h1>
-        <p className="text-muted-foreground">
-          {SEGMENTO_LABELS[empresa.segmento]}
-        </p>
-      </div>
+    <div className="flex flex-col gap-8">
+      <PageHeader
+        back={{ href: "/", label: "Empresas" }}
+        title={empresa.nome}
+        description={
+          <Badge
+            variant="outline"
+            className={cn("font-normal", SEGMENTO_BADGE[empresa.segmento])}
+          >
+            {SEGMENTO_LABELS[empresa.segmento]}
+          </Badge>
+        }
+      />
 
       <EditarEmpresaForm empresa={empresa} />
       <UsuariosDaEmpresa empresaId={empresa.id} usuarios={usuarios ?? []} />

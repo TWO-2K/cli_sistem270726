@@ -24,6 +24,7 @@ export function EditarEmpresaForm({ empresa }: { empresa: Empresa }) {
   const [status, setStatus] = useState(empresa.status);
   const [loading, setLoading] = useState(false);
   const [alternandoStatus, setAlternandoStatus] = useState(false);
+  const [resetando, setResetando] = useState(false);
 
   async function salvar(novoStatus = status) {
     const res = await fetch(`/api/admin/empresas/${empresa.id}`, {
@@ -72,13 +73,41 @@ export function EditarEmpresaForm({ empresa }: { empresa: Empresa }) {
     }
   }
 
+  async function handleResetDadosTeste() {
+    if (
+      !window.confirm(
+        `Apagar todos os dados operacionais (pacientes, agendamentos, atendimentos, financeiro etc.) de "${empresa.nome}"? Essa ação não pode ser desfeita. Usuários e a empresa em si serão mantidos.`,
+      )
+    )
+      return;
+
+    setResetando(true);
+    const res = await fetch(
+      `/api/admin/empresas/${empresa.id}/reset-dados-teste`,
+      { method: "POST" },
+    );
+    setResetando(false);
+
+    if (!res.ok) {
+      const data = await res.json();
+      toast.error(data.error ?? "Não foi possível limpar os dados de teste.");
+      return;
+    }
+
+    toast.success("Dados de teste apagados.");
+    router.refresh();
+  }
+
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-base">Dados da empresa</CardTitle>
-        <Badge variant={status === "ativa" ? "default" : "outline"}>
-          {EMPRESA_STATUS_LABELS[status]}
-        </Badge>
+        <div className="flex items-center gap-2">
+          {empresa.is_teste && <Badge variant="outline">Empresa de teste</Badge>}
+          <Badge variant={status === "ativa" ? "default" : "outline"}>
+            {EMPRESA_STATUS_LABELS[status]}
+          </Badge>
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -118,19 +147,32 @@ export function EditarEmpresaForm({ empresa }: { empresa: Empresa }) {
               />
             </div>
           </div>
-          <div className="flex justify-between">
-            <Button
-              type="button"
-              variant="outline"
-              disabled={alternandoStatus}
-              onClick={handleToggleStatus}
-            >
-              {alternandoStatus
-                ? "Aguarde..."
-                : status === "ativa"
-                  ? "Suspender empresa"
-                  : "Reativar empresa"}
-            </Button>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                disabled={alternandoStatus}
+                onClick={handleToggleStatus}
+              >
+                {alternandoStatus
+                  ? "Aguarde..."
+                  : status === "ativa"
+                    ? "Suspender empresa"
+                    : "Reativar empresa"}
+              </Button>
+              {empresa.is_teste && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="text-destructive hover:text-destructive"
+                  disabled={resetando}
+                  onClick={handleResetDadosTeste}
+                >
+                  {resetando ? "Limpando..." : "Limpar dados de teste"}
+                </Button>
+              )}
+            </div>
             <Button type="submit" disabled={loading}>
               {loading ? "Salvando..." : "Salvar"}
             </Button>
