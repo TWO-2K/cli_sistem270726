@@ -61,12 +61,14 @@ export function NovoAtendimentoDialog({
   const vinculado = Boolean(agendamento);
   const podeSubmeter = pacienteId && profissionalId;
   const [contraindicados, setContraindicados] = useState<Set<string>>(new Set());
+  const [anamneseId, setAnamneseId] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelado = false;
     (async () => {
       if (!pacienteId) {
         setContraindicados(new Set());
+        setAnamneseId(null);
         return;
       }
       const supabase = createClient();
@@ -78,9 +80,13 @@ export function NovoAtendimentoDialog({
         .limit(1)
         .maybeSingle<{ id: string }>();
       if (!anamnese) {
-        if (!cancelado) setContraindicados(new Set());
+        if (!cancelado) {
+          setContraindicados(new Set());
+          setAnamneseId(null);
+        }
         return;
       }
+      if (!cancelado) setAnamneseId(anamnese.id);
       const { data } = await supabase
         .schema("estetica")
         .from("anamnese_estetica_contraindicacao")
@@ -107,6 +113,7 @@ export function NovoAtendimentoDialog({
       usuario_id: profissionalId,
       procedimento_id: procedimentoId || null,
       agendamento_id: agendamento?.id ?? null,
+      anamnese_id: anamneseId,
     });
 
     if (error) {
@@ -152,7 +159,11 @@ export function NovoAtendimentoDialog({
             ) : (
               <Select value={pacienteId} onValueChange={(value) => setPacienteId(value ?? "")}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Selecione o paciente" />
+                  <SelectValue placeholder="Selecione o paciente">
+                    {(value: string) =>
+                      pacientes.find((p) => p.id === value)?.nome ?? "Selecione o paciente"
+                    }
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {pacientes.map((p) => (
@@ -171,7 +182,11 @@ export function NovoAtendimentoDialog({
             ) : (
               <Select value={profissionalId} onValueChange={(value) => setProfissionalId(value ?? "")}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Selecione o profissional" />
+                  <SelectValue placeholder="Selecione o profissional">
+                    {(value: string) =>
+                      profissionais.find((p) => p.id === value)?.nome ?? "Selecione o profissional"
+                    }
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {profissionais.map((p) => (
@@ -190,7 +205,11 @@ export function NovoAtendimentoDialog({
             ) : (
               <Select value={procedimentoId} onValueChange={(value) => setProcedimentoId(value ?? "")}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Opcional" />
+                  <SelectValue placeholder="Opcional">
+                    {(value: string) =>
+                      procedimentos.find((p) => p.id === value)?.nome ?? "Opcional"
+                    }
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {procedimentos.map((p) => (

@@ -147,7 +147,12 @@ export function PlanoTratamentoDialog({
                   }
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Procedimento (opcional)" />
+                    <SelectValue placeholder="Procedimento (opcional)">
+                      {(value: string) =>
+                        procedimentos.find((p) => p.id === value)?.nome ??
+                        "Procedimento (opcional)"
+                      }
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     {procedimentos.map((p) => (

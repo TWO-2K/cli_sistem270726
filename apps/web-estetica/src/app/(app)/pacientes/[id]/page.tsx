@@ -32,7 +32,7 @@ import { cn } from "@empresa/ui/utils";
 import { iniciaisPaciente, idadeAnos } from "@/lib/pacientes-utils";
 import { EditarPacienteDialog } from "./editar-paciente-dialog";
 import { ProntuarioDialog } from "./prontuario-dialog";
-import { NovaAnamneseDialog } from "./anamnese-dialog";
+import { AnamneseDialog } from "./anamnese-dialog";
 import { FotosComparador } from "./fotos-comparador";
 import { VenderPacoteDialog } from "./vender-pacote-dialog";
 import { PlanoTratamentoDialog } from "./plano-tratamento-dialog";
@@ -169,6 +169,11 @@ export default async function PacienteDetailPage({
     lista.push(nome);
     contraindicacoesPorAnamneseId.set(c.anamnese_id, lista);
   });
+  const anamnesesUsadasIds = new Set(
+    (atendimentos ?? [])
+      .map((a) => a.anamnese_id)
+      .filter((idAnamnese): idAnamnese is string => !!idAnamnese),
+  );
 
   const fotosComUrl = await Promise.all(
     (fotos ?? []).map(async (foto) => {
@@ -348,7 +353,7 @@ export default async function PacienteDetailPage({
                     <p className="text-muted-foreground">
                       Nenhuma anamnese registrada.
                     </p>
-                    <NovaAnamneseDialog pacienteId={id} procedimentos={procedimentos ?? []} />
+                    <AnamneseDialog pacienteId={id} procedimentos={procedimentos ?? []} />
                   </>
                 )}
               </CardContent>
@@ -399,7 +404,7 @@ export default async function PacienteDetailPage({
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-base">Anamnese</CardTitle>
-              <NovaAnamneseDialog pacienteId={id} procedimentos={procedimentos ?? []} />
+              <AnamneseDialog pacienteId={id} procedimentos={procedimentos ?? []} />
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
               {(anamneses ?? []).length === 0 && (
@@ -415,14 +420,30 @@ export default async function PacienteDetailPage({
                     index === 0 && "border-primary/30",
                   )}
                 >
-                  <div className="flex items-center gap-2">
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(a.criado_em).toLocaleString("pt-BR")}
-                    </p>
-                    {index === 0 && (
-                      <Badge variant="secondary" className="text-xs">
-                        Mais recente
-                      </Badge>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(a.criado_em).toLocaleString("pt-BR")}
+                      </p>
+                      {index === 0 && (
+                        <Badge variant="secondary" className="text-xs">
+                          Mais recente
+                        </Badge>
+                      )}
+                    </div>
+                    {!anamnesesUsadasIds.has(a.id) && (
+                      <AnamneseDialog
+                        pacienteId={id}
+                        procedimentos={procedimentos ?? []}
+                        anamnese={{
+                          id: a.id,
+                          respostas: a.respostas,
+                          tipoPele: tipoPelePorAnamneseId.get(a.id) ?? null,
+                          contraindicados: (contraindicacoes ?? [])
+                            .filter((c) => c.anamnese_id === a.id)
+                            .map((c) => c.procedimento_id),
+                        }}
+                      />
                     )}
                   </div>
                   {CAMPOS_ANAMNESE.map(

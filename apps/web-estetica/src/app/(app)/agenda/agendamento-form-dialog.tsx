@@ -191,7 +191,11 @@ function AgendamentoForm({
         <Label>Paciente</Label>
         <Select value={pacienteId} onValueChange={(value) => setPacienteId(value ?? "")}>
           <SelectTrigger>
-            <SelectValue placeholder="Selecione o paciente" />
+            <SelectValue placeholder="Selecione o paciente">
+              {(value: string) =>
+                pacientes.find((p) => p.id === value)?.nome ?? "Selecione o paciente"
+              }
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             {pacientes.map((p) => (
@@ -206,7 +210,11 @@ function AgendamentoForm({
         <Label>Profissional</Label>
         <Select value={profissionalId} onValueChange={(value) => setProfissionalId(value ?? "")}>
           <SelectTrigger>
-            <SelectValue placeholder="Selecione o profissional" />
+            <SelectValue placeholder="Selecione o profissional">
+              {(value: string) =>
+                profissionais.find((p) => p.id === value)?.nome ?? "Selecione o profissional"
+              }
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             {profissionais.map((p) => (
@@ -221,7 +229,9 @@ function AgendamentoForm({
         <Label>Procedimento</Label>
         <Select value={procedimentoId} onValueChange={(value) => setProcedimentoId(value ?? "")}>
           <SelectTrigger>
-            <SelectValue placeholder="Opcional" />
+            <SelectValue placeholder="Opcional">
+              {(value: string) => procedimentos.find((p) => p.id === value)?.nome ?? "Opcional"}
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             {procedimentos.map((p) => (
@@ -243,7 +253,9 @@ function AgendamentoForm({
         <Label>Sala</Label>
         <Select value={salaId} onValueChange={(value) => setSalaId(value ?? "")}>
           <SelectTrigger>
-            <SelectValue placeholder="Opcional" />
+            <SelectValue placeholder="Opcional">
+              {(value: string) => salas.find((s) => s.id === value)?.nome ?? "Opcional"}
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             {salas.map((s) => (

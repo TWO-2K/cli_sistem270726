@@ -1,6 +1,10 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { X } from "lucide-react";
+import { createClient } from "@empresa/supabase/client";
 import { Badge } from "@empresa/ui/components/badge";
 import { cn } from "@empresa/ui/utils";
 import type { FotoAtendimento } from "@/lib/types/db";
@@ -25,7 +29,27 @@ function parearFotosAntesDepois(fotos: FotoComUrl[]): ParFotos[] {
 }
 
 export function FotosComparador({ fotos }: { fotos: FotoComUrl[] }) {
+  const router = useRouter();
   const pares = useMemo(() => parearFotosAntesDepois(fotos), [fotos]);
+
+  async function excluirFoto(foto: FotoComUrl) {
+    if (!window.confirm("Excluir esta foto? Essa ação não pode ser desfeita.")) return;
+    const supabase = createClient();
+    const { error: storageError } = await supabase.storage
+      .from("fotos-atendimento")
+      .remove([foto.url]);
+    if (storageError) {
+      toast.error("Não foi possível excluir a foto.");
+      return;
+    }
+    const { error } = await supabase.from("fotos_atendimento").delete().eq("id", foto.id);
+    if (error) {
+      toast.error("Não foi possível excluir a foto.");
+      return;
+    }
+    toast.success("Foto excluída.");
+    router.refresh();
+  }
 
   return (
     <div className="flex flex-wrap gap-3">
@@ -36,44 +60,58 @@ export function FotosComparador({ fotos }: { fotos: FotoComUrl[] }) {
               key={`${par.antes.id}-${par.depois.id}`}
               antes={par.antes}
               depois={par.depois}
+              onExcluir={excluirFoto}
             />
           );
         }
         const foto = par.antes ?? par.depois;
         if (!foto) return null;
-        return <FotoUnica key={foto.id ?? i} foto={foto} />;
+        return <FotoUnica key={foto.id ?? i} foto={foto} onExcluir={excluirFoto} />;
       })}
     </div>
   );
 }
 
-function FotoUnica({ foto }: { foto: FotoComUrl }) {
+function FotoUnica({
+  foto,
+  onExcluir,
+}: {
+  foto: FotoComUrl;
+  onExcluir: (foto: FotoComUrl) => void;
+}) {
   return (
-    <a
-      href={foto.signedUrl}
-      target="_blank"
-      rel="noreferrer"
-      className="group relative aspect-square w-40 overflow-hidden rounded-md border sm:w-44"
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={foto.signedUrl}
-        alt={`Foto ${foto.tipo} do atendimento`}
-        className="h-full w-full object-cover transition group-hover:opacity-80"
-      />
+    <div className="group relative aspect-square w-40 overflow-hidden rounded-md border sm:w-44">
+      <a href={foto.signedUrl} target="_blank" rel="noreferrer">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={foto.signedUrl}
+          alt={`Foto ${foto.tipo} do atendimento`}
+          className="h-full w-full object-cover transition group-hover:opacity-80"
+        />
+      </a>
       <Badge className="absolute bottom-1 left-1" variant="secondary">
         {foto.tipo === "antes" ? "Antes" : "Depois"}
       </Badge>
-    </a>
+      <button
+        type="button"
+        onClick={() => onExcluir(foto)}
+        className="absolute top-1 right-1 rounded-full bg-black/50 p-1 text-white opacity-0 transition group-hover:opacity-100 hover:bg-black/70"
+        aria-label="Excluir foto"
+      >
+        <X className="h-3.5 w-3.5" />
+      </button>
+    </div>
   );
 }
 
 function ComparadorSlider({
   antes,
   depois,
+  onExcluir,
 }: {
   antes: FotoComUrl;
   depois: FotoComUrl;
+  onExcluir: (foto: FotoComUrl) => void;
 }) {
   const [posicao, setPosicao] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -141,6 +179,24 @@ function ComparadorSlider({
       <Badge className="absolute top-1 right-1" variant="secondary">
         Depois
       </Badge>
+      <button
+        type="button"
+        onPointerDown={(e) => e.stopPropagation()}
+        onClick={() => onExcluir(antes)}
+        className="absolute top-1 left-1 mt-6 rounded-full bg-black/50 p-1 text-white opacity-0 transition group-hover:opacity-100 hover:bg-black/70"
+        aria-label="Excluir foto antes"
+      >
+        <X className="h-3.5 w-3.5" />
+      </button>
+      <button
+        type="button"
+        onPointerDown={(e) => e.stopPropagation()}
+        onClick={() => onExcluir(depois)}
+        className="absolute top-1 right-1 mt-6 rounded-full bg-black/50 p-1 text-white opacity-0 transition group-hover:opacity-100 hover:bg-black/70"
+        aria-label="Excluir foto depois"
+      >
+        <X className="h-3.5 w-3.5" />
+      </button>
       <div
         className={cn(
           "pointer-events-none absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-2 py-0.5 text-[10px] text-white transition-opacity",

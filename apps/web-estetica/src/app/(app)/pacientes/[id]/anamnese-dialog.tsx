@@ -46,20 +46,36 @@ const RESPOSTAS_VAZIAS: AnamneseRespostas = {
 
 const TIPOS_PELE: TipoPele[] = [1, 2, 3, 4, 5, 6];
 
-export function NovaAnamneseDialog({
+export interface AnamneseParaEdicao {
+  id: string;
+  respostas: AnamneseRespostas;
+  tipoPele: TipoPele | null;
+  contraindicados: string[];
+}
+
+export function AnamneseDialog({
   pacienteId,
   procedimentos,
+  anamnese,
 }: {
   pacienteId: string;
   procedimentos: Procedimento[];
+  /** Quando presente, o dialog abre no modo edição em vez de criação. */
+  anamnese?: AnamneseParaEdicao;
 }) {
   const router = useRouter();
+  const editando = Boolean(anamnese);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [respostas, setRespostas] =
-    useState<AnamneseRespostas>(RESPOSTAS_VAZIAS);
-  const [tipoPele, setTipoPele] = useState<TipoPele | null>(null);
-  const [contraindicados, setContraindicados] = useState<Set<string>>(new Set());
+  const [respostas, setRespostas] = useState<AnamneseRespostas>(
+    anamnese?.respostas ?? RESPOSTAS_VAZIAS,
+  );
+  const [tipoPele, setTipoPele] = useState<TipoPele | null>(
+    anamnese?.tipoPele ?? null,
+  );
+  const [contraindicados, setContraindicados] = useState<Set<string>>(
+    new Set(anamnese?.contraindicados ?? []),
+  );
 
   function toggleContraindicado(procedimentoId: string) {
     setContraindicados((prev) => {
@@ -77,30 +93,70 @@ export function NovaAnamneseDialog({
     e.preventDefault();
     setLoading(true);
     const supabase = createClient();
-    const { data: anamnese, error } = await supabase
-      .from("anamneses")
-      .insert({
-        paciente_id: pacienteId,
-        respostas,
-      })
-      .select("id")
-      .single<{ id: string }>();
 
-    if (error || !anamnese) {
-      setLoading(false);
-      toast.error("Não foi possível registrar a anamnese.");
-      return;
-    }
+    let anamneseId: string;
+    if (editando && anamnese) {
+      anamneseId = anamnese.id;
+      const { error } = await supabase
+        .from("anamneses")
+        .update({ respostas })
+        .eq("id", anamneseId);
 
-    const { error: esteticaError } = await supabase
-      .schema("estetica")
-      .from("anamnese_estetica")
-      .insert({ anamnese_id: anamnese.id, tipo_pele: tipoPele });
+      if (error) {
+        setLoading(false);
+        toast.error("Não foi possível atualizar a anamnese.");
+        return;
+      }
 
-    if (esteticaError) {
-      setLoading(false);
-      toast.error("Anamnese salva, mas os dados estéticos falharam.");
-      return;
+      const { error: esteticaError } = await supabase
+        .schema("estetica")
+        .from("anamnese_estetica")
+        .upsert({ anamnese_id: anamneseId, tipo_pele: tipoPele });
+
+      if (esteticaError) {
+        setLoading(false);
+        toast.error("Anamnese salva, mas os dados estéticos falharam.");
+        return;
+      }
+
+      const { error: deleteError } = await supabase
+        .schema("estetica")
+        .from("anamnese_estetica_contraindicacao")
+        .delete()
+        .eq("anamnese_id", anamneseId);
+
+      if (deleteError) {
+        setLoading(false);
+        toast.error("Anamnese salva, mas as contraindicações falharam.");
+        return;
+      }
+    } else {
+      const { data: novaAnamnese, error } = await supabase
+        .from("anamneses")
+        .insert({
+          paciente_id: pacienteId,
+          respostas,
+        })
+        .select("id")
+        .single<{ id: string }>();
+
+      if (error || !novaAnamnese) {
+        setLoading(false);
+        toast.error("Não foi possível registrar a anamnese.");
+        return;
+      }
+      anamneseId = novaAnamnese.id;
+
+      const { error: esteticaError } = await supabase
+        .schema("estetica")
+        .from("anamnese_estetica")
+        .insert({ anamnese_id: anamneseId, tipo_pele: tipoPele });
+
+      if (esteticaError) {
+        setLoading(false);
+        toast.error("Anamnese salva, mas os dados estéticos falharam.");
+        return;
+      }
     }
 
     if (contraindicados.size > 0) {
@@ -109,7 +165,7 @@ export function NovaAnamneseDialog({
         .from("anamnese_estetica_contraindicacao")
         .insert(
           Array.from(contraindicados).map((procedimentoId) => ({
-            anamnese_id: anamnese.id,
+            anamnese_id: anamneseId,
             procedimento_id: procedimentoId,
           })),
         );
@@ -122,10 +178,12 @@ export function NovaAnamneseDialog({
     }
 
     setLoading(false);
-    toast.success("Anamnese registrada.");
-    setRespostas(RESPOSTAS_VAZIAS);
-    setTipoPele(null);
-    setContraindicados(new Set());
+    toast.success(editando ? "Anamnese atualizada." : "Anamnese registrada.");
+    if (!editando) {
+      setRespostas(RESPOSTAS_VAZIAS);
+      setTipoPele(null);
+      setContraindicados(new Set());
+    }
     setOpen(false);
     router.refresh();
   }
@@ -133,11 +191,11 @@ export function NovaAnamneseDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger render={<Button variant="outline" size="sm" />}>
-        Nova anamnese
+        {editando ? "Editar" : "Nova anamnese"}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Nova anamnese</DialogTitle>
+          <DialogTitle>{editando ? "Editar anamnese" : "Nova anamnese"}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {CAMPOS.map((campo) => (
@@ -164,7 +222,11 @@ export function NovaAnamneseDialog({
               onValueChange={(v) => setTipoPele(v ? (Number(v) as TipoPele) : null)}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Não informado" />
+                <SelectValue placeholder="Não informado">
+                  {(value: string) =>
+                    value ? TIPO_PELE_LABELS[Number(value) as TipoPele] : "Não informado"
+                  }
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {TIPOS_PELE.map((tipo) => (

@@ -37,6 +37,26 @@ export function VenderPacoteDialog({
   const [procedimentoId, setProcedimentoId] = useState("");
   const [sessoesTotal, setSessoesTotal] = useState("10");
   const [valor, setValor] = useState("");
+  const [valorEditadoManualmente, setValorEditadoManualmente] = useState(false);
+
+  const procedimentoSelecionado = procedimentos.find((p) => p.id === procedimentoId);
+
+  function selecionarProcedimento(value: string) {
+    setProcedimentoId(value);
+    if (!valorEditadoManualmente) {
+      const procedimento = procedimentos.find((p) => p.id === value);
+      const sessoes = Number(sessoesTotal) || 0;
+      setValor(procedimento ? String(procedimento.preco * sessoes) : "");
+    }
+  }
+
+  function alterarSessoesTotal(value: string) {
+    setSessoesTotal(value);
+    if (!valorEditadoManualmente && procedimentoSelecionado) {
+      const sessoes = Number(value) || 0;
+      setValor(String(procedimentoSelecionado.preco * sessoes));
+    }
+  }
 
   const podeSubmeter = procedimentoId && Number(sessoesTotal) > 0 && Number(valor) >= 0;
 
@@ -64,6 +84,7 @@ export function VenderPacoteDialog({
     setProcedimentoId("");
     setSessoesTotal("10");
     setValor("");
+    setValorEditadoManualmente(false);
     setOpen(false);
     router.refresh();
   }
@@ -82,10 +103,15 @@ export function VenderPacoteDialog({
             <Label>Procedimento</Label>
             <Select
               value={procedimentoId}
-              onValueChange={(value) => setProcedimentoId(value ?? "")}
+              onValueChange={(value) => selecionarProcedimento(value ?? "")}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Selecione o procedimento" />
+                <SelectValue placeholder="Selecione o procedimento">
+                  {(value: string) =>
+                    procedimentos.find((p) => p.id === value)?.nome ??
+                    "Selecione o procedimento"
+                  }
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {procedimentos.map((p) => (
@@ -105,7 +131,7 @@ export function VenderPacoteDialog({
               step={1}
               required
               value={sessoesTotal}
-              onChange={(e) => setSessoesTotal(e.target.value)}
+              onChange={(e) => alterarSessoesTotal(e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -117,8 +143,20 @@ export function VenderPacoteDialog({
               step={0.01}
               required
               value={valor}
-              onChange={(e) => setValor(e.target.value)}
+              onChange={(e) => {
+                setValorEditadoManualmente(true);
+                setValor(e.target.value);
+              }}
             />
+            {procedimentoSelecionado && !valorEditadoManualmente && (
+              <p className="text-xs text-muted-foreground">
+                Sugerido: {procedimentoSelecionado.preco.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}{" "}
+                × {sessoesTotal || 0} sessões. Você pode ajustar o valor.
+              </p>
+            )}
           </div>
           <DialogFooter>
             <Button type="submit" disabled={loading || !podeSubmeter}>

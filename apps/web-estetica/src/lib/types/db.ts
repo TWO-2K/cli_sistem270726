@@ -57,6 +57,7 @@ export interface Atendimento {
   paciente_id: string;
   usuario_id: string;
   procedimento_id: string | null;
+  anamnese_id: string | null;
   status: "em_andamento" | "concluido";
   criado_em: string;
 }
