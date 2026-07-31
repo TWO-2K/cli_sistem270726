@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { createClient } from "@empresa/supabase/client";
 import { Button } from "@empresa/ui/components/button";
 import { Label } from "@empresa/ui/components/label";
-import { Plus, TriangleAlert } from "lucide-react";
+import { ClipboardCheck, Plus, TriangleAlert } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -62,6 +62,7 @@ export function NovoAtendimentoDialog({
   const podeSubmeter = pacienteId && profissionalId;
   const [contraindicados, setContraindicados] = useState<Set<string>>(new Set());
   const [anamneseId, setAnamneseId] = useState<string | null>(null);
+  const [anamneseData, setAnamneseData] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelado = false;
@@ -69,24 +70,29 @@ export function NovoAtendimentoDialog({
       if (!pacienteId) {
         setContraindicados(new Set());
         setAnamneseId(null);
+        setAnamneseData(null);
         return;
       }
       const supabase = createClient();
       const { data: anamnese } = await supabase
         .from("anamneses")
-        .select("id")
+        .select("id, criado_em")
         .eq("paciente_id", pacienteId)
         .order("criado_em", { ascending: false })
         .limit(1)
-        .maybeSingle<{ id: string }>();
+        .maybeSingle<{ id: string; criado_em: string }>();
       if (!anamnese) {
         if (!cancelado) {
           setContraindicados(new Set());
           setAnamneseId(null);
+          setAnamneseData(null);
         }
         return;
       }
-      if (!cancelado) setAnamneseId(anamnese.id);
+      if (!cancelado) {
+        setAnamneseId(anamnese.id);
+        setAnamneseData(anamnese.criado_em);
+      }
       const { data } = await supabase
         .schema("estetica")
         .from("anamnese_estetica_contraindicacao")
@@ -174,6 +180,16 @@ export function NovoAtendimentoDialog({
                 </SelectContent>
               </Select>
             )}
+            {pacienteId && anamneseId && (
+              <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <ClipboardCheck className="h-3.5 w-3.5 shrink-0" />
+                Anamnese de{" "}
+                {anamneseData
+                  ? new Date(anamneseData).toLocaleDateString("pt-BR")
+                  : "—"}{" "}
+                será vinculada automaticamente a este atendimento.
+              </p>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <Label>Profissional</Label>
@@ -227,11 +243,15 @@ export function NovoAtendimentoDialog({
               return (
                 procedimentoAtivo &&
                 contraindicados.has(procedimentoAtivo) && (
-                  <p className="flex items-center gap-1.5 text-sm text-destructive">
-                    <TriangleAlert className="h-4 w-4 shrink-0" />
-                    Este procedimento está marcado como contraindicado na
-                    anamnese do paciente.
-                  </p>
+                  <div className="flex items-start gap-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                    <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+                    <p>
+                      <span className="font-medium">Atenção: </span>
+                      este procedimento está marcado como contraindicado na
+                      anamnese do paciente. O atendimento pode ser iniciado
+                      mesmo assim, mas confirme antes de prosseguir.
+                    </p>
+                  </div>
                 )
               );
             })()}

@@ -1,0 +1,46 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e37]:
+    - complementary [ref=e38]:
+      - generic [ref=e39]: Estetica - Tua Cara
+      - navigation [ref=e46]:
+        - link "Dashboard" [ref=e47] [cursor=pointer]:
+          - /url: /dashboard
+        - link "Agenda" [ref=e53] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=e56] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=e62] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Financeiro" [ref=e67] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=e71] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=e74] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=e78]:
+        - generic [ref=e79]: TC
+        - generic [ref=e81]:
+          - generic [ref=e82]: Tua cara
+          - generic [ref=e83]: Administrador
+        - button "Sair" [ref=e84]
+    - main [ref=e85]:
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - heading "Olá, Estetica - Tua Cara" [level=1] [ref=e89]
+          - paragraph [ref=e90]: Visão geral da sua clínica hoje.
+        - generic [ref=e91]:
+          - generic [ref=e93]:
+            - generic [ref=e94]: Pacientes cadastrados
+            - generic [ref=e95]: "2"
+          - generic [ref=e97]:
+            - generic [ref=e98]: Agendamentos hoje
+            - generic [ref=e99]: "0"
+          - generic [ref=e101]:
+            - generic [ref=e102]: Comandas em aberto
+            - generic [ref=e103]: "9"
+          - generic [ref=e105]:
+            - generic [ref=e106]: Faturamento do mês
+            - generic [ref=e107]: R$ 490,00
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e24] [cursor=pointer]
+  - alert [ref=e28]

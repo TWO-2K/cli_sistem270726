@@ -477,9 +477,13 @@ export default async function PacienteDetailPage({
 
         <TabsContent value="atendimentos" className="flex flex-col gap-4 pt-4">
           {(atendimentos ?? []).length === 0 ? (
-            <div className="flex flex-col items-center gap-2 rounded-lg border bg-card py-10 text-center text-muted-foreground">
+            <div className="flex flex-col items-center gap-3 rounded-lg border bg-card py-10 text-center text-muted-foreground">
               <ClipboardList className="h-6 w-6" />
-              Nenhum atendimento registrado ainda para este paciente.
+              <p>Nenhum atendimento registrado ainda para este paciente.</p>
+              <Button variant="outline" size="sm" nativeButton={false} render={<Link href="/atendimento" />}>
+                <CalendarPlus className="h-4 w-4" />
+                Iniciar atendimento
+              </Button>
             </div>
           ) : (
             (atendimentos ?? []).map((a) => {

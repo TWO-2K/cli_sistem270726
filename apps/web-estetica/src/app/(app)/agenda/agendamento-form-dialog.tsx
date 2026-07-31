@@ -242,11 +242,15 @@ function AgendamentoForm({
           </SelectContent>
         </Select>
         {procedimentoId && contraindicados.has(procedimentoId) && (
-          <p className="flex items-center gap-1.5 text-sm text-destructive">
-            <TriangleAlert className="h-4 w-4 shrink-0" />
-            Este procedimento está marcado como contraindicado na anamnese do
-            paciente.
-          </p>
+          <div className="flex items-start gap-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+            <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+            <p>
+              <span className="font-medium">Atenção: </span>
+              este procedimento está marcado como contraindicado na anamnese
+              do paciente. O agendamento pode ser criado mesmo assim, mas
+              confirme com o profissional responsável.
+            </p>
+          </div>
         )}
       </div>
       <div className="flex flex-col gap-2">

@@ -1,0 +1,187 @@
+- generic [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - complementary [ref=f3e3]:
+      - generic [ref=f3e4]: Estetica - Tua Cara
+      - navigation [ref=f3e11]:
+        - link [ref=f3e201] [cursor=pointer]:
+          - /url: /dashboard
+          - text: Dashboard
+        - link [ref=f3e202] [cursor=pointer]:
+          - /url: /agenda
+          - text: Agenda
+        - link [ref=f3e203] [cursor=pointer]:
+          - /url: /pacientes
+          - text: Pacientes
+        - link [ref=f3e204] [cursor=pointer]:
+          - /url: /atendimento
+          - text: Atendimento
+        - link [ref=f3e205] [cursor=pointer]:
+          - /url: /financeiro
+          - text: Financeiro
+        - link [ref=f3e206] [cursor=pointer]:
+          - /url: /relatorios
+          - text: Relatórios
+        - link [ref=f3e207] [cursor=pointer]:
+          - /url: /configuracoes
+          - text: Configurações
+      - generic [ref=f3e43]:
+        - generic [ref=f3e44]: TC
+        - generic [ref=f3e46]:
+          - generic [ref=f3e47]: Tua cara
+          - generic [ref=f3e48]: Administrador
+        - button [ref=f3e208]: Sair
+    - main [ref=f3e50]:
+      - generic [ref=f3e52]:
+        - generic [ref=f3e53]:
+          - generic [ref=f3e54]:
+            - heading [level=1] [ref=f3e209]: Atendimento
+            - paragraph [ref=f3e56]: Prontuário, procedimentos e evolução dos atendimentos.
+          - button [expanded] [ref=f3e210]: Iniciar atendimento
+        - table [ref=f3e60]:
+          - rowgroup [ref=f3e61]:
+            - row [ref=f3e211]:
+              - columnheader [ref=f3e212]: Data
+              - columnheader [ref=f3e213]: Paciente
+              - columnheader [ref=f3e214]: Profissional
+              - columnheader [ref=f3e215]: Procedimento
+              - columnheader [ref=f3e216]: Status
+              - columnheader [ref=f3e217]: Ação
+          - rowgroup [ref=f3e69]:
+            - row [ref=f3e218]:
+              - cell [ref=f3e219]: 31/07/2026, 10:33:11
+              - cell [ref=f3e220]: kevin
+              - cell [ref=f3e221]: keize
+              - cell [ref=f3e222]: Limpeza
+              - cell [ref=f3e223]:
+                - generic [ref=f3e76]: Em andamento
+              - cell [ref=f3e224]:
+                - button [ref=f3e225]: Fotos
+                - button [ref=f3e226]: Concluir
+            - row [ref=f3e227]:
+              - cell [ref=f3e228]: 31/07/2026, 10:28:49
+              - cell [ref=f3e229]: kevin
+              - cell [ref=f3e230]: keize
+              - cell [ref=f3e231]: Cabelo
+              - cell [ref=f3e232]:
+                - generic [ref=f3e87]:
+                  - generic [ref=f3e88]: Concluído
+                  - generic [ref=f3e89]: Via agenda
+              - cell [ref=f3e90]
+            - row [ref=f3e233]:
+              - cell [ref=f3e234]: 30/07/2026, 19:48:01
+              - cell [ref=f3e235]: lanna
+              - cell [ref=f3e236]: keize
+              - cell [ref=f3e237]: Limpeza
+              - cell [ref=f3e238]:
+                - generic [ref=f3e97]: Concluído
+              - cell [ref=f3e99]
+            - row [ref=f3e239]:
+              - cell [ref=f3e240]: 30/07/2026, 19:46:49
+              - cell [ref=f3e241]: lanna
+              - cell [ref=f3e242]: keize
+              - cell [ref=f3e243]: Cabelo
+              - cell [ref=f3e244]:
+                - generic [ref=f3e106]: Concluído
+              - cell [ref=f3e108]
+            - row [ref=f3e245]:
+              - cell [ref=f3e246]: 30/07/2026, 19:46:08
+              - cell [ref=f3e247]: lanna
+              - cell [ref=f3e248]: keize
+              - cell [ref=f3e249]: Cabelo
+              - cell [ref=f3e250]:
+                - generic [ref=f3e115]: Concluído
+              - cell [ref=f3e117]
+            - row [ref=f3e251]:
+              - cell [ref=f3e252]: 30/07/2026, 19:45:45
+              - cell [ref=f3e253]: lanna
+              - cell [ref=f3e254]: keize
+              - cell [ref=f3e255]: Cabelo
+              - cell [ref=f3e256]:
+                - generic [ref=f3e124]: Concluído
+              - cell [ref=f3e126]
+            - row [ref=f3e257]:
+              - cell [ref=f3e258]: 30/07/2026, 19:44:42
+              - cell [ref=f3e259]: kevin
+              - cell [ref=f3e260]: keize
+              - cell [ref=f3e261]: Limpeza
+              - cell [ref=f3e262]:
+                - generic [ref=f3e133]: Concluído
+              - cell [ref=f3e135]
+            - row [ref=f3e263]:
+              - cell [ref=f3e264]: 30/07/2026, 19:38:49
+              - cell [ref=f3e265]: kevin
+              - cell [ref=f3e266]: keize
+              - cell [ref=f3e267]: Limpeza
+              - cell [ref=f3e268]:
+                - generic [ref=f3e142]: Concluído
+              - cell [ref=f3e144]
+            - row [ref=f3e269]:
+              - cell [ref=f3e270]: 30/07/2026, 19:31:29
+              - cell [ref=f3e271]: kevin
+              - cell [ref=f3e272]: keize
+              - cell [ref=f3e273]: Cabelo
+              - cell [ref=f3e274]:
+                - generic [ref=f3e151]: Concluído
+              - cell [ref=f3e153]
+            - row [ref=f3e275]:
+              - cell [ref=f3e276]: 30/07/2026, 17:31:54
+              - cell [ref=f3e277]: kevin
+              - cell [ref=f3e278]: keize
+              - cell [ref=f3e279]: Cabelo
+              - cell [ref=f3e280]:
+                - generic [ref=f3e160]: Concluído
+              - cell [ref=f3e162]
+            - row [ref=f3e281]:
+              - cell [ref=f3e282]: 30/07/2026, 01:29:57
+              - cell [ref=f3e283]: kevin
+              - cell [ref=f3e284]: keize
+              - cell [ref=f3e285]: Cabelo
+              - cell [ref=f3e286]:
+                - generic [ref=f3e169]: Concluído
+              - cell [ref=f3e171]
+            - row [ref=f3e287]:
+              - cell [ref=f3e288]: 30/07/2026, 01:25:59
+              - cell [ref=f3e289]: kevin
+              - cell [ref=f3e290]: keize
+              - cell [ref=f3e291]: Cabelo
+              - cell [ref=f3e292]:
+                - generic [ref=f3e178]:
+                  - generic [ref=f3e179]: Concluído
+                  - generic [ref=f3e180]: Via agenda
+              - cell [ref=f3e181]
+            - row [ref=f3e293]:
+              - cell [ref=f3e294]: 29/07/2026, 23:19:44
+              - cell [ref=f3e295]: kevin
+              - cell [ref=f3e296]: keize
+              - cell [ref=f3e297]: Cabelo
+              - cell [ref=f3e298]:
+                - generic [ref=f3e188]: Concluído
+              - cell [ref=f3e190]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f3e196] [cursor=pointer]
+  - alert [ref=f3e200]
+  - dialog [ref=f3e302]:
+    - heading "Iniciar atendimento" [level=2] [ref=f3e304]
+    - generic [ref=f3e305]:
+      - generic [ref=f3e306]:
+        - generic [ref=f3e307]: Paciente
+        - combobox [ref=f3e308]:
+          - generic [ref=f3e309]: kevin
+          - img: ▼
+        - textbox [ref=f3e310]: 523363e1-4d08-4a50-8974-c0de1b0d70e1
+        - paragraph [ref=f3e335]: Anamnese de 31/07/2026 será vinculada automaticamente a este atendimento.
+      - generic [ref=f3e311]:
+        - generic [ref=f3e312]: Profissional
+        - combobox [ref=f3e313]:
+          - generic [ref=f3e314]: Selecione o profissional
+          - img: ▼
+        - textbox [ref=f3e315]
+      - generic [ref=f3e316]:
+        - generic [ref=f3e317]: Procedimento
+        - combobox [active] [ref=f3e318]:
+          - generic [ref=f3e319]: Opcional
+          - img: ▼
+        - textbox [ref=f3e320]
+      - generic [ref=f3e321]:
+        - button "Iniciar" [disabled]
+    - button "Close" [ref=f3e322]

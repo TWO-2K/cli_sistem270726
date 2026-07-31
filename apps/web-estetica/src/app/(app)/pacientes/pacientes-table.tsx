@@ -14,6 +14,7 @@ import {
   Phone,
   Search,
   Trash2,
+  Users,
 } from "lucide-react";
 import { createClient } from "@empresa/supabase/client";
 import { Button } from "@empresa/ui/components/button";
@@ -22,6 +23,7 @@ import { cn } from "@empresa/ui/utils";
 import { iniciaisPaciente } from "@/lib/pacientes-utils";
 import type { Paciente } from "@/lib/types/db";
 import { EditarPacienteDialog } from "./[id]/editar-paciente-dialog";
+import { NovoPacienteDialog } from "./novo-paciente-dialog";
 import {
   Table,
   TableBody,
@@ -168,10 +170,16 @@ export function PacientesTable({
       </div>
 
       {filtrados.length === 0 ? (
-        <div className="rounded-lg border bg-card py-8 text-center text-muted-foreground">
-          {pacientes.length === 0
-            ? "Nenhum paciente cadastrado ainda."
-            : "Nenhum paciente encontrado."}
+        <div className="flex flex-col items-center gap-3 rounded-lg border bg-card py-10 text-center text-muted-foreground">
+          <Users className="h-6 w-6" />
+          {pacientes.length === 0 ? (
+            <>
+              <p>Nenhum paciente cadastrado ainda.</p>
+              <NovoPacienteDialog />
+            </>
+          ) : (
+            <p>Nenhum paciente encontrado para essa busca.</p>
+          )}
         </div>
       ) : (
         <>

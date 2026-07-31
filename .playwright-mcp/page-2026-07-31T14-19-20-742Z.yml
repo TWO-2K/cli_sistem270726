@@ -1,0 +1,85 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - complementary [ref=f4e3]:
+      - generic [ref=f4e4]: Estetica - Tua Cara
+      - navigation [ref=f4e11]:
+        - link "Dashboard" [ref=f4e12] [cursor=pointer]:
+          - /url: /dashboard
+        - link "Agenda" [ref=f4e18] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f4e21] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f4e27] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Financeiro" [ref=f4e32] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f4e36] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f4e39] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f4e43]:
+        - generic [ref=f4e44]: TC
+        - generic [ref=f4e46]:
+          - generic [ref=f4e47]: Tua cara
+          - generic [ref=f4e48]: Administrador
+        - button "Sair" [ref=f4e49]
+    - main [ref=f4e50]:
+      - generic [ref=f4e52]:
+        - generic [ref=f4e53]:
+          - generic [ref=f4e54]:
+            - heading "Pacientes" [level=1] [ref=f4e55]
+            - paragraph [ref=f4e56]: Cadastro e histórico dos seus pacientes.
+          - button "Novo paciente" [ref=f4e57]
+        - generic [ref=f4e58]:
+          - generic [ref=f4e59]:
+            - textbox "Buscar por nome, telefone ou e-mail..." [ref=f4e61]
+            - generic [ref=f4e62]:
+              - generic [ref=f4e63]:
+                - button "Todos" [ref=f4e64]
+                - button "Novos" [ref=f4e65]
+              - generic [ref=f4e66]:
+                - button "Visualização em lista" [ref=f4e67]
+                - button "Visualização em cards" [ref=f4e69]
+          - table [ref=f4e77]:
+            - rowgroup [ref=f4e78]:
+              - row [ref=f4e79]:
+                - columnheader "Paciente" [ref=f4e80]
+                - columnheader "Contato" [ref=f4e81]
+                - columnheader "Status" [ref=f4e82]
+                - columnheader "Cadastro" [ref=f4e83]
+                - columnheader "Ações" [ref=f4e84]
+            - rowgroup [ref=f4e85]:
+              - row [ref=f4e86]:
+                - cell [ref=f4e87]:
+                  - link "K kevin" [ref=f4e88] [cursor=pointer]:
+                    - /url: /pacientes/523363e1-4d08-4a50-8974-c0de1b0d70e1
+                    - generic [ref=f4e89]: K
+                    - text: kevin
+                - cell [ref=f4e90]:
+                  - generic [ref=f4e91]:
+                    - generic [ref=f4e92]: "91983927903"
+                    - generic [ref=f4e95]: kevinkleyoficial@gmail.com
+                - cell "Em tratamento" [ref=f4e99]
+                - cell "29/07/2026" [ref=f4e101]
+                - cell [ref=f4e102]:
+                  - generic [ref=f4e103]:
+                    - button "Editar" [ref=f4e104]
+                    - button "Agendar" [ref=f4e106] [cursor=pointer]
+              - row [ref=f4e108]:
+                - cell [ref=f4e109]:
+                  - link "L lanna" [ref=f4e110] [cursor=pointer]:
+                    - /url: /pacientes/4334f2e7-b35e-4848-b88c-dae82936ff81
+                    - generic [ref=f4e111]: L
+                    - text: lanna
+                - cell [ref=f4e112]:
+                  - generic [ref=f4e113]:
+                    - generic [ref=f4e114]: —
+                    - generic [ref=f4e117]: —
+                - cell "Sem atividade" [ref=f4e121]
+                - cell "30/07/2026" [ref=f4e123]
+                - cell [ref=f4e124]:
+                  - generic [ref=f4e125]:
+                    - button "Editar" [ref=f4e126]
+                    - button "Agendar" [ref=f4e128] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f4e135] [cursor=pointer]

@@ -1,0 +1,20 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Entrar
+      - generic [ref=e6]: Acesse o sistema de gestão da sua clínica.
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e9]:
+          - generic [ref=e10]: E-mail
+          - textbox "E-mail" [ref=e11]:
+            - /placeholder: voce@empresa.com
+        - generic [ref=e12]:
+          - generic [ref=e13]:
+            - generic [ref=e14]: Senha
+            - link "Esqueci minha senha" [ref=e15] [cursor=pointer]:
+              - /url: /esqueci-senha
+          - textbox "Senha" [ref=e16]
+        - button "Entrar" [ref=e17]
+      - paragraph [ref=e18]: O acesso é feito por convite do administrador da sua clínica.
+  - region "Notifications alt+T"

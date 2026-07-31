@@ -7,6 +7,7 @@ import { createClient } from "@empresa/supabase/client";
 import { Button } from "@empresa/ui/components/button";
 import { Label } from "@empresa/ui/components/label";
 import { Textarea } from "@empresa/ui/components/textarea";
+import { Separator } from "@empresa/ui/components/separator";
 import type { AnamneseRespostas, Procedimento, TipoPele } from "@/lib/types/db";
 import { TIPO_PELE_LABELS } from "@/lib/types/db";
 import {
@@ -198,6 +199,9 @@ export function AnamneseDialog({
           <DialogTitle>{editando ? "Editar anamnese" : "Nova anamnese"}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+            Histórico clínico
+          </p>
           {CAMPOS.map((campo) => (
             <div key={campo.chave} className="flex flex-col gap-2">
               <Label htmlFor={campo.chave}>{campo.label}</Label>
@@ -215,6 +219,10 @@ export function AnamneseDialog({
             </div>
           ))}
 
+          <Separator />
+          <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+            Avaliação estética
+          </p>
           <div className="flex flex-col gap-2">
             <Label>Tipo de pele (Fitzpatrick)</Label>
             <Select

@@ -1,0 +1,143 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - complementary [ref=f3e3]:
+      - generic [ref=f3e4]: Estetica - Tua Cara
+      - navigation [ref=f3e11]:
+        - link "Dashboard" [ref=f3e12] [cursor=pointer]:
+          - /url: /dashboard
+        - link "Agenda" [ref=f3e18] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f3e21] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f3e27] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Financeiro" [ref=f3e32] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f3e36] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f3e39] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f3e43]:
+        - generic [ref=f3e44]: TC
+        - generic [ref=f3e46]:
+          - generic [ref=f3e47]: Tua cara
+          - generic [ref=f3e48]: Administrador
+        - button "Sair" [ref=f3e49]
+    - main [ref=f3e50]:
+      - generic [ref=f3e52]:
+        - generic [ref=f3e53]:
+          - generic [ref=f3e54]:
+            - heading "Atendimento" [level=1] [ref=f3e55]
+            - paragraph [ref=f3e56]: Prontuário, procedimentos e evolução dos atendimentos.
+          - button "Iniciar atendimento" [ref=f3e57]
+        - table [ref=f3e60]:
+          - rowgroup [ref=f3e61]:
+            - row [ref=f3e62]:
+              - columnheader "Data" [ref=f3e63]
+              - columnheader "Paciente" [ref=f3e64]
+              - columnheader "Profissional" [ref=f3e65]
+              - columnheader "Procedimento" [ref=f3e66]
+              - columnheader "Status" [ref=f3e67]
+              - columnheader "Ação" [ref=f3e68]
+          - rowgroup [ref=f3e69]:
+            - row [ref=f3e70]:
+              - cell "31/07/2026, 10:33:11" [ref=f3e71]
+              - cell "kevin" [ref=f3e72]
+              - cell "keize" [ref=f3e73]
+              - cell "Limpeza" [ref=f3e74]
+              - cell "Em andamento" [ref=f3e75]
+              - cell [ref=f3e78]:
+                - button "Fotos" [ref=f3e79]
+                - button "Concluir" [ref=f3e80]
+            - row [ref=f3e81]:
+              - cell "31/07/2026, 10:28:49" [ref=f3e82]
+              - cell "kevin" [ref=f3e83]
+              - cell "keize" [ref=f3e84]
+              - cell "Cabelo" [ref=f3e85]
+              - cell "Concluído Via agenda" [ref=f3e86]:
+                - generic [ref=f3e87]:
+                  - generic [ref=f3e88]: Concluído
+                  - generic [ref=f3e89]: Via agenda
+              - cell [ref=f3e90]
+            - row [ref=f3e91]:
+              - cell "30/07/2026, 19:48:01" [ref=f3e92]
+              - cell "lanna" [ref=f3e93]
+              - cell "keize" [ref=f3e94]
+              - cell "Limpeza" [ref=f3e95]
+              - cell "Concluído" [ref=f3e96]
+              - cell [ref=f3e99]
+            - row [ref=f3e100]:
+              - cell "30/07/2026, 19:46:49" [ref=f3e101]
+              - cell "lanna" [ref=f3e102]
+              - cell "keize" [ref=f3e103]
+              - cell "Cabelo" [ref=f3e104]
+              - cell "Concluído" [ref=f3e105]
+              - cell [ref=f3e108]
+            - row [ref=f3e109]:
+              - cell "30/07/2026, 19:46:08" [ref=f3e110]
+              - cell "lanna" [ref=f3e111]
+              - cell "keize" [ref=f3e112]
+              - cell "Cabelo" [ref=f3e113]
+              - cell "Concluído" [ref=f3e114]
+              - cell [ref=f3e117]
+            - row [ref=f3e118]:
+              - cell "30/07/2026, 19:45:45" [ref=f3e119]
+              - cell "lanna" [ref=f3e120]
+              - cell "keize" [ref=f3e121]
+              - cell "Cabelo" [ref=f3e122]
+              - cell "Concluído" [ref=f3e123]
+              - cell [ref=f3e126]
+            - row [ref=f3e127]:
+              - cell "30/07/2026, 19:44:42" [ref=f3e128]
+              - cell "kevin" [ref=f3e129]
+              - cell "keize" [ref=f3e130]
+              - cell "Limpeza" [ref=f3e131]
+              - cell "Concluído" [ref=f3e132]
+              - cell [ref=f3e135]
+            - row [ref=f3e136]:
+              - cell "30/07/2026, 19:38:49" [ref=f3e137]
+              - cell "kevin" [ref=f3e138]
+              - cell "keize" [ref=f3e139]
+              - cell "Limpeza" [ref=f3e140]
+              - cell "Concluído" [ref=f3e141]
+              - cell [ref=f3e144]
+            - row [ref=f3e145]:
+              - cell "30/07/2026, 19:31:29" [ref=f3e146]
+              - cell "kevin" [ref=f3e147]
+              - cell "keize" [ref=f3e148]
+              - cell "Cabelo" [ref=f3e149]
+              - cell "Concluído" [ref=f3e150]
+              - cell [ref=f3e153]
+            - row [ref=f3e154]:
+              - cell "30/07/2026, 17:31:54" [ref=f3e155]
+              - cell "kevin" [ref=f3e156]
+              - cell "keize" [ref=f3e157]
+              - cell "Cabelo" [ref=f3e158]
+              - cell "Concluído" [ref=f3e159]
+              - cell [ref=f3e162]
+            - row [ref=f3e163]:
+              - cell "30/07/2026, 01:29:57" [ref=f3e164]
+              - cell "kevin" [ref=f3e165]
+              - cell "keize" [ref=f3e166]
+              - cell "Cabelo" [ref=f3e167]
+              - cell "Concluído" [ref=f3e168]
+              - cell [ref=f3e171]
+            - row [ref=f3e172]:
+              - cell "30/07/2026, 01:25:59" [ref=f3e173]
+              - cell "kevin" [ref=f3e174]
+              - cell "keize" [ref=f3e175]
+              - cell "Cabelo" [ref=f3e176]
+              - cell "Concluído Via agenda" [ref=f3e177]:
+                - generic [ref=f3e178]:
+                  - generic [ref=f3e179]: Concluído
+                  - generic [ref=f3e180]: Via agenda
+              - cell [ref=f3e181]
+            - row [ref=f3e182]:
+              - cell "29/07/2026, 23:19:44" [ref=f3e183]
+              - cell "kevin" [ref=f3e184]
+              - cell "keize" [ref=f3e185]
+              - cell "Cabelo" [ref=f3e186]
+              - cell "Concluído" [ref=f3e187]
+              - cell [ref=f3e190]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f3e196] [cursor=pointer]
