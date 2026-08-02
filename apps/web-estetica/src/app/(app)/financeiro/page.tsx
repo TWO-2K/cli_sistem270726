@@ -7,7 +7,6 @@ import type {
   Paciente,
   Parcela,
   Despesa,
-  ComissaoLancada,
 } from "@/lib/types/db";
 import { Badge } from "@empresa/ui/components/badge";
 import {
@@ -26,6 +25,7 @@ import { MarcarParcelaPagaButton } from "./marcar-parcela-paga-button";
 import { NovaDespesaDialog } from "./nova-despesa-dialog";
 import { MarcarDespesaPagaButton } from "./marcar-despesa-paga-button";
 import { ComissoesTabContent } from "./comissoes-tab-content";
+import type { ComissaoLancadaComNomes, ComissaoRepasseComNome } from "./comissoes-types";
 import { ExportarComandasButton } from "./exportar-comandas-button";
 
 type ParcelaComPaciente = Parcela & {
@@ -36,11 +36,6 @@ type ParcelaComPaciente = Parcela & {
       pacientes: { nome: string } | null;
     } | null;
   } | null;
-};
-
-type ComissaoLancadaComNomes = ComissaoLancada & {
-  usuarios: { nome: string } | null;
-  comandas: { pacientes: { nome: string } | null } | null;
 };
 
 function formatBRL(value: number) {
@@ -64,6 +59,7 @@ export default async function FinanceiroPage() {
     { data: comandasFechadas30d },
     { data: despesas },
     { data: comissoesLancadas },
+    { data: comissoesRepasses },
   ] = await Promise.all([
     supabase
       .from("comandas")
@@ -100,6 +96,11 @@ export default async function FinanceiroPage() {
       .select("*, usuarios(nome), comandas(pacientes(nome))")
       .order("criado_em", { ascending: false })
       .returns<ComissaoLancadaComNomes[]>(),
+    supabase
+      .from("comissoes_repasses")
+      .select("*, usuarios(nome)")
+      .order("competencia", { ascending: false })
+      .returns<ComissaoRepasseComNome[]>(),
   ]);
 
   const pacientesMap = new Map((pacientes ?? []).map((p) => [p.id, p]));
@@ -160,11 +161,8 @@ export default async function FinanceiroPage() {
     0,
   );
 
-  const inicioMes = hoje.slice(0, 7);
   const comissoes = comissoesLancadas ?? [];
-  const totalComissoesMes = comissoes
-    .filter((c) => c.criado_em.slice(0, 7) === inicioMes)
-    .reduce((sum, c) => sum + Number(c.valor_comissao), 0);
+  const repasses = comissoesRepasses ?? [];
 
   const linhasComandasCsv = (comandas ?? []).map((c) => ({
     data: new Date(c.criado_em).toLocaleDateString("pt-BR"),
@@ -477,7 +475,7 @@ export default async function FinanceiroPage() {
         </TabsContent>
 
         <TabsContent value="comissoes">
-          <ComissoesTabContent comissoes={comissoes} totalMes={totalComissoesMes} />
+          <ComissoesTabContent repasses={repasses} lancamentos={comissoes} />
         </TabsContent>
 
         <TabsContent value="caixa">

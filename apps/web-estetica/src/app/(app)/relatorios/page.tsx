@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@empresa/supabase/server";
+import { requireUsuarioEmpresa } from "@/lib/current-empresa";
 import type { Empresa, Usuario } from "@/lib/types/db";
 import {
   Card,
@@ -27,6 +28,7 @@ function diaLocal(iso: string) {
 }
 
 export default async function RelatoriosPage() {
+  await requireUsuarioEmpresa(["admin", "financeiro"]);
   const supabase = await createClient();
 
   const start30d = new Date();

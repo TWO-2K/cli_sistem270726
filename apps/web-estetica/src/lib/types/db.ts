@@ -303,5 +303,27 @@ export interface ComissaoLancada {
   valor_base: number;
   valor_comissao: number;
   status: StatusPagamento;
+  repasse_id: string | null;
+  criado_em: string;
+}
+
+export const FORMAS_REPASSE = [
+  "Pix",
+  "Transferência bancária",
+  "Dinheiro",
+  "Incluso na folha",
+] as const;
+
+export type FormaRepasse = (typeof FORMAS_REPASSE)[number];
+
+export interface ComissaoRepasse {
+  id: string;
+  empresa_id: string;
+  usuario_id: string;
+  competencia: string;
+  valor_total: number;
+  status: StatusPagamento;
+  forma_pagamento: string | null;
+  pago_em: string | null;
   criado_em: string;
 }

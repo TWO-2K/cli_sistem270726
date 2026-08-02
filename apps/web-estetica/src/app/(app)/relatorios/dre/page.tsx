@@ -1,4 +1,5 @@
 import { createClient } from "@empresa/supabase/server";
+import { requireUsuarioEmpresa } from "@/lib/current-empresa";
 import {
   Card,
   CardDescription,
@@ -24,6 +25,7 @@ function mesLocal(iso: string) {
 }
 
 export default async function DrePage() {
+  await requireUsuarioEmpresa(["admin", "financeiro"]);
   const supabase = await createClient();
 
   const [{ data: pagamentos }, { data: despesas }, { data: comissoes }] =

@@ -26,6 +26,7 @@ import {
   LogOut,
   Menu,
   Kanban,
+  Receipt,
 } from "lucide-react";
 
 const NAV_ITEMS: {
@@ -34,7 +35,7 @@ const NAV_ITEMS: {
   icon: typeof LayoutDashboard;
   perfis?: Perfil[];
 }[] = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/dashboard", label: "Painel", icon: LayoutDashboard },
   { href: "/agenda", label: "Agenda", icon: CalendarDays },
   { href: "/pacientes", label: "Pacientes", icon: Users },
   { href: "/atendimento", label: "Atendimento", icon: Stethoscope },
@@ -50,7 +51,18 @@ const NAV_ITEMS: {
     icon: Wallet,
     perfis: ["admin", "financeiro"],
   },
-  { href: "/relatorios", label: "Relatórios", icon: BarChart3 },
+  {
+    href: "/minhas-comissoes",
+    label: "Minhas comissões",
+    icon: Receipt,
+    perfis: ["profissional"],
+  },
+  {
+    href: "/relatorios",
+    label: "Relatórios",
+    icon: BarChart3,
+    perfis: ["admin", "financeiro"],
+  },
   {
     href: "/configuracoes",
     label: "Configurações",
