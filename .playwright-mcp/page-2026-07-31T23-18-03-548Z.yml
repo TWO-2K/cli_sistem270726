@@ -1,0 +1,92 @@
+- generic [active] [ref=f9e1]:
+  - generic [ref=f9e2]:
+    - complementary [ref=f9e3]:
+      - generic [ref=f9e4]: Estetica - Tua Cara
+      - navigation [ref=f9e11]:
+        - link "Dashboard" [ref=f9e12] [cursor=pointer]:
+          - /url: /dashboard
+        - link "Agenda" [ref=f9e18] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f9e21] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f9e27] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f9e32] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f9e34] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f9e38] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f9e41] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f9e45]:
+        - generic [ref=f9e46]: TC
+        - generic [ref=f9e48]:
+          - generic [ref=f9e49]: Tua cara
+          - generic [ref=f9e50]: Administrador
+        - button "Sair" [ref=f9e51]
+    - main [ref=f9e52]:
+      - generic [ref=f9e54]:
+        - generic [ref=f9e55]:
+          - heading "Funil de leads" [level=1] [ref=f9e56]
+          - paragraph [ref=f9e57]: Acompanhe contatos captados até virarem pacientes.
+        - generic [ref=f9e58]:
+          - generic [ref=f9e59]:
+            - tablist [ref=f9e61]:
+              - tab "Kanban" [selected] [ref=f9e62]
+              - tab "Lista" [ref=f9e63]
+            - generic [ref=f9e64]:
+              - combobox [ref=f9e65]:
+                - generic [ref=f9e66]: todos
+                - img: ▼
+              - textbox [ref=f9e67]: todos
+              - button "+ Novo lead" [ref=f9e68]
+          - generic [ref=f9e69]:
+            - generic [ref=f9e70]:
+              - generic [ref=f9e71]:
+                - generic [ref=f9e72]: Novo
+                - generic [ref=f9e74]: "2"
+              - generic [ref=f9e75]:
+                - generic [ref=f9e76]:
+                  - generic [ref=f9e77]:
+                    - paragraph [ref=f9e78]: testelead03
+                    - button "Ações" [ref=f9e79]
+                  - paragraph [ref=f9e81]: "91983927901"
+                  - generic [ref=f9e82]:
+                    - generic [ref=f9e83]: instagram
+                    - generic [ref=f9e84]:
+                      - generic [ref=f9e85]: hoje
+                      - generic "keize" [ref=f9e86]: K
+                - generic [ref=f9e87]:
+                  - generic [ref=f9e88]:
+                    - paragraph [ref=f9e89]: testeclientelead
+                    - button "Ações" [ref=f9e90]
+                  - paragraph [ref=f9e92]: "91983927903"
+                  - generic [ref=f9e93]: hoje
+            - generic [ref=f9e96]:
+              - generic [ref=f9e97]:
+                - generic [ref=f9e98]: Contatado
+                - generic [ref=f9e100]: "0"
+              - generic [ref=f9e101]: Arraste um lead aqui
+            - generic [ref=f9e103]:
+              - generic [ref=f9e104]:
+                - generic [ref=f9e105]: Agendou
+                - generic [ref=f9e107]: "0"
+              - generic [ref=f9e108]: Arraste um lead aqui
+            - generic [ref=f9e110]:
+              - generic [ref=f9e111]:
+                - generic [ref=f9e112]: Convertido
+                - generic [ref=f9e114]: "0"
+              - generic [ref=f9e115]: Arraste um lead aqui
+            - generic [ref=f9e117]:
+              - generic [ref=f9e118]:
+                - generic [ref=f9e119]: Perdido
+                - generic [ref=f9e121]: "1"
+              - generic [ref=f9e123]:
+                - generic [ref=f9e124]:
+                  - paragraph [ref=f9e125]: testeclientelead-02
+                  - button "Ações" [ref=f9e126]
+                - paragraph [ref=f9e128]: "91983927902"
+                - generic [ref=f9e129]: hoje
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f9e137] [cursor=pointer]

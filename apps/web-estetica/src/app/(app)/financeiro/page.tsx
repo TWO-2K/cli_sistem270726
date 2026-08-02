@@ -1,6 +1,14 @@
 import { createClient } from "@empresa/supabase/server";
 import { requireUsuarioEmpresa } from "@/lib/current-empresa";
-import type { Comanda, ComandaItem, Pagamento, Paciente, Parcela } from "@/lib/types/db";
+import type {
+  Comanda,
+  ComandaItem,
+  Pagamento,
+  Paciente,
+  Parcela,
+  Despesa,
+  ComissaoLancada,
+} from "@/lib/types/db";
 import { Badge } from "@empresa/ui/components/badge";
 import {
   Table,
@@ -15,6 +23,10 @@ import { RegistrarPagamentoDialog } from "./registrar-pagamento-dialog";
 import { ComandaDetailDialog } from "./comanda-detail-dialog";
 import { ReciboDialog } from "./recibo-dialog";
 import { MarcarParcelaPagaButton } from "./marcar-parcela-paga-button";
+import { NovaDespesaDialog } from "./nova-despesa-dialog";
+import { MarcarDespesaPagaButton } from "./marcar-despesa-paga-button";
+import { ComissoesTabContent } from "./comissoes-tab-content";
+import { ExportarComandasButton } from "./exportar-comandas-button";
 
 type ParcelaComPaciente = Parcela & {
   pagamentos: {
@@ -24,6 +36,11 @@ type ParcelaComPaciente = Parcela & {
       pacientes: { nome: string } | null;
     } | null;
   } | null;
+};
+
+type ComissaoLancadaComNomes = ComissaoLancada & {
+  usuarios: { nome: string } | null;
+  comandas: { pacientes: { nome: string } | null } | null;
 };
 
 function formatBRL(value: number) {
@@ -45,6 +62,8 @@ export default async function FinanceiroPage() {
     { data: pagamentos },
     { data: parcelas },
     { data: comandasFechadas30d },
+    { data: despesas },
+    { data: comissoesLancadas },
   ] = await Promise.all([
     supabase
       .from("comandas")
@@ -71,6 +90,16 @@ export default async function FinanceiroPage() {
       .gte("criado_em", start30dISO)
       .order("criado_em", { ascending: false })
       .returns<Comanda[]>(),
+    supabase
+      .from("despesas")
+      .select("*")
+      .order("vencimento", { ascending: true })
+      .returns<Despesa[]>(),
+    supabase
+      .from("comissoes_lancadas")
+      .select("*, usuarios(nome), comandas(pacientes(nome))")
+      .order("criado_em", { ascending: false })
+      .returns<ComissaoLancadaComNomes[]>(),
   ]);
 
   const pacientesMap = new Map((pacientes ?? []).map((p) => [p.id, p]));
@@ -116,16 +145,47 @@ export default async function FinanceiroPage() {
     0,
   );
 
+  const despesasPendentes = (despesas ?? []).filter(
+    (d) => d.status === "pendente",
+  );
+  const totalDespesasPendentes = despesasPendentes.reduce(
+    (sum, d) => sum + Number(d.valor),
+    0,
+  );
+  const despesasVencidas = despesasPendentes.filter(
+    (d) => d.vencimento < hoje,
+  );
+  const totalDespesasVencidas = despesasVencidas.reduce(
+    (sum, d) => sum + Number(d.valor),
+    0,
+  );
+
+  const inicioMes = hoje.slice(0, 7);
+  const comissoes = comissoesLancadas ?? [];
+  const totalComissoesMes = comissoes
+    .filter((c) => c.criado_em.slice(0, 7) === inicioMes)
+    .reduce((sum, c) => sum + Number(c.valor_comissao), 0);
+
+  const linhasComandasCsv = (comandas ?? []).map((c) => ({
+    data: new Date(c.criado_em).toLocaleDateString("pt-BR"),
+    paciente: pacientesMap.get(c.paciente_id)?.nome ?? "—",
+    total: Number(c.total),
+    status: c.status === "aberta" ? "Em aberto" : "Fechada",
+  }));
+
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Financeiro</h1>
-        <p className="text-muted-foreground">
-          Comandas, pagamentos e contas a receber.
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Financeiro</h1>
+          <p className="text-muted-foreground">
+            Comandas, pagamentos e contas a receber.
+          </p>
+        </div>
+        <ExportarComandasButton linhas={linhasComandasCsv} />
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         <div className="rounded-lg border bg-card p-4">
           <p className="text-sm text-muted-foreground">
             Total a receber (comandas em aberto)
@@ -146,12 +206,26 @@ export default async function FinanceiroPage() {
           </p>
           <p className="text-2xl font-semibold">{formatBRL(totalRecebido)}</p>
         </div>
+        <div className="rounded-lg border bg-card p-4">
+          <p className="text-sm text-muted-foreground">Total a pagar</p>
+          <p className="text-2xl font-semibold">
+            {formatBRL(totalDespesasPendentes)}
+          </p>
+        </div>
+        <div className="rounded-lg border bg-card p-4">
+          <p className="text-sm text-muted-foreground">Despesas vencidas</p>
+          <p className="text-2xl font-semibold">
+            {formatBRL(totalDespesasVencidas)}
+          </p>
+        </div>
       </div>
 
       <Tabs defaultValue="comandas">
         <TabsList>
           <TabsTrigger value="comandas">Comandas</TabsTrigger>
           <TabsTrigger value="receber">Contas a receber</TabsTrigger>
+          <TabsTrigger value="despesas">Despesas</TabsTrigger>
+          <TabsTrigger value="comissoes">Comissões</TabsTrigger>
           <TabsTrigger value="caixa">Fluxo de caixa</TabsTrigger>
         </TabsList>
 
@@ -330,6 +404,80 @@ export default async function FinanceiroPage() {
               </TableBody>
             </Table>
           </div>
+        </TabsContent>
+
+        <TabsContent value="despesas">
+          <div className="flex flex-col gap-3">
+            <div className="flex justify-end">
+              <NovaDespesaDialog />
+            </div>
+            <div className="overflow-x-auto rounded-lg border bg-card">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Descrição</TableHead>
+                    <TableHead>Categoria</TableHead>
+                    <TableHead>Fornecedor</TableHead>
+                    <TableHead>Vencimento</TableHead>
+                    <TableHead>Valor</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead className="text-right">Ação</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {(despesas ?? []).map((d) => (
+                    <TableRow key={d.id}>
+                      <TableCell className="font-medium">
+                        {d.descricao}
+                      </TableCell>
+                      <TableCell>{d.categoria}</TableCell>
+                      <TableCell>{d.fornecedor ?? "—"}</TableCell>
+                      <TableCell>
+                        {d.vencimento.split("-").reverse().join("/")}
+                      </TableCell>
+                      <TableCell>{formatBRL(Number(d.valor))}</TableCell>
+                      <TableCell>
+                        <Badge
+                          variant={
+                            d.status === "pago"
+                              ? "outline"
+                              : d.vencimento < hoje
+                                ? "destructive"
+                                : "secondary"
+                          }
+                        >
+                          {d.status === "pago"
+                            ? "Pago"
+                            : d.vencimento < hoje
+                              ? "Atrasada"
+                              : "Pendente"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        {d.status === "pendente" && (
+                          <MarcarDespesaPagaButton despesaId={d.id} />
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {(despesas ?? []).length === 0 && (
+                    <TableRow>
+                      <TableCell
+                        colSpan={7}
+                        className="py-8 text-center text-muted-foreground"
+                      >
+                        Nenhuma despesa cadastrada ainda.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="comissoes">
+          <ComissoesTabContent comissoes={comissoes} totalMes={totalComissoesMes} />
         </TabsContent>
 
         <TabsContent value="caixa">

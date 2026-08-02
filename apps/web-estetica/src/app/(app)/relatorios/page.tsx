@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { createClient } from "@empresa/supabase/server";
 import type { Empresa, Usuario } from "@/lib/types/db";
 import {
@@ -14,6 +15,8 @@ import {
   TableHeader,
   TableRow,
 } from "@empresa/ui/components/table";
+import { Button } from "@empresa/ui/components/button";
+import { ExportarRelatorioButton } from "./exportar-relatorio-button";
 
 function formatBRL(value: number) {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -161,13 +164,32 @@ export default async function RelatoriosPage() {
     },
   ];
 
+  const linhasRelatorioCsv = dias.map((dia) => ({
+    dia: dia.split("-").reverse().join("/"),
+    atendimentos: atendimentosPorDia.get(dia) ?? 0,
+    faturamento: faturamentoPorDia.get(dia) ?? 0,
+  }));
+
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Relatórios</h1>
-        <p className="text-muted-foreground">
-          Visão consolidada dos últimos 30 dias.
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Relatórios</h1>
+          <p className="text-muted-foreground">
+            Visão consolidada dos últimos 30 dias.
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            nativeButton={false}
+            render={<Link href="/relatorios/dre" />}
+          >
+            Ver DRE completo
+          </Button>
+          <ExportarRelatorioButton linhas={linhasRelatorioCsv} />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">

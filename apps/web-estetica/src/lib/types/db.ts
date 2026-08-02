@@ -203,3 +203,105 @@ export interface PlanoTratamentoEtapa {
   atendimento_id: string | null;
   criado_em: string;
 }
+
+export type EstagioLead =
+  | "novo"
+  | "contatado"
+  | "agendou"
+  | "convertido"
+  | "perdido";
+
+export const ESTAGIOS_LEAD: EstagioLead[] = [
+  "novo",
+  "contatado",
+  "agendou",
+  "convertido",
+  "perdido",
+];
+
+export const ESTAGIO_LEAD_LABELS: Record<EstagioLead, string> = {
+  novo: "Novo",
+  contatado: "Contatado",
+  agendou: "Agendou",
+  convertido: "Convertido",
+  perdido: "Perdido",
+};
+
+export interface Lead {
+  id: string;
+  empresa_id: string;
+  nome: string;
+  contato: string;
+  origem: string | null;
+  estagio: EstagioLead;
+  responsavel_id: string | null;
+  paciente_id: string | null;
+  motivo_perda: string | null;
+  observacoes: string | null;
+  criado_em: string;
+  atualizado_em: string;
+}
+
+export const CATEGORIAS_DESPESA = [
+  "Aluguel",
+  "Folha de pagamento",
+  "Fornecedores",
+  "Marketing",
+  "Manutenção",
+  "Impostos",
+  "Outros",
+] as const;
+
+export type CategoriaDespesa = (typeof CATEGORIAS_DESPESA)[number];
+
+export interface Despesa {
+  id: string;
+  empresa_id: string;
+  descricao: string;
+  categoria: string;
+  valor: number;
+  vencimento: string;
+  status: StatusPagamento;
+  pago_em: string | null;
+  fornecedor: string | null;
+  recorrente: boolean;
+  criado_em: string;
+}
+
+export interface ComissaoProfissional {
+  id: string;
+  empresa_id: string;
+  usuario_id: string;
+  percentual: number;
+  criado_em: string;
+}
+
+export interface ComissaoProcedimento {
+  id: string;
+  empresa_id: string;
+  procedimento_id: string;
+  percentual: number;
+  criado_em: string;
+}
+
+export interface ComissaoProfissionalProcedimento {
+  id: string;
+  empresa_id: string;
+  usuario_id: string;
+  procedimento_id: string;
+  percentual: number;
+  criado_em: string;
+}
+
+export interface ComissaoLancada {
+  id: string;
+  empresa_id: string;
+  pagamento_id: string;
+  usuario_id: string;
+  comanda_id: string;
+  percentual_aplicado: number;
+  valor_base: number;
+  valor_comissao: number;
+  status: StatusPagamento;
+  criado_em: string;
+}

@@ -25,6 +25,7 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  Kanban,
 } from "lucide-react";
 
 const NAV_ITEMS: {
@@ -37,6 +38,12 @@ const NAV_ITEMS: {
   { href: "/agenda", label: "Agenda", icon: CalendarDays },
   { href: "/pacientes", label: "Pacientes", icon: Users },
   { href: "/atendimento", label: "Atendimento", icon: Stethoscope },
+  {
+    href: "/leads",
+    label: "Funil de leads",
+    icon: Kanban,
+    perfis: ["admin", "recepcao", "financeiro"],
+  },
   {
     href: "/financeiro",
     label: "Financeiro",
