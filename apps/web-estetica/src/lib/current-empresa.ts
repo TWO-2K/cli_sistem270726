@@ -9,7 +9,7 @@ export function requireUsuarioEmpresa(perfisPermitidos?: Perfil[]) {
       login: "/login",
       superAdmin: ADMIN_URL,
       mustChangePassword: "/mudar-senha",
-      forbidden: "/dashboard",
+      forbidden: "/painel",
     },
     perfisPermitidos,
     "estetica",

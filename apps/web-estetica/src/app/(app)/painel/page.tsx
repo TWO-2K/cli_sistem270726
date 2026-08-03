@@ -82,6 +82,9 @@ export default async function DashboardPage() {
   const start30d = new Date();
   start30d.setDate(start30d.getDate() - 30);
 
+  const em7dias = new Date();
+  em7dias.setDate(em7dias.getDate() + 7);
+
   const [
     { data: agendamentosHoje },
     { count: atendimentoAbertoCount },
@@ -92,6 +95,9 @@ export default async function DashboardPage() {
     { data: pagamentosMes },
     { count: leadsParadosCount },
     { count: cancelamentosCount },
+    { data: comissoesMes },
+    { data: despesasPagasMes },
+    { data: comissoesPendentesTotal },
   ] = await Promise.all([
     veAgendaHoje
       ? (() => {
@@ -156,6 +162,26 @@ export default async function DashboardPage() {
           .in("status", ["cancelado", "faltou"])
           .gte("data_hora", start30d.toISOString())
       : Promise.resolve({ count: null }),
+    veFinanceiro
+      ? supabase
+          .from("comissoes_lancadas")
+          .select("valor_comissao")
+          .gte("criado_em", startOfMonth.toISOString())
+      : Promise.resolve({ data: null }),
+    veFinanceiro
+      ? supabase
+          .from("despesas")
+          .select("valor")
+          .not("pago_em", "is", null)
+          .gte("pago_em", startOfMonth.toISOString())
+      : Promise.resolve({ data: null }),
+    veFinanceiro
+      ? supabase
+          .from("comissoes_lancadas")
+          .select("valor_comissao")
+          .eq("status", "pendente")
+          .is("repasse_id", null)
+      : Promise.resolve({ data: null }),
   ]);
 
   const hoje = new Date().toISOString().slice(0, 10);
@@ -173,6 +199,15 @@ export default async function DashboardPage() {
     0,
   );
 
+  const em7diasStr = em7dias.toISOString().slice(0, 10);
+  const parcelasAVencer = (parcelasPendentes ?? []).filter(
+    (p) => p.vencimento >= hoje && p.vencimento <= em7diasStr,
+  );
+  const totalParcelasAVencer = parcelasAVencer.reduce(
+    (sum, p) => sum + Number(p.valor),
+    0,
+  );
+
   const despesasVencidas = (despesasPendentes ?? []).filter(
     (d) => d.vencimento < hoje,
   );
@@ -183,6 +218,20 @@ export default async function DashboardPage() {
 
   const faturamentoMes = (pagamentosMes ?? []).reduce(
     (sum, p) => sum + Number(p.valor),
+    0,
+  );
+  const comissoesMesTotal = (comissoesMes ?? []).reduce(
+    (sum, c) => sum + Number(c.valor_comissao),
+    0,
+  );
+  const despesasPagasMesTotal = (despesasPagasMes ?? []).reduce(
+    (sum, d) => sum + Number(d.valor),
+    0,
+  );
+  const resultadoMes = faturamentoMes - comissoesMesTotal - despesasPagasMesTotal;
+
+  const comissoesPendentesTotalValor = (comissoesPendentesTotal ?? []).reduce(
+    (sum, c) => sum + Number(c.valor_comissao),
     0,
   );
 
@@ -284,6 +333,16 @@ export default async function DashboardPage() {
           <Link href="/financeiro">
             <Card className="h-full hover:bg-accent">
               <CardHeader>
+                <CardDescription>Parcelas a vencer (7 dias)</CardDescription>
+                <CardTitle className="text-2xl">
+                  {formatBRL(totalParcelasAVencer)}
+                </CardTitle>
+              </CardHeader>
+            </Card>
+          </Link>
+          <Link href="/financeiro">
+            <Card className="h-full hover:bg-accent">
+              <CardHeader>
                 <CardDescription>Despesas vencidas</CardDescription>
                 <CardTitle className="text-2xl">
                   {formatBRL(totalDespesasVencidas)}
@@ -303,11 +362,21 @@ export default async function DashboardPage() {
               </CardHeader>
             </Card>
           </Link>
+          <Link href="/financeiro">
+            <Card className="h-full hover:bg-accent">
+              <CardHeader>
+                <CardDescription>Comissões pendentes de repasse</CardDescription>
+                <CardTitle className="text-2xl">
+                  {formatBRL(comissoesPendentesTotalValor)}
+                </CardTitle>
+              </CardHeader>
+            </Card>
+          </Link>
           <Card className="h-full">
             <CardHeader>
-              <CardDescription>Faturamento do mês</CardDescription>
+              <CardDescription>Resultado do mês</CardDescription>
               <CardTitle className="text-2xl">
-                {formatBRL(faturamentoMes)}
+                {formatBRL(resultadoMes)}
               </CardTitle>
             </CardHeader>
           </Card>

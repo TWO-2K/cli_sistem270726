@@ -8,6 +8,7 @@ import type {
   AnamneseEstetica,
   AnamneseEsteticaContraindicacao,
   Atendimento,
+  Comanda,
   Evolucao,
   FotoAtendimento,
   PacoteSessao,
@@ -22,6 +23,7 @@ import {
   Card,
   CardHeader,
   CardTitle,
+  CardDescription,
   CardContent,
 } from "@empresa/ui/components/card";
 import { Badge } from "@empresa/ui/components/badge";
@@ -37,6 +39,10 @@ import { FotosComparador } from "./fotos-comparador";
 import { VenderPacoteDialog } from "./vender-pacote-dialog";
 import { PlanoTratamentoDialog } from "./plano-tratamento-dialog";
 import { PlanosTratamentoLista } from "./planos-tratamento-lista";
+
+function formatBRL(value: number) {
+  return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
 
 const CAMPOS_ANAMNESE: { chave: keyof Anamnese["respostas"]; label: string }[] = [
   { chave: "queixa_principal", label: "Queixa principal" },
@@ -74,6 +80,7 @@ export default async function PacienteDetailPage({
     { data: procedimentos },
     { data: pacotesSessao },
     { data: planosTratamento },
+    { data: comandas },
   ] = await Promise.all([
     supabase
       .from("agendamentos")
@@ -122,6 +129,11 @@ export default async function PacienteDetailPage({
       .eq("paciente_id", id)
       .order("criado_em", { ascending: false })
       .returns<PlanoTratamento[]>(),
+    supabase
+      .from("comandas")
+      .select("*")
+      .eq("paciente_id", id)
+      .returns<Comanda[]>(),
   ]);
 
   const planoIds = (planosTratamento ?? []).map((p) => p.id);
@@ -226,6 +238,38 @@ export default async function PacienteDetailPage({
     : undefined;
   const anamneseRecente = (anamneses ?? [])[0];
 
+  const totalInvestido = (comandas ?? [])
+    .filter((c) => c.status === "fechada")
+    .reduce((soma, c) => soma + c.total, 0);
+
+  const proximoAgendamento = (agendamentos ?? [])
+    .filter(
+      (a) =>
+        (a.status === "agendado" || a.status === "confirmado") &&
+        new Date(a.data_hora).getTime() >= agora,
+    )
+    .sort((a, b) => new Date(a.data_hora).getTime() - new Date(b.data_hora).getTime())[0];
+
+  const pacotesAtivos = (pacotesSessao ?? []).filter(
+    (p) => p.sessoes_utilizadas < p.sessoes_total,
+  );
+  const sessoesRestantes = pacotesAtivos.reduce(
+    (soma, p) => soma + (p.sessoes_total - p.sessoes_utilizadas),
+    0,
+  );
+
+  const planoAtivo = (planosTratamento ?? []).find((p) => p.status === "ativo");
+  const etapasDoPlanoAtivo = planoAtivo
+    ? (etapasPlanoTratamento ?? []).filter((e) => e.plano_id === planoAtivo.id)
+    : [];
+  const etapasConcluidasDoPlanoAtivo = etapasDoPlanoAtivo.filter(
+    (e) => e.status === "concluida",
+  ).length;
+
+  const contraindicacoesRecentes = anamneseRecente
+    ? (contraindicacoesPorAnamneseId.get(anamneseRecente.id) ?? [])
+    : [];
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -305,6 +349,58 @@ export default async function PacienteDetailPage({
         </TabsList>
 
         <TabsContent value="visao-geral" className="flex flex-col gap-4 pt-4">
+          {contraindicacoesRecentes.length > 0 && (
+            <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm font-medium text-destructive">
+              Contraindicado para: {contraindicacoesRecentes.join(", ")}
+            </p>
+          )}
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Card>
+              <CardHeader>
+                <CardDescription>Total investido</CardDescription>
+                <CardTitle className="text-2xl">{formatBRL(totalInvestido)}</CardTitle>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardDescription>Próximo agendamento</CardDescription>
+                <CardTitle className="text-2xl">
+                  {proximoAgendamento
+                    ? new Date(proximoAgendamento.data_hora).toLocaleDateString("pt-BR")
+                    : "—"}
+                </CardTitle>
+                {!proximoAgendamento && (
+                  <p className="text-sm text-muted-foreground">Nenhum agendado</p>
+                )}
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardDescription>Pacotes ativos</CardDescription>
+                <CardTitle className="text-2xl">{pacotesAtivos.length}</CardTitle>
+                {pacotesAtivos.length > 0 && (
+                  <p className="text-sm text-muted-foreground">
+                    {sessoesRestantes} sessões restantes
+                  </p>
+                )}
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardDescription>Plano de tratamento</CardDescription>
+                <CardTitle className="text-2xl">
+                  {planoAtivo
+                    ? `${etapasConcluidasDoPlanoAtivo}/${etapasDoPlanoAtivo.length}`
+                    : "—"}
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  {planoAtivo ? "etapas concluídas" : "Nenhum plano ativo"}
+                </p>
+              </CardHeader>
+            </Card>
+          </div>
+
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="text-base">Prontuário</CardTitle>

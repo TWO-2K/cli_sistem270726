@@ -25,7 +25,7 @@ export default async function RedefinirSenhaPage() {
   return (
     <div className="flex min-h-full flex-1 items-center justify-center bg-muted/40 p-4">
       <MudarSenhaForm
-        destino={usuario.perfil === "super_admin" ? "/admin" : "/dashboard"}
+        destino={usuario.perfil === "super_admin" ? "/admin" : "/painel"}
         titulo="Redefinir senha"
         descricao="Escolha uma nova senha para sua conta."
       />

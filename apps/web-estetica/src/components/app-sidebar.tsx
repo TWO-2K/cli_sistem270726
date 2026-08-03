@@ -35,7 +35,7 @@ const NAV_ITEMS: {
   icon: typeof LayoutDashboard;
   perfis?: Perfil[];
 }[] = [
-  { href: "/dashboard", label: "Painel", icon: LayoutDashboard },
+  { href: "/painel", label: "Painel", icon: LayoutDashboard },
   { href: "/agenda", label: "Agenda", icon: CalendarDays },
   { href: "/pacientes", label: "Pacientes", icon: Users },
   { href: "/atendimento", label: "Atendimento", icon: Stethoscope },
