@@ -126,7 +126,9 @@ function PorProfissionalSection({
           <label className="text-sm font-medium">Profissional</label>
           <Select value={usuarioId} onValueChange={(v) => setUsuarioId(v ?? "")}>
             <SelectTrigger className="w-56">
-              <SelectValue />
+              <SelectValue placeholder="Selecione o profissional">
+                {(value: string) => nomeUsuario(profissionais, value)}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {profissionais.map((p) => (
@@ -259,7 +261,9 @@ function PorProcedimentoSection({
             onValueChange={(v) => setProcedimentoId(v ?? "")}
           >
             <SelectTrigger className="w-56">
-              <SelectValue />
+              <SelectValue placeholder="Selecione o procedimento">
+                {(value: string) => nomeProcedimento(procedimentos, value)}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {procedimentos.map((p) => (
@@ -402,7 +406,9 @@ function CombinadaSection({
           <label className="text-sm font-medium">Profissional</label>
           <Select value={usuarioId} onValueChange={(v) => setUsuarioId(v ?? "")}>
             <SelectTrigger className="w-56">
-              <SelectValue />
+              <SelectValue placeholder="Selecione o profissional">
+                {(value: string) => nomeUsuario(profissionais, value)}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {profissionais.map((p) => (
@@ -420,7 +426,9 @@ function CombinadaSection({
             onValueChange={(v) => setProcedimentoId(v ?? "")}
           >
             <SelectTrigger className="w-56">
-              <SelectValue />
+              <SelectValue placeholder="Selecione o procedimento">
+                {(value: string) => nomeProcedimento(procedimentos, value)}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {procedimentos.map((p) => (

@@ -50,6 +50,13 @@ export async function POST(
 
   // Ordem respeita FKs internas entre tabelas de negócio (filhas antes das mães).
   const tabelas: { schema?: "estetica"; nome: string }[] = [
+    { nome: "despesas" },
+    { nome: "leads" },
+    { nome: "comissoes_lancadas" },
+    { nome: "comissoes_repasses" },
+    { nome: "comissao_profissional_procedimento" },
+    { nome: "comissao_profissional" },
+    { nome: "comissao_procedimento" },
     { schema: "estetica", nome: "anamnese_estetica_contraindicacao" },
     { schema: "estetica", nome: "anamnese_estetica" },
     { nome: "pacote_sessao_consumos" },

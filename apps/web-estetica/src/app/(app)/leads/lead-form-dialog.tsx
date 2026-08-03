@@ -171,7 +171,12 @@ export function LeadFormDialog({
                 onValueChange={(v) => setResponsavelId(v ?? SEM_RESPONSAVEL)}
               >
                 <SelectTrigger id="lead-responsavel">
-                  <SelectValue />
+                  <SelectValue placeholder="Sem responsável">
+                    {(value: string) =>
+                      usuarios.find((u) => u.id === value)?.nome ??
+                      "Sem responsável"
+                    }
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value={SEM_RESPONSAVEL}>Sem responsável</SelectItem>

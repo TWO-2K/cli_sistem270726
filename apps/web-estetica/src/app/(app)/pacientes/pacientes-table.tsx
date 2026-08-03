@@ -199,17 +199,18 @@ export function PacientesTable({
               {filtrados.map((paciente) => {
                 const status = statusDoPaciente(paciente);
                 return (
-                  <TableRow key={paciente.id}>
+                  <TableRow
+                    key={paciente.id}
+                    onClick={() => router.push(`/pacientes/${paciente.id}`)}
+                    className="cursor-pointer"
+                  >
                     <TableCell>
-                      <Link
-                        href={`/pacientes/${paciente.id}`}
-                        className="flex items-center gap-3 font-medium hover:underline"
-                      >
+                      <span className="flex items-center gap-3 font-medium">
                         <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-400">
                           {iniciaisPaciente(paciente.nome)}
                         </span>
                         {paciente.nome}
-                      </Link>
+                      </span>
                     </TableCell>
                     <TableCell>
                       <div className="flex flex-col gap-1 text-sm text-muted-foreground">
@@ -245,7 +246,7 @@ export function PacientesTable({
                     <TableCell className="text-muted-foreground">
                       {new Date(paciente.criado_em).toLocaleDateString("pt-BR")}
                     </TableCell>
-                    <TableCell>
+                    <TableCell onClick={(e) => e.stopPropagation()}>
                       <div className="flex items-center justify-end gap-1">
                         <EditarPacienteDialog
                           paciente={paciente}

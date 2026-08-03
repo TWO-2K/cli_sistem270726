@@ -75,7 +75,12 @@ export function FecharComissaoMesDialog({
             <Label>Profissional</Label>
             <Select value={usuarioId} onValueChange={(v) => setUsuarioId(v ?? "")}>
               <SelectTrigger>
-                <SelectValue />
+                <SelectValue placeholder="Selecione o profissional">
+                  {(value: string) =>
+                    profissionais.find((p) => p.id === value)?.nome ??
+                    "Selecione o profissional"
+                  }
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {profissionais.map((p) => (
