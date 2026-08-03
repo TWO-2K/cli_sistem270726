@@ -30,10 +30,13 @@ import {
   DIAS_SEMANA,
   HORA_ALTURA_PX,
   MIN_COL_PX,
+  componentesEmSaoPaulo,
   corDoProfissional,
+  diaDaSemanaEmSaoPaulo,
   ehMesmoDia,
   horarioDoDia,
   horaDentroDoExpediente,
+  instanteSaoPaulo,
   layoutEventosDoDia,
   limitesGrid,
   periodoDentroDoExpediente,
@@ -110,7 +113,8 @@ export function AgendaGrid({
   const alturaTotal = horas.length * HORA_ALTURA_PX;
 
   const minutosGridInicio = gridInicioHora * 60;
-  const minutosAgora = agora.getHours() * 60 + agora.getMinutes();
+  const agoraSP = componentesEmSaoPaulo(agora);
+  const minutosAgora = agoraSP.hora * 60 + agoraSP.minuto;
   const mostrarLinhaAgora =
     minutosAgora >= minutosGridInicio &&
     minutosAgora <= gridFimHora * 60;
@@ -137,9 +141,8 @@ export function AgendaGrid({
   }, [agendamentos, dias, pendingMoves]);
 
   function abrirNovoAgendamento(dia: Date, hora: number) {
-    const data = new Date(dia);
-    data.setHours(hora, 0, 0, 0);
-    setSlotSelecionado(data);
+    const { ano, mes, dia: numDia } = componentesEmSaoPaulo(dia);
+    setSlotSelecionado(instanteSaoPaulo(ano, mes, numDia, hora, 0, 0, 0));
   }
 
   function calcularAlvo(
@@ -219,8 +222,16 @@ export function AgendaGrid({
       return;
     }
 
-    const novaData = new Date(dias[alvo.colIndex]);
-    novaData.setHours(0, alvo.minutosAbs, 0, 0);
+    const { ano, mes, dia: numDia } = componentesEmSaoPaulo(dias[alvo.colIndex]);
+    const novaData = instanteSaoPaulo(
+      ano,
+      mes,
+      numDia,
+      0,
+      alvo.minutosAbs,
+      0,
+      0,
+    );
 
     const dataOriginal = new Date(atual.agendamento.data_hora);
     if (novaData.getTime() === dataOriginal.getTime()) {
@@ -281,6 +292,8 @@ export function AgendaGrid({
           {dias.map((dia, i) => {
             const ehHoje = ehMesmoDia(dia, hoje);
             const diaFechado = !horarioDoDia(horarioFuncionamento, dia)?.ativo;
+            const { ano: anoDia, mes: mesDia, dia: numDia } =
+              componentesEmSaoPaulo(dia);
             return (
               <div
                 key={i}
@@ -290,7 +303,7 @@ export function AgendaGrid({
                 )}
               >
                 <span className="text-xs font-medium text-muted-foreground capitalize">
-                  {DIAS_SEMANA[dia.getDay()]}
+                  {DIAS_SEMANA[diaDaSemanaEmSaoPaulo(anoDia, mesDia, numDia)]}
                 </span>
                 <span
                   className={cn(
@@ -298,8 +311,8 @@ export function AgendaGrid({
                     ehHoje && "text-primary",
                   )}
                 >
-                  {String(dia.getDate()).padStart(2, "0")}/
-                  {String(dia.getMonth() + 1).padStart(2, "0")}
+                  {String(numDia).padStart(2, "0")}/
+                  {String(mesDia).padStart(2, "0")}
                 </span>
                 {diaFechado && (
                   <span className="text-[10px] uppercase text-muted-foreground/70">
@@ -389,9 +402,11 @@ export function AgendaGrid({
                   const largura = 100 / item.cols;
 
                   if (item.tipo === "resumo") {
-                    const inicioResumo = new Date(item.inicioMs);
+                    const inicioResumoSP = componentesEmSaoPaulo(
+                      new Date(item.inicioMs),
+                    );
                     const minutosInicio =
-                      inicioResumo.getHours() * 60 + inicioResumo.getMinutes();
+                      inicioResumoSP.hora * 60 + inicioResumoSP.minuto;
                     const top =
                       ((minutosInicio - minutosGridInicio) / 60) *
                       HORA_ALTURA_PX;
@@ -421,9 +436,10 @@ export function AgendaGrid({
                   }
 
                   const { agendamento, col, cols } = item;
-                  const inicio = new Date(agendamento.data_hora);
-                  const minutosInicio =
-                    inicio.getHours() * 60 + inicio.getMinutes();
+                  const inicioSP = componentesEmSaoPaulo(
+                    new Date(agendamento.data_hora),
+                  );
+                  const minutosInicio = inicioSP.hora * 60 + inicioSP.minuto;
                   const top =
                     ((minutosInicio - minutosGridInicio) / 60) *
                     HORA_ALTURA_PX;

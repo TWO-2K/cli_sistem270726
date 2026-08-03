@@ -15,58 +15,98 @@ export const GRID_END_HORA = 21;
 export const HORA_ALTURA_PX = 64;
 export const MIN_COL_PX = 120;
 
+// Brasil não observa horário de verão desde 2019; America/Sao_Paulo é sempre UTC-3.
+// Por isso o offset abaixo é fixo, sem precisar de Intl/tz database para converter.
+const OFFSET_MS_SAO_PAULO = 3 * 60 * 60 * 1000;
+
+// Extrai ano/mês/dia/hora/minuto de um instante como se estivessem em America/Sao_Paulo,
+// independente do fuso horário do processo (servidor ou navegador) que executa o código.
+export function componentesEmSaoPaulo(date: Date) {
+  const deslocado = new Date(date.getTime() - OFFSET_MS_SAO_PAULO);
+  return {
+    ano: deslocado.getUTCFullYear(),
+    mes: deslocado.getUTCMonth() + 1,
+    dia: deslocado.getUTCDate(),
+    hora: deslocado.getUTCHours(),
+    minuto: deslocado.getUTCMinutes(),
+  };
+}
+
+// Constrói o instante (UTC) correspondente a um horário de parede em America/Sao_Paulo.
+export function instanteSaoPaulo(
+  ano: number,
+  mes: number,
+  dia: number,
+  hora = 0,
+  minuto = 0,
+  segundo = 0,
+  ms = 0,
+) {
+  return new Date(
+    Date.UTC(ano, mes - 1, dia, hora, minuto, segundo, ms) + OFFSET_MS_SAO_PAULO,
+  );
+}
+
+export function diaDaSemanaEmSaoPaulo(ano: number, mes: number, dia: number) {
+  return new Date(Date.UTC(ano, mes - 1, dia)).getUTCDay();
+}
+
 export function parseDataParam(data: string | undefined) {
   if (data) {
     const [ano, mes, dia] = data.split("-").map(Number);
     if (ano && mes && dia) {
-      return new Date(ano, mes - 1, dia);
+      return instanteSaoPaulo(ano, mes, dia);
     }
   }
-  return new Date();
+  const agora = componentesEmSaoPaulo(new Date());
+  return instanteSaoPaulo(agora.ano, agora.mes, agora.dia);
 }
 
 export function formatDataParam(date: Date) {
-  const ano = date.getFullYear();
-  const mes = String(date.getMonth() + 1).padStart(2, "0");
-  const dia = String(date.getDate()).padStart(2, "0");
-  return `${ano}-${mes}-${dia}`;
+  const { ano, mes, dia } = componentesEmSaoPaulo(date);
+  return `${ano}-${String(mes).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
 }
 
 export function inicioDoDia(date: Date) {
-  const d = new Date(date);
-  d.setHours(0, 0, 0, 0);
-  return d;
+  const { ano, mes, dia } = componentesEmSaoPaulo(date);
+  return instanteSaoPaulo(ano, mes, dia, 0, 0, 0, 0);
 }
 
 export function fimDoDia(date: Date) {
-  const d = new Date(date);
-  d.setHours(23, 59, 59, 999);
-  return d;
+  const { ano, mes, dia } = componentesEmSaoPaulo(date);
+  return instanteSaoPaulo(ano, mes, dia, 23, 59, 59, 999);
 }
 
 export function inicioDaSemana(date: Date) {
-  const d = inicioDoDia(date);
-  d.setDate(d.getDate() - d.getDay());
-  return d;
-}
-
-export function addDias(date: Date, dias: number) {
-  const d = new Date(date);
-  d.setDate(d.getDate() + dias);
-  return d;
-}
-
-export function ehMesmoDia(a: Date, b: Date) {
-  return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
+  const { ano, mes, dia } = componentesEmSaoPaulo(date);
+  return addDias(
+    instanteSaoPaulo(ano, mes, dia),
+    -diaDaSemanaEmSaoPaulo(ano, mes, dia),
   );
 }
 
+export function addDias(date: Date, dias: number) {
+  const { ano, mes, dia } = componentesEmSaoPaulo(date);
+  const base = new Date(Date.UTC(ano, mes - 1, dia));
+  base.setUTCDate(base.getUTCDate() + dias);
+  return instanteSaoPaulo(
+    base.getUTCFullYear(),
+    base.getUTCMonth() + 1,
+    base.getUTCDate(),
+  );
+}
+
+export function ehMesmoDia(a: Date, b: Date) {
+  const ca = componentesEmSaoPaulo(a);
+  const cb = componentesEmSaoPaulo(b);
+  return ca.ano === cb.ano && ca.mes === cb.mes && ca.dia === cb.dia;
+}
+
 export function formatRangeLabel(view: "semana" | "dia", ref: Date) {
+  const TIMEZONE = "America/Sao_Paulo";
   if (view === "dia") {
     return ref.toLocaleDateString("pt-BR", {
+      timeZone: TIMEZONE,
       weekday: "long",
       day: "2-digit",
       month: "long",
@@ -74,12 +114,20 @@ export function formatRangeLabel(view: "semana" | "dia", ref: Date) {
   }
   const inicio = inicioDaSemana(ref);
   const fim = addDias(inicio, 6);
-  const inicioMes = inicio.toLocaleDateString("pt-BR", { month: "long" });
-  const fimMes = fim.toLocaleDateString("pt-BR", { month: "long" });
-  if (inicio.getMonth() === fim.getMonth()) {
-    return `${inicio.getDate()} – ${fim.getDate()} de ${fimMes}`;
+  const { mes: mesInicio, dia: diaInicio } = componentesEmSaoPaulo(inicio);
+  const { mes: mesFim, dia: diaFim } = componentesEmSaoPaulo(fim);
+  const inicioMes = inicio.toLocaleDateString("pt-BR", {
+    timeZone: TIMEZONE,
+    month: "long",
+  });
+  const fimMes = fim.toLocaleDateString("pt-BR", {
+    timeZone: TIMEZONE,
+    month: "long",
+  });
+  if (mesInicio === mesFim) {
+    return `${diaInicio} – ${diaFim} de ${fimMes}`;
   }
-  return `${inicio.getDate()} de ${inicioMes} – ${fim.getDate()} de ${fimMes}`;
+  return `${diaInicio} de ${inicioMes} – ${diaFim} de ${fimMes}`;
 }
 
 export function parseHora(hhmm: string) {
@@ -88,7 +136,8 @@ export function parseHora(hhmm: string) {
 }
 
 export function horarioDoDia(horario: HorarioDia[], dia: Date) {
-  return horario[dia.getDay()];
+  const { ano, mes, dia: numDia } = componentesEmSaoPaulo(dia);
+  return horario[diaDaSemanaEmSaoPaulo(ano, mes, numDia)];
 }
 
 export function limitesGrid(horario: HorarioDia[], dias: Date[]) {
