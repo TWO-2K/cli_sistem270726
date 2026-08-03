@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createClient } from "@empresa/supabase/client";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@empresa/ui/components/dialog";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@empresa/ui/components/sheet";
 import type {
   Agendamento,
   HorarioDia,
@@ -517,19 +517,19 @@ export function AgendaGrid({
         </div>
       )}
 
-      <Dialog
+      <Sheet
         open={resumoAberto !== null}
         onOpenChange={(open) => {
           if (!open) setResumoAberto(null);
         }}
       >
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
+        <SheetContent className="sm:max-w-md">
+          <SheetHeader>
+            <SheetTitle>
               {resumoAberto?.length} agendamentos neste horário
-            </DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col gap-2">
+            </SheetTitle>
+          </SheetHeader>
+          <div className="flex flex-col gap-2 px-4">
             {resumoAberto
               ?.slice()
               .sort(
@@ -565,8 +565,8 @@ export function AgendaGrid({
                 );
               })}
           </div>
-        </DialogContent>
-      </Dialog>
+        </SheetContent>
+      </Sheet>
 
       <AgendamentoFormDialog
         open={slotSelecionado !== null}

@@ -7,12 +7,12 @@ import { createClient } from "@empresa/supabase/client";
 import { cn } from "@empresa/ui/utils";
 import { Button } from "@empresa/ui/components/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@empresa/ui/components/dialog";
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from "@empresa/ui/components/sheet";
 import type { Agendamento, Paciente, Procedimento, Usuario } from "@/lib/types/db";
 import { NovoAtendimentoDialog } from "../atendimento/novo-atendimento-dialog";
 
@@ -262,12 +262,12 @@ export function AgendamentoCard({
         </p>
       </button>
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Detalhes do agendamento</DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col gap-1 text-sm">
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent className="sm:max-w-md">
+          <SheetHeader>
+            <SheetTitle>Detalhes do agendamento</SheetTitle>
+          </SheetHeader>
+          <div className="flex flex-col gap-1 px-4 text-sm">
             <p>
               <span className="text-muted-foreground">Paciente: </span>
               {paciente?.nome ?? "—"}
@@ -296,7 +296,7 @@ export function AgendamentoCard({
               {STATUS_LABEL[agendamento.status]}
             </p>
           </div>
-          <DialogFooter>
+          <SheetFooter className="flex-row flex-wrap justify-end gap-2">
             {podeConfirmarPresenca && (
               <Button
                 type="button"
@@ -338,9 +338,9 @@ export function AgendamentoCard({
                 {loading ? "Cancelando..." : "Cancelar agendamento"}
               </Button>
             )}
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
 
       {podeIniciarAtendimento && (
         <NovoAtendimentoDialog

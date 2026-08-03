@@ -24,6 +24,7 @@ import { iniciaisPaciente } from "@/lib/pacientes-utils";
 import type { Paciente } from "@/lib/types/db";
 import { EditarPacienteDialog } from "./[id]/editar-paciente-dialog";
 import { NovoPacienteDialog } from "./novo-paciente-dialog";
+import { PacienteDetailSheet } from "./paciente-detail-sheet";
 import {
   Table,
   TableBody,
@@ -43,7 +44,7 @@ export type PacienteComStatus = Paciente & {
   emTratamento: boolean;
 };
 
-function statusDoPaciente(paciente: PacienteComStatus) {
+export function statusDoPaciente(paciente: PacienteComStatus) {
   if (!paciente.temHistorico) return "novo";
   if (paciente.emTratamento) return "em_tratamento";
   return "sem_atividade";
@@ -59,6 +60,8 @@ export function PacientesTable({
   const [filtro, setFiltro] = useState<Filtro>("todos");
   const [visualizacao, setVisualizacao] = useState<Visualizacao>("lista");
   const [excluindoId, setExcluindoId] = useState<string | null>(null);
+  const [pacienteSelecionado, setPacienteSelecionado] =
+    useState<PacienteComStatus | null>(null);
 
   useEffect(() => {
     // Sincroniza com o localStorage (sistema externo) só após montar no
@@ -201,7 +204,7 @@ export function PacientesTable({
                 return (
                   <TableRow
                     key={paciente.id}
-                    onClick={() => router.push(`/pacientes/${paciente.id}`)}
+                    onClick={() => setPacienteSelecionado(paciente)}
                     className="cursor-pointer"
                   >
                     <TableCell>
@@ -298,18 +301,14 @@ export function PacientesTable({
             return (
               <div
                 key={paciente.id}
-                className="flex flex-col gap-3 rounded-lg border bg-card p-4"
+                onClick={() => setPacienteSelecionado(paciente)}
+                className="flex cursor-pointer flex-col gap-3 rounded-lg border bg-card p-4"
               >
                 <div className="flex items-center gap-3">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-blue-700 dark:bg-blue-500/15 dark:text-blue-400">
                     {iniciaisPaciente(paciente.nome)}
                   </span>
-                  <Link
-                    href={`/pacientes/${paciente.id}`}
-                    className="font-medium hover:underline"
-                  >
-                    {paciente.nome}
-                  </Link>
+                  <span className="font-medium">{paciente.nome}</span>
                 </div>
 
                 <span
@@ -345,7 +344,10 @@ export function PacientesTable({
                   <span className="text-sm text-muted-foreground">
                     {new Date(paciente.criado_em).toLocaleDateString("pt-BR")}
                   </span>
-                  <div className="flex items-center gap-1">
+                  <div
+                    className="flex items-center gap-1"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <Button
                       variant="ghost"
                       size="icon-sm"
@@ -382,6 +384,13 @@ export function PacientesTable({
         </div>
         </>
       )}
+
+      <PacienteDetailSheet
+        paciente={pacienteSelecionado}
+        onOpenChange={(open) => {
+          if (!open) setPacienteSelecionado(null);
+        }}
+      />
     </div>
   );
 }

@@ -9,13 +9,12 @@ import { Input } from "@empresa/ui/components/input";
 import { Label } from "@empresa/ui/components/label";
 import { Receipt, Trash2 } from "lucide-react";
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@empresa/ui/components/dialog";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@empresa/ui/components/sheet";
 import type { ComandaItem, Pagamento } from "@/lib/types/db";
 
 function formatBRL(value: number) {
@@ -124,15 +123,16 @@ export function ComandaDetailDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button size="sm" variant="ghost" />}>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger render={<Button size="sm" variant="ghost" />}>
         <Receipt className="h-4 w-4" />
         Ver comanda
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Itens da comanda</DialogTitle>
-        </DialogHeader>
+      </SheetTrigger>
+      <SheetContent className="sm:max-w-lg">
+        <SheetHeader>
+          <SheetTitle>Itens da comanda</SheetTitle>
+        </SheetHeader>
+        <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-4 pb-4">
         <div className="flex flex-col gap-3">
           {itens.length === 0 && (
             <p className="text-sm text-muted-foreground">
@@ -241,14 +241,13 @@ export function ComandaDetailDialog({
                 />
               </div>
             </div>
-            <DialogFooter>
-              <Button type="submit" disabled={loading}>
-                {loading ? "Adicionando..." : "Adicionar item"}
-              </Button>
-            </DialogFooter>
+            <Button type="submit" disabled={loading} className="w-fit">
+              {loading ? "Adicionando..." : "Adicionar item"}
+            </Button>
           </form>
         )}
-      </DialogContent>
-    </Dialog>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 }
