@@ -86,18 +86,18 @@ export default async function DashboardPage() {
   em7dias.setDate(em7dias.getDate() + 7);
 
   const [
-    { data: agendamentosHoje },
-    { count: atendimentoAbertoCount },
-    { data: comissoesPendentes },
-    { data: parcelasPendentes },
-    { data: despesasPendentes },
-    { count: comandasAntigasCount },
-    { data: pagamentosMes },
-    { count: leadsParadosCount },
-    { count: cancelamentosCount },
-    { data: comissoesMes },
-    { data: despesasPagasMes },
-    { data: comissoesPendentesTotal },
+    { data: agendamentosHoje, error: erroAgendamentos },
+    { count: atendimentoAbertoCount, error: erroAtendimentoAberto },
+    { data: comissoesPendentes, error: erroComissoesPendentes },
+    { data: parcelasPendentes, error: erroParcelas },
+    { data: despesasPendentes, error: erroDespesas },
+    { count: comandasAntigasCount, error: erroComandasAntigas },
+    { data: pagamentosMes, error: erroPagamentosMes },
+    { count: leadsParadosCount, error: erroLeadsParados },
+    { count: cancelamentosCount, error: erroCancelamentos },
+    { data: comissoesMes, error: erroComissoesMes },
+    { data: despesasPagasMes, error: erroDespesasPagasMes },
+    { data: comissoesPendentesTotal, error: erroComissoesPendentesTotal },
   ] = await Promise.all([
     veAgendaHoje
       ? (() => {
@@ -112,14 +112,14 @@ export default async function DashboardPage() {
           }
           return query.returns<AgendamentoComNomes[]>();
         })()
-      : Promise.resolve({ data: null }),
+      : Promise.resolve({ data: null, error: null }),
     veAtendimentoAberto
       ? supabase
           .from("atendimentos")
           .select("id", { count: "exact", head: true })
           .eq("usuario_id", usuario.id)
           .eq("status", "em_andamento")
-      : Promise.resolve({ count: null }),
+      : Promise.resolve({ count: null, error: null }),
     veComissaoPropria
       ? supabase
           .from("comissoes_lancadas")
@@ -127,62 +127,77 @@ export default async function DashboardPage() {
           .eq("usuario_id", usuario.id)
           .eq("status", "pendente")
           .is("repasse_id", null)
-      : Promise.resolve({ data: null }),
+      : Promise.resolve({ data: null, error: null }),
     veFinanceiro
       ? supabase.from("parcelas").select("valor, vencimento").eq("status", "pendente")
-      : Promise.resolve({ data: null }),
+      : Promise.resolve({ data: null, error: null }),
     veFinanceiro
       ? supabase.from("despesas").select("valor, vencimento").eq("status", "pendente")
-      : Promise.resolve({ data: null }),
+      : Promise.resolve({ data: null, error: null }),
     veFinanceiro
       ? supabase
           .from("comandas")
           .select("id", { count: "exact", head: true })
           .eq("status", "aberta")
           .lt("criado_em", comandaAntigaCorte.toISOString())
-      : Promise.resolve({ count: null }),
+      : Promise.resolve({ count: null, error: null }),
     veFinanceiro
       ? supabase
           .from("pagamentos")
           .select("valor")
           .eq("status", "pago")
           .gte("criado_em", startOfMonth.toISOString())
-      : Promise.resolve({ data: null }),
+      : Promise.resolve({ data: null, error: null }),
     veComercial
       ? supabase
           .from("leads")
           .select("id", { count: "exact", head: true })
           .in("estagio", ["novo", "contatado"])
           .lt("atualizado_em", leadParadoCorte.toISOString())
-      : Promise.resolve({ count: null }),
+      : Promise.resolve({ count: null, error: null }),
     veRelatoriosResumo
       ? supabase
           .from("agendamentos")
           .select("id", { count: "exact", head: true })
           .in("status", ["cancelado", "faltou"])
           .gte("data_hora", start30d.toISOString())
-      : Promise.resolve({ count: null }),
+      : Promise.resolve({ count: null, error: null }),
     veFinanceiro
       ? supabase
           .from("comissoes_lancadas")
           .select("valor_comissao")
           .gte("criado_em", startOfMonth.toISOString())
-      : Promise.resolve({ data: null }),
+      : Promise.resolve({ data: null, error: null }),
     veFinanceiro
       ? supabase
           .from("despesas")
           .select("valor")
           .not("pago_em", "is", null)
           .gte("pago_em", startOfMonth.toISOString())
-      : Promise.resolve({ data: null }),
+      : Promise.resolve({ data: null, error: null }),
     veFinanceiro
       ? supabase
           .from("comissoes_lancadas")
           .select("valor_comissao")
           .eq("status", "pendente")
           .is("repasse_id", null)
-      : Promise.resolve({ data: null }),
+      : Promise.resolve({ data: null, error: null }),
   ]);
+
+  const houveErroAoCarregar = [
+    erroAgendamentos,
+    erroAtendimentoAberto,
+    erroComissoesPendentes,
+    erroParcelas,
+    erroDespesas,
+    erroComandasAntigas,
+    erroPagamentosMes,
+    erroLeadsParados,
+    erroCancelamentos,
+    erroComissoesMes,
+    erroDespesasPagasMes,
+    erroComissoesPendentesTotal,
+  ].some(Boolean);
 
   const hoje = new Date().toISOString().slice(0, 10);
 
@@ -252,6 +267,13 @@ export default async function DashboardPage() {
         </p>
       </div>
 
+      {houveErroAoCarregar && (
+        <div className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm font-medium text-destructive">
+          Alguns dados deste painel não puderam ser carregados agora. Os
+          valores abaixo podem estar incompletos — tente atualizar a página.
+        </div>
+      )}
+
       {veAgendaHoje && (
         <div className="rounded-lg border bg-card">
           <div className="flex items-center justify-between border-b px-4 py-3">
@@ -305,26 +327,27 @@ export default async function DashboardPage() {
       )}
 
       {veComissaoPropria && (
-        <Link
-          href="/minhas-comissoes"
-          className="rounded-lg border bg-card p-4 hover:bg-accent"
-        >
-          <p className="text-sm text-muted-foreground">
-            Comissão pendente de repasse
-          </p>
-          <p className="text-2xl font-semibold">
-            {formatBRL(comissaoPendenteTotal)}
-          </p>
+        <Link href="/minhas-comissoes">
+          <Card className="hover:bg-accent">
+            <CardHeader>
+              <CardDescription>Comissão pendente de repasse</CardDescription>
+              <CardTitle className="text-2xl">
+                {formatBRL(comissaoPendenteTotal)}
+              </CardTitle>
+            </CardHeader>
+          </Card>
         </Link>
       )}
 
       {veFinanceiro && (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Link href="/financeiro">
             <Card className="h-full hover:bg-accent">
               <CardHeader>
                 <CardDescription>Parcelas atrasadas</CardDescription>
-                <CardTitle className="text-2xl">
+                <CardTitle
+                  className={`text-2xl ${totalParcelasAtrasadas > 0 ? "text-destructive" : ""}`}
+                >
                   {formatBRL(totalParcelasAtrasadas)}
                 </CardTitle>
               </CardHeader>
@@ -344,7 +367,9 @@ export default async function DashboardPage() {
             <Card className="h-full hover:bg-accent">
               <CardHeader>
                 <CardDescription>Despesas vencidas</CardDescription>
-                <CardTitle className="text-2xl">
+                <CardTitle
+                  className={`text-2xl ${totalDespesasVencidas > 0 ? "text-destructive" : ""}`}
+                >
                   {formatBRL(totalDespesasVencidas)}
                 </CardTitle>
               </CardHeader>
@@ -356,7 +381,9 @@ export default async function DashboardPage() {
                 <CardDescription>
                   Comandas abertas há mais de 2 dias
                 </CardDescription>
-                <CardTitle className="text-2xl">
+                <CardTitle
+                  className={`text-2xl ${(comandasAntigasCount ?? 0) > 0 ? "text-destructive" : ""}`}
+                >
                   {comandasAntigasCount ?? 0}
                 </CardTitle>
               </CardHeader>
@@ -384,26 +411,30 @@ export default async function DashboardPage() {
       )}
 
       {veComercial && (leadsParadosCount ?? 0) > 0 && (
-        <Link
-          href="/leads"
-          className="rounded-lg border bg-card p-4 hover:bg-accent"
-        >
-          <p className="text-sm text-muted-foreground">
-            Leads sem contato há mais de 3 dias
-          </p>
-          <p className="text-2xl font-semibold">{leadsParadosCount}</p>
+        <Link href="/leads">
+          <Card className="hover:bg-accent">
+            <CardHeader>
+              <CardDescription>Leads sem contato há mais de 3 dias</CardDescription>
+              <CardTitle className="text-2xl text-destructive">
+                {leadsParadosCount}
+              </CardTitle>
+            </CardHeader>
+          </Card>
         </Link>
       )}
 
       {veRelatoriosResumo && (
-        <Link
-          href="/relatorios"
-          className="rounded-lg border bg-card p-4 hover:bg-accent"
-        >
-          <p className="text-sm text-muted-foreground">
-            Cancelamentos e faltas (últimos 30 dias)
-          </p>
-          <p className="text-2xl font-semibold">{cancelamentosCount ?? 0}</p>
+        <Link href="/relatorios">
+          <Card className="hover:bg-accent">
+            <CardHeader>
+              <CardDescription>
+                Cancelamentos e faltas (últimos 30 dias)
+              </CardDescription>
+              <CardTitle className="text-2xl">
+                {cancelamentosCount ?? 0}
+              </CardTitle>
+            </CardHeader>
+          </Card>
         </Link>
       )}
     </div>
