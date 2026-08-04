@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Clínica+ | Gestão para clínicas",
+  title: "CLICLI Sistema",
   description: "Sistema de gestão para clínicas de estética, odonto, fisio e mais.",
 };
 

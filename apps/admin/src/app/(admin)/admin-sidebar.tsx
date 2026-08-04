@@ -16,7 +16,6 @@ import {
 } from "@empresa/ui/components/sheet";
 import { cn } from "@empresa/ui/utils";
 import {
-  ShieldCheck,
   LayoutDashboard,
   FileClock,
   Settings,
@@ -24,6 +23,17 @@ import {
   LogOut,
   Menu,
 } from "lucide-react";
+
+function BrandIcon({ className }: { className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/logo/logo-symbol-square.png"
+      alt=""
+      className={cn("object-contain", className)}
+    />
+  );
+}
 
 /**
  * Navegação do painel super_admin. Hoje só "Visão geral" é uma rota real —
@@ -60,12 +70,10 @@ function iniciais(nome: string) {
 function SidebarBrand() {
   return (
     <div className="flex h-16 items-center gap-3 border-b border-sidebar-border px-4">
-      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-        <ShieldCheck className="size-4" />
-      </div>
+      <BrandIcon className="size-8 shrink-0" />
       <div className="flex min-w-0 flex-col">
         <span className="truncate text-sm font-semibold leading-tight">
-          Clínica+
+          CLICLI Sistema
         </span>
         <span className="truncate text-xs text-sidebar-foreground/60">
           Painel do sistema
@@ -201,10 +209,8 @@ export function AdminSidebar({ usuarioNome }: { usuarioNome: string }) {
             <SidebarFooter usuarioNome={usuarioNome} onLogout={handleLogout} />
           </SheetContent>
         </Sheet>
-        <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-          <ShieldCheck className="size-3.5" />
-        </div>
-        <span className="truncate text-sm font-semibold">Clínica+ Admin</span>
+        <BrandIcon className="size-7 shrink-0" />
+        <span className="truncate text-sm font-semibold">CLICLI Sistema</span>
       </header>
     </>
   );

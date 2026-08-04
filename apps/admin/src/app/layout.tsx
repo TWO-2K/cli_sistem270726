@@ -27,8 +27,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Clínica+ | Administração",
-  description: "Painel de administração do sistema Clínica+.",
+  title: "CLICLI Sistema | Administração",
+  description: "Painel de administração do sistema CLICLI Sistema.",
 };
 
 export default function RootLayout({

@@ -29,6 +29,17 @@ import {
   Receipt,
 } from "lucide-react";
 
+function BrandIcon({ className }: { className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/logo/logo-symbol-square.png"
+      alt=""
+      className={cn("object-contain", className)}
+    />
+  );
+}
+
 const NAV_ITEMS: {
   href: string;
   label: string;
@@ -89,9 +100,7 @@ function iniciais(nome: string) {
 function SidebarBrand({ empresaNome }: { empresaNome: string }) {
   return (
     <div className="flex h-16 items-center gap-3 border-b border-sidebar-border px-4">
-      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-        <Stethoscope className="size-4" />
-      </div>
+      <BrandIcon className="size-8 shrink-0" />
       <span className="truncate text-base font-semibold">{empresaNome}</span>
     </div>
   );
@@ -225,9 +234,7 @@ export function AppSidebar({
             />
           </SheetContent>
         </Sheet>
-        <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-          <Stethoscope className="size-3.5" />
-        </div>
+        <BrandIcon className="size-7 shrink-0" />
         <span className="truncate text-sm font-semibold">{empresaNome}</span>
       </header>
     </>
