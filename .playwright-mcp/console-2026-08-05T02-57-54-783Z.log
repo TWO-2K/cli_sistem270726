@@ -1,0 +1,15 @@
+[    1027ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[    1074ms] [LOG] [HMR] connected @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  708167ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  708643ms] [LOG] [Fast Refresh] done in 528ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  708749ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  709060ms] [LOG] [Fast Refresh] done in 414ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  709192ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  709225ms] [LOG] [Fast Refresh] done in 136ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  732525ms] [LOG] DEBUG handleSubmit {pacienteId: f5847b76-9653-4305-98e0-caad08eae479, profissionalId: 543eb414-e051-4395-b0d1-c92d993eec49, dataHora: 2026-08-05T00:00, podeSubmeter: 2026-08-05T00:00} @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  833137ms] [WARNING] The specified value "05" does not conform to the required format.  The format is "yyyy-MM-ddThh:mm" followed by optional ":ss" or ":ss.SSS". @ :7346
+[  936319ms] [LOG] DEBUG handleSubmit {pacienteId: f5847b76-9653-4305-98e0-caad08eae479, profissionalId: 543eb414-e051-4395-b0d1-c92d993eec49, dataHora: 2026-08-05T10:00, podeSubmeter: 2026-08-05T10:00} @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  956186ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  956260ms] [LOG] [Fast Refresh] done in 164ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  956373ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  956802ms] [LOG] [Fast Refresh] done in 539ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489

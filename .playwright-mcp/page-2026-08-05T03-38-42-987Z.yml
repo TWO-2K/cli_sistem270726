@@ -1,0 +1,115 @@
+- generic [ref=f12e1]:
+  - generic [ref=f12e2]:
+    - complementary [ref=f12e3]:
+      - generic [ref=f12e4]: Estetica - Tua Cara
+      - navigation [ref=f12e6]:
+        - link [ref=f12e125] [cursor=pointer]:
+          - /url: /painel
+          - text: Painel
+        - link [ref=f12e126] [cursor=pointer]:
+          - /url: /agenda
+          - text: Agenda
+        - link [ref=f12e127] [cursor=pointer]:
+          - /url: /pacientes
+          - text: Pacientes
+        - link [ref=f12e128] [cursor=pointer]:
+          - /url: /atendimento
+          - text: Atendimento
+        - link [ref=f12e129] [cursor=pointer]:
+          - /url: /leads
+          - text: Funil de leads
+        - link [ref=f12e130] [cursor=pointer]:
+          - /url: /financeiro
+          - text: Financeiro
+        - link [ref=f12e131] [cursor=pointer]:
+          - /url: /relatorios
+          - text: Relatórios
+        - link [ref=f12e132] [cursor=pointer]:
+          - /url: /configuracoes
+          - text: Configurações
+      - generic [ref=f12e40]:
+        - generic [ref=f12e41]: TC
+        - generic [ref=f12e43]:
+          - generic [ref=f12e44]: Tua cara
+          - generic [ref=f12e45]: Administrador
+        - button [ref=f12e133]: Sair
+    - main [ref=f12e47]:
+      - generic [ref=f12e49]:
+        - generic [ref=f12e50]:
+          - generic [ref=f12e51]:
+            - heading [level=1] [ref=f12e134]: Atendimento
+            - paragraph [ref=f12e53]: Prontuário, procedimentos e evolução dos atendimentos.
+          - button [ref=f12e135]: Iniciar atendimento
+        - table [ref=f12e57]:
+          - rowgroup [ref=f12e58]:
+            - row [ref=f12e136]:
+              - columnheader [ref=f12e137]: Data
+              - columnheader [ref=f12e138]: Paciente
+              - columnheader [ref=f12e139]: Profissional
+              - columnheader [ref=f12e140]: Procedimento
+              - columnheader [ref=f12e141]: Status
+              - columnheader [ref=f12e142]: Ação
+          - rowgroup [ref=f12e66]:
+            - row [ref=f12e143]:
+              - cell [ref=f12e144]: 05/08/2026, 00:35:46
+              - cell [ref=f12e145]: QA Teste E2E
+              - cell [ref=f12e146]: medico
+              - cell [ref=f12e147]: Limpeza
+              - cell [ref=f12e148]:
+                - generic [ref=f12e73]: Em andamento
+              - cell [ref=f12e149]:
+                - button [ref=f12e150]: Fotos
+                - button [expanded] [ref=f12e151]: Concluir
+            - row [ref=f12e152]:
+              - cell [ref=f12e153]: 05/08/2026, 00:28:03
+              - cell [ref=f12e154]: QA Teste E2E
+              - cell [ref=f12e155]: medico
+              - cell [ref=f12e156]: Banho
+              - cell [ref=f12e157]:
+                - generic [ref=f12e84]: Concluído
+              - cell [ref=f12e86]
+            - row [ref=f12e158]:
+              - cell [ref=f12e159]: 05/08/2026, 00:15:19
+              - cell [ref=f12e160]: QA Teste E2E
+              - cell [ref=f12e161]: medico
+              - cell [ref=f12e162]: Massagem
+              - cell [ref=f12e163]:
+                - generic [ref=f12e93]: Concluído
+              - cell [ref=f12e95]
+            - row [ref=f12e164]:
+              - cell [ref=f12e165]: 02/08/2026, 19:08:05
+              - cell [ref=f12e166]: Lanna
+              - cell [ref=f12e167]: medico
+              - cell [ref=f12e168]: Massagem
+              - cell [ref=f12e169]:
+                - generic [ref=f12e102]: Concluído
+              - cell [ref=f12e104]
+            - row [ref=f12e170]:
+              - cell [ref=f12e171]: 02/08/2026, 18:59:37
+              - cell [ref=f12e172]: Lanna
+              - cell [ref=f12e173]: medico
+              - cell [ref=f12e174]: Banho
+              - cell [ref=f12e175]:
+                - generic [ref=f12e111]:
+                  - generic [ref=f12e112]: Concluído
+                  - generic [ref=f12e113]: Via agenda
+              - cell [ref=f12e114]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f12e120] [cursor=pointer]
+  - alert [ref=f12e124]
+  - dialog [ref=f12e179]:
+    - heading "Concluir atendimento" [level=2] [ref=f12e181]
+    - generic [ref=f12e182]:
+      - generic [ref=f12e183]:
+        - generic [ref=f12e184]: Evolução (opcional)
+        - textbox "Evolução (opcional)" [active] [ref=f12e185]:
+          - /placeholder: Observações sobre o atendimento...
+      - generic [ref=f12e186]:
+        - checkbox "Marcar etapa do plano de tratamento como concluída (Sessão de limpeza de pele)." [checked] [ref=f12e187]
+        - generic [ref=f12e188]: Marcar etapa do plano de tratamento como concluída (Sessão de limpeza de pele).
+      - generic [ref=f12e189]:
+        - checkbox "Abater sessão do pacote (3 restantes). A comanda será gerada sem cobrança, já paga na venda do pacote." [checked] [ref=f12e190]
+        - generic [ref=f12e191]: Abater sessão do pacote (3 restantes). A comanda será gerada sem cobrança, já paga na venda do pacote.
+      - generic [ref=f12e192]:
+        - button "Salvando..." [disabled]
+    - button "Close" [ref=f12e194]

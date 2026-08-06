@@ -1,0 +1,100 @@
+- generic [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - complementary [ref=f2e3]:
+      - generic [ref=f2e4]: Estetica - Tua Cara
+      - navigation [ref=f2e6]:
+        - link [ref=f2e96] [cursor=pointer]:
+          - /url: /painel
+          - text: Painel
+        - link [ref=f2e97] [cursor=pointer]:
+          - /url: /agenda
+          - text: Agenda
+        - link [ref=f2e98] [cursor=pointer]:
+          - /url: /pacientes
+          - text: Pacientes
+        - link [ref=f2e99] [cursor=pointer]:
+          - /url: /atendimento
+          - text: Atendimento
+        - link [ref=f2e100] [cursor=pointer]:
+          - /url: /leads
+          - text: Funil de leads
+        - link [ref=f2e101] [cursor=pointer]:
+          - /url: /financeiro
+          - text: Financeiro
+        - link [ref=f2e102] [cursor=pointer]:
+          - /url: /relatorios
+          - text: Relatórios
+        - link [ref=f2e103] [cursor=pointer]:
+          - /url: /configuracoes
+          - text: Configurações
+      - generic [ref=f2e40]:
+        - generic [ref=f2e41]: TC
+        - generic [ref=f2e43]:
+          - generic [ref=f2e44]: Tua cara
+          - generic [ref=f2e45]: Administrador
+        - button [ref=f2e104]: Sair
+    - main [ref=f2e47]:
+      - generic [ref=f2e49]:
+        - generic [ref=f2e50]:
+          - generic [ref=f2e51]:
+            - heading [level=1] [ref=f2e105]: Atendimento
+            - paragraph [ref=f2e53]: Prontuário, procedimentos e evolução dos atendimentos.
+          - button [expanded] [ref=f2e106]: Iniciar atendimento
+        - table [ref=f2e57]:
+          - rowgroup [ref=f2e58]:
+            - row [ref=f2e107]:
+              - columnheader [ref=f2e108]: Data
+              - columnheader [ref=f2e109]: Paciente
+              - columnheader [ref=f2e110]: Profissional
+              - columnheader [ref=f2e111]: Procedimento
+              - columnheader [ref=f2e112]: Status
+              - columnheader [ref=f2e113]: Ação
+          - rowgroup [ref=f2e66]:
+            - row [ref=f2e114]:
+              - cell [ref=f2e115]: 02/08/2026, 19:08:05
+              - cell [ref=f2e116]: Lanna
+              - cell [ref=f2e117]: medico
+              - cell [ref=f2e118]: Massagem
+              - cell [ref=f2e119]:
+                - generic [ref=f2e73]: Concluído
+              - cell [ref=f2e75]
+            - row [ref=f2e120]:
+              - cell [ref=f2e121]: 02/08/2026, 18:59:37
+              - cell [ref=f2e122]: Lanna
+              - cell [ref=f2e123]: medico
+              - cell [ref=f2e124]: Banho
+              - cell [ref=f2e125]:
+                - generic [ref=f2e82]:
+                  - generic [ref=f2e83]: Concluído
+                  - generic [ref=f2e84]: Via agenda
+              - cell [ref=f2e85]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f2e91] [cursor=pointer]
+  - alert [ref=f2e95]
+  - dialog [ref=f2e129]:
+    - heading "Iniciar atendimento" [level=2] [ref=f2e131]
+    - generic [ref=f2e132]:
+      - generic [ref=f2e133]:
+        - generic [ref=f2e134]: Paciente
+        - combobox [expanded] [ref=f2e135]:
+          - generic [ref=f2e136]: Selecione o paciente
+          - img: ▼
+        - listbox [ref=f2e155]:
+          - option "Lanna" [active] [ref=f2e156]
+          - option "QA Teste E2E" [ref=f2e158]
+        - textbox [ref=f2e137]
+      - generic [ref=f2e138]:
+        - generic [ref=f2e139]: Profissional
+        - combobox [ref=f2e140]:
+          - generic [ref=f2e141]: Selecione o profissional
+          - img: ▼
+        - textbox [ref=f2e142]
+      - generic [ref=f2e143]:
+        - generic [ref=f2e144]: Procedimento
+        - combobox [ref=f2e145]:
+          - generic [ref=f2e146]: Opcional
+          - img: ▼
+        - textbox [ref=f2e147]
+      - generic [ref=f2e148]:
+        - button "Iniciar" [disabled]
+    - button "Close" [ref=f2e149]

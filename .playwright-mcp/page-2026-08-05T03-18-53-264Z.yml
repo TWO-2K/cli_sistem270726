@@ -1,0 +1,93 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e2]:
+    - complementary [ref=f5e3]:
+      - generic [ref=f5e4]: Estetica - Tua Cara
+      - navigation [ref=f5e6]:
+        - link "Painel" [ref=f5e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f5e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f5e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f5e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f5e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f5e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f5e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f5e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f5e40]:
+        - generic [ref=f5e41]: TC
+        - generic [ref=f5e43]:
+          - generic [ref=f5e44]: Tua cara
+          - generic [ref=f5e45]: Administrador
+        - button "Sair" [ref=f5e46]
+    - main [ref=f5e47]:
+      - generic [ref=f5e49]:
+        - generic [ref=f5e50]:
+          - generic [ref=f5e51]:
+            - heading "Relatórios" [level=1] [ref=f5e52]
+            - paragraph [ref=f5e53]: Visão consolidada dos últimos 30 dias.
+          - generic [ref=f5e54]:
+            - button "Ver DRE completo" [ref=f5e55] [cursor=pointer]
+            - button "Exportar CSV" [ref=f5e56]
+        - generic [ref=f5e57]:
+          - generic [ref=f5e59]:
+            - generic [ref=f5e60]: Atendimentos (30 dias)
+            - generic [ref=f5e61]: "3"
+          - generic [ref=f5e63]:
+            - generic [ref=f5e64]: Faturamento (30 dias)
+            - generic [ref=f5e65]: R$ 450,00
+          - generic [ref=f5e67]:
+            - generic [ref=f5e68]: Agendamentos (30 dias)
+            - generic [ref=f5e69]: "4"
+          - generic [ref=f5e71]:
+            - generic [ref=f5e72]: Cancelamentos / faltas (30 dias)
+            - generic [ref=f5e73]: "1"
+          - generic [ref=f5e75]:
+            - generic [ref=f5e76]: Ocupação de agenda (30 dias)
+            - generic [ref=f5e77]: 0%
+        - generic [ref=f5e78]:
+          - generic [ref=f5e79]:
+            - heading "Atendimentos e faturamento por dia" [level=2] [ref=f5e81]
+            - table [ref=f5e83]:
+              - rowgroup [ref=f5e84]:
+                - row [ref=f5e85]:
+                  - columnheader "Dia" [ref=f5e86]
+                  - columnheader "Atendimentos" [ref=f5e87]
+                  - columnheader "Faturamento" [ref=f5e88]
+              - rowgroup [ref=f5e89]:
+                - row [ref=f5e90]:
+                  - cell "05/08/2026" [ref=f5e91]
+                  - cell "1" [ref=f5e92]
+                  - cell "R$ 0,00" [ref=f5e93]
+                - row [ref=f5e94]:
+                  - cell "02/08/2026" [ref=f5e95]
+                  - cell "2" [ref=f5e96]
+                  - cell "R$ 450,00" [ref=f5e97]
+          - generic [ref=f5e98]:
+            - heading "Ocupação de agenda por profissional" [level=2] [ref=f5e100]
+            - table [ref=f5e102]:
+              - rowgroup [ref=f5e103]:
+                - row [ref=f5e104]:
+                  - columnheader "Profissional" [ref=f5e105]
+                  - columnheader "Horas agendadas" [ref=f5e106]
+                  - columnheader "Ocupação" [ref=f5e107]
+              - rowgroup [ref=f5e108]:
+                - row [ref=f5e109]:
+                  - cell "medico" [ref=f5e110]
+                  - cell "1.5h" [ref=f5e111]
+                  - cell "1%" [ref=f5e112]
+                - row [ref=f5e113]:
+                  - cell "keize" [ref=f5e114]
+                  - cell "0.0h" [ref=f5e115]
+                  - cell "0%" [ref=f5e116]
+                - row [ref=f5e117]:
+                  - cell "Medico 2" [ref=f5e118]
+                  - cell "0.0h" [ref=f5e119]
+                  - cell "0%" [ref=f5e120]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f5e126] [cursor=pointer]

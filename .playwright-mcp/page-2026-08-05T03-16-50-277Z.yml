@@ -1,0 +1,104 @@
+- generic [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - complementary [ref=f3e3]:
+      - generic [ref=f3e4]: Estetica - Tua Cara
+      - navigation [ref=f3e6]:
+        - link "Painel" [ref=f3e235] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f3e236] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f3e237] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f3e238] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f3e239] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f3e240] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f3e241] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f3e242] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f3e40]:
+        - generic [ref=f3e41]: TC
+        - generic [ref=f3e43]:
+          - generic [ref=f3e44]: Tua cara
+          - generic [ref=f3e45]: Administrador
+        - button "Sair" [ref=f3e243]
+    - main [ref=f3e47]:
+      - generic [ref=f3e49]:
+        - generic [ref=f3e50]:
+          - generic [ref=f3e51]:
+            - heading "Financeiro" [level=1] [ref=f3e244]
+            - paragraph [ref=f3e53]: Comandas, pagamentos e contas a receber.
+          - button "Exportar CSV" [ref=f3e245]
+        - generic [ref=f3e55]:
+          - generic [ref=f3e56]:
+            - paragraph [ref=f3e57]: Total a receber (comandas em aberto)
+            - paragraph [ref=f3e58]: R$ 150,00
+          - generic [ref=f3e59]:
+            - paragraph [ref=f3e60]: Parcelas pendentes
+            - paragraph [ref=f3e61]: R$ 0,00
+          - generic [ref=f3e62]:
+            - paragraph [ref=f3e63]: Total recebido (últimos 30 dias)
+            - paragraph [ref=f3e64]: R$ 450,00
+          - generic [ref=f3e65]:
+            - paragraph [ref=f3e66]: Total a pagar
+            - paragraph [ref=f3e67]: R$ 22,00
+          - generic [ref=f3e68]:
+            - paragraph [ref=f3e69]: Despesas vencidas
+            - paragraph [ref=f3e70]: R$ 22,00
+        - generic [ref=f3e71]:
+          - tablist [ref=f3e72]:
+            - tab "Comandas" [selected] [ref=f3e246]
+            - tab "Contas a receber" [ref=f3e247]
+            - tab "Despesas" [ref=f3e248]
+            - tab "Comissões" [ref=f3e249]
+            - tab "Fluxo de caixa" [ref=f3e250]
+          - tabpanel "Comandas" [ref=f3e251]:
+            - table [ref=f3e81]:
+              - rowgroup [ref=f3e82]:
+                - row [ref=f3e252]:
+                  - columnheader "Data" [ref=f3e253]
+                  - columnheader "Paciente" [ref=f3e254]
+                  - columnheader "Total" [ref=f3e255]
+                  - columnheader "Status" [ref=f3e256]
+                  - columnheader "Ação" [ref=f3e257]
+              - rowgroup [ref=f3e89]:
+                - row [ref=f3e258]:
+                  - cell "05/08/2026" [ref=f3e259]
+                  - cell "QA Teste E2E" [ref=f3e260]
+                  - cell "R$ 150,00" [ref=f3e261]
+                  - cell "Em aberto" [ref=f3e262]
+                  - cell [ref=f3e263]:
+                    - button "Ver comanda" [ref=f3e264]
+                    - button "Recibo" [ref=f3e265]
+                    - button "Receber" [active] [ref=f3e266]
+                - row [ref=f3e267]:
+                  - cell "02/08/2026" [ref=f3e268]
+                  - cell "Lanna" [ref=f3e269]
+                  - cell "R$ 150,00" [ref=f3e270]
+                  - cell "Fechada" [ref=f3e271]
+                  - cell [ref=f3e272]:
+                    - button "Ver comanda" [ref=f3e273]
+                    - button "Recibo" [ref=f3e274]
+                - row [ref=f3e275]:
+                  - cell "02/08/2026" [ref=f3e276]
+                  - cell "Lanna" [ref=f3e277]
+                  - cell "R$ 300,00" [ref=f3e278]
+                  - cell "Fechada" [ref=f3e279]
+                  - cell [ref=f3e280]:
+                    - button "Ver comanda" [ref=f3e281]
+                    - button "Recibo" [ref=f3e282]
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f3e283]:
+        - generic [ref=f3e288]: Pagamento parcelado em 3x registrado e comanda fechada.
+  - button "Open Next.js Dev Tools" [ref=f3e290] [cursor=pointer]:
+    - generic [ref=f3e293]:
+      - text: Rendering
+      - generic [ref=f3e294]:
+        - generic [ref=f3e295]: .
+        - generic [ref=f3e296]: .
+        - generic [ref=f3e297]: .
+  - alert [ref=f3e128]

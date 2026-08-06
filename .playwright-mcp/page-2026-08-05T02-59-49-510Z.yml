@@ -1,0 +1,87 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - complementary [ref=f1e3]:
+      - generic [ref=f1e4]: Estetica - Tua Cara
+      - navigation [ref=f1e6]:
+        - link "Painel" [ref=f1e172] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f1e173] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f1e174] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f1e175] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f1e176] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f1e177] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f1e178] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f1e179] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f1e40]:
+        - generic [ref=f1e41]: TC
+        - generic [ref=f1e43]:
+          - generic [ref=f1e44]: Tua cara
+          - generic [ref=f1e45]: Administrador
+        - button "Sair" [ref=f1e180]
+    - main [ref=f1e47]:
+      - generic [ref=f1e49]:
+        - generic [ref=f1e50]:
+          - generic [ref=f1e51]:
+            - heading "Pacientes" [level=1] [ref=f1e181]
+            - paragraph [ref=f1e53]: Cadastro e histórico dos seus pacientes.
+          - button "Novo paciente" [active] [ref=f1e182]
+        - generic [ref=f1e55]:
+          - generic [ref=f1e56]:
+            - textbox "Buscar por nome, telefone ou e-mail..." [ref=f1e183]
+            - generic [ref=f1e59]:
+              - generic [ref=f1e60]:
+                - button "Todos" [ref=f1e184]
+                - button "Novos" [ref=f1e185]
+              - generic [ref=f1e63]:
+                - button "Visualização em lista" [ref=f1e186]
+                - button "Visualização em cards" [ref=f1e187]
+          - table [ref=f1e74]:
+            - rowgroup [ref=f1e75]:
+              - row [ref=f1e188]:
+                - columnheader "Paciente" [ref=f1e189]
+                - columnheader "Contato" [ref=f1e190]
+                - columnheader "Status" [ref=f1e191]
+                - columnheader "Cadastro" [ref=f1e192]
+                - columnheader "Ações" [ref=f1e193]
+            - rowgroup [ref=f1e82]:
+              - row [ref=f1e194] [cursor=pointer]:
+                - cell "L Lanna" [ref=f1e195]:
+                  - generic [ref=f1e85]:
+                    - generic [ref=f1e86]: L
+                    - text: Lanna
+                - cell [ref=f1e196]:
+                  - generic [ref=f1e88]:
+                    - generic [ref=f1e89]: "91983927903"
+                    - generic [ref=f1e92]: lanna_-maia@hotmail.com
+                - cell "Sem atividade" [ref=f1e197]
+                - cell "02/08/2026" [ref=f1e198]
+                - cell [ref=f1e199]:
+                  - generic [ref=f1e100]:
+                    - button "Editar" [ref=f1e200]
+                    - button "Agendar" [ref=f1e201]
+              - row [ref=f1e217] [cursor=pointer]:
+                - cell "QT QA Teste E2E" [ref=f1e218]:
+                  - generic [ref=f1e219]:
+                    - generic [ref=f1e220]: QT
+                    - text: QA Teste E2E
+                - cell [ref=f1e221]:
+                  - generic [ref=f1e222]:
+                    - generic [ref=f1e223]: (11) 91234-5678
+                    - generic [ref=f1e226]: qa.teste.e2e@example.com
+                - cell "Novo" [ref=f1e230]
+                - cell "04/08/2026" [ref=f1e232]
+                - cell [ref=f1e233]:
+                  - generic [ref=f1e234]:
+                    - button "Editar" [ref=f1e235]
+                    - button "Agendar" [ref=f1e237]
+                    - button "Excluir" [ref=f1e239]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f1e110] [cursor=pointer]
+  - alert [ref=f1e114]

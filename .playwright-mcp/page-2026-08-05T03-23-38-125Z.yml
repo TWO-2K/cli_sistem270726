@@ -1,0 +1,69 @@
+- generic [ref=f7e1]:
+  - generic [ref=f7e2]:
+    - complementary [ref=f7e3]:
+      - generic [ref=f7e4]: Estetica - Tua Cara
+      - navigation [ref=f7e6]:
+        - link "Painel" [ref=f7e294] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f7e295] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f7e296] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f7e297] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f7e298] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f7e299] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f7e300] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f7e301] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f7e40]:
+        - generic [ref=f7e41]: TC
+        - generic [ref=f7e43]:
+          - generic [ref=f7e44]: Tua cara
+          - generic [ref=f7e45]: Administrador
+        - button "Sair" [ref=f7e302]
+    - main [ref=f7e47]:
+      - generic [ref=f7e49]:
+        - generic [ref=f7e50]:
+          - generic [ref=f7e51]:
+            - generic [ref=f7e52]: QT
+            - generic [ref=f7e54]:
+              - generic [ref=f7e55]:
+                - heading "QA Teste E2E" [level=1] [ref=f7e303]
+                - generic [ref=f7e57]: Em tratamento
+              - paragraph [ref=f7e58]: (11) 91234-5678 · qa.teste.e2e@example.com
+              - paragraph [ref=f7e59]: Data de nascimento não informada · Endereço não informado
+          - generic [ref=f7e60]:
+            - button "Agendar" [ref=f7e304] [cursor=pointer]
+            - button "Editar" [ref=f7e305]
+        - generic [ref=f7e63]:
+          - tablist [ref=f7e64]:
+            - tab "Visão geral" [ref=f7e306]
+            - tab "Anamnese (1)" [selected] [ref=f7e307]
+            - tab "Atendimentos (1)" [ref=f7e308]
+            - tab "Pacotes" [ref=f7e309]
+            - tab "Plano de tratamento" [ref=f7e310]
+          - tabpanel "Anamnese (1)" [ref=f7e311]:
+            - generic [ref=f7e216]:
+              - generic [ref=f7e217]:
+                - generic [ref=f7e218]: Anamnese
+                - button "Nova anamnese" [ref=f7e312]
+              - generic [ref=f7e221]:
+                - generic [ref=f7e222]:
+                  - generic [ref=f7e223]:
+                    - paragraph [ref=f7e224]: 05/08/2026, 00:21:46
+                    - generic [ref=f7e225]: Mais recente
+                  - button "Editar" [active] [ref=f7e313]
+                - paragraph [ref=f7e227]:
+                  - generic [ref=f7e228]: "Queixa principal:"
+                  - text: Queixa EDITADA - teste E2E
+                - paragraph [ref=f7e229]: "Contraindicado para: Banho"
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f7e314]:
+        - generic [ref=f7e319]: Anamnese atualizada.
+  - button "Open Next.js Dev Tools" [ref=f7e115] [cursor=pointer]
+  - alert [ref=f7e120]

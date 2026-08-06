@@ -1,0 +1,76 @@
+- generic [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - complementary [ref=f2e3]:
+      - generic [ref=f2e4]: Estetica - Tua Cara
+      - navigation [ref=f2e6]:
+        - link "Painel" [ref=f2e185] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f2e186] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f2e187] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f2e188] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f2e189] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f2e190] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f2e191] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f2e192] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f2e40]:
+        - generic [ref=f2e41]: TC
+        - generic [ref=f2e43]:
+          - generic [ref=f2e44]: Tua cara
+          - generic [ref=f2e45]: Administrador
+        - button "Sair" [ref=f2e193]
+    - main [ref=f2e47]:
+      - generic [ref=f2e49]:
+        - generic [ref=f2e50]:
+          - generic [ref=f2e51]:
+            - heading "Atendimento" [level=1] [ref=f2e194]
+            - paragraph [ref=f2e53]: Prontuário, procedimentos e evolução dos atendimentos.
+          - button "Iniciar atendimento" [active] [ref=f2e195]
+        - table [ref=f2e57]:
+          - rowgroup [ref=f2e58]:
+            - row [ref=f2e196]:
+              - columnheader "Data" [ref=f2e197]
+              - columnheader "Paciente" [ref=f2e198]
+              - columnheader "Profissional" [ref=f2e199]
+              - columnheader "Procedimento" [ref=f2e200]
+              - columnheader "Status" [ref=f2e201]
+              - columnheader "Ação" [ref=f2e202]
+          - rowgroup [ref=f2e66]:
+            - row [ref=f2e203]:
+              - cell "05/08/2026, 00:15:19" [ref=f2e204]
+              - cell "QA Teste E2E" [ref=f2e205]
+              - cell "medico" [ref=f2e206]
+              - cell "Massagem" [ref=f2e207]
+              - cell "Em andamento" [ref=f2e208]
+              - cell [ref=f2e211]:
+                - button "Fotos" [ref=f2e212]
+                - button "Concluir" [ref=f2e213]
+            - row [ref=f2e214]:
+              - cell "02/08/2026, 19:08:05" [ref=f2e215]
+              - cell "Lanna" [ref=f2e216]
+              - cell "medico" [ref=f2e217]
+              - cell "Massagem" [ref=f2e218]
+              - cell "Concluído" [ref=f2e219]
+              - cell [ref=f2e75]
+            - row [ref=f2e220]:
+              - cell "02/08/2026, 18:59:37" [ref=f2e221]
+              - cell "Lanna" [ref=f2e222]
+              - cell "medico" [ref=f2e223]
+              - cell "Banho" [ref=f2e224]
+              - cell "Concluído Via agenda" [ref=f2e225]:
+                - generic [ref=f2e82]:
+                  - generic [ref=f2e83]: Concluído
+                  - generic [ref=f2e84]: Via agenda
+              - cell [ref=f2e85]
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f2e226]:
+        - generic [ref=f2e231]: Atendimento iniciado.
+  - button "Open Next.js Dev Tools" [ref=f2e91] [cursor=pointer]
+  - alert [ref=f2e95]

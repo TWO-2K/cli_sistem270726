@@ -1,0 +1,120 @@
+- generic [active] [ref=f14e1]:
+  - generic [ref=f14e2]:
+    - complementary [ref=f14e3]:
+      - generic [ref=f14e4]: Estetica - Tua Cara
+      - navigation [ref=f14e6]:
+        - link "Painel" [ref=f14e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f14e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f14e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f14e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f14e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f14e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f14e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f14e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f14e40]:
+        - generic [ref=f14e41]: TC
+        - generic [ref=f14e43]:
+          - generic [ref=f14e44]: Tua cara
+          - generic [ref=f14e45]: Administrador
+        - button "Sair" [ref=f14e46]
+    - main [ref=f14e47]:
+      - generic [ref=f14e49]:
+        - generic [ref=f14e50]:
+          - generic [ref=f14e51]:
+            - heading "Financeiro" [level=1] [ref=f14e52]
+            - paragraph [ref=f14e53]: Comandas, pagamentos e contas a receber.
+          - button "Exportar CSV" [ref=f14e54]
+        - generic [ref=f14e55]:
+          - generic [ref=f14e56]:
+            - paragraph [ref=f14e57]: Total a receber (comandas em aberto)
+            - paragraph [ref=f14e58]: R$ 600,00
+          - generic [ref=f14e59]:
+            - paragraph [ref=f14e60]: Parcelas pendentes
+            - paragraph [ref=f14e61]: R$ 100,00
+          - generic [ref=f14e62]:
+            - paragraph [ref=f14e63]: Total recebido (últimos 30 dias)
+            - paragraph [ref=f14e64]: R$ 600,00
+          - generic [ref=f14e65]:
+            - paragraph [ref=f14e66]: Total a pagar
+            - paragraph [ref=f14e67]: R$ 22,00
+          - generic [ref=f14e68]:
+            - paragraph [ref=f14e69]: Despesas vencidas
+            - paragraph [ref=f14e70]: R$ 22,00
+        - generic [ref=f14e71]:
+          - tablist [ref=f14e72]:
+            - tab "Comandas" [selected] [ref=f14e73]
+            - tab "Contas a receber" [ref=f14e74]
+            - tab "Despesas" [ref=f14e75]
+            - tab "Comissões" [ref=f14e76]
+            - tab "Fluxo de caixa" [ref=f14e77]
+          - tabpanel [ref=f14e78]:
+            - table [ref=f14e81]:
+              - rowgroup [ref=f14e82]:
+                - row [ref=f14e83]:
+                  - columnheader "Data" [ref=f14e84]
+                  - columnheader "Paciente" [ref=f14e85]
+                  - columnheader "Total" [ref=f14e86]
+                  - columnheader "Status" [ref=f14e87]
+                  - columnheader "Ação" [ref=f14e88]
+              - rowgroup [ref=f14e89]:
+                - row [ref=f14e90]:
+                  - cell "05/08/2026" [ref=f14e91]
+                  - cell "QA Teste E2E" [ref=f14e92]
+                  - cell "R$ 0,00" [ref=f14e93]
+                  - cell "Em aberto" [ref=f14e94]
+                  - cell [ref=f14e96]:
+                    - button "Ver comanda" [ref=f14e97]
+                    - button "Recibo" [ref=f14e98]
+                    - button "Receber" [ref=f14e99]
+                - row [ref=f14e100]:
+                  - cell "05/08/2026" [ref=f14e101]
+                  - cell "QA Teste E2E" [ref=f14e102]
+                  - cell "R$ 300,00" [ref=f14e103]
+                  - cell "Em aberto" [ref=f14e104]
+                  - cell [ref=f14e106]:
+                    - button "Ver comanda" [ref=f14e107]
+                    - button "Recibo" [ref=f14e108]
+                    - button "Receber" [ref=f14e109]
+                - row [ref=f14e110]:
+                  - cell "05/08/2026" [ref=f14e111]
+                  - cell "QA Teste E2E" [ref=f14e112]
+                  - cell "R$ 300,00" [ref=f14e113]
+                  - cell "Em aberto" [ref=f14e114]
+                  - cell [ref=f14e116]:
+                    - button "Ver comanda" [ref=f14e117]
+                    - button "Recibo" [ref=f14e118]
+                    - button "Receber" [ref=f14e119]
+                - row [ref=f14e120]:
+                  - cell "05/08/2026" [ref=f14e121]
+                  - cell "QA Teste E2E" [ref=f14e122]
+                  - cell "R$ 150,00" [ref=f14e123]
+                  - cell "Fechada" [ref=f14e124]
+                  - cell [ref=f14e126]:
+                    - button "Ver comanda" [ref=f14e127]
+                    - button "Recibo" [ref=f14e128]
+                - row [ref=f14e129]:
+                  - cell "02/08/2026" [ref=f14e130]
+                  - cell "Lanna" [ref=f14e131]
+                  - cell "R$ 150,00" [ref=f14e132]
+                  - cell "Fechada" [ref=f14e133]
+                  - cell [ref=f14e135]:
+                    - button "Ver comanda" [ref=f14e136]
+                    - button "Recibo" [ref=f14e137]
+                - row [ref=f14e138]:
+                  - cell "02/08/2026" [ref=f14e139]
+                  - cell "Lanna" [ref=f14e140]
+                  - cell "R$ 300,00" [ref=f14e141]
+                  - cell "Fechada" [ref=f14e142]
+                  - cell [ref=f14e144]:
+                    - button "Ver comanda" [ref=f14e145]
+                    - button "Recibo" [ref=f14e146]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f14e152] [cursor=pointer]

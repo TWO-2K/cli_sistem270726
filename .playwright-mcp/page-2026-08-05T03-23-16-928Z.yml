@@ -1,0 +1,117 @@
+- generic [ref=f7e1]:
+  - generic [ref=f7e2]:
+    - complementary [ref=f7e3]:
+      - generic [ref=f7e4]: Estetica - Tua Cara
+      - navigation [ref=f7e6]:
+        - link [ref=f7e230] [cursor=pointer]:
+          - /url: /painel
+          - text: Painel
+        - link [ref=f7e231] [cursor=pointer]:
+          - /url: /agenda
+          - text: Agenda
+        - link [ref=f7e232] [cursor=pointer]:
+          - /url: /pacientes
+          - text: Pacientes
+        - link [ref=f7e233] [cursor=pointer]:
+          - /url: /atendimento
+          - text: Atendimento
+        - link [ref=f7e234] [cursor=pointer]:
+          - /url: /leads
+          - text: Funil de leads
+        - link [ref=f7e235] [cursor=pointer]:
+          - /url: /financeiro
+          - text: Financeiro
+        - link [ref=f7e236] [cursor=pointer]:
+          - /url: /relatorios
+          - text: Relatórios
+        - link [ref=f7e237] [cursor=pointer]:
+          - /url: /configuracoes
+          - text: Configurações
+      - generic [ref=f7e40]:
+        - generic [ref=f7e41]: TC
+        - generic [ref=f7e43]:
+          - generic [ref=f7e44]: Tua cara
+          - generic [ref=f7e45]: Administrador
+        - button [ref=f7e238]: Sair
+    - main [ref=f7e47]:
+      - generic [ref=f7e49]:
+        - generic [ref=f7e50]:
+          - generic [ref=f7e51]:
+            - generic [ref=f7e52]: QT
+            - generic [ref=f7e54]:
+              - generic [ref=f7e55]:
+                - heading [level=1] [ref=f7e239]: QA Teste E2E
+                - generic [ref=f7e57]: Em tratamento
+              - paragraph [ref=f7e58]: (11) 91234-5678 · qa.teste.e2e@example.com
+              - paragraph [ref=f7e59]: Data de nascimento não informada · Endereço não informado
+          - generic [ref=f7e60]:
+            - button [ref=f7e240] [cursor=pointer]: Agendar
+            - button [ref=f7e241]: Editar
+        - generic [ref=f7e63]:
+          - tablist [ref=f7e64]:
+            - tab [ref=f7e242]: Visão geral
+            - tab [selected] [ref=f7e243]: Anamnese (1)
+            - tab [ref=f7e244]: Atendimentos (1)
+            - tab [ref=f7e245]: Pacotes
+            - tab [ref=f7e246]: Plano de tratamento
+          - tabpanel [ref=f7e247]:
+            - generic [ref=f7e216]:
+              - generic [ref=f7e217]:
+                - generic [ref=f7e218]: Anamnese
+                - button [ref=f7e248]: Nova anamnese
+              - generic [ref=f7e221]:
+                - generic [ref=f7e222]:
+                  - generic [ref=f7e223]:
+                    - paragraph [ref=f7e224]: 05/08/2026, 00:21:46
+                    - generic [ref=f7e225]: Mais recente
+                  - button [expanded] [ref=f7e249]: Editar
+                - paragraph [ref=f7e227]:
+                  - generic [ref=f7e228]: "Queixa principal:"
+                  - text: Queixa inicial - teste E2E
+                - paragraph [ref=f7e229]: "Contraindicado para: Banho"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f7e115] [cursor=pointer]
+  - alert [ref=f7e120]
+  - dialog [ref=f7e253]:
+    - heading "Editar anamnese" [level=2] [ref=f7e255]
+    - generic [ref=f7e256]:
+      - paragraph [ref=f7e257]: Histórico clínico
+      - generic [ref=f7e258]:
+        - generic [ref=f7e259]: Queixa principal
+        - textbox "Queixa principal" [active] [ref=f7e260]: Queixa EDITADA - teste E2E
+      - generic [ref=f7e261]:
+        - generic [ref=f7e262]: Histórico de saúde relevante
+        - textbox "Histórico de saúde relevante" [ref=f7e263]
+      - generic [ref=f7e264]:
+        - generic [ref=f7e265]: Alergias
+        - textbox "Alergias" [ref=f7e266]:
+          - /placeholder: Nenhuma conhecida
+      - generic [ref=f7e267]:
+        - generic [ref=f7e268]: Medicações em uso
+        - textbox "Medicações em uso" [ref=f7e269]
+      - generic [ref=f7e270]:
+        - generic [ref=f7e271]: Procedimentos estéticos anteriores
+        - textbox "Procedimentos estéticos anteriores" [ref=f7e272]
+      - separator [ref=f7e273]
+      - paragraph [ref=f7e274]: Avaliação estética
+      - generic [ref=f7e275]:
+        - generic [ref=f7e276]: Tipo de pele (Fitzpatrick)
+        - combobox [ref=f7e277]:
+          - generic [ref=f7e278]: Não informado
+          - img: ▼
+        - textbox [ref=f7e279]
+      - generic [ref=f7e280]:
+        - generic [ref=f7e281]: Contraindicado para
+        - generic [ref=f7e282]:
+          - generic [ref=f7e283]:
+            - checkbox "Limpeza" [ref=f7e284]
+            - text: Limpeza
+          - generic [ref=f7e285]:
+            - checkbox "Massagem" [ref=f7e286]
+            - text: Massagem
+          - generic [ref=f7e287]:
+            - checkbox "Banho" [checked] [ref=f7e288]
+            - text: Banho
+      - generic [ref=f7e289]:
+        - button "Salvando..." [disabled]
+    - button "Close" [ref=f7e291]

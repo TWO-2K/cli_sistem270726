@@ -1,0 +1,93 @@
+- generic [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - complementary [ref=f2e3]:
+      - generic [ref=f2e4]: Estetica - Tua Cara
+      - navigation [ref=f2e6]:
+        - link [ref=f2e233] [cursor=pointer]:
+          - /url: /painel
+          - text: Painel
+        - link [ref=f2e234] [cursor=pointer]:
+          - /url: /agenda
+          - text: Agenda
+        - link [ref=f2e235] [cursor=pointer]:
+          - /url: /pacientes
+          - text: Pacientes
+        - link [ref=f2e236] [cursor=pointer]:
+          - /url: /atendimento
+          - text: Atendimento
+        - link [ref=f2e237] [cursor=pointer]:
+          - /url: /leads
+          - text: Funil de leads
+        - link [ref=f2e238] [cursor=pointer]:
+          - /url: /financeiro
+          - text: Financeiro
+        - link [ref=f2e239] [cursor=pointer]:
+          - /url: /relatorios
+          - text: Relatórios
+        - link [ref=f2e240] [cursor=pointer]:
+          - /url: /configuracoes
+          - text: Configurações
+      - generic [ref=f2e40]:
+        - generic [ref=f2e41]: TC
+        - generic [ref=f2e43]:
+          - generic [ref=f2e44]: Tua cara
+          - generic [ref=f2e45]: Administrador
+        - button [ref=f2e241]: Sair
+    - main [ref=f2e47]:
+      - generic [ref=f2e49]:
+        - generic [ref=f2e50]:
+          - generic [ref=f2e51]:
+            - heading [level=1] [ref=f2e242]: Atendimento
+            - paragraph [ref=f2e53]: Prontuário, procedimentos e evolução dos atendimentos.
+          - button [ref=f2e243]: Iniciar atendimento
+        - table [ref=f2e57]:
+          - rowgroup [ref=f2e58]:
+            - row [ref=f2e244]:
+              - columnheader [ref=f2e245]: Data
+              - columnheader [ref=f2e246]: Paciente
+              - columnheader [ref=f2e247]: Profissional
+              - columnheader [ref=f2e248]: Procedimento
+              - columnheader [ref=f2e249]: Status
+              - columnheader [ref=f2e250]: Ação
+          - rowgroup [ref=f2e66]:
+            - row [ref=f2e251]:
+              - cell [ref=f2e252]: 05/08/2026, 00:15:19
+              - cell [ref=f2e253]: QA Teste E2E
+              - cell [ref=f2e254]: medico
+              - cell [ref=f2e255]: Massagem
+              - cell [ref=f2e256]:
+                - generic [ref=f2e209]: Em andamento
+              - cell [ref=f2e257]:
+                - button [ref=f2e258]: Fotos
+                - button [expanded] [ref=f2e259]: Concluir
+            - row [ref=f2e260]:
+              - cell [ref=f2e261]: 02/08/2026, 19:08:05
+              - cell [ref=f2e262]: Lanna
+              - cell [ref=f2e263]: medico
+              - cell [ref=f2e264]: Massagem
+              - cell [ref=f2e265]:
+                - generic [ref=f2e73]: Concluído
+              - cell [ref=f2e75]
+            - row [ref=f2e266]:
+              - cell [ref=f2e267]: 02/08/2026, 18:59:37
+              - cell [ref=f2e268]: Lanna
+              - cell [ref=f2e269]: medico
+              - cell [ref=f2e270]: Banho
+              - cell [ref=f2e271]:
+                - generic [ref=f2e82]:
+                  - generic [ref=f2e83]: Concluído
+                  - generic [ref=f2e84]: Via agenda
+              - cell [ref=f2e85]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f2e91] [cursor=pointer]
+  - alert [ref=f2e95]
+  - dialog [ref=f2e275]:
+    - heading "Concluir atendimento" [level=2] [ref=f2e277]
+    - generic [ref=f2e278]:
+      - generic [ref=f2e279]:
+        - generic [ref=f2e280]: Evolução (opcional)
+        - textbox "Evolução (opcional)" [active] [ref=f2e281]:
+          - /placeholder: Observações sobre o atendimento...
+      - paragraph [ref=f2e282]: Ao concluir, uma comanda será gerada automaticamente para fechamento no Financeiro.
+      - button "Concluir e gerar comanda" [ref=f2e284]
+    - button "Close" [ref=f2e285]

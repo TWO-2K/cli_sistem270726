@@ -1,0 +1,90 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e37]:
+    - complementary [ref=f4e38]:
+      - generic [ref=f4e39]: Estetica - Tua Cara
+      - navigation [ref=f4e41]:
+        - link "Painel" [ref=f4e42] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f4e48] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f4e51] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f4e57] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f4e62] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f4e64] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f4e68] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f4e71] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f4e75]:
+        - generic [ref=f4e76]: TC
+        - generic [ref=f4e78]:
+          - generic [ref=f4e79]: Tua cara
+          - generic [ref=f4e80]: Administrador
+        - button "Sair" [ref=f4e81]
+    - main [ref=f4e82]:
+      - generic [ref=f4e84]:
+        - generic [ref=f4e85]:
+          - heading "Olá, Estetica - Tua Cara" [level=1] [ref=f4e86]
+          - paragraph [ref=f4e87]: Painel de hoje — quarta-feira, 05 de agosto
+        - generic [ref=f4e88]:
+          - generic [ref=f4e89]:
+            - heading "Agenda de hoje" [level=2] [ref=f4e90]
+            - link "Ver agenda completa" [ref=f4e91] [cursor=pointer]:
+              - /url: /agenda
+          - generic [ref=f4e92]:
+            - generic [ref=f4e93]:
+              - generic [ref=f4e94]:
+                - generic [ref=f4e95]: Lanna
+                - generic [ref=f4e96]: 09:00 · Banho
+              - generic [ref=f4e97]: Concluído
+            - generic [ref=f4e98]:
+              - generic [ref=f4e99]:
+                - generic [ref=f4e100]: QA Teste E2E
+                - generic [ref=f4e101]: 10:00 · Massagem
+              - generic [ref=f4e102]: Agendado
+        - generic [ref=f4e103]:
+          - link "Parcelas atrasadas R$ 0,00" [ref=f4e104] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=f4e106]:
+              - generic [ref=f4e107]: Parcelas atrasadas
+              - generic [ref=f4e108]: R$ 0,00
+          - link "Parcelas a vencer (7 dias) R$ 0,00" [ref=f4e109] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=f4e111]:
+              - generic [ref=f4e112]: Parcelas a vencer (7 dias)
+              - generic [ref=f4e113]: R$ 0,00
+          - link "Despesas vencidas R$ 22,00" [ref=f4e114] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=f4e116]:
+              - generic [ref=f4e117]: Despesas vencidas
+              - generic [ref=f4e118]: R$ 22,00
+          - link "Comandas abertas há mais de 2 dias 0" [ref=f4e119] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=f4e121]:
+              - generic [ref=f4e122]: Comandas abertas há mais de 2 dias
+              - generic [ref=f4e123]: "0"
+          - link "Comissões pendentes de repasse R$ 30,00" [ref=f4e124] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=f4e126]:
+              - generic [ref=f4e127]: Comissões pendentes de repasse
+              - generic [ref=f4e128]: R$ 30,00
+          - generic [ref=f4e130]:
+            - generic [ref=f4e131]: Resultado do mês
+            - generic [ref=f4e132]: "-R$ 640,00"
+        - link "Leads sem contato há mais de 3 dias 1" [ref=f4e133] [cursor=pointer]:
+          - /url: /leads
+          - generic [ref=f4e135]:
+            - generic [ref=f4e136]: Leads sem contato há mais de 3 dias
+            - generic [ref=f4e137]: "1"
+        - link "Cancelamentos e faltas (últimos 30 dias) 1" [ref=f4e138] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f4e140]:
+            - generic [ref=f4e141]: Cancelamentos e faltas (últimos 30 dias)
+            - generic [ref=f4e142]: "1"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f4e24] [cursor=pointer]
+  - alert [ref=f4e28]

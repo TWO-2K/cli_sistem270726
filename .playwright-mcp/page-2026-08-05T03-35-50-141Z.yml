@@ -1,0 +1,111 @@
+- generic [active] [ref=f11e1]:
+  - generic [ref=f11e2]:
+    - complementary [ref=f11e3]:
+      - generic [ref=f11e4]: Estetica - Tua Cara
+      - navigation [ref=f11e6]:
+        - link "Painel" [ref=f11e220] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f11e221] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f11e222] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f11e223] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f11e224] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f11e225] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f11e226] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f11e227] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f11e40]:
+        - generic [ref=f11e41]: TC
+        - generic [ref=f11e43]:
+          - generic [ref=f11e44]: Tua cara
+          - generic [ref=f11e45]: Administrador
+        - button "Sair" [ref=f11e228]
+    - main [ref=f11e47]:
+      - generic [ref=f11e49]:
+        - generic [ref=f11e50]:
+          - generic [ref=f11e51]:
+            - heading "Atendimento" [level=1] [ref=f11e229]
+            - paragraph [ref=f11e53]: Prontuário, procedimentos e evolução dos atendimentos.
+          - button "Iniciar atendimento" [ref=f11e230]
+        - table [ref=f11e57]:
+          - rowgroup [ref=f11e58]:
+            - row [ref=f11e231]:
+              - columnheader "Data" [ref=f11e232]
+              - columnheader "Paciente" [ref=f11e233]
+              - columnheader "Profissional" [ref=f11e234]
+              - columnheader "Procedimento" [ref=f11e235]
+              - columnheader "Status" [ref=f11e236]
+              - columnheader "Ação" [ref=f11e237]
+          - rowgroup [ref=f11e66]:
+            - row [ref=f11e238]:
+              - cell "05/08/2026, 00:28:03" [ref=f11e239]
+              - cell "QA Teste E2E" [ref=f11e240]
+              - cell "medico" [ref=f11e241]
+              - cell "Banho" [ref=f11e242]
+              - cell "Concluído" [ref=f11e243]
+              - cell [ref=f11e75]
+            - row [ref=f11e244]:
+              - cell "05/08/2026, 00:15:19" [ref=f11e245]
+              - cell "QA Teste E2E" [ref=f11e246]
+              - cell "medico" [ref=f11e247]
+              - cell "Massagem" [ref=f11e248]
+              - cell "Concluído" [ref=f11e249]
+              - cell [ref=f11e84]
+            - row [ref=f11e250]:
+              - cell "02/08/2026, 19:08:05" [ref=f11e251]
+              - cell "Lanna" [ref=f11e252]
+              - cell "medico" [ref=f11e253]
+              - cell "Massagem" [ref=f11e254]
+              - cell "Concluído" [ref=f11e255]
+              - cell [ref=f11e93]
+            - row [ref=f11e256]:
+              - cell "02/08/2026, 18:59:37" [ref=f11e257]
+              - cell "Lanna" [ref=f11e258]
+              - cell "medico" [ref=f11e259]
+              - cell "Banho" [ref=f11e260]
+              - cell "Concluído Via agenda" [ref=f11e261]:
+                - generic [ref=f11e100]:
+                  - generic [ref=f11e101]: Concluído
+                  - generic [ref=f11e102]: Via agenda
+              - cell [ref=f11e103]
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f11e262]:
+        - generic [ref=f11e267]: Atendimento iniciado.
+  - button "Open Next.js Dev Tools" [ref=f11e269] [cursor=pointer]:
+    - generic [ref=f11e272]:
+      - text: Rendering
+      - generic [ref=f11e273]:
+        - generic [ref=f11e274]: .
+        - generic [ref=f11e275]: .
+        - generic [ref=f11e276]: .
+  - alert [ref=f11e155]
+  - dialog [ref=f11e159]:
+    - heading "Iniciar atendimento" [level=2] [ref=f11e161]
+    - generic [ref=f11e162]:
+      - generic [ref=f11e163]:
+        - generic [ref=f11e164]: Paciente
+        - combobox [ref=f11e165]:
+          - generic [ref=f11e166]: QA Teste E2E
+          - img: ▼
+        - textbox [ref=f11e167]: f5847b76-9653-4305-98e0-caad08eae479
+        - paragraph [ref=f11e192]: Anamnese de 05/08/2026 será vinculada automaticamente a este atendimento.
+      - generic [ref=f11e168]:
+        - generic [ref=f11e169]: Profissional
+        - combobox [ref=f11e170]:
+          - generic [ref=f11e171]: medico
+          - img: ▼
+        - textbox [ref=f11e172]: 543eb414-e051-4395-b0d1-c92d993eec49
+      - generic [ref=f11e173]:
+        - generic [ref=f11e174]: Procedimento
+        - combobox [ref=f11e175]:
+          - generic [ref=f11e176]: Limpeza
+          - img: ▼
+        - textbox [ref=f11e177]: b790aea1-5355-45a2-9c09-3b79c9a90bf6
+      - button "Iniciar" [ref=f11e207]
+    - button "Close" [ref=f11e179]

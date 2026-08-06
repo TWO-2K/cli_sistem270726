@@ -1,0 +1,63 @@
+- generic [ref=f10e1]:
+  - generic [ref=f10e2]:
+    - complementary [ref=f10e3]:
+      - generic [ref=f10e4]: Estetica - Tua Cara
+      - navigation [ref=f10e6]:
+        - link "Painel" [ref=f10e287] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f10e288] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f10e289] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f10e290] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f10e291] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f10e292] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f10e293] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f10e294] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f10e40]:
+        - generic [ref=f10e41]: TC
+        - generic [ref=f10e43]:
+          - generic [ref=f10e44]: Tua cara
+          - generic [ref=f10e45]: Administrador
+        - button "Sair" [ref=f10e295]
+    - main [ref=f10e47]:
+      - generic [ref=f10e49]:
+        - generic [ref=f10e50]:
+          - generic [ref=f10e51]:
+            - generic [ref=f10e52]: QT
+            - generic [ref=f10e54]:
+              - generic [ref=f10e55]:
+                - heading "QA Teste E2E" [level=1] [ref=f10e296]
+                - generic [ref=f10e57]: Em tratamento
+              - paragraph [ref=f10e58]: (11) 91234-5678 · qa.teste.e2e@example.com
+              - paragraph [ref=f10e59]: Data de nascimento não informada · Endereço não informado
+          - generic [ref=f10e60]:
+            - button "Agendar" [ref=f10e297] [cursor=pointer]
+            - button "Editar" [ref=f10e298]
+        - generic [ref=f10e63]:
+          - tablist [ref=f10e64]:
+            - tab "Visão geral" [ref=f10e299]
+            - tab "Anamnese (1)" [ref=f10e300]
+            - tab "Atendimentos (2)" [ref=f10e301]
+            - tab "Pacotes (1)" [ref=f10e302]
+            - tab "Plano de tratamento (1)" [selected] [ref=f10e303]
+          - tabpanel "Plano de tratamento (1)" [ref=f10e304]:
+            - button "Novo plano" [active] [ref=f10e305]
+            - generic [ref=f10e307]:
+              - generic [ref=f10e308]:
+                - generic [ref=f10e309]: Plano E2E - Limpeza
+                - generic [ref=f10e310]: 0/1 etapas
+              - generic [ref=f10e312]:
+                - paragraph [ref=f10e314]: Sessão de limpeza de pele — Limpeza
+                - button "Marcar concluída" [ref=f10e315]
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f10e316]:
+        - generic [ref=f10e321]: Plano de tratamento criado.
+  - button "Open Next.js Dev Tools" [ref=f10e115] [cursor=pointer]
+  - alert [ref=f10e133]

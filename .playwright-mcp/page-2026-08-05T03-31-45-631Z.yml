@@ -1,0 +1,64 @@
+- generic [ref=f10e1]:
+  - generic [ref=f10e2]:
+    - complementary [ref=f10e3]:
+      - generic [ref=f10e4]: Estetica - Tua Cara
+      - navigation [ref=f10e6]:
+        - link "Painel" [ref=f10e196] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f10e197] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f10e198] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f10e199] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f10e200] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f10e201] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f10e202] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f10e203] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f10e40]:
+        - generic [ref=f10e41]: TC
+        - generic [ref=f10e43]:
+          - generic [ref=f10e44]: Tua cara
+          - generic [ref=f10e45]: Administrador
+        - button "Sair" [ref=f10e204]
+    - main [ref=f10e47]:
+      - generic [ref=f10e49]:
+        - generic [ref=f10e50]:
+          - generic [ref=f10e51]:
+            - generic [ref=f10e52]: QT
+            - generic [ref=f10e54]:
+              - generic [ref=f10e55]:
+                - heading "QA Teste E2E" [level=1] [ref=f10e205]
+                - generic [ref=f10e57]: Em tratamento
+              - paragraph [ref=f10e58]: (11) 91234-5678 · qa.teste.e2e@example.com
+              - paragraph [ref=f10e59]: Data de nascimento não informada · Endereço não informado
+          - generic [ref=f10e60]:
+            - button "Agendar" [ref=f10e206] [cursor=pointer]
+            - button "Editar" [ref=f10e207]
+        - generic [ref=f10e63]:
+          - tablist [ref=f10e64]:
+            - tab "Visão geral" [ref=f10e208]
+            - tab "Anamnese (1)" [ref=f10e209]
+            - tab "Atendimentos (2)" [ref=f10e210]
+            - tab "Pacotes (1)" [selected] [ref=f10e211]
+            - tab "Plano de tratamento" [ref=f10e212]
+          - tabpanel "Pacotes (1)" [ref=f10e213]:
+            - generic [ref=f10e135]:
+              - generic [ref=f10e136]:
+                - generic [ref=f10e137]: Pacotes de sessões
+                - button "Vender pacote" [active] [ref=f10e214]
+              - generic [ref=f10e215]:
+                - generic [ref=f10e216]:
+                  - paragraph [ref=f10e217]: Limpeza
+                  - paragraph [ref=f10e218]: Vendido em 05/08/2026
+                - generic [ref=f10e219]: 0/3 sessões · 3 restantes
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f10e220]:
+        - generic [ref=f10e225]: Pacote vendido.
+  - button "Open Next.js Dev Tools" [ref=f10e115] [cursor=pointer]
+  - alert [ref=f10e133]

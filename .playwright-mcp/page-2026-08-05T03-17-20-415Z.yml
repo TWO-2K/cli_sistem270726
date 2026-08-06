@@ -1,0 +1,90 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - complementary [ref=f3e3]:
+      - generic [ref=f3e4]: Estetica - Tua Cara
+      - navigation [ref=f3e6]:
+        - link "Painel" [ref=f3e235] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f3e236] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f3e237] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f3e238] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f3e239] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f3e240] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f3e241] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f3e242] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f3e40]:
+        - generic [ref=f3e41]: TC
+        - generic [ref=f3e43]:
+          - generic [ref=f3e44]: Tua cara
+          - generic [ref=f3e45]: Administrador
+        - button "Sair" [ref=f3e243]
+    - main [ref=f3e47]:
+      - generic [ref=f3e49]:
+        - generic [ref=f3e50]:
+          - generic [ref=f3e51]:
+            - heading "Financeiro" [level=1] [ref=f3e244]
+            - paragraph [ref=f3e53]: Comandas, pagamentos e contas a receber.
+          - button "Exportar CSV" [ref=f3e245]
+        - generic [ref=f3e55]:
+          - generic [ref=f3e56]:
+            - paragraph [ref=f3e57]: Total a receber (comandas em aberto)
+            - paragraph [ref=f3e58]: R$ 0,00
+          - generic [ref=f3e59]:
+            - paragraph [ref=f3e60]: Parcelas pendentes
+            - paragraph [ref=f3e61]: R$ 100,00
+          - generic [ref=f3e62]:
+            - paragraph [ref=f3e63]: Total recebido (últimos 30 dias)
+            - paragraph [ref=f3e64]: R$ 600,00
+          - generic [ref=f3e65]:
+            - paragraph [ref=f3e66]: Total a pagar
+            - paragraph [ref=f3e67]: R$ 22,00
+          - generic [ref=f3e68]:
+            - paragraph [ref=f3e69]: Despesas vencidas
+            - paragraph [ref=f3e70]: R$ 22,00
+        - generic [ref=f3e71]:
+          - tablist [ref=f3e72]:
+            - tab "Comandas" [ref=f3e246]
+            - tab "Contas a receber" [selected] [ref=f3e247]
+            - tab "Despesas" [ref=f3e248]
+            - tab "Comissões" [ref=f3e249]
+            - tab "Fluxo de caixa" [ref=f3e250]
+          - tabpanel "Contas a receber" [ref=f3e307]:
+            - table [ref=f3e310]:
+              - rowgroup [ref=f3e311]:
+                - row [ref=f3e312]:
+                  - columnheader "Paciente" [ref=f3e313]
+                  - columnheader "Comanda" [ref=f3e314]
+                  - columnheader "Vencimento" [ref=f3e315]
+                  - columnheader "Valor" [ref=f3e316]
+                  - columnheader "Status" [ref=f3e317]
+                  - columnheader "Ação" [ref=f3e318]
+              - rowgroup [ref=f3e319]:
+                - row [ref=f3e329]:
+                  - cell "QA Teste E2E" [ref=f3e330]
+                  - cell "f15446d3" [ref=f3e331]
+                  - cell "05/10/2026" [ref=f3e332]
+                  - cell "R$ 50,00" [ref=f3e333]
+                  - cell "Pendente" [ref=f3e334]
+                  - cell [ref=f3e336]:
+                    - button "Marcar como pago" [ref=f3e337]
+                - row [ref=f3e338]:
+                  - cell "QA Teste E2E" [ref=f3e339]
+                  - cell "f15446d3" [ref=f3e340]
+                  - cell "05/11/2026" [ref=f3e341]
+                  - cell "R$ 50,00" [ref=f3e342]
+                  - cell "Pendente" [ref=f3e343]
+                  - cell [ref=f3e345]:
+                    - button "Marcar como pago" [ref=f3e346]
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f3e347]:
+        - generic [ref=f3e352]: Parcela marcada como paga.
+  - button "Open Next.js Dev Tools" [ref=f3e123] [cursor=pointer]
+  - alert [ref=f3e128]

@@ -1,0 +1,83 @@
+- generic [active] [ref=f13e1]:
+  - generic [ref=f13e2]:
+    - complementary [ref=f13e3]:
+      - generic [ref=f13e4]: Estetica - Tua Cara
+      - navigation [ref=f13e6]:
+        - link "Painel" [ref=f13e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f13e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f13e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f13e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f13e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f13e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f13e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f13e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f13e40]:
+        - generic [ref=f13e41]: TC
+        - generic [ref=f13e43]:
+          - generic [ref=f13e44]: Tua cara
+          - generic [ref=f13e45]: Administrador
+        - button "Sair" [ref=f13e46]
+    - main [ref=f13e47]:
+      - generic [ref=f13e49]:
+        - generic [ref=f13e50]:
+          - generic [ref=f13e51]:
+            - generic [ref=f13e52]: QT
+            - generic [ref=f13e54]:
+              - generic [ref=f13e55]:
+                - heading "QA Teste E2E" [level=1] [ref=f13e56]
+                - generic [ref=f13e57]: Em tratamento
+              - paragraph [ref=f13e58]: (11) 91234-5678 · qa.teste.e2e@example.com
+              - paragraph [ref=f13e59]: Data de nascimento não informada · Endereço não informado
+          - generic [ref=f13e60]:
+            - button "Agendar" [ref=f13e61] [cursor=pointer]
+            - button "Editar" [ref=f13e62]
+        - generic [ref=f13e63]:
+          - tablist [ref=f13e64]:
+            - tab "Visão geral" [selected] [ref=f13e65]
+            - tab "Anamnese (1)" [ref=f13e66]
+            - tab "Atendimentos (3)" [ref=f13e67]
+            - tab "Pacotes (1)" [ref=f13e68]
+            - tab "Plano de tratamento (1)" [ref=f13e69]
+          - tabpanel [ref=f13e70]:
+            - paragraph [ref=f13e71]: "Contraindicado para: Banho"
+            - generic [ref=f13e72]:
+              - generic [ref=f13e74]:
+                - generic [ref=f13e75]: Total investido
+                - generic [ref=f13e76]: R$ 150,00
+              - generic [ref=f13e78]:
+                - generic [ref=f13e79]: Próximo agendamento
+                - generic [ref=f13e80]: 05/08/2026
+              - generic [ref=f13e82]:
+                - generic [ref=f13e83]: Pacotes ativos
+                - generic [ref=f13e84]: "1"
+                - paragraph [ref=f13e85]: 2 sessões restantes
+              - generic [ref=f13e87]:
+                - generic [ref=f13e88]: Plano de tratamento
+                - generic [ref=f13e89]: 1/1
+                - paragraph [ref=f13e90]: etapas concluídas
+            - generic [ref=f13e91]:
+              - generic [ref=f13e92]:
+                - generic [ref=f13e93]: Prontuário
+                - button "Abrir prontuário" [ref=f13e94]
+              - paragraph [ref=f13e96]: Prontuário ainda não aberto para este paciente.
+            - generic [ref=f13e97]:
+              - generic [ref=f13e98]:
+                - generic [ref=f13e99]: Anamnese mais recente
+                - generic [ref=f13e101]:
+                  - paragraph [ref=f13e102]: "Queixa principal: Queixa EDITADA - teste E2E"
+                  - paragraph [ref=f13e103]: "Alergias: —"
+              - generic [ref=f13e104]:
+                - generic [ref=f13e105]: Último atendimento
+                - generic [ref=f13e108]:
+                  - generic [ref=f13e109]: 05/08/2026, 00:35:46
+                  - generic [ref=f13e110]: Concluído
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f13e116] [cursor=pointer]
