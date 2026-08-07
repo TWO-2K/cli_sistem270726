@@ -5,6 +5,7 @@ import { CalendarPlus, Mail, Phone, Pencil } from "lucide-react";
 import { Button } from "@empresa/ui/components/button";
 import { cn } from "@empresa/ui/utils";
 import { iniciaisPaciente } from "@/lib/pacientes-utils";
+import type { Convenio } from "@/lib/types/db";
 import { EditarPacienteDialog } from "./[id]/editar-paciente-dialog";
 import { statusDoPaciente, type PacienteComStatus } from "./pacientes-table";
 import {
@@ -17,9 +18,11 @@ import {
 
 export function PacienteDetailSheet({
   paciente,
+  convenios = [],
   onOpenChange,
 }: {
   paciente: PacienteComStatus | null;
+  convenios?: Convenio[];
   onOpenChange: (open: boolean) => void;
 }) {
   const status = paciente ? statusDoPaciente(paciente) : null;
@@ -118,6 +121,7 @@ export function PacienteDetailSheet({
               </Button>
               <EditarPacienteDialog
                 paciente={paciente}
+                convenios={convenios}
                 renderTrigger={<Button variant="outline" size="sm" />}
               >
                 <Pencil className="h-4 w-4" />

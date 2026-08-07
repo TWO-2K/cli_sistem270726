@@ -20,6 +20,7 @@ export interface Paciente {
   email: string | null;
   data_nascimento: string | null;
   endereco: string | null;
+  convenio_id: string | null;
   criado_em: string;
 }
 
@@ -326,4 +327,39 @@ export interface ComissaoRepasse {
   forma_pagamento: string | null;
   pago_em: string | null;
   criado_em: string;
+}
+
+export interface Produto {
+  id: string;
+  empresa_id: string;
+  nome: string;
+  unidade_medida: string;
+  estoque_atual: number;
+  estoque_minimo: number;
+  ativo: boolean;
+  criado_em: string;
+}
+
+export interface ProdutoProcedimento {
+  id: string;
+  empresa_id: string;
+  produto_id: string;
+  procedimento_id: string;
+  quantidade_consumida: number;
+}
+
+export interface Convenio {
+  id: string;
+  empresa_id: string;
+  nome: string;
+  ativo: boolean;
+  criado_em: string;
+}
+
+export interface TabelaPrecoConvenio {
+  id: string;
+  empresa_id: string;
+  convenio_id: string;
+  procedimento_id: string;
+  preco: number;
 }

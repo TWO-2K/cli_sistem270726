@@ -1,0 +1,133 @@
+- generic [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - complementary [ref=f2e3]:
+      - generic [ref=f2e4]: Estetica - Tua Cara
+      - navigation [ref=f2e6]:
+        - link [ref=f2e137] [cursor=pointer]:
+          - /url: /painel
+          - text: Painel
+        - link [ref=f2e138] [cursor=pointer]:
+          - /url: /agenda
+          - text: Agenda
+        - link [ref=f2e139] [cursor=pointer]:
+          - /url: /pacientes
+          - text: Pacientes
+        - link [ref=f2e140] [cursor=pointer]:
+          - /url: /atendimento
+          - text: Atendimento
+        - link [ref=f2e141] [cursor=pointer]:
+          - /url: /leads
+          - text: Funil de leads
+        - link [ref=f2e142] [cursor=pointer]:
+          - /url: /financeiro
+          - text: Financeiro
+        - link [ref=f2e143] [cursor=pointer]:
+          - /url: /relatorios
+          - text: Relatórios
+        - link [ref=f2e144] [cursor=pointer]:
+          - /url: /configuracoes
+          - text: Configurações
+      - generic [ref=f2e40]:
+        - generic [ref=f2e41]: TC
+        - generic [ref=f2e43]:
+          - generic [ref=f2e44]: Tua cara
+          - generic [ref=f2e45]: Administrador
+        - button [ref=f2e145]: Sair
+    - main [ref=f2e47]:
+      - generic [ref=f2e49]:
+        - generic [ref=f2e50]:
+          - generic [ref=f2e51]:
+            - heading [level=1] [ref=f2e146]: Pacientes
+            - paragraph [ref=f2e53]: Cadastro e histórico dos seus pacientes.
+          - button [ref=f2e147]: Novo paciente
+        - generic [ref=f2e55]:
+          - generic [ref=f2e56]:
+            - textbox [ref=f2e148]:
+              - /placeholder: Buscar por nome, telefone ou e-mail...
+            - generic [ref=f2e59]:
+              - generic [ref=f2e60]:
+                - button [ref=f2e149]: Todos
+                - button [ref=f2e150]: Novos
+              - generic [ref=f2e63]:
+                - button [ref=f2e151]
+                - button [ref=f2e152]
+          - table [ref=f2e74]:
+            - rowgroup [ref=f2e75]:
+              - row [ref=f2e153]:
+                - columnheader [ref=f2e154]: Paciente
+                - columnheader [ref=f2e155]: Contato
+                - columnheader [ref=f2e156]: Status
+                - columnheader [ref=f2e157]: Cadastro
+                - columnheader [ref=f2e158]: Ações
+            - rowgroup [ref=f2e82]:
+              - row [ref=f2e159] [cursor=pointer]:
+                - cell [ref=f2e160]:
+                  - generic [ref=f2e85]:
+                    - generic [ref=f2e86]: L
+                    - text: Lanna
+                - cell [ref=f2e161]:
+                  - generic [ref=f2e88]:
+                    - generic [ref=f2e89]: "91983927903"
+                    - generic [ref=f2e92]: lanna_-maia@hotmail.com
+                - cell [ref=f2e162]:
+                  - generic [ref=f2e97]: Sem atividade
+                - cell [ref=f2e163]: 02/08/2026
+                - cell [ref=f2e164]:
+                  - generic [ref=f2e100]:
+                    - button [ref=f2e165]:
+                      - generic [ref=f2e102]: Editar
+                    - button [ref=f2e166]:
+                      - generic [ref=f2e104]: Agendar
+              - row [ref=f2e167] [cursor=pointer]:
+                - cell [ref=f2e168]:
+                  - generic [ref=f2e107]:
+                    - generic [ref=f2e108]: QT
+                    - text: QA Teste E2E
+                - cell [ref=f2e169]:
+                  - generic [ref=f2e110]:
+                    - generic [ref=f2e111]: (11) 91234-5678
+                    - generic [ref=f2e114]: qa.teste.e2e@example.com
+                - cell [ref=f2e170]:
+                  - generic [ref=f2e119]: Sem atividade
+                - cell [ref=f2e171]: 04/08/2026
+                - cell [ref=f2e172]:
+                  - generic [ref=f2e122]:
+                    - button [expanded] [ref=f2e173]:
+                      - generic [ref=f2e124]: Editar
+                    - button [ref=f2e174]:
+                      - generic [ref=f2e126]: Agendar
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f2e132] [cursor=pointer]
+  - alert [ref=f2e136]
+  - dialog [ref=f2e178]:
+    - heading "Editar paciente" [level=2] [ref=f2e180]
+    - generic [ref=f2e181]:
+      - generic [ref=f2e182]:
+        - generic [ref=f2e183]: Nome
+        - textbox "Nome" [ref=f2e184]: QA Teste E2E
+      - generic [ref=f2e185]:
+        - generic [ref=f2e186]: Telefone
+        - textbox "Telefone" [ref=f2e187]:
+          - /placeholder: (11) 99999-9999
+          - text: (11) 91234-5678
+      - generic [ref=f2e188]:
+        - generic [ref=f2e189]: E-mail
+        - textbox "E-mail" [ref=f2e190]: qa.teste.e2e@example.com
+      - generic [ref=f2e191]:
+        - generic [ref=f2e192]: Data de nascimento
+        - textbox "Data de nascimento" [ref=f2e193]
+      - generic [ref=f2e194]:
+        - generic [ref=f2e195]: Endereço
+        - textbox "Endereço" [ref=f2e196]:
+          - /placeholder: Opcional
+      - generic [ref=f2e197]:
+        - generic [ref=f2e198]: Convênio
+        - combobox "Convênio" [expanded] [ref=f2e199]:
+          - generic [ref=f2e200]: __none__
+          - img: ▼
+        - listbox [ref=f2e210]:
+          - option "Nenhum" [active] [selected] [ref=f2e211]
+          - option "Convênio Teste" [ref=f2e213]
+        - textbox [ref=f2e201]: __none__
+      - button "Salvar" [ref=f2e203]
+    - button "Close" [ref=f2e204]

@@ -1,0 +1,105 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - complementary [ref=f1e3]:
+      - generic [ref=f1e4]: Estetica - Tua Cara
+      - navigation [ref=f1e6]:
+        - link "Painel" [ref=f1e252] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f1e253] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f1e254] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f1e255] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f1e256] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f1e257] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f1e258] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f1e259] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f1e40]:
+        - generic [ref=f1e41]: TC
+        - generic [ref=f1e43]:
+          - generic [ref=f1e44]: Tua cara
+          - generic [ref=f1e45]: Administrador
+        - button "Sair" [ref=f1e260]
+    - main [ref=f1e47]:
+      - generic [ref=f1e49]:
+        - generic [ref=f1e50]:
+          - heading "Configurações" [level=1] [ref=f1e261]
+          - paragraph [ref=f1e52]: Perfil da empresa, usuários, salas e procedimentos da clínica.
+        - generic [ref=f1e53]:
+          - tablist [ref=f1e54]:
+            - tab "Perfil da empresa" [ref=f1e262]
+            - tab "Usuários" [ref=f1e263]
+            - tab "Salas" [ref=f1e264]
+            - tab "Procedimentos" [ref=f1e265]
+            - tab "Estoque" [selected] [ref=f1e266]
+            - tab "Comissões" [ref=f1e267]
+          - tabpanel "Estoque" [ref=f1e268]:
+            - generic [ref=f1e144]:
+              - generic [ref=f1e145]:
+                - generic [ref=f1e146]:
+                  - heading "Produtos" [level=3] [ref=f1e269]
+                  - button "Novo produto" [ref=f1e270]
+                - table [ref=f1e151]:
+                  - rowgroup [ref=f1e152]:
+                    - row [ref=f1e271]:
+                      - columnheader "Nome" [ref=f1e272]
+                      - columnheader "Unidade" [ref=f1e273]
+                      - columnheader "Estoque atual" [ref=f1e274]
+                      - columnheader "Estoque mínimo" [ref=f1e275]
+                      - columnheader "Status" [ref=f1e276]
+                      - columnheader "Ação" [ref=f1e277]
+                  - rowgroup [ref=f1e160]:
+                    - row [ref=f1e303]:
+                      - cell "Toxina Botulínica (teste)" [ref=f1e304]
+                      - cell "ml" [ref=f1e305]
+                      - cell "10" [ref=f1e306]
+                      - cell "8" [ref=f1e307]
+                      - cell "OK" [ref=f1e308]
+                      - cell [ref=f1e310]:
+                        - button "Editar" [ref=f1e311]
+                        - button "Excluir" [ref=f1e312]
+              - generic [ref=f1e163]:
+                - heading "Consumo por procedimento" [level=3] [ref=f1e280]
+                - paragraph [ref=f1e165]: Quanto de cada produto é consumido ao concluir um atendimento com o procedimento selecionado — o estoque é baixado automaticamente.
+                - generic [ref=f1e166]:
+                  - generic [ref=f1e167]:
+                    - generic [ref=f1e168]: Produto
+                    - combobox [ref=f1e169]:
+                      - generic [ref=f1e170]: Toxina Botulínica (teste)
+                      - img: ▼
+                    - textbox [ref=f1e171]: 3e8c3948-0860-42d2-8126-bcb91be6fb8d
+                  - generic [ref=f1e172]:
+                    - generic [ref=f1e173]: Procedimento
+                    - combobox [ref=f1e174]:
+                      - generic [ref=f1e175]: Banho
+                      - img: ▼
+                    - textbox [ref=f1e176]: 3160f8eb-d343-46f0-930f-44ed4f187600
+                  - generic [ref=f1e177]:
+                    - generic [ref=f1e178]: Quantidade consumida
+                    - spinbutton [ref=f1e179]: "3"
+                  - button "Salvar vínculo" [ref=f1e321]
+                - table [ref=f1e182]:
+                  - rowgroup [ref=f1e183]:
+                    - row [ref=f1e281]:
+                      - columnheader "Produto" [ref=f1e282]
+                      - columnheader "Procedimento" [ref=f1e283]
+                      - columnheader "Quantidade consumida" [ref=f1e284]
+                      - columnheader "Ação" [ref=f1e285]
+                  - rowgroup [ref=f1e189]:
+                    - row [ref=f1e322]:
+                      - cell "Toxina Botulínica (teste)" [ref=f1e323]
+                      - cell "Banho" [ref=f1e324]
+                      - cell "3" [ref=f1e325]
+                      - cell [ref=f1e326]:
+                        - button "Remover" [ref=f1e327]
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f1e328]:
+        - generic [ref=f1e333]: Vínculo salvo.
+  - button "Open Next.js Dev Tools" [ref=f1e137] [cursor=pointer]
+  - alert [ref=f1e142]

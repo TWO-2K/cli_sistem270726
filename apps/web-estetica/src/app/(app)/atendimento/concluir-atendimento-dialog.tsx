@@ -20,11 +20,13 @@ import type { PacoteSessao, PlanoTratamentoEtapa, Procedimento } from "@/lib/typ
 export function ConcluirAtendimentoDialog({
   atendimentoId,
   pacienteId,
+  pacienteConvenioId,
   procedimento,
   agendamentoId,
 }: {
   atendimentoId: string;
   pacienteId: string;
+  pacienteConvenioId?: string | null;
   procedimento: Procedimento | null;
   agendamentoId?: string | null;
 }) {
@@ -36,6 +38,7 @@ export function ConcluirAtendimentoDialog({
   const [abaterSessao, setAbaterSessao] = useState(true);
   const [etapaPlano, setEtapaPlano] = useState<PlanoTratamentoEtapa | null>(null);
   const [concluirEtapaPlano, setConcluirEtapaPlano] = useState(true);
+  const [precoConvenio, setPrecoConvenio] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelado = false;
@@ -43,38 +46,49 @@ export function ConcluirAtendimentoDialog({
       if (!procedimento) {
         setPacoteAtivo(null);
         setEtapaPlano(null);
+        setPrecoConvenio(null);
         return;
       }
       const supabase = createClient();
-      const [{ data: pacotes }, { data: etapas }] = await Promise.all([
-        supabase
-          .from("pacotes_sessao")
-          .select("*")
-          .eq("paciente_id", pacienteId)
-          .eq("procedimento_id", procedimento.id)
-          .order("criado_em", { ascending: true })
-          .returns<PacoteSessao[]>(),
-        supabase
-          .from("plano_tratamento_etapas")
-          .select("*, planos_tratamento!inner(paciente_id, status)")
-          .eq("procedimento_id", procedimento.id)
-          .eq("status", "pendente")
-          .eq("planos_tratamento.paciente_id", pacienteId)
-          .eq("planos_tratamento.status", "ativo")
-          .order("ordem", { ascending: true })
-          .returns<PlanoTratamentoEtapa[]>(),
-      ]);
+      const [{ data: pacotes }, { data: etapas }, { data: precoRow }] =
+        await Promise.all([
+          supabase
+            .from("pacotes_sessao")
+            .select("*")
+            .eq("paciente_id", pacienteId)
+            .eq("procedimento_id", procedimento.id)
+            .order("criado_em", { ascending: true })
+            .returns<PacoteSessao[]>(),
+          supabase
+            .from("plano_tratamento_etapas")
+            .select("*, planos_tratamento!inner(paciente_id, status)")
+            .eq("procedimento_id", procedimento.id)
+            .eq("status", "pendente")
+            .eq("planos_tratamento.paciente_id", pacienteId)
+            .eq("planos_tratamento.status", "ativo")
+            .order("ordem", { ascending: true })
+            .returns<PlanoTratamentoEtapa[]>(),
+          pacienteConvenioId
+            ? supabase
+                .from("tabela_precos_convenio")
+                .select("preco")
+                .eq("convenio_id", pacienteConvenioId)
+                .eq("procedimento_id", procedimento.id)
+                .maybeSingle<{ preco: number }>()
+            : Promise.resolve({ data: null }),
+        ]);
       if (cancelado) return;
       const ativo = (pacotes ?? []).find((p) => p.sessoes_utilizadas < p.sessoes_total);
       setPacoteAtivo(ativo ?? null);
       setAbaterSessao(true);
       setEtapaPlano((etapas ?? [])[0] ?? null);
       setConcluirEtapaPlano(true);
+      setPrecoConvenio(precoRow?.preco ?? null);
     })();
     return () => {
       cancelado = true;
     };
-  }, [pacienteId, procedimento]);
+  }, [pacienteId, pacienteConvenioId, procedimento]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -106,6 +120,7 @@ export function ConcluirAtendimentoDialog({
     }
 
     const usaPacote = !!pacoteAtivo && abaterSessao;
+    const valorProcedimento = precoConvenio ?? procedimento?.preco ?? 0;
 
     if (usaPacote) {
       const { error: abateError } = await supabase.rpc("abater_sessao_pacote", {
@@ -124,7 +139,7 @@ export function ConcluirAtendimentoDialog({
       .insert({
         atendimento_id: atendimentoId,
         paciente_id: pacienteId,
-        total: usaPacote ? 0 : (procedimento?.preco ?? 0),
+        total: usaPacote ? 0 : valorProcedimento,
       })
       .select("id")
       .single();
@@ -137,8 +152,16 @@ export function ConcluirAtendimentoDialog({
           ? `Sessão de pacote — ${procedimento.nome}`
           : procedimento.nome,
         quantidade: 1,
-        valor_unitario: usaPacote ? 0 : procedimento.preco,
+        valor_unitario: usaPacote ? 0 : valorProcedimento,
       });
+
+      const { error: estoqueError } = await supabase.rpc(
+        "baixar_estoque_procedimento",
+        { p_procedimento_id: procedimento.id, p_atendimento_id: atendimentoId },
+      );
+      if (estoqueError) {
+        toast.error("Atendimento concluído, mas houve erro ao baixar o estoque.");
+      }
     }
 
     if (agendamentoId) {
@@ -198,6 +221,16 @@ export function ConcluirAtendimentoDialog({
                 {etapaPlano.descricao}).
               </span>
             </label>
+          )}
+          {!pacoteAtivo && precoConvenio !== null && (
+            <p className="text-xs text-muted-foreground">
+              Convênio: preço tabelado de{" "}
+              {precoConvenio.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}{" "}
+              será usado no lugar do preço padrão.
+            </p>
           )}
           {pacoteAtivo ? (
             <label className="flex items-start gap-2 rounded-md border px-3 py-2 text-sm">

@@ -1,0 +1,91 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - complementary [ref=f1e3]:
+      - generic [ref=f1e4]: Estetica - Tua Cara
+      - navigation [ref=f1e6]:
+        - link "Painel" [ref=f1e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f1e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f1e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f1e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f1e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f1e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f1e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f1e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f1e40]:
+        - generic [ref=f1e41]: TC
+        - generic [ref=f1e43]:
+          - generic [ref=f1e44]: Tua cara
+          - generic [ref=f1e45]: Administrador
+        - button "Sair" [ref=f1e46]
+    - main [ref=f1e47]:
+      - generic [ref=f1e49]:
+        - generic [ref=f1e50]:
+          - heading "Configurações" [level=1] [ref=f1e51]
+          - paragraph [ref=f1e52]: Perfil da empresa, usuários, salas e procedimentos da clínica.
+        - generic [ref=f1e53]:
+          - tablist [ref=f1e54]:
+            - tab "Perfil da empresa" [ref=f1e55]
+            - tab "Usuários" [ref=f1e56]
+            - tab "Salas" [ref=f1e57]
+            - tab "Procedimentos" [ref=f1e58]
+            - tab "Estoque" [active] [selected] [ref=f1e59]
+            - tab "Comissões" [ref=f1e60]
+          - tabpanel "Estoque" [ref=f1e143]:
+            - generic [ref=f1e144]:
+              - generic [ref=f1e145]:
+                - generic [ref=f1e146]:
+                  - heading "Produtos" [level=3] [ref=f1e147]
+                  - button "Novo produto" [ref=f1e148]
+                - table [ref=f1e151]:
+                  - rowgroup [ref=f1e152]:
+                    - row [ref=f1e153]:
+                      - columnheader "Nome" [ref=f1e154]
+                      - columnheader "Unidade" [ref=f1e155]
+                      - columnheader "Estoque atual" [ref=f1e156]
+                      - columnheader "Estoque mínimo" [ref=f1e157]
+                      - columnheader "Status" [ref=f1e158]
+                      - columnheader "Ação" [ref=f1e159]
+                  - rowgroup [ref=f1e160]:
+                    - row [ref=f1e161]:
+                      - cell "Nenhum produto cadastrado." [ref=f1e162]
+              - generic [ref=f1e163]:
+                - heading "Consumo por procedimento" [level=3] [ref=f1e164]
+                - paragraph [ref=f1e165]: Quanto de cada produto é consumido ao concluir um atendimento com o procedimento selecionado — o estoque é baixado automaticamente.
+                - generic [ref=f1e166]:
+                  - generic [ref=f1e167]:
+                    - generic [ref=f1e168]: Produto
+                    - combobox [ref=f1e169]:
+                      - generic [ref=f1e170]: —
+                      - img: ▼
+                    - textbox [ref=f1e171]
+                  - generic [ref=f1e172]:
+                    - generic [ref=f1e173]: Procedimento
+                    - combobox [ref=f1e174]:
+                      - generic [ref=f1e175]: Banho
+                      - img: ▼
+                    - textbox [ref=f1e176]: 3160f8eb-d343-46f0-930f-44ed4f187600
+                  - generic [ref=f1e177]:
+                    - generic [ref=f1e178]: Quantidade consumida
+                    - spinbutton [ref=f1e179]: "1"
+                  - button "Salvar vínculo" [disabled]
+                - table [ref=f1e182]:
+                  - rowgroup [ref=f1e183]:
+                    - row [ref=f1e184]:
+                      - columnheader "Produto" [ref=f1e185]
+                      - columnheader "Procedimento" [ref=f1e186]
+                      - columnheader "Quantidade consumida" [ref=f1e187]
+                      - columnheader "Ação" [ref=f1e188]
+                  - rowgroup [ref=f1e189]:
+                    - row [ref=f1e190]:
+                      - cell "Nenhum vínculo cadastrado." [ref=f1e191]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f1e137] [cursor=pointer]
+  - alert [ref=f1e142]

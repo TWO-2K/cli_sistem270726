@@ -7,7 +7,14 @@ import { createClient } from "@empresa/supabase/client";
 import { Button } from "@empresa/ui/components/button";
 import { Input } from "@empresa/ui/components/input";
 import { Label } from "@empresa/ui/components/label";
-import type { Paciente } from "@/lib/types/db";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@empresa/ui/components/select";
+import type { Convenio, Paciente } from "@/lib/types/db";
 import {
   Dialog,
   DialogContent,
@@ -19,10 +26,12 @@ import {
 
 export function EditarPacienteDialog({
   paciente,
+  convenios = [],
   renderTrigger,
   children = "Editar",
 }: {
   paciente: Paciente;
+  convenios?: Convenio[];
   renderTrigger?: ReactElement;
   children?: ReactNode;
 }) {
@@ -40,6 +49,7 @@ export function EditarPacienteDialog({
         <EditarPacienteForm
           key={paciente.id}
           paciente={paciente}
+          convenios={convenios}
           onSaved={() => setOpen(false)}
         />
       </DialogContent>
@@ -49,9 +59,11 @@ export function EditarPacienteDialog({
 
 function EditarPacienteForm({
   paciente,
+  convenios,
   onSaved,
 }: {
   paciente: Paciente;
+  convenios: Convenio[];
   onSaved: () => void;
 }) {
   const router = useRouter();
@@ -63,6 +75,9 @@ function EditarPacienteForm({
     paciente.data_nascimento ?? "",
   );
   const [endereco, setEndereco] = useState(paciente.endereco ?? "");
+  const [convenioId, setConvenioId] = useState<string | null>(
+    paciente.convenio_id,
+  );
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -77,6 +92,7 @@ function EditarPacienteForm({
         email: email || null,
         data_nascimento: dataNascimento || null,
         endereco: endereco || null,
+        convenio_id: convenioId,
       })
       .eq("id", paciente.id);
 
@@ -139,6 +155,33 @@ function EditarPacienteForm({
           placeholder="Opcional"
         />
       </div>
+      {convenios.length > 0 && (
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="convenio">Convênio</Label>
+          <Select
+            value={convenioId ?? "__none__"}
+            onValueChange={(v) =>
+              setConvenioId(v === "__none__" ? null : (v ?? null))
+            }
+          >
+            <SelectTrigger id="convenio">
+              <SelectValue placeholder="Nenhum">
+                {(value: string) =>
+                  convenios.find((c) => c.id === value)?.nome ?? "Nenhum"
+                }
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="__none__">Nenhum</SelectItem>
+              {convenios.map((c) => (
+                <SelectItem key={c.id} value={c.id}>
+                  {c.nome}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
       <DialogFooter>
         <Button type="submit" disabled={loading}>
           {loading ? "Salvando..." : "Salvar"}

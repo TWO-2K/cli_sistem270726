@@ -1,0 +1,96 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - complementary [ref=f1e3]:
+      - generic [ref=f1e4]: Estetica - Tua Cara
+      - navigation [ref=f1e6]:
+        - link "Painel" [ref=f1e288] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f1e289] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f1e290] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f1e291] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f1e292] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f1e293] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f1e294] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f1e295] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f1e40]:
+        - generic [ref=f1e41]: TC
+        - generic [ref=f1e43]:
+          - generic [ref=f1e44]: Tua cara
+          - generic [ref=f1e45]: Administrador
+        - button "Sair" [ref=f1e296]
+    - main [ref=f1e47]:
+      - generic [ref=f1e49]:
+        - generic [ref=f1e50]:
+          - heading "Configurações" [level=1] [ref=f1e297]
+          - paragraph [ref=f1e52]: Perfil da empresa, usuários, salas e procedimentos da clínica.
+        - generic [ref=f1e53]:
+          - tablist [ref=f1e54]:
+            - tab "Perfil da empresa" [ref=f1e298]
+            - tab "Usuários" [ref=f1e299]
+            - tab "Salas" [ref=f1e300]
+            - tab "Procedimentos" [ref=f1e301]
+            - tab "Estoque" [ref=f1e302]
+            - tab "Convênios" [selected] [ref=f1e303]
+            - tab "Comissões" [ref=f1e304]
+          - tabpanel "Convênios" [ref=f1e305]:
+            - generic [ref=f1e194]:
+              - generic [ref=f1e195]:
+                - generic [ref=f1e196]:
+                  - heading "Convênios" [level=3] [ref=f1e306]
+                  - button "Novo convênio" [active] [ref=f1e307]
+                - table [ref=f1e201]:
+                  - rowgroup [ref=f1e202]:
+                    - row [ref=f1e308]:
+                      - columnheader "Nome" [ref=f1e309]
+                      - columnheader "Status" [ref=f1e310]
+                      - columnheader "Ação" [ref=f1e311]
+                  - rowgroup [ref=f1e207]:
+                    - row [ref=f1e312]:
+                      - cell "Convênio Teste" [ref=f1e313]
+                      - cell "Ativo" [ref=f1e314]
+                      - cell [ref=f1e316]:
+                        - button "Editar" [ref=f1e317]
+                        - button "Excluir" [ref=f1e318]
+              - generic [ref=f1e210]:
+                - heading "Tabela de preços por convênio" [level=3] [ref=f1e319]
+                - paragraph [ref=f1e212]: Preço tabelado cobrado quando o paciente do convênio faz o procedimento — sobrepõe o preço padrão do procedimento ao concluir o atendimento.
+                - generic [ref=f1e213]:
+                  - generic [ref=f1e214]:
+                    - generic [ref=f1e215]: Convênio
+                    - combobox [ref=f1e216]:
+                      - generic [ref=f1e217]: —
+                      - img: ▼
+                    - textbox [ref=f1e218]
+                  - generic [ref=f1e219]:
+                    - generic [ref=f1e220]: Procedimento
+                    - combobox [ref=f1e221]:
+                      - generic [ref=f1e222]: Banho
+                      - img: ▼
+                    - textbox [ref=f1e223]: 3160f8eb-d343-46f0-930f-44ed4f187600
+                  - generic [ref=f1e224]:
+                    - generic [ref=f1e225]: Preço (R$)
+                    - spinbutton [ref=f1e226]: "0"
+                  - button "Salvar preço" [disabled]
+                - table [ref=f1e229]:
+                  - rowgroup [ref=f1e230]:
+                    - row [ref=f1e320]:
+                      - columnheader "Convênio" [ref=f1e321]
+                      - columnheader "Procedimento" [ref=f1e322]
+                      - columnheader "Preço" [ref=f1e323]
+                      - columnheader "Ação" [ref=f1e324]
+                  - rowgroup [ref=f1e236]:
+                    - row [ref=f1e325]:
+                      - cell "Nenhum preço cadastrado." [ref=f1e326]
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f1e327]:
+        - generic [ref=f1e332]: Convênio cadastrado.
+  - button "Open Next.js Dev Tools" [ref=f1e138] [cursor=pointer]
+  - alert [ref=f1e143]

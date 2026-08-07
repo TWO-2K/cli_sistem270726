@@ -9,6 +9,7 @@ import type {
   AnamneseEsteticaContraindicacao,
   Atendimento,
   Comanda,
+  Convenio,
   Evolucao,
   FotoAtendimento,
   PacoteSessao,
@@ -81,6 +82,7 @@ export default async function PacienteDetailPage({
     { data: pacotesSessao },
     { data: planosTratamento },
     { data: comandas },
+    { data: convenios },
   ] = await Promise.all([
     supabase
       .from("agendamentos")
@@ -134,6 +136,7 @@ export default async function PacienteDetailPage({
       .select("*")
       .eq("paciente_id", id)
       .returns<Comanda[]>(),
+    supabase.from("convenios").select("*").order("nome").returns<Convenio[]>(),
   ]);
 
   const planoIds = (planosTratamento ?? []).map((p) => p.id);
@@ -323,7 +326,7 @@ export default async function PacienteDetailPage({
             <CalendarPlus className="h-4 w-4" />
             Agendar
           </Button>
-          <EditarPacienteDialog paciente={paciente} />
+          <EditarPacienteDialog paciente={paciente} convenios={convenios ?? []} />
         </div>
       </div>
 

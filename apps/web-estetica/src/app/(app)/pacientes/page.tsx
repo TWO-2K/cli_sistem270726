@@ -1,5 +1,5 @@
 import { createClient } from "@empresa/supabase/server";
-import type { Paciente } from "@/lib/types/db";
+import type { Convenio, Paciente } from "@/lib/types/db";
 import { NovoPacienteDialog } from "./novo-paciente-dialog";
 import { PacientesTable, type PacienteComStatus } from "./pacientes-table";
 
@@ -12,6 +12,7 @@ export default async function PacientesPage() {
     .returns<Paciente[]>();
 
   const [
+    { data: convenios },
     { data: agendamentos },
     { data: prontuarios },
     { data: anamneses },
@@ -20,6 +21,7 @@ export default async function PacientesPage() {
     { data: fotos },
     { data: comandas },
   ] = await Promise.all([
+    supabase.from("convenios").select("*").order("nome").returns<Convenio[]>(),
     supabase.from("agendamentos").select("paciente_id, status, data_hora"),
     supabase.from("prontuarios").select("paciente_id"),
     supabase.from("anamneses").select("paciente_id"),
@@ -75,10 +77,13 @@ export default async function PacientesPage() {
             Cadastro e histórico dos seus pacientes.
           </p>
         </div>
-        <NovoPacienteDialog />
+        <NovoPacienteDialog convenios={convenios ?? []} />
       </div>
 
-      <PacientesTable pacientes={pacientesComStatus} />
+      <PacientesTable
+        pacientes={pacientesComStatus}
+        convenios={convenios ?? []}
+      />
     </div>
   );
 }

@@ -21,7 +21,7 @@ import { Button } from "@empresa/ui/components/button";
 import { Input } from "@empresa/ui/components/input";
 import { cn } from "@empresa/ui/utils";
 import { iniciaisPaciente } from "@/lib/pacientes-utils";
-import type { Paciente } from "@/lib/types/db";
+import type { Convenio, Paciente } from "@/lib/types/db";
 import { EditarPacienteDialog } from "./[id]/editar-paciente-dialog";
 import { NovoPacienteDialog } from "./novo-paciente-dialog";
 import { PacienteDetailSheet } from "./paciente-detail-sheet";
@@ -52,8 +52,10 @@ export function statusDoPaciente(paciente: PacienteComStatus) {
 
 export function PacientesTable({
   pacientes,
+  convenios = [],
 }: {
   pacientes: PacienteComStatus[];
+  convenios?: Convenio[];
 }) {
   const router = useRouter();
   const [busca, setBusca] = useState("");
@@ -253,6 +255,7 @@ export function PacientesTable({
                       <div className="flex items-center justify-end gap-1">
                         <EditarPacienteDialog
                           paciente={paciente}
+                          convenios={convenios}
                           renderTrigger={
                             <Button variant="ghost" size="icon-sm" />
                           }
@@ -359,6 +362,7 @@ export function PacientesTable({
                     </Button>
                     <EditarPacienteDialog
                       paciente={paciente}
+                      convenios={convenios}
                       renderTrigger={<Button variant="ghost" size="icon-sm" />}
                     >
                       <Pencil className="h-4 w-4" />
@@ -387,6 +391,7 @@ export function PacientesTable({
 
       <PacienteDetailSheet
         paciente={pacienteSelecionado}
+        convenios={convenios}
         onOpenChange={(open) => {
           if (!open) setPacienteSelecionado(null);
         }}

@@ -130,6 +130,9 @@ export default async function AtendimentoPage() {
                       <ConcluirAtendimentoDialog
                         atendimentoId={a.id}
                         pacienteId={a.paciente_id}
+                        pacienteConvenioId={
+                          pacientesMap.get(a.paciente_id)?.convenio_id
+                        }
                         agendamentoId={a.agendamento_id}
                         procedimento={
                           a.procedimento_id
@@ -200,6 +203,9 @@ export default async function AtendimentoPage() {
                 <ConcluirAtendimentoDialog
                   atendimentoId={a.id}
                   pacienteId={a.paciente_id}
+                  pacienteConvenioId={
+                    pacientesMap.get(a.paciente_id)?.convenio_id
+                  }
                   procedimento={
                     a.procedimento_id
                       ? (procedimentosMap.get(a.procedimento_id) ?? null)

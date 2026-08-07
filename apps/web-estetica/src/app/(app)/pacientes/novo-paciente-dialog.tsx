@@ -7,7 +7,15 @@ import { createClient } from "@empresa/supabase/client";
 import { Button } from "@empresa/ui/components/button";
 import { Input } from "@empresa/ui/components/input";
 import { Label } from "@empresa/ui/components/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@empresa/ui/components/select";
 import { Plus } from "lucide-react";
+import type { Convenio } from "@/lib/types/db";
 import {
   Dialog,
   DialogContent,
@@ -17,7 +25,11 @@ import {
   DialogTrigger,
 } from "@empresa/ui/components/dialog";
 
-export function NovoPacienteDialog() {
+export function NovoPacienteDialog({
+  convenios = [],
+}: {
+  convenios?: Convenio[];
+}) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -26,6 +38,7 @@ export function NovoPacienteDialog() {
   const [email, setEmail] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
   const [endereco, setEndereco] = useState("");
+  const [convenioId, setConvenioId] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -38,6 +51,7 @@ export function NovoPacienteDialog() {
       email: email || null,
       data_nascimento: dataNascimento || null,
       endereco: endereco || null,
+      convenio_id: convenioId,
     });
 
     setLoading(false);
@@ -53,6 +67,7 @@ export function NovoPacienteDialog() {
     setEmail("");
     setDataNascimento("");
     setEndereco("");
+    setConvenioId(null);
     setOpen(false);
     router.refresh();
   }
@@ -113,6 +128,33 @@ export function NovoPacienteDialog() {
               placeholder="Opcional"
             />
           </div>
+          {convenios.length > 0 && (
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="convenio">Convênio</Label>
+              <Select
+                value={convenioId ?? "__none__"}
+                onValueChange={(v) =>
+                  setConvenioId(v === "__none__" ? null : (v ?? null))
+                }
+              >
+                <SelectTrigger id="convenio">
+                  <SelectValue placeholder="Nenhum">
+                    {(value: string) =>
+                      convenios.find((c) => c.id === value)?.nome ?? "Nenhum"
+                    }
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="__none__">Nenhum</SelectItem>
+                  {convenios.map((c) => (
+                    <SelectItem key={c.id} value={c.id}>
+                      {c.nome}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
           <DialogFooter>
             <Button type="submit" disabled={loading}>
               {loading ? "Salvando..." : "Salvar"}
