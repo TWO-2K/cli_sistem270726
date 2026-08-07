@@ -1,0 +1,86 @@
+- generic [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - complementary [ref=f4e3]:
+      - generic [ref=f4e4]: Estetica - Tua Cara
+      - navigation [ref=f4e6]:
+        - link [ref=f4e169] [cursor=pointer]:
+          - /url: /painel
+          - text: Painel
+        - link [ref=f4e170] [cursor=pointer]:
+          - /url: /agenda
+          - text: Agenda
+        - link [ref=f4e171] [cursor=pointer]:
+          - /url: /pacientes
+          - text: Pacientes
+        - link [ref=f4e172] [cursor=pointer]:
+          - /url: /atendimento
+          - text: Atendimento
+        - link [ref=f4e173] [cursor=pointer]:
+          - /url: /leads
+          - text: Funil de leads
+        - link [ref=f4e174] [cursor=pointer]:
+          - /url: /financeiro
+          - text: Financeiro
+        - link [ref=f4e175] [cursor=pointer]:
+          - /url: /relatorios
+          - text: Relatórios
+        - link [ref=f4e176] [cursor=pointer]:
+          - /url: /configuracoes
+          - text: Configurações
+      - generic [ref=f4e40]:
+        - generic [ref=f4e41]: TC
+        - generic [ref=f4e43]:
+          - generic [ref=f4e44]: Tua cara
+          - generic [ref=f4e45]: Administrador
+        - button [ref=f4e177]: Sair
+    - main [ref=f4e47]:
+      - generic [ref=f4e49]:
+        - generic [ref=f4e50]:
+          - heading [level=1] [ref=f4e178]: Configurações
+          - paragraph [ref=f4e52]: Perfil da empresa, usuários, salas e procedimentos da clínica.
+        - generic [ref=f4e53]:
+          - tablist [ref=f4e54]:
+            - tab [ref=f4e179]: Perfil da empresa
+            - tab [ref=f4e180]: Usuários
+            - tab [ref=f4e181]: Unidades
+            - tab [ref=f4e182]: Salas
+            - tab [ref=f4e183]: Procedimentos
+            - tab [ref=f4e184]: Estoque
+            - tab [ref=f4e185]: Convênios
+            - tab [ref=f4e186]: Comissões
+            - tab [selected] [ref=f4e187]: Auditoria
+          - tabpanel [ref=f4e188]:
+            - generic [ref=f4e145]:
+              - paragraph [ref=f4e146]: Registro de ações sensíveis (pagamentos, parcelas e exclusões). Trilha somente leitura — não pode ser editada nem apagada pelo app.
+              - combobox [ref=f4e147]:
+                - generic [ref=f4e148]: Todas as entidades
+                - img: ▼
+              - textbox [ref=f4e149]: __todas__
+              - table [ref=f4e152]:
+                - rowgroup [ref=f4e153]:
+                  - row [ref=f4e189]:
+                    - columnheader [ref=f4e190]: Data
+                    - columnheader [ref=f4e191]: Usuário
+                    - columnheader [ref=f4e192]: Ação
+                    - columnheader [ref=f4e193]: Entidade
+                    - columnheader [ref=f4e194]: Detalhes
+                - rowgroup [ref=f4e160]:
+                  - row [ref=f4e195]:
+                    - cell [ref=f4e196]: 07/08/2026, 00:56:43
+                    - cell [ref=f4e197]: Tua cara
+                    - cell [ref=f4e198]: salas.excluido
+                    - cell [ref=f4e199]: salas
+                    - cell [ref=f4e200]:
+                      - button [expanded] [ref=f4e201]: Ver
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f4e140] [cursor=pointer]
+  - alert [ref=f4e168]
+  - dialog [ref=f4e205]:
+    - heading "salas.excluido — salas" [level=2] [ref=f4e207]
+    - generic [ref=f4e208]:
+      - paragraph [ref=f4e209]: "Usuário: Tua cara"
+      - paragraph [ref=f4e210]: "Data: 07/08/2026, 00:56:43"
+      - generic [ref=f4e211]:
+        - paragraph [ref=f4e212]: Antes
+        - generic [ref=f4e213]: "{ \"id\": \"5cff7da9-3975-4c4e-8e35-6dd91c48f2ee\", \"nome\": \"Sala Teste Auditoria\", \"empresa_id\": \"df19bb1b-6cdf-45df-b52c-5df01543cb35\", \"unidade_id\": null }"
+    - button "Close" [active] [ref=f4e214]

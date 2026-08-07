@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { captureError } from "@empresa/observability/sentry";
 import { createClient } from "@empresa/supabase/client";
 import { Button } from "@empresa/ui/components/button";
 import { Input } from "@empresa/ui/components/input";
@@ -56,6 +57,10 @@ export function RegistrarPagamentoDialog({
     setLoading(false);
 
     if (error || !data) {
+      captureError(error ?? new Error("registrar_pagamento sem retorno"), {
+        rpc: "registrar_pagamento",
+        comandaId,
+      });
       toast.error("Não foi possível registrar o pagamento.");
       return;
     }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { captureError } from "@empresa/observability/sentry";
 import { createClient } from "@empresa/supabase/client";
 import { Button } from "@empresa/ui/components/button";
 
@@ -19,6 +20,7 @@ export function MarcarParcelaPagaButton({ parcelaId }: { parcelaId: string }) {
     setLoading(false);
 
     if (error) {
+      captureError(error, { rpc: "marcar_parcela_paga", parcelaId });
       toast.error("Não foi possível marcar a parcela como paga.");
       return;
     }

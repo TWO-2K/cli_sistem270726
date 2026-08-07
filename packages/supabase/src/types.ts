@@ -42,6 +42,7 @@ export interface Empresa {
 export interface Usuario {
   id: string;
   empresa_id: string | null;
+  unidade_id: string | null;
   nome: string;
   email: string;
   perfil: Perfil;
@@ -49,4 +50,17 @@ export interface Usuario {
   especialidade: string | null;
   atende: boolean;
   ativo: boolean;
+}
+
+export interface AuditLog {
+  id: string;
+  empresa_id: string;
+  usuario_id: string | null;
+  usuario_nome: string;
+  acao: string;
+  entidade: string;
+  entidade_id: string | null;
+  dados_antes: Record<string, unknown> | null;
+  dados_depois: Record<string, unknown> | null;
+  criado_em: string;
 }

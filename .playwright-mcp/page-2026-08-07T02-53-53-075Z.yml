@@ -1,0 +1,123 @@
+- generic [active] [ref=f9e1]:
+  - generic [ref=f9e2]:
+    - complementary [ref=f9e3]:
+      - generic [ref=f9e4]: Estetica - Tua Cara
+      - navigation [ref=f9e6]:
+        - link "Painel" [ref=f9e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f9e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f9e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f9e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f9e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f9e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f9e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f9e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f9e40]:
+        - generic [ref=f9e41]: TC
+        - generic [ref=f9e43]:
+          - generic [ref=f9e44]: Tua cara
+          - generic [ref=f9e45]: Administrador
+        - button "Sair" [ref=f9e46]
+    - main [ref=f9e47]:
+      - generic [ref=f9e49]:
+        - generic [ref=f9e50]:
+          - heading "Configurações" [level=1] [ref=f9e51]
+          - paragraph [ref=f9e52]: Perfil da empresa, usuários, salas e procedimentos da clínica.
+        - generic [ref=f9e53]:
+          - tablist [ref=f9e54]:
+            - tab "Perfil da empresa" [selected] [ref=f9e55]
+            - tab "Usuários" [ref=f9e56]
+            - tab "Unidades" [ref=f9e57]
+            - tab "Salas" [ref=f9e58]
+            - tab "Procedimentos" [ref=f9e59]
+            - tab "Estoque" [ref=f9e60]
+            - tab "Convênios" [ref=f9e61]
+            - tab "Comissões" [ref=f9e62]
+          - tabpanel [ref=f9e63]:
+            - generic [ref=f9e64]:
+              - generic [ref=f9e65]:
+                - heading "Dados gerais" [level=2] [ref=f9e66]
+                - generic [ref=f9e67]:
+                  - generic [ref=f9e68]:
+                    - generic [ref=f9e69]: Nome fantasia
+                    - textbox "Nome fantasia" [ref=f9e70]: Estetica - Tua Cara
+                  - generic [ref=f9e71]:
+                    - generic [ref=f9e72]: CNPJ
+                    - textbox "CNPJ" [ref=f9e73]
+                  - generic [ref=f9e74]:
+                    - generic [ref=f9e75]: E-mail
+                    - textbox "E-mail" [ref=f9e76]
+                  - generic [ref=f9e77]:
+                    - generic [ref=f9e78]: Endereço
+                    - textbox "Endereço" [ref=f9e79]
+              - generic [ref=f9e80]:
+                - generic [ref=f9e81]:
+                  - heading "Horário de funcionamento" [level=2] [ref=f9e82]
+                  - paragraph [ref=f9e83]: Define a faixa de horário disponível na Agenda. Dias desativados não permitem agendamento.
+                - generic [ref=f9e84]:
+                  - generic [ref=f9e85]:
+                    - generic [ref=f9e86]:
+                      - checkbox "Domingo" [checked] [ref=f9e87]
+                      - text: Domingo
+                    - generic [ref=f9e88]:
+                      - textbox [ref=f9e89]: 08:00
+                      - generic [ref=f9e90]: até
+                      - textbox [ref=f9e91]: 23:00
+                  - generic [ref=f9e92]:
+                    - generic [ref=f9e93]:
+                      - checkbox "Segunda-feira" [checked] [ref=f9e94]
+                      - text: Segunda-feira
+                    - generic [ref=f9e95]:
+                      - textbox [ref=f9e96]: 08:00
+                      - generic [ref=f9e97]: até
+                      - textbox [ref=f9e98]: 18:00
+                  - generic [ref=f9e99]:
+                    - generic [ref=f9e100]:
+                      - checkbox "Terça-feira" [checked] [ref=f9e101]
+                      - text: Terça-feira
+                    - generic [ref=f9e102]:
+                      - textbox [ref=f9e103]: 08:00
+                      - generic [ref=f9e104]: até
+                      - textbox [ref=f9e105]: 18:00
+                  - generic [ref=f9e106]:
+                    - generic [ref=f9e107]:
+                      - checkbox "Quarta-feira" [checked] [ref=f9e108]
+                      - text: Quarta-feira
+                    - generic [ref=f9e109]:
+                      - textbox [ref=f9e110]: 08:00
+                      - generic [ref=f9e111]: até
+                      - textbox [ref=f9e112]: 18:00
+                  - generic [ref=f9e113]:
+                    - generic [ref=f9e114]:
+                      - checkbox "Quinta-feira" [checked] [ref=f9e115]
+                      - text: Quinta-feira
+                    - generic [ref=f9e116]:
+                      - textbox [ref=f9e117]: 08:00
+                      - generic [ref=f9e118]: até
+                      - textbox [ref=f9e119]: 18:00
+                  - generic [ref=f9e120]:
+                    - generic [ref=f9e121]:
+                      - checkbox "Sexta-feira" [checked] [ref=f9e122]
+                      - text: Sexta-feira
+                    - generic [ref=f9e123]:
+                      - textbox [ref=f9e124]: 08:00
+                      - generic [ref=f9e125]: até
+                      - textbox [ref=f9e126]: 18:00
+                  - generic [ref=f9e127]:
+                    - generic [ref=f9e128]:
+                      - checkbox "Sábado" [ref=f9e129]
+                      - text: Sábado
+                    - generic [ref=f9e130]:
+                      - textbox [disabled]: 08:00
+                      - generic [ref=f9e131]: até
+                      - textbox [disabled]: 18:00
+              - button "Salvar alterações" [ref=f9e133]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f9e139] [cursor=pointer]

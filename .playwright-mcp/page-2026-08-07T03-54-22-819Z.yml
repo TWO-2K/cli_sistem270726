@@ -1,0 +1,64 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - complementary [ref=f1e3]:
+      - generic [ref=f1e4]: Estetica - Tua Cara
+      - navigation [ref=f1e6]:
+        - link "Painel" [ref=f1e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f1e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f1e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f1e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f1e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f1e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f1e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f1e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f1e40]:
+        - generic [ref=f1e41]: TC
+        - generic [ref=f1e43]:
+          - generic [ref=f1e44]: Tua cara
+          - generic [ref=f1e45]: Administrador
+        - button "Sair" [ref=f1e46]
+    - main [ref=f1e47]:
+      - generic [ref=f1e49]:
+        - generic [ref=f1e50]:
+          - heading "Configurações" [level=1] [ref=f1e51]
+          - paragraph [ref=f1e52]: Perfil da empresa, usuários, salas e procedimentos da clínica.
+        - generic [ref=f1e53]:
+          - tablist [ref=f1e54]:
+            - tab "Perfil da empresa" [ref=f1e55]
+            - tab "Usuários" [ref=f1e56]
+            - tab "Unidades" [ref=f1e57]
+            - tab "Salas" [ref=f1e58]
+            - tab "Procedimentos" [ref=f1e59]
+            - tab "Estoque" [ref=f1e60]
+            - tab "Convênios" [ref=f1e61]
+            - tab "Comissões" [ref=f1e62]
+            - tab "Auditoria" [selected] [ref=f1e63]
+          - tabpanel "Auditoria" [ref=f1e146]:
+            - generic [ref=f1e147]:
+              - paragraph [ref=f1e148]: Registro de ações sensíveis (pagamentos, parcelas e exclusões). Trilha somente leitura — não pode ser editada nem apagada pelo app.
+              - combobox [ref=f1e149]:
+                - generic [ref=f1e150]: __todas__
+                - img: ▼
+              - textbox [ref=f1e151]: __todas__
+              - table [ref=f1e154]:
+                - rowgroup [ref=f1e155]:
+                  - row [ref=f1e156]:
+                    - columnheader "Data" [ref=f1e157]
+                    - columnheader "Usuário" [ref=f1e158]
+                    - columnheader "Ação" [ref=f1e159]
+                    - columnheader "Entidade" [ref=f1e160]
+                    - columnheader "Detalhes" [ref=f1e161]
+                - rowgroup [ref=f1e162]:
+                  - row [ref=f1e163]:
+                    - cell "Nenhum registro de auditoria." [ref=f1e164]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f1e140] [cursor=pointer]
+  - alert [ref=f1e145]

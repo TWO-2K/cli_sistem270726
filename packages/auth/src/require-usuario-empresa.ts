@@ -2,6 +2,7 @@ import "server-only";
 import { redirect } from "next/navigation";
 import { createServerClient } from "@empresa/supabase";
 import type { Usuario, Empresa, Perfil, Segmento } from "@empresa/supabase/types";
+import { logger } from "@empresa/observability/logger";
 
 export interface RequireUsuarioEmpresaRedirects {
   login: string;
@@ -46,6 +47,11 @@ export async function requireUsuarioEmpresa(
   }
 
   if (perfisPermitidos && !perfisPermitidos.includes(usuario.perfil)) {
+    logger.warn("acesso negado", {
+      usuarioId: usuario.id,
+      perfil: usuario.perfil,
+      perfisPermitidos,
+    });
     redirect(redirects.forbidden);
   }
 
@@ -60,6 +66,10 @@ export async function requireUsuarioEmpresa(
   }
 
   if (empresa.status === "suspensa") {
+    logger.warn("acesso negado: empresa suspensa", {
+      usuarioId: usuario.id,
+      empresaId: empresa.id,
+    });
     redirect(redirects.login);
   }
 

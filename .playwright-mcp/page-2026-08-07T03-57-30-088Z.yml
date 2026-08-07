@@ -1,0 +1,69 @@
+- generic [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - complementary [ref=f4e3]:
+      - generic [ref=f4e4]: Estetica - Tua Cara
+      - navigation [ref=f4e6]:
+        - link "Painel" [ref=f4e217] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f4e218] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f4e219] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f4e220] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f4e221] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f4e222] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f4e223] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f4e224] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f4e40]:
+        - generic [ref=f4e41]: TC
+        - generic [ref=f4e43]:
+          - generic [ref=f4e44]: Tua cara
+          - generic [ref=f4e45]: Administrador
+        - button "Sair" [ref=f4e225]
+    - main [ref=f4e47]:
+      - generic [ref=f4e49]:
+        - generic [ref=f4e50]:
+          - heading "Configurações" [level=1] [ref=f4e226]
+          - paragraph [ref=f4e52]: Perfil da empresa, usuários, salas e procedimentos da clínica.
+        - generic [ref=f4e53]:
+          - tablist [ref=f4e54]:
+            - tab "Perfil da empresa" [ref=f4e227]
+            - tab "Usuários" [ref=f4e228]
+            - tab "Unidades" [ref=f4e229]
+            - tab "Salas" [ref=f4e230]
+            - tab "Procedimentos" [ref=f4e231]
+            - tab "Estoque" [ref=f4e232]
+            - tab "Convênios" [ref=f4e233]
+            - tab "Comissões" [ref=f4e234]
+            - tab "Auditoria" [selected] [ref=f4e235]
+          - tabpanel "Auditoria" [ref=f4e236]:
+            - generic [ref=f4e145]:
+              - paragraph [ref=f4e146]: Registro de ações sensíveis (pagamentos, parcelas e exclusões). Trilha somente leitura — não pode ser editada nem apagada pelo app.
+              - combobox [ref=f4e147]:
+                - generic [ref=f4e148]: Todas as entidades
+                - img: ▼
+              - textbox [ref=f4e149]: __todas__
+              - table [ref=f4e152]:
+                - rowgroup [ref=f4e153]:
+                  - row [ref=f4e237]:
+                    - columnheader "Data" [ref=f4e238]
+                    - columnheader "Usuário" [ref=f4e239]
+                    - columnheader "Ação" [ref=f4e240]
+                    - columnheader "Entidade" [ref=f4e241]
+                    - columnheader "Detalhes" [ref=f4e242]
+                - rowgroup [ref=f4e160]:
+                  - row [ref=f4e243]:
+                    - cell "07/08/2026, 00:56:43" [ref=f4e244]
+                    - cell "Tua cara" [ref=f4e245]
+                    - cell "salas.excluido" [ref=f4e246]
+                    - cell "salas" [ref=f4e247]
+                    - cell [ref=f4e248]:
+                      - button "Ver" [active] [ref=f4e249]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f4e140] [cursor=pointer]
+  - alert [ref=f4e168]

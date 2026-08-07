@@ -1,0 +1,74 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - complementary [ref=f3e3]:
+      - generic [ref=f3e4]: Estetica - Tua Cara
+      - navigation [ref=f3e6]:
+        - link "Painel" [ref=f3e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f3e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f3e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f3e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f3e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f3e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f3e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f3e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f3e40]:
+        - generic [ref=f3e41]: TC
+        - generic [ref=f3e43]:
+          - generic [ref=f3e44]: Tua cara
+          - generic [ref=f3e45]: Administrador
+        - button "Sair" [ref=f3e46]
+    - main [ref=f3e47]:
+      - generic [ref=f3e49]:
+        - generic [ref=f3e50]:
+          - heading "Configurações" [level=1] [ref=f3e51]
+          - paragraph [ref=f3e52]: Perfil da empresa, usuários, salas e procedimentos da clínica.
+        - generic [ref=f3e53]:
+          - tablist [ref=f3e54]:
+            - tab "Perfil da empresa" [ref=f3e55]
+            - tab "Usuários" [ref=f3e56]
+            - tab "Unidades" [ref=f3e57]
+            - tab "Salas" [selected] [ref=f3e58]
+            - tab "Procedimentos" [ref=f3e59]
+            - tab "Estoque" [ref=f3e60]
+            - tab "Convênios" [ref=f3e61]
+            - tab "Comissões" [ref=f3e62]
+            - tab "Auditoria" [ref=f3e63]
+          - tabpanel "Salas" [ref=f3e144]:
+            - generic [ref=f3e145]:
+              - generic [ref=f3e146]:
+                - generic [ref=f3e147]:
+                  - generic [ref=f3e148]: Nome da sala
+                  - textbox [ref=f3e149]
+                - button "Adicionar" [ref=f3e150]
+              - table [ref=f3e153]:
+                - rowgroup [ref=f3e154]:
+                  - row [ref=f3e155]:
+                    - columnheader "Nome" [ref=f3e156]
+                    - columnheader "Ação" [ref=f3e157]
+                - rowgroup [ref=f3e158]:
+                  - row [ref=f3e159]:
+                    - cell "Sala 1" [ref=f3e160]
+                    - cell [ref=f3e161]:
+                      - button "Editar" [ref=f3e162]
+                      - button "Excluir" [ref=f3e163]
+                  - row [ref=f3e164]:
+                    - cell "Sala 2" [ref=f3e165]
+                    - cell [ref=f3e166]:
+                      - button "Editar" [ref=f3e167]
+                      - button "Excluir" [ref=f3e168]
+                  - row [ref=f3e170]:
+                    - cell "Sala Teste Auditoria" [ref=f3e171]
+                    - cell [ref=f3e172]:
+                      - button "Editar" [ref=f3e173]
+                      - button "Excluir" [ref=f3e174]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f3e140] [cursor=pointer]
+  - alert [ref=f3e169]

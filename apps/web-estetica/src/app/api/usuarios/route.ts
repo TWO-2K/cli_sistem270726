@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@empresa/supabase/server";
 import { createAdminClient } from "@empresa/supabase/admin";
 import { gerarSenhaTemporaria } from "@empresa/supabase/senha-temporaria";
+import { logger } from "@empresa/observability/logger";
 import type { Perfil } from "@/lib/types/db";
 
 const PERFIS_PERMITIDOS: Perfil[] = [
@@ -41,6 +42,7 @@ export async function POST(request: Request) {
     ? String(body.especialidade).trim() || null
     : null;
   const atende = Boolean(body.atende);
+  const unidadeId = body.unidade_id ? String(body.unidade_id) : null;
 
   if (!nome || !email || !PERFIS_PERMITIDOS.includes(perfil)) {
     return NextResponse.json(
@@ -61,6 +63,10 @@ export async function POST(request: Request) {
     });
 
   if (authError || !authUser.user) {
+    logger.error("falha ao criar usuario (auth)", {
+      error: authError?.message,
+      empresaId: usuarioAtual.empresa_id,
+    });
     return NextResponse.json(
       { error: authError?.message ?? "Não foi possível criar o usuário." },
       { status: 400 },
@@ -76,9 +82,14 @@ export async function POST(request: Request) {
     must_change_password: true,
     especialidade,
     atende,
+    unidade_id: unidadeId,
   });
 
   if (usuarioError) {
+    logger.error("falha ao criar usuario (insert)", {
+      error: usuarioError.message,
+      empresaId: usuarioAtual.empresa_id,
+    });
     await admin.auth.admin.deleteUser(authUser.user.id);
     return NextResponse.json(
       { error: "Não foi possível cadastrar o usuário." },

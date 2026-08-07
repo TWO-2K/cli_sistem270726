@@ -3,6 +3,7 @@ import { createClient } from "@empresa/supabase/server";
 import { createAdminClient } from "@empresa/supabase/admin";
 import { gerarSenhaTemporaria } from "@empresa/supabase/senha-temporaria";
 import { SEGMENTOS, type Segmento } from "@empresa/supabase/types";
+import { logger } from "@empresa/observability/logger";
 
 export async function POST(request: Request) {
   const supabase = await createClient();
@@ -58,6 +59,10 @@ export async function POST(request: Request) {
     });
 
   if (authError || !authUser.user) {
+    logger.error("falha ao provisionar empresa (auth do admin)", {
+      error: authError?.message,
+      nomeEmpresa,
+    });
     return NextResponse.json(
       { error: authError?.message ?? "Não foi possível criar o usuário." },
       { status: 400 },
@@ -71,6 +76,10 @@ export async function POST(request: Request) {
     .single();
 
   if (empresaError || !empresa) {
+    logger.error("falha ao provisionar empresa (insert empresa)", {
+      error: empresaError?.message,
+      nomeEmpresa,
+    });
     await admin.auth.admin.deleteUser(authUser.user.id);
     return NextResponse.json(
       { error: "Não foi possível criar a empresa." },
@@ -88,6 +97,10 @@ export async function POST(request: Request) {
   });
 
   if (usuarioError) {
+    logger.error("falha ao provisionar empresa (vincular admin)", {
+      error: usuarioError.message,
+      empresaId: empresa.id,
+    });
     await admin.auth.admin.deleteUser(authUser.user.id);
     await admin.from("empresas").delete().eq("id", empresa.id);
     return NextResponse.json(

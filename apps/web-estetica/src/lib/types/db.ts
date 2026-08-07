@@ -1,4 +1,4 @@
-export type { Perfil, HorarioDia, Empresa, Usuario } from "@empresa/supabase/types";
+export type { Perfil, HorarioDia, Empresa, Usuario, AuditLog } from "@empresa/supabase/types";
 
 export type StatusAgendamento =
   | "agendado"
@@ -24,9 +24,19 @@ export interface Paciente {
   criado_em: string;
 }
 
+export interface Unidade {
+  id: string;
+  empresa_id: string;
+  nome: string;
+  endereco: string | null;
+  ativo: boolean;
+  criado_em: string;
+}
+
 export interface Sala {
   id: string;
   empresa_id: string;
+  unidade_id: string | null;
   nome: string;
 }
 
@@ -41,6 +51,7 @@ export interface Procedimento {
 export interface Agendamento {
   id: string;
   empresa_id: string;
+  unidade_id: string | null;
   paciente_id: string;
   usuario_id: string;
   sala_id: string | null;
@@ -54,6 +65,7 @@ export interface Agendamento {
 export interface Atendimento {
   id: string;
   empresa_id: string;
+  unidade_id: string | null;
   agendamento_id: string | null;
   paciente_id: string;
   usuario_id: string;
@@ -85,6 +97,7 @@ export interface FotoAtendimento {
 export interface Comanda {
   id: string;
   empresa_id: string;
+  unidade_id: string | null;
   atendimento_id: string | null;
   paciente_id: string;
   status: StatusComanda;
@@ -105,6 +118,7 @@ export interface ComandaItem {
 export interface Pagamento {
   id: string;
   empresa_id: string;
+  unidade_id: string | null;
   comanda_id: string;
   forma_pagamento: string;
   valor: number;
@@ -115,6 +129,7 @@ export interface Pagamento {
 export interface Parcela {
   id: string;
   empresa_id: string;
+  unidade_id: string | null;
   pagamento_id: string;
   vencimento: string;
   valor: number;

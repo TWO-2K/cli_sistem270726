@@ -1,0 +1,66 @@
+- generic [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - complementary [ref=f6e3]:
+      - generic [ref=f6e4]: Estetica - Tua Cara
+      - navigation [ref=f6e6]:
+        - link "Painel" [ref=f6e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f6e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f6e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f6e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f6e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f6e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f6e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f6e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f6e40]:
+        - generic [ref=f6e41]: TC
+        - generic [ref=f6e43]:
+          - generic [ref=f6e44]: Tua cara
+          - generic [ref=f6e45]: Administrador
+        - button "Sair" [ref=f6e46]
+    - main [ref=f6e47]:
+      - generic [ref=f6e49]:
+        - generic [ref=f6e50]:
+          - heading "Configurações" [level=1] [ref=f6e51]
+          - paragraph [ref=f6e52]: Perfil da empresa, usuários, salas e procedimentos da clínica.
+        - generic [ref=f6e53]:
+          - tablist [ref=f6e54]:
+            - tab "Perfil da empresa" [ref=f6e55]
+            - tab "Usuários" [ref=f6e56]
+            - tab "Unidades" [selected] [ref=f6e57]
+            - tab "Salas" [ref=f6e58]
+            - tab "Procedimentos" [ref=f6e59]
+            - tab "Estoque" [ref=f6e60]
+            - tab "Convênios" [ref=f6e61]
+            - tab "Comissões" [ref=f6e62]
+          - tabpanel "Unidades" [ref=f6e145]:
+            - generic [ref=f6e146]:
+              - paragraph [ref=f6e147]: Unidades/filiais da empresa. Cada usuário pode ser vinculado a uma unidade na aba Usuários — o vínculo é feito lá, não existe troca de unidade dentro do sistema.
+              - generic [ref=f6e148]:
+                - generic [ref=f6e149]:
+                  - generic [ref=f6e150]: Nome
+                  - textbox [ref=f6e151]: Unidade Centro
+                - generic [ref=f6e152]:
+                  - generic [ref=f6e153]: Endereço
+                  - textbox "Opcional" [active] [ref=f6e154]: Rua Teste, 123
+                - button "Adicionar" [ref=f6e155]
+              - table [ref=f6e158]:
+                - rowgroup [ref=f6e159]:
+                  - row [ref=f6e160]:
+                    - columnheader "Nome" [ref=f6e161]
+                    - columnheader "Endereço" [ref=f6e162]
+                    - columnheader "Status" [ref=f6e163]
+                    - columnheader "Ação" [ref=f6e164]
+                - rowgroup [ref=f6e165]:
+                  - row [ref=f6e166]:
+                    - cell "Nenhuma unidade cadastrada." [ref=f6e167]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f6e139] [cursor=pointer]
+  - alert [ref=f6e144]

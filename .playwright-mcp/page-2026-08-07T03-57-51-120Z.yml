@@ -1,0 +1,129 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e2]:
+    - complementary [ref=f5e3]:
+      - generic [ref=f5e4]: Estetica - Tua Cara
+      - navigation [ref=f5e6]:
+        - link "Painel" [ref=f5e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f5e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f5e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f5e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f5e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f5e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f5e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f5e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f5e40]:
+        - generic [ref=f5e41]: TC
+        - generic [ref=f5e43]:
+          - generic [ref=f5e44]: Tua cara
+          - generic [ref=f5e45]: Administrador
+        - button "Sair" [ref=f5e46]
+    - main [ref=f5e47]:
+      - generic [ref=f5e49]:
+        - generic [ref=f5e50]:
+          - generic [ref=f5e51]:
+            - heading "Financeiro" [level=1] [ref=f5e52]
+            - paragraph [ref=f5e53]: Comandas, pagamentos e contas a receber.
+          - button "Exportar CSV" [ref=f5e54]
+        - generic [ref=f5e55]:
+          - generic [ref=f5e56]:
+            - paragraph [ref=f5e57]: Total a receber (comandas em aberto)
+            - paragraph [ref=f5e58]: R$ 900,00
+          - generic [ref=f5e59]:
+            - paragraph [ref=f5e60]: Parcelas pendentes
+            - paragraph [ref=f5e61]: R$ 100,00
+          - generic [ref=f5e62]:
+            - paragraph [ref=f5e63]: Total recebido (últimos 30 dias)
+            - paragraph [ref=f5e64]: R$ 600,00
+          - generic [ref=f5e65]:
+            - paragraph [ref=f5e66]: Total a pagar
+            - paragraph [ref=f5e67]: R$ 22,00
+          - generic [ref=f5e68]:
+            - paragraph [ref=f5e69]: Despesas vencidas
+            - paragraph [ref=f5e70]: R$ 22,00
+        - generic [ref=f5e71]:
+          - tablist [ref=f5e72]:
+            - tab "Comandas" [selected] [ref=f5e73]
+            - tab "Contas a receber" [ref=f5e74]
+            - tab "Despesas" [ref=f5e75]
+            - tab "Comissões" [ref=f5e76]
+            - tab "Fluxo de caixa" [ref=f5e77]
+          - tabpanel [ref=f5e78]:
+            - table [ref=f5e81]:
+              - rowgroup [ref=f5e82]:
+                - row [ref=f5e83]:
+                  - columnheader "Data" [ref=f5e84]
+                  - columnheader "Paciente" [ref=f5e85]
+                  - columnheader "Total" [ref=f5e86]
+                  - columnheader "Status" [ref=f5e87]
+                  - columnheader "Ação" [ref=f5e88]
+              - rowgroup [ref=f5e89]:
+                - row [ref=f5e90]:
+                  - cell "06/08/2026" [ref=f5e91]
+                  - cell "Lanna" [ref=f5e92]
+                  - cell "R$ 300,00" [ref=f5e93]
+                  - cell "Em aberto" [ref=f5e94]
+                  - cell [ref=f5e96]:
+                    - button "Ver comanda" [ref=f5e97]
+                    - button "Recibo" [ref=f5e98]
+                    - button "Receber" [ref=f5e99]
+                - row [ref=f5e100]:
+                  - cell "05/08/2026" [ref=f5e101]
+                  - cell "QA Teste E2E" [ref=f5e102]
+                  - cell "R$ 0,00" [ref=f5e103]
+                  - cell "Em aberto" [ref=f5e104]
+                  - cell [ref=f5e106]:
+                    - button "Ver comanda" [ref=f5e107]
+                    - button "Recibo" [ref=f5e108]
+                    - button "Receber" [ref=f5e109]
+                - row [ref=f5e110]:
+                  - cell "05/08/2026" [ref=f5e111]
+                  - cell "QA Teste E2E" [ref=f5e112]
+                  - cell "R$ 300,00" [ref=f5e113]
+                  - cell "Em aberto" [ref=f5e114]
+                  - cell [ref=f5e116]:
+                    - button "Ver comanda" [ref=f5e117]
+                    - button "Recibo" [ref=f5e118]
+                    - button "Receber" [ref=f5e119]
+                - row [ref=f5e120]:
+                  - cell "05/08/2026" [ref=f5e121]
+                  - cell "QA Teste E2E" [ref=f5e122]
+                  - cell "R$ 300,00" [ref=f5e123]
+                  - cell "Em aberto" [ref=f5e124]
+                  - cell [ref=f5e126]:
+                    - button "Ver comanda" [ref=f5e127]
+                    - button "Recibo" [ref=f5e128]
+                    - button "Receber" [ref=f5e129]
+                - row [ref=f5e130]:
+                  - cell "05/08/2026" [ref=f5e131]
+                  - cell "QA Teste E2E" [ref=f5e132]
+                  - cell "R$ 150,00" [ref=f5e133]
+                  - cell "Fechada" [ref=f5e134]
+                  - cell [ref=f5e136]:
+                    - button "Ver comanda" [ref=f5e137]
+                    - button "Recibo" [ref=f5e138]
+                - row [ref=f5e139]:
+                  - cell "02/08/2026" [ref=f5e140]
+                  - cell "Lanna" [ref=f5e141]
+                  - cell "R$ 150,00" [ref=f5e142]
+                  - cell "Fechada" [ref=f5e143]
+                  - cell [ref=f5e145]:
+                    - button "Ver comanda" [ref=f5e146]
+                    - button "Recibo" [ref=f5e147]
+                - row [ref=f5e148]:
+                  - cell "02/08/2026" [ref=f5e149]
+                  - cell "Lanna" [ref=f5e150]
+                  - cell "R$ 300,00" [ref=f5e151]
+                  - cell "Fechada" [ref=f5e152]
+                  - cell [ref=f5e154]:
+                    - button "Ver comanda" [ref=f5e155]
+                    - button "Recibo" [ref=f5e156]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f5e162] [cursor=pointer]

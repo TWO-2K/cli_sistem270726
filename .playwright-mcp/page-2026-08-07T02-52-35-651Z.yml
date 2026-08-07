@@ -1,0 +1,213 @@
+- generic [active] [ref=f7e1]:
+  - generic [ref=f7e2]:
+    - complementary [ref=f7e3]:
+      - generic [ref=f7e4]: Estetica - Tua Cara
+      - navigation [ref=f7e6]:
+        - link "Painel" [ref=f7e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f7e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f7e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f7e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f7e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f7e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f7e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f7e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f7e40]:
+        - generic [ref=f7e41]: TC
+        - generic [ref=f7e43]:
+          - generic [ref=f7e44]: Tua cara
+          - generic [ref=f7e45]: Administrador
+        - button "Sair" [ref=f7e46]
+    - main [ref=f7e47]:
+      - generic [ref=f7e49]:
+        - generic [ref=f7e50]:
+          - generic [ref=f7e51]:
+            - heading "Agenda" [level=1] [ref=f7e52]
+            - paragraph [ref=f7e53]: Visão semanal ou diária dos atendimentos.
+          - button "Novo agendamento" [ref=f7e54]
+        - generic [ref=f7e55]:
+          - generic [ref=f7e56]:
+            - link [ref=f7e57] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-07-30
+            - link "Hoje" [ref=f7e60] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-08-06
+            - link [ref=f7e61] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-08-13
+            - generic [ref=f7e64]: 2 – 8 de agosto
+          - generic [ref=f7e65]:
+            - link "semana" [ref=f7e66] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-08-06
+            - link "dia" [ref=f7e67] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-06
+        - generic [ref=f7e71]:
+          - generic [ref=f7e73]:
+            - generic [ref=f7e74]: Domingo
+            - generic [ref=f7e75]: 02/08
+          - generic [ref=f7e76]:
+            - generic [ref=f7e77]: Segunda
+            - generic [ref=f7e78]: 03/08
+          - generic [ref=f7e79]:
+            - generic [ref=f7e80]: Terça
+            - generic [ref=f7e81]: 04/08
+          - generic [ref=f7e82]:
+            - generic [ref=f7e83]: Quarta
+            - generic [ref=f7e84]: 05/08
+          - generic [ref=f7e85]:
+            - generic [ref=f7e86]: Quinta
+            - generic [ref=f7e87]: 06/08
+          - generic [ref=f7e88]:
+            - generic [ref=f7e89]: Sexta
+            - generic [ref=f7e90]: 07/08
+          - generic [ref=f7e91]:
+            - generic [ref=f7e92]: Sábado
+            - generic [ref=f7e93]: 08/08
+            - generic [ref=f7e94]: Fechado
+          - generic [ref=f7e95]:
+            - generic [ref=f7e96]: 08:00
+            - generic [ref=f7e98]: 09:00
+            - generic [ref=f7e100]: 10:00
+            - generic [ref=f7e102]: 11:00
+            - generic [ref=f7e104]: 12:00
+            - generic [ref=f7e106]: 13:00
+            - generic [ref=f7e108]: 14:00
+            - generic [ref=f7e110]: 15:00
+            - generic [ref=f7e112]: 16:00
+            - generic [ref=f7e114]: 17:00
+            - generic [ref=f7e116]: 18:00
+            - generic [ref=f7e118]: 19:00
+            - generic [ref=f7e120]: 20:00
+            - generic [ref=f7e122]: 21:00
+            - generic [ref=f7e124]: 22:00
+          - generic [ref=f7e126]:
+            - button [ref=f7e127] [cursor=pointer]
+            - button [ref=f7e128] [cursor=pointer]
+            - button [ref=f7e129] [cursor=pointer]
+            - button [ref=f7e130] [cursor=pointer]
+            - button [ref=f7e131] [cursor=pointer]
+            - button [ref=f7e132] [cursor=pointer]
+            - button [ref=f7e133] [cursor=pointer]
+            - button [ref=f7e134] [cursor=pointer]
+            - button [ref=f7e135] [cursor=pointer]
+            - button [ref=f7e136] [cursor=pointer]
+            - button [ref=f7e137] [cursor=pointer]
+            - button [ref=f7e138] [cursor=pointer]
+            - button [ref=f7e139] [cursor=pointer]
+            - button [ref=f7e140] [cursor=pointer]
+            - button [ref=f7e141] [cursor=pointer]
+            - button [ref=f7e142] [cursor=pointer]:
+              - paragraph [ref=f7e143]: 22:00 Lanna
+              - paragraph [ref=f7e144]: Limpeza
+            - button [ref=f7e145]:
+              - paragraph [ref=f7e146]: 22:00 Lanna
+              - paragraph [ref=f7e147]: Banho
+          - generic [ref=f7e148]:
+            - button [ref=f7e149] [cursor=pointer]
+            - button [ref=f7e150] [cursor=pointer]
+            - button [ref=f7e151] [cursor=pointer]
+            - button [ref=f7e152] [cursor=pointer]
+            - button [ref=f7e153] [cursor=pointer]
+            - button [ref=f7e154] [cursor=pointer]
+            - button [ref=f7e155] [cursor=pointer]
+            - button [ref=f7e156] [cursor=pointer]
+            - button [ref=f7e157] [cursor=pointer]
+            - button [ref=f7e158] [cursor=pointer]
+            - button [disabled] [ref=f7e159]
+            - button [disabled] [ref=f7e160]
+            - button [disabled] [ref=f7e161]
+            - button [disabled] [ref=f7e162]
+            - button [disabled] [ref=f7e163]
+          - generic [ref=f7e164]:
+            - button [ref=f7e165] [cursor=pointer]
+            - button [ref=f7e166] [cursor=pointer]
+            - button [ref=f7e167] [cursor=pointer]
+            - button [ref=f7e168] [cursor=pointer]
+            - button [ref=f7e169] [cursor=pointer]
+            - button [ref=f7e170] [cursor=pointer]
+            - button [ref=f7e171] [cursor=pointer]
+            - button [ref=f7e172] [cursor=pointer]
+            - button [ref=f7e173] [cursor=pointer]
+            - button [ref=f7e174] [cursor=pointer]
+            - button [disabled] [ref=f7e175]
+            - button [disabled] [ref=f7e176]
+            - button [disabled] [ref=f7e177]
+            - button [disabled] [ref=f7e178]
+            - button [disabled] [ref=f7e179]
+          - generic [ref=f7e180]:
+            - button [ref=f7e181] [cursor=pointer]
+            - button [ref=f7e182] [cursor=pointer]
+            - button [ref=f7e183] [cursor=pointer]
+            - button [ref=f7e184] [cursor=pointer]
+            - button [ref=f7e185] [cursor=pointer]
+            - button [ref=f7e186] [cursor=pointer]
+            - button [ref=f7e187] [cursor=pointer]
+            - button [ref=f7e188] [cursor=pointer]
+            - button [ref=f7e189] [cursor=pointer]
+            - button [ref=f7e190] [cursor=pointer]
+            - button [disabled] [ref=f7e191]
+            - button [disabled] [ref=f7e192]
+            - button [disabled] [ref=f7e193]
+            - button [disabled] [ref=f7e194]
+            - button [disabled] [ref=f7e195]
+            - button [ref=f7e196] [cursor=pointer]:
+              - paragraph [ref=f7e197]: 09:00 Lanna
+              - paragraph [ref=f7e198]: Banho
+            - button [ref=f7e199]:
+              - paragraph [ref=f7e200]: 10:00 QA Teste E2E
+              - paragraph [ref=f7e201]: Massagem
+          - generic [ref=f7e202]:
+            - button [ref=f7e203] [cursor=pointer]
+            - button [ref=f7e204] [cursor=pointer]
+            - button [ref=f7e205] [cursor=pointer]
+            - button [ref=f7e206] [cursor=pointer]
+            - button [ref=f7e207] [cursor=pointer]
+            - button [ref=f7e208] [cursor=pointer]
+            - button [ref=f7e209] [cursor=pointer]
+            - button [ref=f7e210] [cursor=pointer]
+            - button [ref=f7e211] [cursor=pointer]
+            - button [ref=f7e212] [cursor=pointer]
+            - button [disabled] [ref=f7e213]
+            - button [disabled] [ref=f7e214]
+            - button [disabled] [ref=f7e215]
+            - button [disabled] [ref=f7e216]
+            - button [disabled] [ref=f7e217]
+          - generic [ref=f7e218]:
+            - button [ref=f7e219] [cursor=pointer]
+            - button [ref=f7e220] [cursor=pointer]
+            - button [ref=f7e221] [cursor=pointer]
+            - button [ref=f7e222] [cursor=pointer]
+            - button [ref=f7e223] [cursor=pointer]
+            - button [ref=f7e224] [cursor=pointer]
+            - button [ref=f7e225] [cursor=pointer]
+            - button [ref=f7e226] [cursor=pointer]
+            - button [ref=f7e227] [cursor=pointer]
+            - button [ref=f7e228] [cursor=pointer]
+            - button [disabled] [ref=f7e229]
+            - button [disabled] [ref=f7e230]
+            - button [disabled] [ref=f7e231]
+            - button [disabled] [ref=f7e232]
+            - button [disabled] [ref=f7e233]
+          - generic [ref=f7e234]:
+            - button [disabled] [ref=f7e235]
+            - button [disabled] [ref=f7e236]
+            - button [disabled] [ref=f7e237]
+            - button [disabled] [ref=f7e238]
+            - button [disabled] [ref=f7e239]
+            - button [disabled] [ref=f7e240]
+            - button [disabled] [ref=f7e241]
+            - button [disabled] [ref=f7e242]
+            - button [disabled] [ref=f7e243]
+            - button [disabled] [ref=f7e244]
+            - button [disabled] [ref=f7e245]
+            - button [disabled] [ref=f7e246]
+            - button [disabled] [ref=f7e247]
+            - button [disabled] [ref=f7e248]
+            - button [disabled] [ref=f7e249]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f7e255] [cursor=pointer]

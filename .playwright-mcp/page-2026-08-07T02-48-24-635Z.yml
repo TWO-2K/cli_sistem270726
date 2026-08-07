@@ -1,0 +1,29 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e3]:
+    - generic [ref=f5e4]:
+      - generic [ref=f5e5]: Entrar
+      - generic [ref=f5e6]: Acesse o sistema de gestão da sua clínica.
+    - generic [ref=f5e7]:
+      - generic [ref=f5e8]:
+        - generic [ref=f5e9]:
+          - generic [ref=f5e10]: E-mail
+          - textbox "E-mail" [ref=f5e11]:
+            - /placeholder: voce@empresa.com
+            - text: teste@teste.com
+        - generic [ref=f5e12]:
+          - generic [ref=f5e13]:
+            - generic [ref=f5e14]: Senha
+            - link "Esqueci minha senha" [ref=f5e15] [cursor=pointer]:
+              - /url: /esqueci-senha
+          - textbox "Senha" [ref=f5e16]: "123456"
+        - button "Entrando..." [disabled]
+      - paragraph [ref=f5e18]: O acesso é feito por convite do administrador da sua clínica.
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f5e29] [cursor=pointer]:
+    - generic [ref=f5e32]:
+      - text: Rendering
+      - generic [ref=f5e33]:
+        - generic [ref=f5e34]: .
+        - generic [ref=f5e35]: .
+        - generic [ref=f5e36]: .
+  - alert [ref=f5e28]

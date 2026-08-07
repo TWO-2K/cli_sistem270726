@@ -1,0 +1,1918 @@
+[    1445ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[    1496ms] [LOG] [HMR] connected @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 1161543ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 1161544ms] [LOG] [Fast Refresh] done in 110ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2163759ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2163760ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2355707ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2355975ms] [LOG] [Fast Refresh] done in 368ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2388476ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2388494ms] [LOG] [Fast Refresh] done in 122ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2394299ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2394349ms] [LOG] [Fast Refresh] done in 116ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2394468ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2394963ms] [LOG] [Fast Refresh] done in 604ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2395153ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2395221ms] [LOG] [Fast Refresh] done in 173ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2398453ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2398494ms] [LOG] [Fast Refresh] done in 82ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2398600ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2398994ms] [LOG] [Fast Refresh] done in 497ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2399116ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2399145ms] [LOG] [Fast Refresh] done in 139ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2403515ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2403588ms] [LOG] [Fast Refresh] done in 167ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2403701ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2403975ms] [LOG] [Fast Refresh] done in 383ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2404195ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2404196ms] [LOG] [Fast Refresh] done in 115ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2404372ms] TypeError: Cannot read properties of undefined (reading 'data')
+    at ConfiguracoesPage (about://React/Server/C:%5CUsers%5Ckevin.soares%5CDocuments%5CPROJETOS%20DE%20SISTEMAS%5CCLI_SITEMA%5Capps%5Cweb-estetica%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0srjat9._.js?59:462:303)
+    at resolveErrorDev (http://localhost:1010/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js:1919:150)
+    at processFullStringRow (http://localhost:1010/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js:2434:29)
+    at processFullBinaryRow (http://localhost:1010/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js:2393:9)
+    at processBinaryChunk (http://localhost:1010/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js:2502:221)
+    at progress (http://localhost:1010/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js:2689:13)
+[ 2408332ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2408377ms] [LOG] [Fast Refresh] done in 125ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2408481ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2408804ms] [LOG] [Fast Refresh] done in 424ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2411048ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2411295ms] [LOG] [Fast Refresh] done in 361ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2413871ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2413900ms] [LOG] [HMR] connected @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2414866ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2414986ms] [LOG] [Fast Refresh] done in 227ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2415099ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2415614ms] [LOG] [Fast Refresh] done in 626ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2415732ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2415860ms] [LOG] [Fast Refresh] done in 232ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2419708ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2420407ms] [LOG] [Fast Refresh] done in 800ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2420529ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2420793ms] [LOG] [Fast Refresh] done in 373ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2420934ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2421065ms] [LOG] [Fast Refresh] done in 234ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2528686ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2532725ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[ 2532762ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[ 2532873ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2533957ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:1010/configuracoes?_rsc=siqa1mpVzxI-82Ip:0
+[ 2533962ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[ 2534044ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:3330
+[ 2534044ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:1010/configuracoes?_rsc=siqa1mpVzxI-82Ip:0
+[ 2534127ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:1010/configuracoes:0
+[ 2534377ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:1010/_next/static/chunks/node_modules_react-dom_0kla17-._.js:15305
+[ 2534495ms] Error: ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./apps/web-estetica/src/app/error.tsx:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\next-dev-server.js:720:42)
+    at DevServer.findPageComponents (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\next-dev-server.js:690:43)
+    at async DevServer.renderErrorToResponseImpl (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\base-server.js:1753:26)
+[ 2534495ms] [LOG] [HMR] connected @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2534503ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2534504ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2534504ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2534505ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2534505ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2534506ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2534606ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2542159ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2542194ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2561975ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2562031ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2573476ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2573536ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2578176ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2578257ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2578281ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2582941ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583045ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2583105ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583105ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583173ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583173ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583256ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:1010/configuracoes:0
+[ 2583321ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:1010/_next/static/chunks/node_modules_react-dom_0kla17-._.js:15305
+[ 2583352ms] Error: ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./packages/auth/src/require-usuario-empresa.ts:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\next-dev-server.js:720:42)
+    at DevServer.findPageComponents (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\next-dev-server.js:690:43)
+    at async DevServer.renderErrorToResponseImpl (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\base-server.js:1753:26)
+[ 2583352ms] [LOG] [HMR] connected @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2583358ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583358ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583358ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583359ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583359ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583359ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583359ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583359ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583359ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583359ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583360ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583428ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583428ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583465ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2583589ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583590ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2583648ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2589533ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2589615ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589616ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589674ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589674ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589735ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:1010/configuracoes:0
+[ 2589790ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:1010/_next/static/chunks/node_modules_react-dom_0kla17-._.js:15305
+[ 2589808ms] Error: ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./packages/auth/src/require-usuario-empresa.ts:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\next-dev-server.js:720:42)
+    at DevServer.findPageComponents (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\next-dev-server.js:690:43)
+    at async DevServer.renderErrorToResponseImpl (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\base-server.js:1753:26)
+[ 2589807ms] [LOG] [HMR] connected @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2589813ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589814ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589814ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589814ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589814ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589814ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589815ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589815ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589815ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589815ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589815ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589865ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589866ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2589930ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2590033ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2590034ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2590095ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2598166ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2598167ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2598169ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2603197ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2603248ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2603248ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2615601ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2615616ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2615616ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2619945ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2619945ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2619947ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2632102ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2632154ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2632155ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2637140ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2637141ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2637156ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2641930ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2641932ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2641932ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2650650ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2650651ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2650759ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2650811ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2650812ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657342ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2657362ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657362ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657433ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:1010/configuracoes:0
+[ 2657500ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:1010/_next/static/chunks/node_modules_react-dom_0kla17-._.js:15305
+[ 2657528ms] Error: ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./packages/auth/src/require-usuario-empresa.ts:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at Object.getCompilationErrors (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\next-dev-server.js:720:42)
+    at DevServer.findPageComponents (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\dev\next-dev-server.js:690:43)
+    at async DevServer.renderErrorToResponseImpl (file://C:\Users\kevin.soares\Documents\PROJETOS DE SISTEMAS\CLI_SITEMA\node_modules\next\dist\server\base-server.js:1753:26)
+[ 2657531ms] [LOG] [HMR] connected @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2657538ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657538ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657538ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657538ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657539ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657539ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657539ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657539ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657539ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657539ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657539ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657615ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657615ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657646ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2657826ms] [ERROR] ./packages/auth/src/require-usuario-empresa.ts:5:1
+Module not found: Can't resolve '@empresa/observability/logger'
+  3 | ...t { createServerClient } from "@empresa/supa...
+  4 | ...t type { Usuario, Empresa, Perfil, Segmento ...
+> 5 | ...t { logger } from "@empresa/observability/lo...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 | ...
+  7 | ...t interface RequireUsuarioEmpresaRedirects {
+  8 | ...in: string;
+
+Import trace:
+  Server Component:
+    ./packages/auth/src/require-usuario-empresa.ts
+    ./apps/web-estetica/src/lib/current-empresa.ts
+    ./apps/web-estetica/src/app/(app)/layout.tsx
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657826ms] [ERROR] ./apps/web-estetica/src/app/error.tsx:4:1
+Module not found: Can't resolve '@empresa/observability/sentry'
+  2 | ...
+  3 | ... useEffect } from "react";
+> 4 | ... captureError } from "@empresa/observability...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ... Button } from "@empresa/ui/components/button";
+  6 | ... Card } from "@empresa/ui/components/card";
+  7 | ...
+
+Import traces:
+  Client Component Browser:
+    ./apps/web-estetica/src/app/error.tsx [Client Component Browser]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/web-estetica/src/app/error.tsx [Client Component SSR]
+    ./apps/web-estetica/src/app/error.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1945
+[ 2657874ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2918600ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2919920ms] [LOG] [Fast Refresh] done in 1428ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2920148ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2920873ms] [LOG] [Fast Refresh] done in 828ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1gdrd03._.js:1226
+[ 2923556ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2923592ms] [LOG] [HMR] connected @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2975466ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2975533ms] [LOG] [Fast Refresh] done in 177ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2975642ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2975681ms] [LOG] [Fast Refresh] done in 146ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2975797ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 2976001ms] [LOG] [Fast Refresh] done in 305ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 3482325ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 3482326ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 3492808ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[ 3493298ms] [LOG] [Fast Refresh] done in 602ms @ http://localhost:1010/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489

@@ -1,16 +1,14 @@
 {
-  "name": "@empresa/auth",
+  "name": "@empresa/observability",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
   "exports": {
-    ".": "./src/index.ts"
-  },
-  "dependencies": {
-    "@empresa/observability": "*",
-    "@empresa/supabase": "*"
+    ".": "./src/index.ts",
+    "./logger": "./src/logger.ts",
+    "./sentry": "./src/sentry.ts"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { Button } from "@empresa/ui/components/button";
 import { Input } from "@empresa/ui/components/input";
 import { Label } from "@empresa/ui/components/label";
-import type { Perfil, Usuario } from "@/lib/types/db";
+import type { Perfil, Unidade, Usuario } from "@/lib/types/db";
 import {
   Select,
   SelectContent,
@@ -42,13 +42,20 @@ function perfilLabel(perfil: Perfil) {
   return PERFIS.find((p) => p.value === perfil)?.label ?? perfil;
 }
 
-export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
+export function UsuariosTab({
+  usuarios,
+  unidades = [],
+}: {
+  usuarios: Usuario[];
+  unidades?: Unidade[];
+}) {
   const router = useRouter();
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [perfil, setPerfil] = useState<Perfil>("recepcao");
   const [especialidade, setEspecialidade] = useState("");
   const [atende, setAtende] = useState(false);
+  const [unidadeId, setUnidadeId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [credencial, setCredencial] = useState<{
@@ -73,6 +80,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
         perfil,
         especialidade: especialidade || null,
         atende,
+        unidade_id: unidadeId,
       }),
     });
     const data = await res.json();
@@ -89,6 +97,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
     setPerfil("recepcao");
     setEspecialidade("");
     setAtende(false);
+    setUnidadeId(null);
     router.refresh();
   }
 
@@ -165,6 +174,33 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
             className="w-48"
           />
         </div>
+        {unidades.length > 0 && (
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium">Unidade</label>
+            <Select
+              value={unidadeId ?? "__none__"}
+              onValueChange={(v) =>
+                setUnidadeId(v === "__none__" ? null : (v ?? null))
+              }
+            >
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="Nenhuma">
+                  {(value: string) =>
+                    unidades.find((u) => u.id === value)?.nome ?? "Nenhuma"
+                  }
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="__none__">Nenhuma</SelectItem>
+                {unidades.map((u) => (
+                  <SelectItem key={u.id} value={u.id}>
+                    {u.nome}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
         <label className="mb-2 flex items-center gap-2 text-sm font-medium">
           <input
             type="checkbox"
@@ -308,6 +344,7 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
 
       <EditarUsuarioDialog
         usuario={editando}
+        unidades={unidades}
         onClose={() => setEditando(null)}
         onSaved={() => {
           setEditando(null);
@@ -320,10 +357,12 @@ export function UsuariosTab({ usuarios }: { usuarios: Usuario[] }) {
 
 function EditarUsuarioDialog({
   usuario,
+  unidades,
   onClose,
   onSaved,
 }: {
   usuario: Usuario | null;
+  unidades: Unidade[];
   onClose: () => void;
   onSaved: () => void;
 }) {
@@ -339,7 +378,12 @@ function EditarUsuarioDialog({
           <DialogTitle>Editar usuário</DialogTitle>
         </DialogHeader>
         {usuario && (
-          <EditarUsuarioForm key={usuario.id} usuario={usuario} onSaved={onSaved} />
+          <EditarUsuarioForm
+            key={usuario.id}
+            usuario={usuario}
+            unidades={unidades}
+            onSaved={onSaved}
+          />
         )}
       </DialogContent>
     </Dialog>
@@ -348,9 +392,11 @@ function EditarUsuarioDialog({
 
 function EditarUsuarioForm({
   usuario,
+  unidades,
   onSaved,
 }: {
   usuario: Usuario;
+  unidades: Unidade[];
   onSaved: () => void;
 }) {
   const [nome, setNome] = useState(usuario.nome);
@@ -359,6 +405,9 @@ function EditarUsuarioForm({
     usuario.especialidade ?? "",
   );
   const [atende, setAtende] = useState(usuario.atende);
+  const [unidadeId, setUnidadeId] = useState<string | null>(
+    usuario.unidade_id,
+  );
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -374,6 +423,7 @@ function EditarUsuarioForm({
         especialidade: especialidade || null,
         atende,
         ativo: usuario.ativo,
+        unidade_id: unidadeId,
       }),
     });
 
@@ -420,6 +470,33 @@ function EditarUsuarioForm({
           placeholder="Opcional"
         />
       </div>
+      {unidades.length > 0 && (
+        <div className="flex flex-col gap-2">
+          <Label>Unidade</Label>
+          <Select
+            value={unidadeId ?? "__none__"}
+            onValueChange={(v) =>
+              setUnidadeId(v === "__none__" ? null : (v ?? null))
+            }
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Nenhuma">
+                {(value: string) =>
+                  unidades.find((u) => u.id === value)?.nome ?? "Nenhuma"
+                }
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="__none__">Nenhuma</SelectItem>
+              {unidades.map((u) => (
+                <SelectItem key={u.id} value={u.id}>
+                  {u.nome}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
       <label className="flex items-center gap-2 text-sm font-medium">
         <input
           type="checkbox"

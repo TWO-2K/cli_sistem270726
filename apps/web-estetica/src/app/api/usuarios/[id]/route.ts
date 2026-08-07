@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@empresa/supabase/server";
 import { createAdminClient } from "@empresa/supabase/admin";
+import { logger } from "@empresa/observability/logger";
 import type { Perfil } from "@/lib/types/db";
 
 const PERFIS_PERMITIDOS: Perfil[] = [
@@ -42,6 +43,7 @@ export async function PATCH(
     : null;
   const atende = Boolean(body.atende);
   const ativo = Boolean(body.ativo);
+  const unidadeId = body.unidade_id ? String(body.unidade_id) : null;
 
   if (!nome || !PERFIS_PERMITIDOS.includes(perfil)) {
     return NextResponse.json(
@@ -53,11 +55,16 @@ export async function PATCH(
   const admin = createAdminClient();
   const { error } = await admin
     .from("usuarios")
-    .update({ nome, perfil, especialidade, atende, ativo })
+    .update({ nome, perfil, especialidade, atende, ativo, unidade_id: unidadeId })
     .eq("id", id)
     .eq("empresa_id", usuarioAtual.empresa_id);
 
   if (error) {
+    logger.error("falha ao atualizar usuario", {
+      error: error.message,
+      usuarioId: id,
+      empresaId: usuarioAtual.empresa_id,
+    });
     return NextResponse.json(
       { error: "Não foi possível atualizar o usuário." },
       { status: 400 },

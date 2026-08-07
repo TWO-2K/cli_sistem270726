@@ -1,6 +1,7 @@
 import { createClient } from "@empresa/supabase/server";
 import { requireUsuarioEmpresa } from "@/lib/current-empresa";
 import type {
+  AuditLog,
   ComissaoProcedimento,
   ComissaoProfissional,
   ComissaoProfissionalProcedimento,
@@ -10,6 +11,7 @@ import type {
   ProdutoProcedimento,
   Sala,
   TabelaPrecoConvenio,
+  Unidade,
   Usuario,
 } from "@/lib/types/db";
 import {
@@ -25,6 +27,8 @@ import { UsuariosTab } from "./usuarios-tab";
 import { ComissoesTab } from "./comissoes-tab";
 import { ProdutosTab } from "./produtos-tab";
 import { ConveniosTab } from "./convenios-tab";
+import { UnidadesTab } from "./unidades-tab";
+import { AuditoriaTab } from "./auditoria-tab";
 
 export default async function ConfiguracoesPage() {
   const { empresa } = await requireUsuarioEmpresa(["admin"]);
@@ -40,6 +44,8 @@ export default async function ConfiguracoesPage() {
     { data: produtoProcedimento },
     { data: convenios },
     { data: tabelaPrecosConvenio },
+    { data: unidades },
+    { data: auditLog },
   ] = await Promise.all([
     supabase.from("salas").select("*").order("nome").returns<Sala[]>(),
     supabase
@@ -70,6 +76,13 @@ export default async function ConfiguracoesPage() {
       .from("tabela_precos_convenio")
       .select("*")
       .returns<TabelaPrecoConvenio[]>(),
+    supabase.from("unidades").select("*").order("nome").returns<Unidade[]>(),
+    supabase
+      .from("audit_log")
+      .select("*")
+      .order("criado_em", { ascending: false })
+      .limit(50)
+      .returns<AuditLog[]>(),
   ]);
 
   const profissionais = (usuarios ?? []).filter((u) => u.atende);
@@ -89,17 +102,22 @@ export default async function ConfiguracoesPage() {
         <TabsList>
           <TabsTrigger value="perfil">Perfil da empresa</TabsTrigger>
           <TabsTrigger value="usuarios">Usuários</TabsTrigger>
+          <TabsTrigger value="unidades">Unidades</TabsTrigger>
           <TabsTrigger value="salas">Salas</TabsTrigger>
           <TabsTrigger value="procedimentos">Procedimentos</TabsTrigger>
           <TabsTrigger value="estoque">Estoque</TabsTrigger>
           <TabsTrigger value="convenios">Convênios</TabsTrigger>
           <TabsTrigger value="comissoes">Comissões</TabsTrigger>
+          <TabsTrigger value="auditoria">Auditoria</TabsTrigger>
         </TabsList>
         <TabsContent value="perfil">
           <PerfilTab empresa={empresa} />
         </TabsContent>
         <TabsContent value="usuarios">
-          <UsuariosTab usuarios={usuarios ?? []} />
+          <UsuariosTab usuarios={usuarios ?? []} unidades={unidades ?? []} />
+        </TabsContent>
+        <TabsContent value="unidades">
+          <UnidadesTab unidades={unidades ?? []} />
         </TabsContent>
         <TabsContent value="salas">
           <SalasTab salas={salas ?? []} />
@@ -129,6 +147,9 @@ export default async function ConfiguracoesPage() {
             comissoesProcedimento={comissoesProcedimento ?? []}
             comissoesCombinadas={comissoesCombinadas ?? []}
           />
+        </TabsContent>
+        <TabsContent value="auditoria">
+          <AuditoriaTab registros={auditLog ?? []} />
         </TabsContent>
       </Tabs>
     </div>
