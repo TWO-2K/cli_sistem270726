@@ -14,12 +14,7 @@ import type {
   Unidade,
   Usuario,
 } from "@/lib/types/db";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@empresa/ui/components/tabs";
+import { ConfiguracoesNav } from "./configuracoes-nav";
 import { PerfilTab } from "./perfil-tab";
 import { SalasTab } from "./salas-tab";
 import { ProcedimentosTab } from "./procedimentos-tab";
@@ -98,60 +93,103 @@ export default async function ConfiguracoesPage() {
         </p>
       </div>
 
-      <Tabs defaultValue="perfil">
-        <TabsList>
-          <TabsTrigger value="perfil">Perfil da empresa</TabsTrigger>
-          <TabsTrigger value="usuarios">Usuários</TabsTrigger>
-          <TabsTrigger value="unidades">Unidades</TabsTrigger>
-          <TabsTrigger value="salas">Salas</TabsTrigger>
-          <TabsTrigger value="procedimentos">Procedimentos</TabsTrigger>
-          <TabsTrigger value="estoque">Estoque</TabsTrigger>
-          <TabsTrigger value="convenios">Convênios</TabsTrigger>
-          <TabsTrigger value="comissoes">Comissões</TabsTrigger>
-          <TabsTrigger value="auditoria">Auditoria</TabsTrigger>
-        </TabsList>
-        <TabsContent value="perfil">
-          <PerfilTab empresa={empresa} />
-        </TabsContent>
-        <TabsContent value="usuarios">
-          <UsuariosTab usuarios={usuarios ?? []} unidades={unidades ?? []} />
-        </TabsContent>
-        <TabsContent value="unidades">
-          <UnidadesTab unidades={unidades ?? []} />
-        </TabsContent>
-        <TabsContent value="salas">
-          <SalasTab salas={salas ?? []} />
-        </TabsContent>
-        <TabsContent value="procedimentos">
-          <ProcedimentosTab procedimentos={procedimentos ?? []} />
-        </TabsContent>
-        <TabsContent value="estoque">
-          <ProdutosTab
-            produtos={produtos ?? []}
-            procedimentos={procedimentos ?? []}
-            vinculos={produtoProcedimento ?? []}
-          />
-        </TabsContent>
-        <TabsContent value="convenios">
-          <ConveniosTab
-            convenios={convenios ?? []}
-            procedimentos={procedimentos ?? []}
-            tabelaPrecos={tabelaPrecosConvenio ?? []}
-          />
-        </TabsContent>
-        <TabsContent value="comissoes">
-          <ComissoesTab
-            profissionais={profissionais}
-            procedimentos={procedimentos ?? []}
-            comissoesProfissional={comissoesProfissional ?? []}
-            comissoesProcedimento={comissoesProcedimento ?? []}
-            comissoesCombinadas={comissoesCombinadas ?? []}
-          />
-        </TabsContent>
-        <TabsContent value="auditoria">
-          <AuditoriaTab registros={auditLog ?? []} />
-        </TabsContent>
-      </Tabs>
+      <ConfiguracoesNav
+        defaultValue="perfil"
+        grupos={[
+          {
+            label: "Empresa",
+            itens: [
+              {
+                value: "perfil",
+                label: "Perfil da empresa",
+                content: <PerfilTab empresa={empresa} />,
+              },
+              {
+                value: "unidades",
+                label: "Unidades",
+                content: <UnidadesTab unidades={unidades ?? []} />,
+              },
+            ],
+          },
+          {
+            label: "Cadastros",
+            itens: [
+              {
+                value: "procedimentos",
+                label: "Procedimentos",
+                content: (
+                  <ProcedimentosTab procedimentos={procedimentos ?? []} />
+                ),
+              },
+              {
+                value: "salas",
+                label: "Salas",
+                content: <SalasTab salas={salas ?? []} />,
+              },
+              {
+                value: "estoque",
+                label: "Estoque",
+                content: (
+                  <ProdutosTab
+                    produtos={produtos ?? []}
+                    procedimentos={procedimentos ?? []}
+                    vinculos={produtoProcedimento ?? []}
+                  />
+                ),
+              },
+              {
+                value: "convenios",
+                label: "Convênios",
+                content: (
+                  <ConveniosTab
+                    convenios={convenios ?? []}
+                    procedimentos={procedimentos ?? []}
+                    tabelaPrecos={tabelaPrecosConvenio ?? []}
+                  />
+                ),
+              },
+            ],
+          },
+          {
+            label: "Pessoas",
+            itens: [
+              {
+                value: "usuarios",
+                label: "Usuários",
+                content: (
+                  <UsuariosTab
+                    usuarios={usuarios ?? []}
+                    unidades={unidades ?? []}
+                  />
+                ),
+              },
+              {
+                value: "comissoes",
+                label: "Comissões",
+                content: (
+                  <ComissoesTab
+                    profissionais={profissionais}
+                    procedimentos={procedimentos ?? []}
+                    comissoesProfissional={comissoesProfissional ?? []}
+                    comissoesProcedimento={comissoesProcedimento ?? []}
+                    comissoesCombinadas={comissoesCombinadas ?? []}
+                  />
+                ),
+              },
+            ],
+          },
+          {
+            label: "Sistema",
+            itens: [
+              {
+                value: "auditoria",
+                label: "Auditoria",
+                content: <AuditoriaTab registros={auditLog ?? []} />,
+              },
+            ],
+          },
+        ]}
+      />
     </div>
   );
 }
