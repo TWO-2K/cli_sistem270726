@@ -28,7 +28,7 @@ Legenda: ✅ concluído · 🔜 próximo indicado · ⏳ não iniciado · ⏸️
 | 5 | 5b — Convênios e tabelas de preço | ✅ | |
 | 5 | 5c — Múltiplas unidades/filiais | ✅ | |
 | 6 | 6a — Base de testes automatizados | ✅ | 07/08/2026 — Vitest, 12/12 testes passando (agenda, pagamento/parcela, exclusão restrita, RLS) |
-| 6 | 6b — CI (GitHub Actions) | 🔜 | Depende de 6a, que já existe — próximo passo natural |
+| 6 | 6b — CI (GitHub Actions) | ✅ | `.github/workflows/ci.yml` criado (lint+typecheck+testes a cada push/PR). **Falta você adicionar os 5 secrets no GitHub** (ver README do workflow abaixo) — sem eles o job falha |
 | 6 | 6c — Auditoria de ações sensíveis | ✅ | 07/08/2026 |
 | 6 | 6d — LGPD (exportação/exclusão de dados) | ⏳ | Depende conceitualmente de 6c, que já existe |
 | 6 | 6e — Observabilidade (logs + Sentry) | ✅ | 07/08/2026 — falta só teste manual com `SENTRY_DSN` real do usuário |
