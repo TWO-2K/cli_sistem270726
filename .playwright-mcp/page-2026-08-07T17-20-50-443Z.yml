@@ -1,0 +1,74 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - complementary [ref=f1e3]:
+      - generic [ref=f1e5]:
+        - generic [ref=f1e6]: CLICLI Sistema
+        - generic [ref=f1e7]: Painel do sistema
+      - navigation [ref=f1e8]:
+        - link "Visão geral" [ref=f1e9] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f1e15]:
+          - generic [ref=f1e21]: Auditoria
+          - generic [ref=f1e22]: Em breve
+        - generic [ref=f1e23]:
+          - generic [ref=f1e27]: Configurações globais
+          - generic [ref=f1e28]: Em breve
+        - generic [ref=f1e29]:
+          - generic [ref=f1e32]: Assinaturas
+          - generic [ref=f1e33]: Em breve
+      - generic [ref=f1e34]:
+        - generic [ref=f1e35]: KS
+        - generic [ref=f1e37]:
+          - generic [ref=f1e38]: Kevin Soares
+          - generic [ref=f1e39]: Super admin
+        - button "Sair" [ref=f1e40]
+    - main [ref=f1e41]:
+      - generic [ref=f1e43]:
+        - generic [ref=f1e44]:
+          - generic [ref=f1e45]:
+            - heading "Painel administrativo" [level=1] [ref=f1e46]
+            - paragraph [ref=f1e47]: Visão geral das empresas cadastradas e das contas com acesso total ao sistema.
+          - generic [ref=f1e48]:
+            - button "Novo super admin" [ref=f1e49]
+            - button "Nova empresa" [ref=f1e50]
+        - generic [ref=f1e51]:
+          - generic [ref=f1e52]:
+            - generic [ref=f1e53]: Empresas
+            - generic [ref=f1e60]: "2"
+          - generic [ref=f1e61]:
+            - generic [ref=f1e62]: Ativas
+            - generic [ref=f1e68]: "2"
+          - generic [ref=f1e69]:
+            - generic [ref=f1e70]: Suspensas
+            - generic [ref=f1e76]: "0"
+          - generic [ref=f1e77]:
+            - generic [ref=f1e78]: Usuários
+            - generic [ref=f1e86]: "7"
+        - generic [ref=f1e87]:
+          - tablist [ref=f1e88]:
+            - tab "Empresas 2" [selected] [ref=f1e89]:
+              - text: Empresas
+              - generic [ref=f1e90]: "2"
+            - tab "Super admins 1" [ref=f1e91]:
+              - text: Super admins
+              - generic [ref=f1e92]: "1"
+          - tabpanel [ref=f1e93]:
+            - generic [ref=f1e94]:
+              - link "MY ESTETICA SAÚDE Ativa Estética" [ref=f1e95] [cursor=pointer]:
+                - /url: /empresas/f770ede8-2921-4c5b-9dde-73362f7daaed
+                - generic [ref=f1e96]:
+                  - generic [ref=f1e97]:
+                    - generic [ref=f1e98]: MY ESTETICA SAÚDE
+                    - generic [ref=f1e99]: Ativa
+                  - generic [ref=f1e100]: Estética
+              - link "Estetica - Tua Cara Ativa Estética Empresa de teste" [ref=f1e102] [cursor=pointer]:
+                - /url: /empresas/df19bb1b-6cdf-45df-b52c-5df01543cb35
+                - generic [ref=f1e103]:
+                  - generic [ref=f1e104]:
+                    - generic [ref=f1e105]: Estetica - Tua Cara
+                    - generic [ref=f1e106]: Ativa
+                  - generic [ref=f1e107]:
+                    - generic [ref=f1e108]: Estética
+                    - generic [ref=f1e109]: Empresa de teste
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f1e115] [cursor=pointer]

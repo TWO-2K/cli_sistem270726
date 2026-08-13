@@ -39,7 +39,7 @@ function BrandIcon({ className }: { className?: string }) {
  * Navegação do painel super_admin. Hoje só "Visão geral" é uma rota real —
  * os demais itens ficam desabilitados como placeholder visual, deixando a
  * estrutura pronta para quando essas seções existirem (logs de auditoria,
- * configurações globais do produto, billing das empresas). Ver
+ * configurações globais do produto, assinaturas das empresas). Ver
  * `apps/web-estetica/src/components/app-sidebar.tsx` para o padrão espelhado
  * aqui: mesmo shell (`--sidebar` tokens), mesma estrutura de brand/nav/footer.
  */
@@ -57,7 +57,7 @@ const NAV_ITEMS: {
     icon: Settings,
     disabled: true,
   },
-  { href: "/billing", label: "Billing", icon: CreditCard, disabled: true },
+  { href: "/assinaturas", label: "Assinaturas", icon: CreditCard, disabled: true },
 ];
 
 function iniciais(nome: string) {

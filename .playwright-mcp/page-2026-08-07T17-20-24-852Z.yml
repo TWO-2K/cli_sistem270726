@@ -1,0 +1,19 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Entrar
+      - generic [ref=e6]: Painel de administração do sistema.
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]: E-mail
+        - textbox "E-mail" [ref=e11]:
+          - /placeholder: voce@empresa.com
+          - text: kevinkleydev@gmail.com
+      - generic [ref=e12]:
+        - generic [ref=e13]: Senha
+        - textbox "Senha" [ref=e14]: "325760022"
+      - paragraph [ref=e25]: E-mail ou senha inválidos.
+      - button "Entrar" [ref=e15]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e21] [cursor=pointer]
+  - alert [ref=e26]

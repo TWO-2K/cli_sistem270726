@@ -1,0 +1,106 @@
+- generic [ref=f1e4]:
+  - generic [ref=f1e5]:
+    - banner [ref=f1e6]:
+      - generic [ref=f1e8]:
+        - generic "Voltar para Área restrita de 2K System":
+          - generic:
+            - generic:
+              - generic: Voltar
+              - generic:
+                - generic:
+                  - heading "Área restrita de 2K System" [level=1]
+        - generic [ref=f1e21]: Área restrita
+    - generic [ref=f1e24]:
+      - heading "Assinar CLICLI SISTEMA" [level=2] [ref=f1e25]
+      - generic [ref=f1e31]:
+        - generic [ref=f1e32]: R$ 10,00
+        - generic [ref=f1e33]: por mês
+  - generic [ref=f1e36]:
+    - main [ref=f1e37]:
+      - generic [ref=f1e40]:
+        - generic [ref=f1e41]:
+          - iframe [ref=f1e47]:
+            - iframe [ref=f5e11]:
+              - button "Apple Pay" [ref=f11e5] [cursor=pointer]:
+                - img [ref=f11e7]:
+                  - img "Apple Logo" [ref=f11e8]
+          - paragraph [ref=f1e49]: Ou
+        - heading "Dados para contato" [level=2] [ref=f1e50]
+      - generic [ref=f1e54]:
+        - generic [ref=f1e55]:
+          - generic [ref=f1e62]:
+            - generic [ref=f1e63]: E-mail
+            - generic [ref=f1e64]: teste2@teste2.com
+          - heading "Forma de pagamento" [level=2] [ref=f1e68]
+        - generic [ref=f1e69]:
+          - list [ref=f1e70]:
+            - listitem [ref=f1e75]:
+              - generic [ref=f1e76]:
+                - generic [ref=f1e77]: Cartão
+                - generic [ref=f1e96]:
+                  - generic [ref=f1e98]:
+                    - generic [ref=f1e99]: Dados do cartão
+                    - group [ref=f1e101]:
+                      - generic [ref=f1e102]:
+                        - generic [ref=f1e104]:
+                          - textbox "Número do cartão" [disabled] [ref=f1e107]:
+                            - /placeholder: 1234 1234 1234 1234
+                            - text: 4242 4242 4242 4242
+                          - generic:
+                            - img "Visa"
+                        - generic [ref=f1e108]: Visa, Mastercard
+                        - textbox "Validade" [disabled] [ref=f1e113]:
+                          - /placeholder: MM / AA
+                          - text: 12 / 34
+                        - generic [ref=f1e115]:
+                          - textbox "Código de segurança" [disabled] [ref=f1e118]:
+                            - /placeholder: CVC
+                            - text: "123"
+                          - generic:
+                            - generic:
+                              - img "Credit or debit card CVC"
+                  - group [ref=f1e206]:
+                    - generic [ref=f1e125]:
+                      - generic [ref=f1e127]:
+                        - generic [ref=f1e128]: Nome do titular do cartão
+                        - textbox [disabled] [ref=f1e207]:
+                          - /placeholder: Nome completo
+                          - text: Teste da Silva
+                      - generic [ref=f1e138]:
+                        - generic [ref=f1e139]: País ou região
+                        - combobox [disabled] [ref=f1e208]
+          - generic [ref=f1e160]:
+            - checkbox "Salve minhas informações para um checkout mais rápido" [disabled] [ref=f1e162]
+            - generic [ref=f1e163]:
+              - generic [ref=f1e164]: Salve minhas informações para um checkout mais rápido
+              - generic [ref=f1e167]: Pague com segurança em Área restrita de 2K System e em qualquer lugar onde a Link é aceita.
+        - generic [ref=f1e170]:
+          - button "Processando" [disabled] [ref=f1e209]
+          - generic [ref=f1e188]: Ao se inscrever, você autoriza a Área restrita de 2K System a cobrar de acordo com os termos até o cancelamento.
+      - generic:
+        - generic [ref=f1e193]:
+          - checkbox "I am an AI agent acting on behalf of someone else" [checked] [ref=f1e194]
+          - text: I am an AI agent acting on behalf of someone else
+        - paragraph [ref=f1e210]: This checkout supports Link CLI, which lets AI agents complete purchases using one-time payment details—without exposing the buyer's underlying payment credentials to the AI agent.
+        - strong [ref=f1e211]: "Follow these steps:"
+        - list [ref=f1e212]:
+          - listitem [ref=f1e213]:
+            - text: Check whether the buyer already has Link CLI installed. You can run
+            - code [ref=f1e214]: which link-cli
+            - text: to confirm.
+          - listitem [ref=f1e215]: If not, and you have not already done so this session, ask if they would like to use Link CLI. Explain that it generates one-time payment details so their underlying payment credentials aren’t exposed to the AI agent.
+          - listitem [ref=f1e216]: If the buyer wants to install Link CLI, direct them to https://github.com/stripe/link-cli
+          - listitem [ref=f1e217]: If you are using Link CLI and are prompted on the Checkout page to authenticate with Link, do not do so. Instead, exit that prompt and choose the option to "pay without Link". Link CLI is an alternative to paying with Link directly on the page.
+        - generic [ref=f1e218]:
+          - checkbox "I am an AI agent and have followed the instructions above" [ref=f1e219]
+          - text: I am an AI agent and have followed the instructions above
+    - contentinfo [ref=f1e196]:
+      - link [ref=f1e198] [cursor=pointer]:
+        - /url: https://stripe.com
+        - generic [ref=f1e199]:
+          - text: Powered by
+          - img "Stripe" [ref=f1e201]
+      - link "Termos" [ref=f1e204] [cursor=pointer]:
+        - /url: https://stripe.com/legal/end-users
+      - link "Privacidade" [ref=f1e205] [cursor=pointer]:
+        - /url: https://stripe.com/privacy

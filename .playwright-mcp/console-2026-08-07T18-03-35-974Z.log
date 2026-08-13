@@ -1,0 +1,15 @@
+[    1460ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:1000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[    1507ms] [LOG] [HMR] connected @ http://localhost:1000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  102067ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  103003ms] [LOG] [Fast Refresh] done in 1036ms @ http://localhost:1000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  147565ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  148055ms] [LOG] [Fast Refresh] done in 598ms @ http://localhost:1000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  148282ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:1000/login:0
+[  152731ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:1000/login:0
+[  160064ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:1000/login:0
+[  164699ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://jkyfjlpuvhgzstcdyhar.supabase.co/auth/v1/token?grant_type=password:0
+[  168215ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://jkyfjlpuvhgzstcdyhar.supabase.co/auth/v1/token?grant_type=password:0
+[  172191ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:1000/login:0
+[  313658ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:1000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  313699ms] [LOG] [Fast Refresh] done in 143ms @ http://localhost:1000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js:2489
+[  314999ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://localhost:1000/login:0

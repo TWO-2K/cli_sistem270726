@@ -70,7 +70,7 @@ export async function requireUsuarioEmpresa(
       usuarioId: usuario.id,
       empresaId: empresa.id,
     });
-    redirect(redirects.login);
+    redirect(`${redirects.login}?erro=empresa-suspensa`);
   }
 
   if (segmentoPermitido && empresa.segmento !== segmentoPermitido) {

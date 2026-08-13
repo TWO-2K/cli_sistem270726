@@ -37,6 +37,8 @@ export interface Empresa {
   horario_funcionamento: HorarioDia[];
   is_teste: boolean;
   criado_em: string;
+  stripe_customer_id: string | null;
+  stripe_subscription_id: string | null;
 }
 
 export interface Usuario {

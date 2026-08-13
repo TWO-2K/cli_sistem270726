@@ -4,6 +4,7 @@ import { createAdminClient } from "@empresa/supabase/admin";
 import { gerarSenhaTemporaria } from "@empresa/supabase/senha-temporaria";
 import { SEGMENTOS, type Segmento } from "@empresa/supabase/types";
 import { logger } from "@empresa/observability/logger";
+import { criarClienteStripe } from "@/lib/stripe";
 
 export async function POST(request: Request) {
   const supabase = await createClient();
@@ -105,6 +106,30 @@ export async function POST(request: Request) {
     await admin.from("empresas").delete().eq("id", empresa.id);
     return NextResponse.json(
       { error: "Não foi possível vincular o admin à empresa." },
+      { status: 400 },
+    );
+  }
+
+  const stripe = criarClienteStripe();
+  try {
+    const cliente = await stripe.customers.create({
+      name: nomeEmpresa,
+      email: emailAdmin,
+    });
+    await admin
+      .from("empresas")
+      .update({ stripe_customer_id: cliente.id })
+      .eq("id", empresa.id);
+  } catch (erro) {
+    logger.error("falha ao provisionar empresa (cliente stripe)", {
+      error: erro instanceof Error ? erro.message : String(erro),
+      empresaId: empresa.id,
+    });
+    await admin.auth.admin.deleteUser(authUser.user.id);
+    await admin.from("usuarios").delete().eq("id", authUser.user.id);
+    await admin.from("empresas").delete().eq("id", empresa.id);
+    return NextResponse.json(
+      { error: "Não foi possível criar o cliente de cobrança." },
       { status: 400 },
     );
   }

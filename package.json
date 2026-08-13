@@ -12,7 +12,8 @@
     "build:estetica": "npm run build --workspace=apps/web-estetica",
     "build:admin": "npm run build --workspace=apps/admin",
     "lint": "npm run lint --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
   },
   "devDependencies": {
     "kill-port": "^2.0.1"

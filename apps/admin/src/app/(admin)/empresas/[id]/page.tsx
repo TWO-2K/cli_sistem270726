@@ -4,6 +4,7 @@ import { SEGMENTO_LABELS, type Empresa, type Usuario } from "@empresa/supabase/t
 import { Badge } from "@empresa/ui/components/badge";
 import { cn } from "@empresa/ui/utils";
 import { EditarEmpresaForm } from "./editar-empresa-form";
+import { AssinaturaCard } from "./assinatura-card";
 import { UsuariosDaEmpresa } from "./usuarios-da-empresa";
 import { PageHeader } from "../../page-header";
 import { SEGMENTO_BADGE } from "../../segmento-styles";
@@ -49,6 +50,7 @@ export default async function EmpresaDetalhePage({
       />
 
       <EditarEmpresaForm empresa={empresa} />
+      <AssinaturaCard empresa={empresa} />
       <UsuariosDaEmpresa empresaId={empresa.id} usuarios={usuarios ?? []} />
     </div>
   );

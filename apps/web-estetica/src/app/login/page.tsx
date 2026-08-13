@@ -31,7 +31,9 @@ function LoginForm() {
   const [error, setError] = useState<string | null>(
     searchParams.get("erro") === "link-invalido"
       ? "Este link de recuperação é inválido ou expirou. Solicite um novo."
-      : null,
+      : searchParams.get("erro") === "empresa-suspensa"
+        ? "O acesso da sua clínica está suspenso. Fale com o administrador da clínica ou o suporte para regularizar."
+        : null,
   );
   const [loading, setLoading] = useState(false);
 
