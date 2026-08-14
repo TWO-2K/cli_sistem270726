@@ -15,11 +15,11 @@ Legenda: ✅ concluído · 🔜 próximo indicado · ⏳ não iniciado · ⏸️
 | 1 | 1c — Pacotes de sessões | ✅ | Testado manualmente |
 | 1 | 1d — Plano de tratamento | ✅ | Testado manualmente |
 | 1 | Ajuste — versionamento de anamnese | ✅ | Testado manualmente |
-| 2 | 2a — Infraestrutura de notificação | ⏸️ | Adiada — sem decisão de hospedagem / sem demanda real ainda |
-| 2 | 2b — Lembrete automático de agendamento | ⏸️ | Depende de 2a |
+| 2 | 2a — Infraestrutura de notificação (e-mail) | ✅ | 13/08/2026 — escopo reduzido a e-mail (sem WhatsApp por ora). Edge Function `enviar-lembretes-agendamento` + Resend |
+| 2 | 2b — Lembrete automático de agendamento | ✅ | 13/08/2026 — pg_cron a cada 15min, testado ponta-a-ponta (e-mail recebido, `lembrete_enviado_em` evita duplicidade). Falta verificar domínio no Resend para enviar a qualquer paciente (hoje só ao dono da conta, limite do modo sandbox) |
 | 2 | 2c — Confirmação de presença via link | ⏸️ | Depende de 2a |
 | 2 | 2d — Lista de espera / reagendamento | ⏸️ | Adiada junto com a fase |
-| 3 | 3a — Funil de leads (CRM) | ⏳ | Próxima fase ativa candidata após a 2 (que está adiada) |
+| 3 | 3a — Funil de leads (CRM) | ✅ | Migration 0022 (`leads`), kanban em `leads/leads-board.tsx` |
 | 4 | 4a — Contas a pagar / despesas | ✅ | Migration 0023, `nova-despesa-dialog.tsx`/`marcar-despesa-paga-button.tsx` |
 | 4 | 4b — Comissão de profissional | ✅ | Migrations 0024/0025/0026, aba "Comissões" em Financeiro |
 | 4 | 4c — Exportação de relatórios + DRE | ✅ | `relatorios/dre/page.tsx` + botões de exportar |
@@ -28,9 +28,9 @@ Legenda: ✅ concluído · 🔜 próximo indicado · ⏳ não iniciado · ⏸️
 | 5 | 5b — Convênios e tabelas de preço | ✅ | |
 | 5 | 5c — Múltiplas unidades/filiais | ✅ | |
 | 6 | 6a — Base de testes automatizados | ✅ | 07/08/2026 — Vitest, 12/12 testes passando (agenda, pagamento/parcela, exclusão restrita, RLS) |
-| 6 | 6b — CI (GitHub Actions) | ✅ | `.github/workflows/ci.yml` criado (lint+typecheck+testes a cada push/PR). **Falta você adicionar os 5 secrets no GitHub** (ver README do workflow abaixo) — sem eles o job falha |
+| 6 | 6b — CI (GitHub Actions) | ⏸️ | Workflow criado (`.github/workflows/ci.yml`), lint/typecheck já passam no CI. Testes ainda falham no CI por causa dos secrets (ver nota abaixo) — pausado por decisão do usuário para focar em outra coisa, retomar depois |
 | 6 | 6c — Auditoria de ações sensíveis | ✅ | 07/08/2026 |
-| 6 | 6d — LGPD (exportação/exclusão de dados) | ⏳ | Depende conceitualmente de 6c, que já existe |
+| 6 | 6d — LGPD (exportação/exclusão de dados) | ✅ | 13/08/2026 — migration 0035, RPCs `exportar_dados_paciente`/`anonimizar_paciente`, aba "LGPD" (admin-only) na ficha do paciente. Testado via script contra o remoto |
 | 6 | 6e — Observabilidade (logs + Sentry) | ✅ | 07/08/2026 — falta só teste manual com `SENTRY_DSN` real do usuário |
 | 7 | 7a/7b/7c — Preparar terreno odonto/fisio | ⏳ | Só quando decidir começar o 2º app |
 

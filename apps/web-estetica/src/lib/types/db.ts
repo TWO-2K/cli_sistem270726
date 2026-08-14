@@ -60,6 +60,7 @@ export interface Agendamento {
   duracao_minutos: number;
   status: StatusAgendamento;
   observacoes: string | null;
+  lembrete_enviado_em: string | null;
 }
 
 export interface Atendimento {

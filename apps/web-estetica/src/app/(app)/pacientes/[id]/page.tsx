@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { CalendarPlus, CircleCheck, ClipboardList } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@empresa/supabase/server";
+import { requireUsuarioEmpresa } from "@/lib/current-empresa";
 import type {
   Agendamento,
   Anamnese,
@@ -40,6 +41,7 @@ import { FotosComparador } from "./fotos-comparador";
 import { VenderPacoteDialog } from "./vender-pacote-dialog";
 import { PlanoTratamentoDialog } from "./plano-tratamento-dialog";
 import { PlanosTratamentoLista } from "./planos-tratamento-lista";
+import { LgpdPacienteCard } from "./lgpd-paciente-card";
 
 function formatBRL(value: number) {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -59,6 +61,7 @@ export default async function PacienteDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const { usuario } = await requireUsuarioEmpresa();
   const supabase = await createClient();
 
   const { data: paciente } = await supabase
@@ -345,6 +348,9 @@ export default async function PacienteDetailPage({
             Pacotes
             {(pacotesSessao?.length ?? 0) > 0 ? ` (${pacotesSessao!.length})` : ""}
           </TabsTrigger>
+          {usuario.perfil === "admin" && (
+            <TabsTrigger value="lgpd">LGPD</TabsTrigger>
+          )}
           <TabsTrigger value="planos-tratamento">
             Plano de tratamento
             {(planosTratamento?.length ?? 0) > 0 ? ` (${planosTratamento!.length})` : ""}
@@ -679,6 +685,12 @@ export default async function PacienteDetailPage({
             procedimentos={procedimentos ?? []}
           />
         </TabsContent>
+
+        {usuario.perfil === "admin" && (
+          <TabsContent value="lgpd" className="pt-4">
+            <LgpdPacienteCard pacienteId={id} pacienteNome={paciente.nome} />
+          </TabsContent>
+        )}
       </Tabs>
     </div>
   );
