@@ -160,6 +160,7 @@ export default async function ConfiguracoesPage() {
                   <UsuariosTab
                     usuarios={usuarios ?? []}
                     unidades={unidades ?? []}
+                    horarioClinica={empresa.horario_funcionamento}
                   />
                 ),
               },

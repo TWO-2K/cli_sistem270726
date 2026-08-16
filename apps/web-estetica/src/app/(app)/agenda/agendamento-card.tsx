@@ -3,9 +3,19 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import {
+  CalendarClock,
+  CircleCheck,
+  CircleX,
+  Clock,
+  PlayCircle,
+  Stethoscope,
+  UserRound,
+} from "lucide-react";
 import { createClient } from "@empresa/supabase/client";
 import { cn } from "@empresa/ui/utils";
 import { Button } from "@empresa/ui/components/button";
+import { Separator } from "@empresa/ui/components/separator";
 import {
   Sheet,
   SheetContent,
@@ -14,6 +24,7 @@ import {
   SheetTitle,
 } from "@empresa/ui/components/sheet";
 import type { Agendamento, Paciente, Procedimento, Usuario } from "@/lib/types/db";
+import { iniciaisPaciente } from "@/lib/pacientes-utils";
 import { NovoAtendimentoDialog } from "../atendimento/novo-atendimento-dialog";
 
 export const STATUS_ESTILO: Record<
@@ -116,6 +127,8 @@ export function AgendamentoCard({
     agendamento.status === "agendado" || agendamento.status === "confirmado";
   const podeConfirmarPresenca = agendamento.status === "agendado";
   const podeMarcarFalta =
+    agendamento.status === "agendado" || agendamento.status === "confirmado";
+  const podeCancelar =
     agendamento.status === "agendado" || agendamento.status === "confirmado";
 
   const startRef = useRef<{ x: number; y: number } | null>(null);
@@ -265,78 +278,128 @@ export function AgendamentoCard({
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent className="sm:max-w-md">
           <SheetHeader>
-            <SheetTitle>Detalhes do agendamento</SheetTitle>
+            <div className="flex items-center gap-3">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-base font-semibold text-primary">
+                {iniciaisPaciente(paciente?.nome ?? "—")}
+              </span>
+              <div className="flex flex-col gap-1">
+                <SheetTitle>{paciente?.nome ?? "Paciente"}</SheetTitle>
+                <span
+                  className={cn(
+                    "inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
+                    estilo.bg,
+                    estilo.texto,
+                  )}
+                >
+                  {STATUS_LABEL[agendamento.status]}
+                </span>
+              </div>
+            </div>
           </SheetHeader>
-          <div className="flex flex-col gap-1 px-4 text-sm">
-            <p>
-              <span className="text-muted-foreground">Paciente: </span>
-              {paciente?.nome ?? "—"}
-            </p>
-            <p>
-              <span className="text-muted-foreground">Profissional: </span>
-              {profissional?.nome ?? "—"}
-            </p>
-            <p>
-              <span className="text-muted-foreground">Procedimento: </span>
-              {procedimento?.nome ?? "—"}
-            </p>
-            <p>
-              <span className="text-muted-foreground">Data e hora: </span>
-              {inicio.toLocaleString("pt-BR", {
-                dateStyle: "short",
-                timeStyle: "short",
-              })}
-            </p>
-            <p>
-              <span className="text-muted-foreground">Duração: </span>
-              {agendamento.duracao_minutos} min
-            </p>
-            <p>
-              <span className="text-muted-foreground">Status: </span>
-              {STATUS_LABEL[agendamento.status]}
-            </p>
+
+          <div className="flex flex-col gap-4 px-4">
+            <div className="flex items-center gap-2 rounded-lg border bg-muted/30 px-3 py-2.5 text-sm">
+              <CalendarClock className="h-4 w-4 shrink-0 text-muted-foreground" />
+              <span className="font-medium">
+                {inicio.toLocaleString("pt-BR", {
+                  dateStyle: "short",
+                  timeStyle: "short",
+                })}
+              </span>
+              <span className="text-muted-foreground">
+                · {agendamento.duracao_minutos} min
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-3 rounded-lg border p-3 text-sm">
+              <div className="flex items-start gap-2.5">
+                <Stethoscope className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-xs text-muted-foreground">
+                    Procedimento
+                  </span>
+                  <span className="font-medium">
+                    {procedimento?.nome ?? "—"}
+                  </span>
+                </div>
+              </div>
+
+              <Separator />
+
+              <div className="flex items-start gap-2.5">
+                <UserRound className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-xs text-muted-foreground">
+                    Profissional
+                  </span>
+                  <span className="font-medium">
+                    {profissional?.nome ?? "—"}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <SheetFooter className="flex-row flex-wrap justify-end gap-2">
-            {podeConfirmarPresenca && (
-              <Button
-                type="button"
-                variant="outline"
-                disabled={loading}
-                onClick={confirmarPresenca}
-              >
-                Confirmar presença
-              </Button>
+
+          <SheetFooter className="gap-3">
+            {(podeConfirmarPresenca || podeIniciarAtendimento) && (
+              <div className="flex flex-wrap gap-2">
+                {podeConfirmarPresenca && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={loading}
+                    onClick={confirmarPresenca}
+                    className="flex-1"
+                  >
+                    <CircleCheck className="h-4 w-4" />
+                    Confirmar presença
+                  </Button>
+                )}
+                {podeIniciarAtendimento && (
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      setOpen(false);
+                      setAtendimentoDialogOpen(true);
+                    }}
+                    className="flex-1"
+                  >
+                    <PlayCircle className="h-4 w-4" />
+                    Iniciar atendimento
+                  </Button>
+                )}
+              </div>
             )}
-            {podeMarcarFalta && (
-              <Button
-                type="button"
-                variant="outline"
-                disabled={loading}
-                onClick={marcarFalta}
-              >
-                Marcar falta
-              </Button>
-            )}
-            {podeIniciarAtendimento && (
-              <Button
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  setAtendimentoDialogOpen(true);
-                }}
-              >
-                Iniciar atendimento
-              </Button>
-            )}
-            {agendamento.status !== "cancelado" && (
-              <Button
-                type="button"
-                variant="destructive"
-                disabled={loading}
-                onClick={cancelar}
-              >
-                {loading ? "Cancelando..." : "Cancelar agendamento"}
-              </Button>
+
+            {(podeMarcarFalta || podeCancelar) && (
+              <div className="flex flex-wrap gap-2 border-t pt-3">
+                {podeMarcarFalta && (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    disabled={loading}
+                    onClick={marcarFalta}
+                    className="text-muted-foreground"
+                  >
+                    <Clock className="h-4 w-4" />
+                    Marcar falta
+                  </Button>
+                )}
+                {podeCancelar && (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    disabled={loading}
+                    onClick={cancelar}
+                    className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+                  >
+                    <CircleX className="h-4 w-4" />
+                    {loading ? "Cancelando..." : "Cancelar agendamento"}
+                  </Button>
+                )}
+              </div>
             )}
           </SheetFooter>
         </SheetContent>

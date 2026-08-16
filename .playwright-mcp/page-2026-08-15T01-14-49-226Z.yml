@@ -1,0 +1,77 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - complementary [ref=f2e3]:
+      - generic [ref=f2e4]: Estetica - Tua Cara
+      - navigation [ref=f2e6]:
+        - link "Painel" [ref=f2e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f2e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f2e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f2e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f2e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f2e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f2e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f2e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f2e40]:
+        - generic [ref=f2e41]: TC
+        - generic [ref=f2e43]:
+          - generic [ref=f2e44]: Tua cara
+          - generic [ref=f2e45]: Administrador
+        - button "Sair" [ref=f2e46]
+      - button "Recolher menu" [ref=f2e47]
+    - main [ref=f2e49]:
+      - generic [ref=f2e51]:
+        - generic [ref=f2e52]:
+          - generic [ref=f2e53]:
+            - heading "Agenda" [level=1] [ref=f2e54]
+            - paragraph [ref=f2e55]: Visão semanal ou diária dos atendimentos.
+          - button "Novo agendamento" [ref=f2e56]
+        - generic [ref=f2e57]:
+          - generic [ref=f2e58]:
+            - link [ref=f2e59] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-13
+            - link "Hoje" [ref=f2e62] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-14
+            - link [ref=f2e63] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-15
+            - generic [ref=f2e66]: sexta-feira, 14 de agosto
+          - generic [ref=f2e67]:
+            - link "semana" [ref=f2e68] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-08-14
+            - link "dia" [ref=f2e69] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-14
+        - generic [ref=f2e73]:
+          - generic [ref=f2e75]:
+            - generic [ref=f2e76]: Sexta
+            - generic [ref=f2e77]: 14/08
+          - generic [ref=f2e78]:
+            - generic [ref=f2e79]: 08:00
+            - generic [ref=f2e81]: 09:00
+            - generic [ref=f2e83]: 10:00
+            - generic [ref=f2e85]: 11:00
+            - generic [ref=f2e87]: 12:00
+            - generic [ref=f2e89]: 13:00
+            - generic [ref=f2e91]: 14:00
+            - generic [ref=f2e93]: 15:00
+            - generic [ref=f2e95]: 16:00
+            - generic [ref=f2e97]: 17:00
+          - generic [ref=f2e99]:
+            - button [ref=f2e100] [cursor=pointer]
+            - button [ref=f2e101] [cursor=pointer]
+            - button [ref=f2e102] [cursor=pointer]
+            - button [ref=f2e103] [cursor=pointer]
+            - button [ref=f2e104] [cursor=pointer]
+            - button [ref=f2e105] [cursor=pointer]
+            - button [ref=f2e106] [cursor=pointer]
+            - button [ref=f2e107] [cursor=pointer]
+            - button [ref=f2e108] [cursor=pointer]
+            - button [ref=f2e109] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f2e115] [cursor=pointer]

@@ -7,18 +7,8 @@ import { createClient } from "@empresa/supabase/client";
 import { Button } from "@empresa/ui/components/button";
 import { Input } from "@empresa/ui/components/input";
 import { Label } from "@empresa/ui/components/label";
-import { cn } from "@empresa/ui/utils";
 import type { Empresa, HorarioDia } from "@/lib/types/db";
-
-const DIAS_SEMANA = [
-  "Domingo",
-  "Segunda-feira",
-  "Terça-feira",
-  "Quarta-feira",
-  "Quinta-feira",
-  "Sexta-feira",
-  "Sábado",
-];
+import { HorarioSemanaEditor } from "./horario-semana-editor";
 
 export function PerfilTab({ empresa }: { empresa: Empresa }) {
   const router = useRouter();
@@ -30,12 +20,6 @@ export function PerfilTab({ empresa }: { empresa: Empresa }) {
   const [horarios, setHorarios] = useState<HorarioDia[]>(
     empresa.horario_funcionamento,
   );
-
-  function atualizarDia(index: number, patch: Partial<HorarioDia>) {
-    setHorarios((prev) =>
-      prev.map((h, i) => (i === index ? { ...h, ...patch } : h)),
-    );
-  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -116,45 +100,7 @@ export function PerfilTab({ empresa }: { empresa: Empresa }) {
             não permitem agendamento.
           </p>
         </div>
-        <div className="rounded-lg border bg-card">
-          {horarios.map((h, i) => (
-            <div
-              key={i}
-              className={cn(
-                "flex flex-wrap items-center gap-4 border-b p-3 last:border-b-0",
-                !h.ativo && "opacity-60",
-              )}
-            >
-              <label className="flex w-40 items-center gap-2 text-sm font-medium">
-                <input
-                  type="checkbox"
-                  checked={h.ativo}
-                  onChange={(e) =>
-                    atualizarDia(i, { ativo: e.target.checked })
-                  }
-                />
-                {DIAS_SEMANA[i]}
-              </label>
-              <div className="flex items-center gap-2">
-                <Input
-                  type="time"
-                  disabled={!h.ativo}
-                  value={h.inicio}
-                  onChange={(e) => atualizarDia(i, { inicio: e.target.value })}
-                  className="w-32"
-                />
-                <span className="text-sm text-muted-foreground">até</span>
-                <Input
-                  type="time"
-                  disabled={!h.ativo}
-                  value={h.fim}
-                  onChange={(e) => atualizarDia(i, { fim: e.target.value })}
-                  className="w-32"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+        <HorarioSemanaEditor horarios={horarios} onChange={setHorarios} />
       </div>
 
       <div>

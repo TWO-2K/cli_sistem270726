@@ -1,0 +1,202 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e2]:
+    - complementary [ref=f5e3]:
+      - generic [ref=f5e4]: Estetica - Tua Cara
+      - navigation [ref=f5e6]:
+        - link "Painel" [ref=f5e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=f5e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=f5e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=f5e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=f5e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=f5e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=f5e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=f5e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f5e40]:
+        - generic [ref=f5e41]: TC
+        - generic [ref=f5e43]:
+          - generic [ref=f5e44]: Tua cara
+          - generic [ref=f5e45]: Administrador
+        - button "Sair" [ref=f5e46]
+      - button "Recolher menu" [ref=f5e47]
+    - main [ref=f5e49]:
+      - generic [ref=f5e51]:
+        - generic [ref=f5e52]:
+          - generic [ref=f5e53]:
+            - heading "Agenda" [level=1] [ref=f5e54]
+            - paragraph [ref=f5e55]: Visão semanal ou diária dos atendimentos.
+          - button "Novo agendamento" [ref=f5e56]
+        - generic [ref=f5e57]:
+          - generic [ref=f5e58]:
+            - link [ref=f5e59] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-08-07
+            - link "Hoje" [ref=f5e62] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-08-14
+            - link [ref=f5e63] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-08-21
+            - generic [ref=f5e66]: 9 – 15 de agosto
+          - generic [ref=f5e67]:
+            - link "semana" [ref=f5e68] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-08-14
+            - link "dia" [ref=f5e69] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-14
+        - generic [ref=f5e73]:
+          - generic [ref=f5e75]:
+            - generic [ref=f5e76]: Domingo
+            - generic [ref=f5e77]: 09/08
+          - generic [ref=f5e78]:
+            - generic [ref=f5e79]: Segunda
+            - generic [ref=f5e80]: 10/08
+          - generic [ref=f5e81]:
+            - generic [ref=f5e82]: Terça
+            - generic [ref=f5e83]: 11/08
+          - generic [ref=f5e84]:
+            - generic [ref=f5e85]: Quarta
+            - generic [ref=f5e86]: 12/08
+          - generic [ref=f5e87]:
+            - generic [ref=f5e88]: Quinta
+            - generic [ref=f5e89]: 13/08
+          - generic [ref=f5e90]:
+            - generic [ref=f5e91]: Sexta
+            - generic [ref=f5e92]: 14/08
+          - generic [ref=f5e93]:
+            - generic [ref=f5e94]: Sábado
+            - generic [ref=f5e95]: 15/08
+            - generic [ref=f5e96]: Fechado
+          - generic [ref=f5e97]:
+            - generic [ref=f5e98]: 08:00
+            - generic [ref=f5e100]: 09:00
+            - generic [ref=f5e102]: 10:00
+            - generic [ref=f5e104]: 11:00
+            - generic [ref=f5e106]: 12:00
+            - generic [ref=f5e108]: 13:00
+            - generic [ref=f5e110]: 14:00
+            - generic [ref=f5e112]: 15:00
+            - generic [ref=f5e114]: 16:00
+            - generic [ref=f5e116]: 17:00
+            - generic [ref=f5e118]: 18:00
+            - generic [ref=f5e120]: 19:00
+            - generic [ref=f5e122]: 20:00
+            - generic [ref=f5e124]: 21:00
+            - generic [ref=f5e126]: 22:00
+          - generic [ref=f5e128]:
+            - button [ref=f5e129] [cursor=pointer]
+            - button [ref=f5e130] [cursor=pointer]
+            - button [ref=f5e131] [cursor=pointer]
+            - button [ref=f5e132] [cursor=pointer]
+            - button [ref=f5e133] [cursor=pointer]
+            - button [ref=f5e134] [cursor=pointer]
+            - button [ref=f5e135] [cursor=pointer]
+            - button [ref=f5e136] [cursor=pointer]
+            - button [ref=f5e137] [cursor=pointer]
+            - button [ref=f5e138] [cursor=pointer]
+            - button [ref=f5e139] [cursor=pointer]
+            - button [ref=f5e140] [cursor=pointer]
+            - button [ref=f5e141] [cursor=pointer]
+            - button [ref=f5e142] [cursor=pointer]
+            - button [ref=f5e143] [cursor=pointer]
+          - generic [ref=f5e144]:
+            - button [ref=f5e145] [cursor=pointer]
+            - button [ref=f5e146] [cursor=pointer]
+            - button [ref=f5e147] [cursor=pointer]
+            - button [ref=f5e148] [cursor=pointer]
+            - button [ref=f5e149] [cursor=pointer]
+            - button [ref=f5e150] [cursor=pointer]
+            - button [ref=f5e151] [cursor=pointer]
+            - button [ref=f5e152] [cursor=pointer]
+            - button [ref=f5e153] [cursor=pointer]
+            - button [ref=f5e154] [cursor=pointer]
+            - button [disabled] [ref=f5e155]
+            - button [disabled] [ref=f5e156]
+            - button [disabled] [ref=f5e157]
+            - button [disabled] [ref=f5e158]
+            - button [disabled] [ref=f5e159]
+          - generic [ref=f5e160]:
+            - button [ref=f5e161] [cursor=pointer]
+            - button [ref=f5e162] [cursor=pointer]
+            - button [ref=f5e163] [cursor=pointer]
+            - button [ref=f5e164] [cursor=pointer]
+            - button [ref=f5e165] [cursor=pointer]
+            - button [ref=f5e166] [cursor=pointer]
+            - button [ref=f5e167] [cursor=pointer]
+            - button [ref=f5e168] [cursor=pointer]
+            - button [ref=f5e169] [cursor=pointer]
+            - button [ref=f5e170] [cursor=pointer]
+            - button [disabled] [ref=f5e171]
+            - button [disabled] [ref=f5e172]
+            - button [disabled] [ref=f5e173]
+            - button [disabled] [ref=f5e174]
+            - button [disabled] [ref=f5e175]
+          - generic [ref=f5e176]:
+            - button [ref=f5e177] [cursor=pointer]
+            - button [ref=f5e178] [cursor=pointer]
+            - button [ref=f5e179] [cursor=pointer]
+            - button [ref=f5e180] [cursor=pointer]
+            - button [ref=f5e181] [cursor=pointer]
+            - button [ref=f5e182] [cursor=pointer]
+            - button [ref=f5e183] [cursor=pointer]
+            - button [ref=f5e184] [cursor=pointer]
+            - button [ref=f5e185] [cursor=pointer]
+            - button [ref=f5e186] [cursor=pointer]
+            - button [disabled] [ref=f5e187]
+            - button [disabled] [ref=f5e188]
+            - button [disabled] [ref=f5e189]
+            - button [disabled] [ref=f5e190]
+            - button [disabled] [ref=f5e191]
+          - generic [ref=f5e192]:
+            - button [ref=f5e193] [cursor=pointer]
+            - button [ref=f5e194] [cursor=pointer]
+            - button [ref=f5e195] [cursor=pointer]
+            - button [ref=f5e196] [cursor=pointer]
+            - button [ref=f5e197] [cursor=pointer]
+            - button [ref=f5e198] [cursor=pointer]
+            - button [ref=f5e199] [cursor=pointer]
+            - button [ref=f5e200] [cursor=pointer]
+            - button [ref=f5e201] [cursor=pointer]
+            - button [ref=f5e202] [cursor=pointer]
+            - button [disabled] [ref=f5e203]
+            - button [disabled] [ref=f5e204]
+            - button [disabled] [ref=f5e205]
+            - button [disabled] [ref=f5e206]
+            - button [disabled] [ref=f5e207]
+          - generic [ref=f5e208]:
+            - button [ref=f5e209] [cursor=pointer]
+            - button [ref=f5e210] [cursor=pointer]
+            - button [ref=f5e211] [cursor=pointer]
+            - button [ref=f5e212] [cursor=pointer]
+            - button [ref=f5e213] [cursor=pointer]
+            - button [ref=f5e214] [cursor=pointer]
+            - button [ref=f5e215] [cursor=pointer]
+            - button [ref=f5e216] [cursor=pointer]
+            - button [ref=f5e217] [cursor=pointer]
+            - button [ref=f5e218] [cursor=pointer]
+            - button [disabled] [ref=f5e219]
+            - button [disabled] [ref=f5e220]
+            - button [disabled] [ref=f5e221]
+            - button [disabled] [ref=f5e222]
+            - button [disabled] [ref=f5e223]
+          - generic [ref=f5e224]:
+            - button [disabled] [ref=f5e225]
+            - button [disabled] [ref=f5e226]
+            - button [disabled] [ref=f5e227]
+            - button [disabled] [ref=f5e228]
+            - button [disabled] [ref=f5e229]
+            - button [disabled] [ref=f5e230]
+            - button [disabled] [ref=f5e231]
+            - button [disabled] [ref=f5e232]
+            - button [disabled] [ref=f5e233]
+            - button [disabled] [ref=f5e234]
+            - button [disabled] [ref=f5e235]
+            - button [disabled] [ref=f5e236]
+            - button [disabled] [ref=f5e237]
+            - button [disabled] [ref=f5e238]
+            - button [disabled] [ref=f5e239]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f5e245] [cursor=pointer]

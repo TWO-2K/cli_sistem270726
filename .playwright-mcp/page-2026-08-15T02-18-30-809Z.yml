@@ -1,0 +1,80 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]: Estetica - Tua Cara
+      - navigation [ref=e6]:
+        - link "Painel" [ref=e7] [cursor=pointer]:
+          - /url: /painel
+        - link "Agenda" [ref=e13] [cursor=pointer]:
+          - /url: /agenda
+        - link "Pacientes" [ref=e16] [cursor=pointer]:
+          - /url: /pacientes
+        - link "Atendimento" [ref=e22] [cursor=pointer]:
+          - /url: /atendimento
+        - link "Funil de leads" [ref=e27] [cursor=pointer]:
+          - /url: /leads
+        - link "Financeiro" [ref=e29] [cursor=pointer]:
+          - /url: /financeiro
+        - link "Relatórios" [ref=e33] [cursor=pointer]:
+          - /url: /relatorios
+        - link "Configurações" [ref=e36] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=e40]:
+        - generic [ref=e41]: TC
+        - generic [ref=e43]:
+          - generic [ref=e44]: Tua cara
+          - generic [ref=e45]: Administrador
+        - button "Sair" [ref=e46]
+      - button "Recolher menu" [ref=e47]
+    - main [ref=e49]:
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - heading "Olá, Estetica - Tua Cara" [level=1] [ref=e53]
+          - paragraph [ref=e54]: Painel de hoje — sexta-feira, 14 de agosto
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - heading "Agenda de hoje" [level=2] [ref=e57]
+            - link "Ver agenda completa" [ref=e58] [cursor=pointer]:
+              - /url: /agenda
+          - paragraph [ref=e60]: Nenhum agendamento hoje.
+        - generic [ref=e61]:
+          - link "Parcelas atrasadas R$ 0,00" [ref=e62] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=e64]:
+              - generic [ref=e65]: Parcelas atrasadas
+              - generic [ref=e66]: R$ 0,00
+          - link "Parcelas a vencer (7 dias) R$ 0,00" [ref=e67] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=e69]:
+              - generic [ref=e70]: Parcelas a vencer (7 dias)
+              - generic [ref=e71]: R$ 0,00
+          - link "Despesas vencidas R$ 22,00" [ref=e72] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=e74]:
+              - generic [ref=e75]: Despesas vencidas
+              - generic [ref=e76]: R$ 22,00
+          - link "Comandas abertas há mais de 2 dias 3" [ref=e77] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=e79]:
+              - generic [ref=e80]: Comandas abertas há mais de 2 dias
+              - generic [ref=e81]: "3"
+          - link "Comissões pendentes de repasse R$ 30,00" [ref=e82] [cursor=pointer]:
+            - /url: /financeiro
+            - generic [ref=e84]:
+              - generic [ref=e85]: Comissões pendentes de repasse
+              - generic [ref=e86]: R$ 30,00
+          - generic [ref=e88]:
+            - generic [ref=e89]: Resultado do mês
+            - generic [ref=e90]: "-R$ 640,00"
+        - link "Leads sem contato há mais de 3 dias 1" [ref=e91] [cursor=pointer]:
+          - /url: /leads
+          - generic [ref=e93]:
+            - generic [ref=e94]: Leads sem contato há mais de 3 dias
+            - generic [ref=e95]: "1"
+        - link "Cancelamentos e faltas (últimos 30 dias) 4" [ref=e96] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=e98]:
+            - generic [ref=e99]: Cancelamentos e faltas (últimos 30 dias)
+            - generic [ref=e100]: "4"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e106] [cursor=pointer]

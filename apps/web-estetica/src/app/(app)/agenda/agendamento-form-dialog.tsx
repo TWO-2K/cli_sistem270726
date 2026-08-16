@@ -26,11 +26,29 @@ import type {
   Agendamento,
   HorarioDia,
   Paciente,
+  PeriodoDia,
   Procedimento,
   Sala,
   Usuario,
 } from "@/lib/types/db";
 import { horaDentroDoExpediente, horarioDoDia } from "./agenda-utils";
+
+const PERIODO_LABELS: Record<PeriodoDia, string> = {
+  manha: "Manhã",
+  tarde: "Tarde",
+  noite: "Noite",
+  qualquer: "Qualquer período",
+};
+
+function hojeISO() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function daquiA30DiasISO() {
+  const d = new Date();
+  d.setDate(d.getDate() + 30);
+  return d.toISOString().slice(0, 10);
+}
 
 function toDatetimeLocal(date: Date) {
   const offset = date.getTimezoneOffset();
@@ -65,6 +83,31 @@ function AgendamentoForm({
     toDatetimeLocal(initialDataHora ?? new Date()),
   );
   const [contraindicados, setContraindicados] = useState<Set<string>>(new Set());
+  const [conflitoSemVaga, setConflitoSemVaga] = useState(false);
+  const [adicionandoNaFila, setAdicionandoNaFila] = useState(false);
+  const [filaDisponibilidadeInicio, setFilaDisponibilidadeInicio] = useState(hojeISO());
+  const [filaDisponibilidadeFim, setFilaDisponibilidadeFim] = useState(daquiA30DiasISO());
+  const [filaPeriodoDia, setFilaPeriodoDia] = useState<PeriodoDia>("qualquer");
+
+  const profissionaisDisponiveis = profissionais.filter((p) => {
+    const horarioEfetivo = p.horario_funcionamento ?? horarioFuncionamento;
+    return horarioDoDia(horarioEfetivo, new Date(dataHora))?.ativo ?? false;
+  });
+
+  function handleDataHoraChange(value: string) {
+    setDataHora(value);
+    if (
+      profissionalId &&
+      !profissionais
+        .filter((p) => {
+          const horarioEfetivo = p.horario_funcionamento ?? horarioFuncionamento;
+          return horarioDoDia(horarioEfetivo, new Date(value))?.ativo ?? false;
+        })
+        .some((p) => p.id === profissionalId)
+    ) {
+      setProfissionalId("");
+    }
+  }
 
   useEffect(() => {
     let cancelado = false;
@@ -102,25 +145,63 @@ function AgendamentoForm({
 
   const podeSubmeter = pacienteId && profissionalId && dataHora;
 
+  async function adicionarNaListaDeEspera() {
+    setAdicionandoNaFila(true);
+    const supabase = createClient();
+
+    const { error } = await supabase.from("lista_espera").insert({
+      paciente_id: pacienteId,
+      profissional_id: profissionalId,
+      procedimento_id: procedimentoId || null,
+      disponibilidade_inicio: filaDisponibilidadeInicio,
+      disponibilidade_fim: filaDisponibilidadeFim,
+      periodo_dia: filaPeriodoDia,
+    });
+
+    setAdicionandoNaFila(false);
+
+    if (error) {
+      toast.error("Não foi possível adicionar à lista de espera.");
+      return;
+    }
+
+    toast.success(
+      "Adicionado à lista de espera — avisamos por e-mail quando um horário abrir.",
+    );
+    setConflitoSemVaga(false);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!podeSubmeter) return;
     setLoading(true);
+    setConflitoSemVaga(false);
 
     const procedimento = procedimentos.find((p) => p.id === procedimentoId);
     const duracaoMinutos = procedimento?.duracao_minutos ?? 30;
     const inicio = new Date(dataHora);
     const fim = new Date(inicio.getTime() + duracaoMinutos * 60_000);
 
-    const horarioDia = horarioDoDia(horarioFuncionamento, inicio);
+    const profissionalSelecionado = profissionais.find((p) => p.id === profissionalId);
+    const horarioEfetivo =
+      profissionalSelecionado?.horario_funcionamento ?? horarioFuncionamento;
+    const horarioProprio = profissionalSelecionado?.horario_funcionamento != null;
+
+    const horarioDia = horarioDoDia(horarioEfetivo, inicio);
     if (!horarioDia?.ativo) {
-      toast.error("A clínica não funciona neste dia.");
+      toast.error(
+        horarioProprio
+          ? "Este profissional não atende neste dia."
+          : "A clínica não funciona neste dia.",
+      );
       setLoading(false);
       return;
     }
     if (!horaDentroDoExpediente(horarioDia, inicio.getHours())) {
       toast.error(
-        `Horário fora do funcionamento da clínica (${horarioDia.inicio} às ${horarioDia.fim}).`,
+        horarioProprio
+          ? `Fora do horário deste profissional (${horarioDia.inicio} às ${horarioDia.fim}).`
+          : `Horário fora do funcionamento da clínica (${horarioDia.inicio} às ${horarioDia.fim}).`,
       );
       setLoading(false);
       return;
@@ -155,6 +236,7 @@ function AgendamentoForm({
           ? "Este profissional já tem um agendamento nesse horário."
           : "Este paciente já tem um agendamento nesse horário.",
       );
+      if (conflito.usuario_id === profissionalId) setConflitoSemVaga(true);
       return;
     }
 
@@ -174,6 +256,7 @@ function AgendamentoForm({
         toast.error(
           "Já existe um agendamento nesse horário para o profissional ou paciente selecionado.",
         );
+        setConflitoSemVaga(true);
       } else {
         toast.error("Não foi possível criar o agendamento.");
       }
@@ -217,13 +300,18 @@ function AgendamentoForm({
             </SelectValue>
           </SelectTrigger>
           <SelectContent>
-            {profissionais.map((p) => (
+            {profissionaisDisponiveis.map((p) => (
               <SelectItem key={p.id} value={p.id}>
                 {p.nome}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
+        {profissionaisDisponiveis.length === 0 && (
+          <p className="text-sm text-muted-foreground">
+            Nenhum profissional atende nesta data.
+          </p>
+        )}
       </div>
       <div className="flex flex-col gap-2">
         <Label>Procedimento</Label>
@@ -277,9 +365,71 @@ function AgendamentoForm({
           type="datetime-local"
           required
           value={dataHora}
-          onChange={(e) => setDataHora(e.target.value)}
+          onChange={(e) => handleDataHoraChange(e.target.value)}
         />
       </div>
+      {conflitoSemVaga && (
+        <div className="flex flex-col gap-3 rounded-md border border-amber-400/40 bg-amber-50 px-3 py-3 text-sm dark:bg-amber-500/10">
+          <p className="text-amber-900 dark:text-amber-400">
+            Não tem vaga nesse horário. Se quiser, coloque o paciente na
+            lista de espera — mas primeiro confirme quando ele{" "}
+            <strong>realmente pode</strong> ser chamado (avisamos por e-mail
+            só se abrir dentro dessa janela).
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="fila-inicio" className="text-xs">
+                A partir de
+              </Label>
+              <Input
+                id="fila-inicio"
+                type="date"
+                value={filaDisponibilidadeInicio}
+                onChange={(e) => setFilaDisponibilidadeInicio(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="fila-fim" className="text-xs">
+                Até
+              </Label>
+              <Input
+                id="fila-fim"
+                type="date"
+                value={filaDisponibilidadeFim}
+                onChange={(e) => setFilaDisponibilidadeFim(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <Label className="text-xs">Período</Label>
+              <Select
+                value={filaPeriodoDia}
+                onValueChange={(v) => setFilaPeriodoDia((v as PeriodoDia) ?? "qualquer")}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {(Object.keys(PERIODO_LABELS) as PeriodoDia[]).map((p) => (
+                    <SelectItem key={p} value={p}>
+                      {PERIODO_LABELS[p]}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={adicionandoNaFila}
+            onClick={adicionarNaListaDeEspera}
+            className="self-start"
+          >
+            {adicionandoNaFila ? "Adicionando..." : "Adicionar à lista de espera"}
+          </Button>
+        </div>
+      )}
       <DialogFooter>
         <Button type="submit" disabled={loading || !podeSubmeter}>
           {loading ? "Salvando..." : "Agendar"}

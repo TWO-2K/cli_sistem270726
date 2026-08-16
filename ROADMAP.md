@@ -17,8 +17,8 @@ Legenda: ✅ concluído · 🔜 próximo indicado · ⏳ não iniciado · ⏸️
 | 1 | Ajuste — versionamento de anamnese | ✅ | Testado manualmente |
 | 2 | 2a — Infraestrutura de notificação (e-mail) | ✅ | 13/08/2026 — escopo reduzido a e-mail (sem WhatsApp por ora). Edge Function `enviar-lembretes-agendamento` + Resend |
 | 2 | 2b — Lembrete automático de agendamento | ✅ | 13/08/2026 — pg_cron a cada 15min, testado ponta-a-ponta (e-mail recebido, `lembrete_enviado_em` evita duplicidade). Falta verificar domínio no Resend para enviar a qualquer paciente (hoje só ao dono da conta, limite do modo sandbox) |
-| 2 | 2c — Confirmação de presença via link | ⏸️ | Depende de 2a |
-| 2 | 2d — Lista de espera / reagendamento | ⏸️ | Adiada junto com a fase |
+| 2 | 2c — Confirmação de presença via link | ✅ | 14/08/2026 — token por agendamento (migration 0037), rota pública `/confirmar-presenca/[token]`, link incluído automaticamente no e-mail do 2b quando status é "agendado". Testado ponta-a-ponta local |
+| 2 | 2d — Lista de espera / reagendamento | ✅ | 15/08/2026 — trigger de cancelamento + 2 Edge Functions (`notificar-fila-espera`, `aceitar-oferta-fila-espera`), página `/lista-espera` e rota pública `/reservar-horario/[token]`. Testado ponta-a-ponta contra o remoto, incluindo bloqueio de segurança da RPC pra `anon` |
 | 3 | 3a — Funil de leads (CRM) | ✅ | Migration 0022 (`leads`), kanban em `leads/leads-board.tsx` |
 | 4 | 4a — Contas a pagar / despesas | ✅ | Migration 0023, `nova-despesa-dialog.tsx`/`marcar-despesa-paga-button.tsx` |
 | 4 | 4b — Comissão de profissional | ✅ | Migrations 0024/0025/0026, aba "Comissões" em Financeiro |
@@ -34,9 +34,16 @@ Legenda: ✅ concluído · 🔜 próximo indicado · ⏳ não iniciado · ⏸️
 | 6 | 6e — Observabilidade (logs + Sentry) | ✅ | 07/08/2026 — falta só teste manual com `SENTRY_DSN` real do usuário |
 | 7 | 7a/7b/7c — Preparar terreno odonto/fisio | ⏳ | Só quando decidir começar o 2º app |
 
-**Não mapeado no roadmap original, feito à parte:** billing com Stripe em `apps/admin` —
-schema `stripe_customer_id`/`stripe_subscription_id` em `empresas`, checkout, webhook. Em
-andamento, ainda não commitado (ver `git status` do repo).
+**Não mapeado no roadmap original, feito à parte:**
+- Billing com Stripe em `apps/admin` — schema `stripe_customer_id`/`stripe_subscription_id`
+  em `empresas`, checkout, webhook. Em andamento, ainda não commitado (ver `git status` do
+  repo).
+- ✅ **Disponibilidade própria por profissional** (15/08/2026) — migration 0040
+  (`usuarios.horario_funcionamento`, nullable = herda o horário da clínica), editor
+  reutilizável `horario-semana-editor.tsx`, toggle em Configurações → Usuários, validação em
+  `agendamento-form-dialog.tsx`. Descoberto como lacuna real ao testar a lista de espera (2d)
+  — sem isso, dias sem agendamento pareciam "livres" mesmo quando o profissional não
+  trabalhava. Escopo: só bloqueio ao agendar, sem mexer na grade visual da Agenda.
 
 ## Onde está o detalhe de cada card
 

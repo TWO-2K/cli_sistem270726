@@ -80,7 +80,7 @@ export default async function AgendaPage({
   );
 
   return (
-    <div className="flex h-full min-h-0 flex-col gap-6">
+    <div className="flex h-full min-h-0 flex-col gap-6 overflow-hidden">
       <div className="flex shrink-0 items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Agenda</h1>
@@ -140,7 +140,7 @@ export default async function AgendaPage({
         </div>
       </div>
 
-      <div className="min-h-0 flex-1">
+      <div className="min-h-0 flex-1 overflow-hidden">
         <AgendaGrid
           dias={dias}
           agendamentos={agendamentos ?? []}

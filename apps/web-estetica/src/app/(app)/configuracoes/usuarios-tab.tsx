@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { Button } from "@empresa/ui/components/button";
 import { Input } from "@empresa/ui/components/input";
 import { Label } from "@empresa/ui/components/label";
-import type { Perfil, Unidade, Usuario } from "@/lib/types/db";
+import type { HorarioDia, Perfil, Unidade, Usuario } from "@/lib/types/db";
 import {
   Select,
   SelectContent,
@@ -23,13 +23,14 @@ import {
   TableRow,
 } from "@empresa/ui/components/table";
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@empresa/ui/components/dialog";
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from "@empresa/ui/components/sheet";
 import { Badge } from "@empresa/ui/components/badge";
+import { HorarioSemanaEditor } from "./horario-semana-editor";
 
 const PERFIS: { value: Perfil; label: string }[] = [
   { value: "admin", label: "Admin" },
@@ -45,9 +46,11 @@ function perfilLabel(perfil: Perfil) {
 export function UsuariosTab({
   usuarios,
   unidades = [],
+  horarioClinica,
 }: {
   usuarios: Usuario[];
   unidades?: Unidade[];
+  horarioClinica: HorarioDia[];
 }) {
   const router = useRouter();
   const [nome, setNome] = useState("");
@@ -345,6 +348,7 @@ export function UsuariosTab({
       <EditarUsuarioDialog
         usuario={editando}
         unidades={unidades}
+        horarioClinica={horarioClinica}
         onClose={() => setEditando(null)}
         onSaved={() => {
           setEditando(null);
@@ -358,45 +362,50 @@ export function UsuariosTab({
 function EditarUsuarioDialog({
   usuario,
   unidades,
+  horarioClinica,
   onClose,
   onSaved,
 }: {
   usuario: Usuario | null;
   unidades: Unidade[];
+  horarioClinica: HorarioDia[];
   onClose: () => void;
   onSaved: () => void;
 }) {
   return (
-    <Dialog
+    <Sheet
       open={usuario !== null}
       onOpenChange={(open) => {
         if (!open) onClose();
       }}
     >
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Editar usuário</DialogTitle>
-        </DialogHeader>
+      <SheetContent className="data-[side=right]:sm:max-w-md">
+        <SheetHeader>
+          <SheetTitle>Editar usuário</SheetTitle>
+        </SheetHeader>
         {usuario && (
           <EditarUsuarioForm
             key={usuario.id}
             usuario={usuario}
             unidades={unidades}
+            horarioClinica={horarioClinica}
             onSaved={onSaved}
           />
         )}
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   );
 }
 
 function EditarUsuarioForm({
   usuario,
   unidades,
+  horarioClinica,
   onSaved,
 }: {
   usuario: Usuario;
   unidades: Unidade[];
+  horarioClinica: HorarioDia[];
   onSaved: () => void;
 }) {
   const [nome, setNome] = useState(usuario.nome);
@@ -407,6 +416,12 @@ function EditarUsuarioForm({
   const [atende, setAtende] = useState(usuario.atende);
   const [unidadeId, setUnidadeId] = useState<string | null>(
     usuario.unidade_id,
+  );
+  const [horarioProprio, setHorarioProprio] = useState(
+    usuario.horario_funcionamento !== null,
+  );
+  const [horarioFuncionamento, setHorarioFuncionamento] = useState<HorarioDia[]>(
+    usuario.horario_funcionamento ?? horarioClinica,
   );
   const [loading, setLoading] = useState(false);
 
@@ -424,6 +439,7 @@ function EditarUsuarioForm({
         atende,
         ativo: usuario.ativo,
         unidade_id: unidadeId,
+        horario_funcionamento: horarioProprio ? horarioFuncionamento : null,
       }),
     });
 
@@ -439,7 +455,7 @@ function EditarUsuarioForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 px-4">
       <div className="flex flex-col gap-2">
         <Label>Nome</Label>
         <Input required value={nome} onChange={(e) => setNome(e.target.value)} />
@@ -506,11 +522,33 @@ function EditarUsuarioForm({
         />
         Atende (aparece na Agenda)
       </label>
-      <DialogFooter>
+      <div className="flex flex-col gap-2">
+        <label className="flex items-center gap-2 text-sm font-medium">
+          <input
+            type="checkbox"
+            checked={horarioProprio}
+            onChange={(e) => {
+              setHorarioProprio(e.target.checked);
+              if (e.target.checked && usuario.horario_funcionamento === null) {
+                setHorarioFuncionamento(horarioClinica);
+              }
+            }}
+            className="size-4 rounded border-input"
+          />
+          Usar horário próprio (diferente da clínica)
+        </label>
+        {horarioProprio && (
+          <HorarioSemanaEditor
+            horarios={horarioFuncionamento}
+            onChange={setHorarioFuncionamento}
+          />
+        )}
+      </div>
+      <SheetFooter className="px-0">
         <Button type="submit" disabled={loading}>
           {loading ? "Salvando..." : "Salvar"}
         </Button>
-      </DialogFooter>
+      </SheetFooter>
     </form>
   );
 }

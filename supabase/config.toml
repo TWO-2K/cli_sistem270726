@@ -385,6 +385,12 @@ deno_version = 2
 # [edge_runtime.secrets]
 # secret_key = "env(SECRET_VALUE)"
 
+# Chamada pela página pública /reservar-horario/[token] sem sessão de
+# usuário nenhuma (o paciente não está logado) — quem valida a legitimidade
+# é o token de uso único, não um JWT.
+[functions.aceitar-oferta-fila-espera]
+verify_jwt = false
+
 [analytics]
 enabled = true
 port = 54327

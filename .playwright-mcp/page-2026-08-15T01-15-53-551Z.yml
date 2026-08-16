@@ -1,0 +1,115 @@
+- generic [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - complementary [ref=f2e3]:
+      - navigation [ref=f2e6]:
+        - link [ref=f2e124] [cursor=pointer]:
+          - /url: /painel
+        - link [ref=f2e125] [cursor=pointer]:
+          - /url: /agenda
+        - link [ref=f2e126] [cursor=pointer]:
+          - /url: /pacientes
+        - link [ref=f2e127] [cursor=pointer]:
+          - /url: /atendimento
+        - link [ref=f2e128] [cursor=pointer]:
+          - /url: /leads
+        - link [ref=f2e129] [cursor=pointer]:
+          - /url: /financeiro
+        - link [ref=f2e130] [cursor=pointer]:
+          - /url: /relatorios
+        - link [ref=f2e131] [cursor=pointer]:
+          - /url: /configuracoes
+      - generic [ref=f2e40]:
+        - generic [ref=f2e132]: TC
+        - button [ref=f2e133]:
+          - generic [ref=f2e121]: Sair
+      - button [ref=f2e134]:
+        - generic [ref=f2e48]: Expandir menu
+    - main [ref=f2e49]:
+      - generic [ref=f2e51]:
+        - generic [ref=f2e52]:
+          - generic [ref=f2e53]:
+            - heading [level=1] [ref=f2e135]: Agenda
+            - paragraph [ref=f2e55]: Visão semanal ou diária dos atendimentos.
+          - button [ref=f2e136]: Novo agendamento
+        - generic [ref=f2e57]:
+          - generic [ref=f2e58]:
+            - link [ref=f2e59] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-13
+            - link [ref=f2e137] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-14
+              - text: Hoje
+            - link [ref=f2e63] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-15
+            - generic [ref=f2e66]: sexta-feira, 14 de agosto
+          - generic [ref=f2e67]:
+            - link [ref=f2e138] [cursor=pointer]:
+              - /url: /agenda?view=semana&data=2026-08-14
+              - text: semana
+            - link [ref=f2e139] [cursor=pointer]:
+              - /url: /agenda?view=dia&data=2026-08-14
+              - text: dia
+        - generic [ref=f2e73]:
+          - generic [ref=f2e75]:
+            - generic [ref=f2e76]: Sexta
+            - generic [ref=f2e77]: 14/08
+          - generic [ref=f2e78]:
+            - generic [ref=f2e79]: 08:00
+            - generic [ref=f2e81]: 09:00
+            - generic [ref=f2e83]: 10:00
+            - generic [ref=f2e85]: 11:00
+            - generic [ref=f2e87]: 12:00
+            - generic [ref=f2e89]: 13:00
+            - generic [ref=f2e91]: 14:00
+            - generic [ref=f2e93]: 15:00
+            - generic [ref=f2e95]: 16:00
+            - generic [ref=f2e97]: 17:00
+          - generic [ref=f2e99]:
+            - button [ref=f2e100] [cursor=pointer]
+            - button [ref=f2e101] [cursor=pointer]
+            - button [ref=f2e102] [cursor=pointer]
+            - button [ref=f2e103] [cursor=pointer]
+            - button [ref=f2e104] [cursor=pointer]
+            - button [ref=f2e105] [cursor=pointer]
+            - button [ref=f2e106] [cursor=pointer]
+            - button [ref=f2e107] [cursor=pointer]
+            - button [ref=f2e108] [cursor=pointer]
+            - button [ref=f2e109] [cursor=pointer]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f2e115] [cursor=pointer]
+  - alert [ref=f2e123]
+  - dialog [ref=f2e143]:
+    - heading "Novo agendamento" [level=2] [ref=f2e145]
+    - generic [ref=f2e146]:
+      - generic [ref=f2e147]:
+        - generic [ref=f2e148]: Paciente
+        - combobox [ref=f2e149]:
+          - generic [ref=f2e150]: QA Teste E2E
+          - img: ▼
+        - textbox [ref=f2e151]: f5847b76-9653-4305-98e0-caad08eae479
+      - generic [ref=f2e152]:
+        - generic [ref=f2e153]: Profissional
+        - combobox [expanded] [ref=f2e154]:
+          - generic [ref=f2e155]: Selecione o profissional
+          - img: ▼
+        - listbox [ref=f2e189]:
+          - option "medico" [active] [ref=f2e190]
+          - option "Medico 2" [ref=f2e192]
+        - textbox [ref=f2e156]
+      - generic [ref=f2e157]:
+        - generic [ref=f2e158]: Procedimento
+        - combobox [ref=f2e159]:
+          - generic [ref=f2e160]: Opcional
+          - img: ▼
+        - textbox [ref=f2e161]
+      - generic [ref=f2e162]:
+        - generic [ref=f2e163]: Sala
+        - combobox [ref=f2e164]:
+          - generic [ref=f2e165]: Opcional
+          - img: ▼
+        - textbox [ref=f2e166]
+      - generic [ref=f2e167]:
+        - generic [ref=f2e168]: Data e hora
+        - textbox "Data e hora" [ref=f2e169]: 2026-08-14T22:15
+      - generic [ref=f2e170]:
+        - button "Agendar" [disabled]
+    - button "Close" [ref=f2e171]

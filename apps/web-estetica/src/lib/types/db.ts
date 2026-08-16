@@ -61,6 +61,7 @@ export interface Agendamento {
   status: StatusAgendamento;
   observacoes: string | null;
   lembrete_enviado_em: string | null;
+  token_confirmacao: string;
 }
 
 export interface Atendimento {
@@ -378,4 +379,26 @@ export interface TabelaPrecoConvenio {
   convenio_id: string;
   procedimento_id: string;
   preco: number;
+}
+
+export type PeriodoDia = "manha" | "tarde" | "noite" | "qualquer";
+export type StatusListaEspera = "aguardando" | "convertido" | "cancelado";
+
+export interface ListaEspera {
+  id: string;
+  empresa_id: string;
+  paciente_id: string;
+  profissional_id: string | null;
+  procedimento_id: string | null;
+  disponibilidade_inicio: string;
+  disponibilidade_fim: string;
+  periodo_dia: PeriodoDia;
+  observacoes: string | null;
+  status: StatusListaEspera;
+  oferta_agendamento_id: string | null;
+  oferta_token: string | null;
+  oferta_expira_em: string | null;
+  agendamento_id: string | null;
+  criado_em: string;
+  atualizado_em: string;
 }

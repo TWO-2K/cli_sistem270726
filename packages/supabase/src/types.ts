@@ -52,6 +52,7 @@ export interface Usuario {
   especialidade: string | null;
   atende: boolean;
   ativo: boolean;
+  horario_funcionamento: HorarioDia[] | null;
 }
 
 export interface AuditLog {

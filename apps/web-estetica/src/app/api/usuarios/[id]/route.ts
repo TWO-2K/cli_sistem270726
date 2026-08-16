@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@empresa/supabase/server";
 import { createAdminClient } from "@empresa/supabase/admin";
 import { logger } from "@empresa/observability/logger";
-import type { Perfil } from "@/lib/types/db";
+import type { HorarioDia, Perfil } from "@/lib/types/db";
 
 const PERFIS_PERMITIDOS: Perfil[] = [
   "admin",
@@ -44,6 +44,9 @@ export async function PATCH(
   const atende = Boolean(body.atende);
   const ativo = Boolean(body.ativo);
   const unidadeId = body.unidade_id ? String(body.unidade_id) : null;
+  const horarioFuncionamento = (body.horario_funcionamento ?? null) as
+    | HorarioDia[]
+    | null;
 
   if (!nome || !PERFIS_PERMITIDOS.includes(perfil)) {
     return NextResponse.json(
@@ -55,7 +58,15 @@ export async function PATCH(
   const admin = createAdminClient();
   const { error } = await admin
     .from("usuarios")
-    .update({ nome, perfil, especialidade, atende, ativo, unidade_id: unidadeId })
+    .update({
+      nome,
+      perfil,
+      especialidade,
+      atende,
+      ativo,
+      unidade_id: unidadeId,
+      horario_funcionamento: horarioFuncionamento,
+    })
     .eq("id", id)
     .eq("empresa_id", usuarioAtual.empresa_id);
 
