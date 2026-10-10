@@ -32,7 +32,8 @@ Legenda: ✅ concluído · 🔜 próximo indicado · ⏳ não iniciado · ⏸️
 | 6 | 6c — Auditoria de ações sensíveis | ✅ | 07/08/2026 |
 | 6 | 6d — LGPD (exportação/exclusão de dados) | ✅ | 13/08/2026 — migration 0035, RPCs `exportar_dados_paciente`/`anonimizar_paciente`, aba "LGPD" (admin-only) na ficha do paciente. Testado via script contra o remoto |
 | 6 | 6e — Observabilidade (logs + Sentry) | ✅ | 07/08/2026 — falta só teste manual com `SENTRY_DSN` real do usuário |
-| 7 | 7a/7b/7c — Preparar terreno odonto/fisio | ⏳ | Só quando decidir começar o 2º app |
+| 7 | 7a — Auditoria de packages/* | ✅ | 20/08/2026 — checagem confirmou que ui/auth/supabase já são agnósticos de vocabulário de estética (única exceção correta: enum Segmento e tokens --modulo-*, em paridade com odonto/fisio). Nada a implementar |
+| 7 | 7b/7c — Schemas odonto/fisio + segmento no admin | ⏳ | Só quando decidir qual especialidade (odonto ou fisio) entra primeiro |
 
 **Não mapeado no roadmap original, feito à parte:**
 - Billing com Stripe em `apps/admin` — schema `stripe_customer_id`/`stripe_subscription_id`
